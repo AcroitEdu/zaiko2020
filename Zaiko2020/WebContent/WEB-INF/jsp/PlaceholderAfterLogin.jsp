@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
 </head>
 <body>
-<label style="font-size:150%;">ログインに成功しました。</label>
+<label>ログインに成功しました。</label>
 </body>
 </html>
