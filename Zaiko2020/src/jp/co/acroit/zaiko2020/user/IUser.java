@@ -1,7 +1,9 @@
 package jp.co.acroit.zaiko2020.user;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 public interface IUser {
     long getNumber();
     String getId();
-    String getPassword();
+    boolean authenticate(PasswordEncoder encoder, String password);
 }
