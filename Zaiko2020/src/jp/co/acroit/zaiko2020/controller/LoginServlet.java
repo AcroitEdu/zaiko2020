@@ -51,6 +51,7 @@ public final class LoginServlet extends AutowireServletBase {
             ISessionContainer session = authenticator.authenticate(id, password);
             request.getSession().invalidate();
             request.getSession(true).setAttribute(containerAttributeName, session);
+            request.getSession().setAttribute(errorAttributeName, "");
             response.sendRedirect(successUrl);
         }catch (Exception e) {
             request.getSession().setAttribute(errorAttributeName, loginFailedMessage);

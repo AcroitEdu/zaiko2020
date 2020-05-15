@@ -14,6 +14,46 @@ import jp.co.acroit.zaiko2020.user.IUserFactory;
 
 public class UserDataAccess implements IUserDataAccess {
 
+    public void setUserFactory(IUserFactory userFactory) {
+        this.userFactory = userFactory;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setDriver(String driver) {
+        this.driver = driver;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    public void setNumberColumn(String numberColumn) {
+        this.numberColumn = numberColumn;
+    }
+
+    public void setIdColumn(String idColumn) {
+        this.idColumn = idColumn;
+    }
+
+    public void setPasswordColumn(String passwordColumn) {
+        this.passwordColumn = passwordColumn;
+    }
+
+    public void setDatasource(DataSource datasource) {
+        this.datasource = datasource;
+    }
+
     @Autowired
     IUserFactory userFactory;
 
