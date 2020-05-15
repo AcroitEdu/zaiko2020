@@ -36,7 +36,7 @@ public class LoginSessionFilter  implements Filter {
 
 
     private static final Set<String> ALLOWED_PATHS = Collections.unmodifiableSet(new HashSet<>(
-            Arrays.asList("", "/login", "/loginForm","/WEB-INF/jsp/LoginForm.jsp")));
+            Arrays.asList("", "/login", "/loginForm","/WEB-INF/jsp/LoginForm.jsp","/style.css")));
     @Autowired
     @Qualifier("loginUrl")
     String loginUrl;
@@ -81,6 +81,7 @@ public class LoginSessionFilter  implements Filter {
             if (loggedIn || allowedPath) {
                 chain.doFilter(req, res);
             } else {
+                request.getSession().setAttribute("error", "ログインしてください。");
                 response.sendRedirect(loginUrl);
             }
         }

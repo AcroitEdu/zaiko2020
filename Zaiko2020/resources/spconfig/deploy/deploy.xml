@@ -19,4 +19,7 @@
   <bean id="errorAttributeName" class="java.lang.String" autowire-candidate="true">
     <constructor-arg value="error" />
   </bean>
+  <bean id="messageLogout" class="java.lang.String" autowire-candidate="true">
+    <constructor-arg value="ログアウトしました。" />
+  </bean>
 </beans>
