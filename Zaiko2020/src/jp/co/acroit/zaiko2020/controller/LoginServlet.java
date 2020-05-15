@@ -47,6 +47,13 @@ public final class LoginServlet extends AutowireServletBase {
         request.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
         String password = request.getParameter("password");
+        boolean isIdBlank = id == null || id.isBlank();
+        boolean isPasswordBlank = password == null || password.isBlank();
+        if(isIdBlank || isPasswordBlank) {
+            request.getSession().setAttribute(errorAttributeName, "ユーザー名とパスワードを入力してください。");
+            response.sendRedirect(loginUrl);
+            return;
+        }
         try {
             ISessionContainer session = authenticator.authenticate(id, password);
             request.getSession().invalidate();

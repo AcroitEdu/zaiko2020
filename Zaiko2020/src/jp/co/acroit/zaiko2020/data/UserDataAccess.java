@@ -14,69 +14,33 @@ import jp.co.acroit.zaiko2020.user.IUserFactory;
 
 public class UserDataAccess implements IUserDataAccess {
 
-    public void setUserFactory(IUserFactory userFactory) {
+
+    /**
+     * @param userFactory
+     * @param url
+     * @param driver
+     * @param username
+     * @param password
+     * @param query
+     * @param numberColumn
+     * @param idColumn
+     * @param passwordColumn
+     * @param datasource
+     */
+    @Autowired
+    public UserDataAccess(IUserFactory userFactory, String url, String driver, String username, String password,
+            String query, String numberColumn, String idColumn, String passwordColumn) {
         this.userFactory = userFactory;
-    }
-
-    public void setUrl(String url) {
         this.url = url;
-    }
-
-    public void setDriver(String driver) {
         this.driver = driver;
-    }
-
-    public void setUsername(String username) {
         this.username = username;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setQuery(String query) {
         this.query = query;
-    }
-
-    public void setNumberColumn(String numberColumn) {
         this.numberColumn = numberColumn;
-    }
-
-    public void setIdColumn(String idColumn) {
         this.idColumn = idColumn;
-    }
-
-    public void setPasswordColumn(String passwordColumn) {
         this.passwordColumn = passwordColumn;
-    }
 
-    public void setDatasource(DataSource datasource) {
-        this.datasource = datasource;
-    }
-
-    @Autowired
-    IUserFactory userFactory;
-
-    @Autowired
-    String url;
-    @Autowired
-    String driver;
-    @Autowired
-    String username;
-    @Autowired
-    String password;
-
-    @Autowired
-    String query;
-    @Autowired
-    String numberColumn;
-    @Autowired
-    String idColumn;
-    @Autowired
-    String passwordColumn;
-    DataSource datasource;
-    public UserDataAccess() throws SQLException {
-PoolProperties p = new PoolProperties();
+        PoolProperties p = new PoolProperties();
 
         // 接続情報の設定
         p.setUrl(url);
@@ -108,6 +72,19 @@ PoolProperties p = new PoolProperties();
         datasource.setPoolProperties(p);
 
     }
+
+
+    IUserFactory userFactory;
+    String url;
+    String driver;
+    String username;
+    String password;
+    String query;
+    String numberColumn;
+    String idColumn;
+    String passwordColumn;
+    DataSource datasource;
+
 
     @Override
     public IUser findById(String id){

@@ -28,7 +28,7 @@ public final class PlaceholderAfterLoginServlet extends AutowireServletBase {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.getWriter().append("Served at: ").append(request.getContextPath());
+        //response.getWriter().append("Served at: ").append(request.getContextPath());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/PlaceholderAfterLogin.jsp");
         dispatcher.forward(request, response);
     }

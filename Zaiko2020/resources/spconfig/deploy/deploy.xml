@@ -22,4 +22,7 @@
   <bean id="messageLogout" class="java.lang.String" autowire-candidate="true">
     <constructor-arg value="ログアウトしました。" />
   </bean>
+  <bean id="loginFailedMessage" class="java.lang.String" autowire-candidate="true">
+    <constructor-arg value="ユーザー名またはパスワードが間違っています。" />
+  </bean>
 </beans>

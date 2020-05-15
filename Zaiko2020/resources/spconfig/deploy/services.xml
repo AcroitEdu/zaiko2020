@@ -6,6 +6,9 @@
 
   <bean id="authenticator"
     class="jp.co.acroit.zaiko2020.auth.SimpleAuthenticator">
+    <property name="encoder" ref="encoder"></property>
+    <property name="users" ref="users"></property>
+    <property name="sessionFactory" ref="sessionFactory"></property>
   </bean>
   <bean id="encoder"
     class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">

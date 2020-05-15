@@ -3,17 +3,18 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
-
-    <bean id="usersDao"
+  <import resource="credentials.xml"/>
+    <bean id="users"
         class="jp.co.acroit.zaiko2020.data.UserDataAccess" autowire-candidate="true">
-        <property name="url"><value>jdbc:mysql://localhost/users</value></property>
-        <property name="driver"><value>org.mysql.Driver</value></property>
-        <property name="username"><value>admin</value></property>
-        <property name="password"><value>DB password</value></property>
-        <property name="query"><value>SELECT * FROM Users WHERE Id = ?</value></property>
-        <property name="numberColumn"><value>No</value></property>
-        <property name="idColumn"><value>Id</value></property>
-        <property name="passwordColumn"><value>Password</value></property>
+        <constructor-arg name="userFactory" ref="userFactory"></constructor-arg>
+        <constructor-arg name="url" ref="dbUrl"></constructor-arg>
+        <constructor-arg name="driver" ref="dbDriver"></constructor-arg>
+        <constructor-arg name="username" ref="dbUserName"></constructor-arg>
+        <constructor-arg name="password" ref="dbPassword"></constructor-arg>
+        <constructor-arg name="query"><value>SELECT * FROM users WHERE Id = ?</value></constructor-arg>
+        <constructor-arg name="numberColumn"><value>No</value></constructor-arg>
+        <constructor-arg name="idColumn"><value>Id</value></constructor-arg>
+        <constructor-arg name="passwordColumn"><value>Password</value></constructor-arg>
     </bean>
 
     <!-- more bean definitions for data access objects go here -->

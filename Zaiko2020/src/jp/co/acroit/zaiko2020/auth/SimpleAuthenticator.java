@@ -9,6 +9,15 @@ import jp.co.acroit.zaiko2020.user.ISessionContainerFactory;
 import jp.co.acroit.zaiko2020.user.IUser;
 
 public class SimpleAuthenticator implements IAuthenticator {
+    public void setEncoder(PasswordEncoder encoder) {
+        this.encoder = encoder;
+    }
+    public void setUsers(IUserDataAccess users) {
+        this.users = users;
+    }
+    public void setSessionFactory(ISessionContainerFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
     @Autowired
     PasswordEncoder encoder;
     @Autowired
