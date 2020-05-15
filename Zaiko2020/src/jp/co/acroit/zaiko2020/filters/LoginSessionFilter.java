@@ -74,7 +74,7 @@ public class LoginSessionFilter  implements Filter {
             HttpSession session = request.getSession(false);
             String path = request.getRequestURI().substring(request.getContextPath().length())
                     .replaceAll("/?Zaiko2020", "").replaceAll("[/]+$", "");
-            System.out.println("Accessing " + path);
+            //System.out.println("Accessing " + path);
             boolean loggedIn = (session != null && session.getAttribute(containerAttributeName) != null);
             boolean allowedPath = ALLOWED_PATHS.contains(path);
 
