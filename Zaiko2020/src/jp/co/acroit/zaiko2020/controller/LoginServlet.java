@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import jp.co.acroit.zaiko2020.auth.AuthenticationException;
 import jp.co.acroit.zaiko2020.auth.IAuthenticator;
-import jp.co.acroit.zaiko2020.auth.UserNotFoundException;
 import jp.co.acroit.zaiko2020.user.ISessionContainer;
 
 /**
@@ -30,6 +28,10 @@ public final class LoginServlet extends AutowireServletBase {
     String successUrl;
     @Autowired
     String containerAttributeName;
+    @Autowired
+    String errorAttributeName;
+    @Autowired
+    String loginFailedMessage;
 
     /**
      * @see AutowireServletBase#AutowireServletBase()
@@ -48,13 +50,12 @@ public final class LoginServlet extends AutowireServletBase {
         try {
             ISessionContainer session = authenticator.authenticate(id, password);
             request.getSession().invalidate();
-            request.getSession(true).setAttribute("container", session);
-        }catch(AuthenticationException e1) {
-        	request.getRequestDispatcher(successUrl);
-        }catch(UserNotFoundException e2) {
-        	
+            request.getSession(true).setAttribute(containerAttributeName, session);
+            request.getSession().setAttribute(errorAttributeName, "");
+            response.sendRedirect(successUrl);
         }catch (Exception e) {
-            // TODO 自動生成された catch ブロック
+            request.getSession().setAttribute(errorAttributeName, loginFailedMessage);
+            response.sendRedirect(loginUrl);
             e.printStackTrace();
         }
 
