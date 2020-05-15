@@ -4,8 +4,8 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <import resource="services.xml"/>
-    <import resource="daos.xml"/>
+    <import resource="./spconfig/deploy/deploy.xml"/>
+
     <!-- more bean definitions for data access objects go here -->
 
 </beans>
