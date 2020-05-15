@@ -5,7 +5,7 @@
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="authenticator"
-        class="org.springframework.samples.jpetstore.dao.jpa.JpaAccountDao">
+        class="jp.co.acroit.zaiko2020.auth.SimpleAuthenticator">
         <!-- additional collaborators and configuration for this bean go here -->
     </bean>
 

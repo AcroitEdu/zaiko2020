@@ -8,6 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import jp.co.acroit.zaiko2020.auth.AuthenticationException;
+import jp.co.acroit.zaiko2020.auth.IAuthenticator;
+import jp.co.acroit.zaiko2020.auth.UserNotFoundException;
+import jp.co.acroit.zaiko2020.user.ISessionContainer;
+
 /**
  * Servlet implementation class LoginServlet
  */
@@ -15,19 +22,42 @@ import javax.servlet.http.HttpServletResponse;
 public final class LoginServlet extends AutowireServletBase {
     private static final long serialVersionUID = 1L;
 
+    @Autowired
+    IAuthenticator authenticator;
+    @Autowired
+    String loginUrl;
+    @Autowired
+    String successUrl;
+    @Autowired
+    String containerAttributeName;
+
     /**
      * @see AutowireServletBase#AutowireServletBase()
      */
     public LoginServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
+        request.setCharacterEncoding("UTF-8");
+        String id = request.getParameter("id");
+        String password = request.getParameter("password");
+        try {
+            ISessionContainer session = authenticator.authenticate(id, password);
+            request.getSession().invalidate();
+            request.getSession(true).setAttribute("container", session);
+        }catch(AuthenticationException e1) {
+        	request.getRequestDispatcher(successUrl);
+        }catch(UserNotFoundException e2) {
+        	
+        }catch (Exception e) {
+            // TODO 自動生成された catch ブロック
+            e.printStackTrace();
+        }
+
     }
 
 }

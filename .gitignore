@@ -1,7 +1,7 @@
-#custom
+# custom
 pom.properties
 */target/**
-#maven
+# maven
 target/
 pom.xml.tag
 pom.xml.releaseBackup
