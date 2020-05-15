@@ -10,5 +10,5 @@ import jp.co.acroit.zaiko2020.user.ISessionContainer;
  *
  */
 public interface IAuthenticator {
-    ISessionContainer authenticate(String id, String password);
+    ISessionContainer authenticate(String id, String password) throws Exception;
 }
