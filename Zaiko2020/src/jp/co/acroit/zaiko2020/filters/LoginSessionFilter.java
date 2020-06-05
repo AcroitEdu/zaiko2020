@@ -18,8 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 /**
@@ -37,12 +35,8 @@ public class LoginSessionFilter  implements Filter {
 
     private static final Set<String> ALLOWED_PATHS = Collections.unmodifiableSet(new HashSet<>(
             Arrays.asList("", "/login", "/loginForm","/WEB-INF/jsp/LoginForm.jsp","/style.css")));
-    @Autowired
-    @Qualifier("loginUrl")
-    String loginUrl;
-    @Autowired
-    @Qualifier("containerAttributeName")
-    String containerAttributeName;
+    String loginUrl = "/Zaiko2020/loginForm";
+    String containerAttributeName = "user";
 
     /**
      * Default constructor.

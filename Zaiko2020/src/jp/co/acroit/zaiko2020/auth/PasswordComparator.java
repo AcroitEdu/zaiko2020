@@ -13,11 +13,7 @@ public class PasswordComparator {
 	 * @return 一致ならtrue、不一致ならfalse
 	 */
     public boolean compare(String formPass, String pass) {
-        if(formPass.equals(pass)) {
-            return true;
-        } else {
-            return false;
-        }
+        return formPass.equals(pass);
     }
 
 }

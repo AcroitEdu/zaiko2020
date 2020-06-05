@@ -54,11 +54,12 @@ public class LoginController extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 				response.sendRedirect("/Zaiko2020/placeholderAfterLogin");
+				return;
 			}
-			request.getSession().setAttribute("error", "ユーザー名またはパスワードが間違っています。");
-			response.sendRedirect("/Zaiko2020/LoginForm");
-		}
 
+		}
+		request.getSession().setAttribute("error", "ユーザー名またはパスワードが間違っています。");
+		response.sendRedirect("/Zaiko2020/loginForm");
 
 
 
