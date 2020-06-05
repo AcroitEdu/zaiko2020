@@ -41,17 +41,18 @@ public class LoginController extends HttpServlet {
 		boolean isIdBlank = id == null || id.isBlank();
 		boolean isPasswordBlank = password == null || password.isBlank();
 
+		//idとpasswordのnull判定
 		if (isIdBlank || isPasswordBlank) {
 			request.getSession().setAttribute("error", "ユーザー名とパスワードを入力してください。");
 			response.sendRedirect("/Zaiko2020/loginForm");
 			return;
 		}
 
-		UserDataAccess userdataaccess = new UserDataAccess();
-		User user = userdataaccess.findById(id);
+		UserDataAccess uda = new UserDataAccess();
+		User user = uda.findById(id);
 		if (user != null) {
-			PasswordComparator passwordcomparator = new PasswordComparator();
-			if (passwordcomparator.compare(password, user.getPassword())) {
+			PasswordComparator comparator = new PasswordComparator();
+			if (comparator.compare(password, user.getPassword())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 				response.sendRedirect("/Zaiko2020/placeholderAfterLogin");
@@ -61,7 +62,6 @@ public class LoginController extends HttpServlet {
 		}
 		request.getSession().setAttribute("error", "ユーザー名またはパスワードが間違っています。");
 		response.sendRedirect("/Zaiko2020/loginForm");
-
 	}
 
 }
