@@ -1,4 +1,5 @@
 package jp.co.acroit.zaiko2020.auth;
+
 /**
  * パスワード照合クラス
  * @version 1.0
@@ -12,8 +13,8 @@ public class PasswordComparator {
 	 * @param pass 実際のパスワード
 	 * @return 一致ならtrue、不一致ならfalse
 	 */
-    public boolean compare(String formPass, String pass) {
-        return formPass.equals(pass);
-    }
+	public boolean compare(String formPass, String pass) {
+		return formPass.equals(pass);
+	}
 
 }

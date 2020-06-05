@@ -31,7 +31,8 @@ public class LoginController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
@@ -40,7 +41,7 @@ public class LoginController extends HttpServlet {
 		boolean isIdBlank = id == null || id.isBlank();
 		boolean isPasswordBlank = password == null || password.isBlank();
 
-		if(isIdBlank || isPasswordBlank) {
+		if (isIdBlank || isPasswordBlank) {
 			request.getSession().setAttribute("error", "ユーザー名とパスワードを入力してください。");
 			response.sendRedirect("/Zaiko2020/loginForm");
 			return;
@@ -48,9 +49,9 @@ public class LoginController extends HttpServlet {
 
 		UserDataAccess userdataaccess = new UserDataAccess();
 		User user = userdataaccess.findById(id);
-		if(user != null) {
+		if (user != null) {
 			PasswordComparator passwordcomparator = new PasswordComparator();
-			if(passwordcomparator.compare(password, user.getPassword())) {
+			if (passwordcomparator.compare(password, user.getPassword())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 				response.sendRedirect("/Zaiko2020/placeholderAfterLogin");
@@ -60,9 +61,6 @@ public class LoginController extends HttpServlet {
 		}
 		request.getSession().setAttribute("error", "ユーザー名またはパスワードが間違っています。");
 		response.sendRedirect("/Zaiko2020/loginForm");
-
-
-
 
 	}
 

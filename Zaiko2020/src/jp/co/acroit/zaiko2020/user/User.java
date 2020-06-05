@@ -1,4 +1,5 @@
 package jp.co.acroit.zaiko2020.user;
+
 /**
  * ユーザー クラス
  * @version 1.0
@@ -10,7 +11,7 @@ public class User {
 	private String id;
 	private String password;
 
-	public User (long number, String id,String password) {
+	public User(long number, String id, String password) {
 		this.number = number;
 		this.id = id;
 		this.password = password;
