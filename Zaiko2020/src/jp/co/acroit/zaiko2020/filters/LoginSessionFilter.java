@@ -9,7 +9,6 @@ import java.util.Set;
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -18,10 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-
 /**
- * Servlet Filter implementation class LoginSessionFilter
+ * 未ログインのユーザーを弾くフィルタ
  */
 @WebFilter(dispatcherTypes = {
         DispatcherType.REQUEST,
@@ -29,34 +26,18 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
         DispatcherType.INCLUDE,
         DispatcherType.ERROR
 }, asyncSupported = true, urlPatterns = { "/*" })
-public class LoginSessionFilter  implements Filter {
+public class LoginSessionFilter implements Filter {
 
-
-
+    // アクセスを許可されたパスの一覧
     private static final Set<String> ALLOWED_PATHS = Collections.unmodifiableSet(new HashSet<>(
-            Arrays.asList("", "/login", "/loginForm","/WEB-INF/jsp/LoginForm.jsp","/style.css")));
+            Arrays.asList("", "/login", "/loginForm", "/WEB-INF/jsp/LoginForm.jsp", "/style.css")));
+    // ログインフォームのURL
     String loginUrl = "/Zaiko2020/loginForm";
+    // セッションスコープに格納されたユーザー情報を取得するためのキー
     String containerAttributeName = "user";
 
     /**
-     * Default constructor.
-     */
-    public LoginSessionFilter() {
-
-    }
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-    }
-
-    /**
-     * @see Filter#destroy()
-     */
-    public void destroy() {
-
-    }
-
-    /**
+     * フィルタ処理
      * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
      */
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
@@ -66,15 +47,17 @@ public class LoginSessionFilter  implements Filter {
             HttpServletRequest request = (HttpServletRequest) req;
             HttpServletResponse response = (HttpServletResponse) res;
             HttpSession session = request.getSession(false);
+            //パスの前処理
             String path = request.getRequestURI().substring(request.getContextPath().length())
                     .replaceAll("/?Zaiko2020", "").replaceAll("[/]+$", "");
-            //System.out.println("Accessing " + path);
+            //ログイン/ホワイトリスト判定
             boolean loggedIn = (session != null && session.getAttribute(containerAttributeName) != null);
             boolean allowedPath = ALLOWED_PATHS.contains(path);
 
             if (loggedIn || allowedPath) {
-                chain.doFilter(req, res);
+                chain.doFilter(req, res); // 許可
             } else {
+                //拒否
                 request.getSession().setAttribute("error", "ログインしてください。");
                 response.sendRedirect(loginUrl);
             }

@@ -28,7 +28,9 @@ public class PlaceholderAfterLoginController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/PlaceholderAfterLogin.jsp");
 		dispatcher.forward(request, response);
 	}

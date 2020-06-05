@@ -25,10 +25,13 @@ public class LoginFormController extends HttpServlet {
         super();
     }
 
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/LoginForm.jsp");
 		dispatcher.forward(request, response);
 	}
