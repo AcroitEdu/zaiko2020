@@ -40,9 +40,7 @@ public class LoginController extends HttpServlet {
             response.sendRedirect("/Zaiko2020/loginForm");
             return;
         }
-        //DAO
 
-        //パスワード
 	}
 
 }

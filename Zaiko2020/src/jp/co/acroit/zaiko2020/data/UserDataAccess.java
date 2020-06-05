@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 
-import com.mysql.cj.x.protobuf.MysqlxSession.Reset;
+import jp.co.acroit.zaiko2020.user.User;
 
 public class UserDataAccess {
 
@@ -65,7 +65,7 @@ public class UserDataAccess {
 	    String passwordColumn;
 	    DataSource datasource;
 
-	public IUser findById(String id){
+	public User findById(String id){
         Connection con = null;
         try {
             con = datasource.getConnection();
@@ -83,7 +83,7 @@ public class UserDataAccess {
                     rs.close();
                     con.close();
                     con = null;
-                    return userFactory.create(num, idFound, digest);
+                    return new User(num, idFound, digest);
                 }
             }
             rs.close();
@@ -101,5 +101,5 @@ public class UserDataAccess {
                 }
             }
         }
-
+	}
 }
