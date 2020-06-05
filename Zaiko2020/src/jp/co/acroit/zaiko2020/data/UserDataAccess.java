@@ -10,6 +10,11 @@ import org.apache.tomcat.jdbc.pool.PoolProperties;
 
 import jp.co.acroit.zaiko2020.user.User;
 
+/**
+ * データベースアクセスクラス
+ * @version 1.0
+ * @author hiroki tajima
+ */
 public class UserDataAccess {
 
 	public UserDataAccess() {

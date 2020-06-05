@@ -1,6 +1,6 @@
 package jp.co.acroit.zaiko2020.user;
 /**
- * ユーザー クラス
+ * ユーザークラス
  * @version 1.0
  * @author Hiroe Ishioka
  */
