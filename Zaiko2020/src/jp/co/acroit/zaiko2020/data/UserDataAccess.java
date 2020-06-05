@@ -72,18 +72,18 @@ public class UserDataAccess {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
-            long num;
+            long number;
             String digest;
             String idFound;
             while (rs.next()) {
-                num = rs.getLong(numberColumn);
+            	number = rs.getLong(numberColumn);
                 idFound = rs.getString(idColumn);
                 digest = rs.getString(passwordColumn);
                 if(idFound.equals(id)) {
                     rs.close();
                     con.close();
                     con = null;
-                    return new User(num, idFound, digest);
+                    return new User(number, idFound, digest);
                 }
             }
             rs.close();

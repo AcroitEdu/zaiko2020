@@ -2,7 +2,6 @@ package jp.co.acroit.zaiko2020.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +16,7 @@ import jp.co.acroit.zaiko2020.user.User;
 /**
  * Servlet implementation class LoginController
  */
-@WebServlet("/LoginController")
+@WebServlet("/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -51,14 +50,13 @@ public class LoginController extends HttpServlet {
 		User user = userdataaccess.findById(id);
 		if(user != null) {
 			PasswordComparator passwordcomparator = new PasswordComparator();
-			if(passwordcomparator.compare(password, user.getPass())) {
-				HttpSession sesstion = request.getSession();
-				sesstion.setAttribute("user", user);
-
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/Zaiko2020/placeholderAfterLogin");
-				dispatcher.forward(request, response);
+			if(passwordcomparator.compare(password, user.getPassword())) {
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user);
+				response.sendRedirect("/Zaiko2020/placeholderAfterLogin");
 			}
-			response.sendRedirect("/Zaiko2020/loginForm");
+			request.getSession().setAttribute("error", "ユーザー名またはパスワードが間違っています。");
+			response.sendRedirect("/Zaiko2020/LoginForm");
 		}
 
 
