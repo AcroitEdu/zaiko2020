@@ -1,5 +1,9 @@
 package jp.co.acroit.zaiko2020.user;
-
+/**
+ * ユーザー クラス
+ * @version 1.0
+ * @author Hiroe Ishioka
+ */
 public class User {
 
 	private long number;
@@ -13,15 +17,15 @@ public class User {
 	}
 
 	// ゲッター
-
 	public long getNumber() {
 		return number;
 	}
+
 	public String getId() {
 		return id;
 	}
 
-	public String getPass() {
+	public String getPassword() {
 		return password;
 	}
 
