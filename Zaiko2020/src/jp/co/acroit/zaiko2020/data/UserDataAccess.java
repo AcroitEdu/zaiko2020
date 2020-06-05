@@ -12,16 +12,16 @@ import jp.co.acroit.zaiko2020.user.User;
 
 public class UserDataAccess {
 
-	public UserDataAccess(String url, String driver, String username, String password,
-            String query, String numberColumn, String idColumn, String passwordColumn) {
-        this.url = url;
-        this.driver = driver;
-        this.username = username;
-        this.password = password;
-        this.query = query;
-        this.numberColumn = numberColumn;
-        this.idColumn = idColumn;
-        this.passwordColumn = passwordColumn;
+	public UserDataAccess() {
+		String url = "jdbc:mysql://localhost/zaiko2020?characterEncoding=UTF-8&amp;serverTimezone=JST";
+		String driver = "com.mysql.cj.jdbc.Driver";
+		String username = "tomcat";
+		String password = "RC2-Z%b9e85PWqR";
+		String query = "SELECT * FROM users WHERE Id = ?";
+		String numberColumn = "No";
+		String idColumn = "id";
+		String passwordColumn = "Password";
+
 
         PoolProperties p = new PoolProperties();
 
