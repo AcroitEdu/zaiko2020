@@ -5,8 +5,9 @@ package jp.co.acroit.zaiko2020.auth;
  * @author Hiroe Ishioka
  */
 public class PasswordComparator {
+
 	/**
-	 * ログインフォームで入力されたパスワードを、実際のパスワードと照合する
+	 * 入力されたパスワードを、実際のパスワードと照合するメソッド
 	 * @param formPass 入力されたパスワード
 	 * @param pass 実際のパスワード
 	 * @return 一致ならtrue、不一致ならfalse
@@ -18,4 +19,5 @@ public class PasswordComparator {
             return false;
         }
     }
+
 }
