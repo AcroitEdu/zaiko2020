@@ -58,7 +58,11 @@ public class LoginSessionFilter implements Filter {
             //ログイン/ホワイトリスト判定
             boolean loggedIn = false;
             boolean allowedPath = false;
-            loggedIn = (session != null && session.getAttribute(USER_ATTRIBUTE_NAME) != null);
+
+            if(session != null && session.getAttribute(USER_ATTRIBUTE_NAME) != null) {
+            	loggedIn = true;
+            }
+
             allowedPath = ALLOWED_PATHS.contains(path);
 
             if (loggedIn || allowedPath) {

@@ -46,8 +46,12 @@ public class LoginController extends HttpServlet {
 		password = request.getParameter("password");
 
 		//idとpasswordのnull判定
-		isIdBlank = id == null || id.isBlank();
-		isPasswordBlank = password == null || password.isBlank();
+		if(id == null || id.isBlank()) {
+			isIdBlank = true;
+		}
+		if(password == null || password.isBlank()) {
+			isPasswordBlank = true;
+		}
 
 		if (isIdBlank || isPasswordBlank) {
 			request.getSession().setAttribute("error", "ユーザー名とパスワードを入力してください。");
@@ -74,5 +78,4 @@ public class LoginController extends HttpServlet {
 		request.getSession().setAttribute("error", "ユーザー名またはパスワードが間違っています。");
 		response.sendRedirect("/Zaiko2020/loginForm");
 	}
-
 }
