@@ -19,6 +19,8 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 未ログインのユーザーを弾くフィルタ
+ * @version 1.0
+ * @author Koki OISHI
  */
 @WebFilter(dispatcherTypes = {
         DispatcherType.REQUEST,
@@ -32,9 +34,9 @@ public class LoginSessionFilter implements Filter {
     private static final Set<String> ALLOWED_PATHS = Collections.unmodifiableSet(new HashSet<>(
             Arrays.asList("", "/login", "/loginForm", "/WEB-INF/jsp/LoginForm.jsp", "/style.css")));
     // ログインフォームのURL
-    String loginUrl = "/Zaiko2020/loginForm";
+    private static final String LOGIN_URL = "/Zaiko2020/loginForm";
     // セッションスコープに格納されたユーザー情報を取得するためのキー
-    String containerAttributeName = "user";
+    private static final String USER_ATTRIBUTE_NAME = "user";
 
     /**
      * フィルタ処理
@@ -42,7 +44,7 @@ public class LoginSessionFilter implements Filter {
      */
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
             throws IOException, ServletException {
-
+        //HTTPリクエストのみを検出
         if (req instanceof HttpServletRequest && res instanceof HttpServletResponse) {
             HttpServletRequest request = (HttpServletRequest) req;
             HttpServletResponse response = (HttpServletResponse) res;
@@ -51,7 +53,7 @@ public class LoginSessionFilter implements Filter {
             String path = request.getRequestURI().substring(request.getContextPath().length())
                     .replaceAll("/?Zaiko2020", "").replaceAll("[/]+$", "");
             //ログイン/ホワイトリスト判定
-            boolean loggedIn = (session != null && session.getAttribute(containerAttributeName) != null);
+            boolean loggedIn = (session != null && session.getAttribute(USER_ATTRIBUTE_NAME) != null);
             boolean allowedPath = ALLOWED_PATHS.contains(path);
 
             if (loggedIn || allowedPath) {
@@ -59,7 +61,7 @@ public class LoginSessionFilter implements Filter {
             } else {
                 //拒否
                 request.getSession().setAttribute("error", "ログインしてください。");
-                response.sendRedirect(loginUrl);
+                response.sendRedirect(LOGIN_URL);
             }
         }
     }
