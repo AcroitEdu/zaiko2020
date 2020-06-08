@@ -14,14 +14,14 @@ import javax.servlet.http.HttpServletResponse;
  * @version 1.0
  * @author hiroki tajima
  */
-@WebServlet("/placeholderAfterLogin")
-public class PlaceholderAfterLoginController extends HttpServlet {
+@WebServlet("/AfterLogin")
+public class AfterLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public PlaceholderAfterLoginController() {
+	public AfterLoginController() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class PlaceholderAfterLoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/PlaceholderAfterLogin.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/AfterLogin.jsp");
 		dispatcher.forward(request, response);
 	}
 

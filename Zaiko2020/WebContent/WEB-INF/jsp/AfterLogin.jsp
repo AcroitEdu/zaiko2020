@@ -5,27 +5,27 @@
 <head>
 <meta charset="UTF-8">
 <style>
-body{
-font-family: “Noto Sans JP”, sans-serif;
+body {
+	font-family: sans-serif;
 }
 
 div {
 	text-align: center;
 	position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  width: 80%;
-  height: 3.2rem;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	width: 80%;
+	height: 3.2rem;
 }
 
 label {
 	font-size: 150%;
 }
 </style>
-<title>Insert title here</title>
+<title>ログイン後仮画面</title>
 </head>
 <body>
 	<div>

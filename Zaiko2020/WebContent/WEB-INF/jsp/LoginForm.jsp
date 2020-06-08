@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ログイン画面</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <h1>在庫管理システム ログイン画面</h1>
   <div class="error">
-    <span style="color: red;">${sessionScope.error}</span>
+    <span>${sessionScope.error}</span>
   </div>
   <form action="/Zaiko2020/login" method="post">
     <div class="form">

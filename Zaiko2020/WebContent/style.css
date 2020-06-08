@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body {
-  font-family: “Noto Sans JP”, “Noto Sans”, sans-serif;
+  font-family: sans-serif;
   max-height: 500px;
   height: 100%;
   max-width: 800px;
@@ -11,6 +11,10 @@ body {
 
 h1 {
   text-align: center;
+}
+
+div.error{
+	color: red;
 }
 
 div.form{

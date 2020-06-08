@@ -49,20 +49,26 @@ public class UserDataAccess {
 	String passwordColumn;
 	DataSource datasource;
 
+	//id検索
 	public User findById(String id) {
 		Connection con = null;
+
 		try {
 			con = datasource.getConnection();
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, id);
 			ResultSet rs = ps.executeQuery();
-			long number;
-			String digest;
-			String idFound;
+			
+			long number = -1;
+			String digest = null;
+			String idFound = null;
+
 			while (rs.next()) {
 				number = rs.getLong(numberColumn);
 				idFound = rs.getString(idColumn);
 				digest = rs.getString(passwordColumn);
+
+				//idの一致するユーザーを返す
 				if (idFound.equals(id)) {
 					rs.close();
 					con.close();

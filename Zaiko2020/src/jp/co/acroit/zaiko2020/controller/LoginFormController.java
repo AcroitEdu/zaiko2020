@@ -25,7 +25,6 @@ public class LoginFormController extends HttpServlet {
         super();
     }
 
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */

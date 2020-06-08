@@ -36,29 +36,39 @@ public class LoginController extends HttpServlet {
 			throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
-		String id = request.getParameter("id");
-		String password = request.getParameter("password");
-		boolean isIdBlank = id == null || id.isBlank();
-		boolean isPasswordBlank = password == null || password.isBlank();
+		String id = null;
+		String password = null;
+		boolean isIdBlank = false;
+		boolean isPasswordBlank = false;
+
+		//IDとPasswordの取得
+		id = request.getParameter("id");
+		password = request.getParameter("password");
 
 		//idとpasswordのnull判定
+		isIdBlank = id == null || id.isBlank();
+		isPasswordBlank = password == null || password.isBlank();
+
 		if (isIdBlank || isPasswordBlank) {
 			request.getSession().setAttribute("error", "ユーザー名とパスワードを入力してください。");
 			response.sendRedirect("/Zaiko2020/loginForm");
 			return;
 		}
 
+		//id検索
 		UserDataAccess uda = new UserDataAccess();
 		User user = uda.findById(id);
+
 		if (user != null) {
 			PasswordComparator comparator = new PasswordComparator();
+
+			//sessionにユーザー情報設定
 			if (comparator.compare(password, user.getPassword())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
-				response.sendRedirect("/Zaiko2020/placeholderAfterLogin");
+				response.sendRedirect("/Zaiko2020/AfterLogin");
 				return;
 			}
-
 		}
 		request.getSession().setAttribute("error", "ユーザー名またはパスワードが間違っています。");
 		response.sendRedirect("/Zaiko2020/loginForm");
