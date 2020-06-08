@@ -39,7 +39,6 @@ label {
 
 li input {
 	width: 300px;
-	height:;
 	border-radius: 5px;
 	border: solid 1px;
 }
@@ -53,5 +52,4 @@ input.btn {
 	height:;
 	border: solid 1px;
 	border-radius: 5px;
-	background-color:;
 }
