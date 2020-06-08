@@ -11,38 +11,22 @@ public class User {
     private String id;
     private String password;
 
-    /**
-     * ユーザー情報の初期化
-     * @param number 通し番号
-     * @param id ログインID
-     * @param password パスワード
-     */
+    // ユーザー情報の初期化
     public User(long number, String id, String password) {
         this.number = number;
         this.id = id;
         this.password = password;
     }
 
-    /**
-     * 通し番号を返す
-     * @return 通し番号
-     */
+    // 各種ゲッター
     public long getNumber() {
         return number;
     }
 
-    /**
-     * IDを返す
-     * @return ユーザーID
-     */
     public String getId() {
         return id;
     }
 
-    /**
-     * パスワードを返す
-     * @return パスワード
-     */
     public String getPassword() {
         return password;
     }

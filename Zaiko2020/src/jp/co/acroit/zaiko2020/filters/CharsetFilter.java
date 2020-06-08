@@ -12,6 +12,8 @@ import javax.servlet.annotation.WebFilter;
 
 /**
  * HTTP通信の文字コードをUTF-8に変更するフィルタ
+ * @version 1.0
+ * @author Koki OISHI
  */
 @WebFilter(dispatcherTypes = {
         DispatcherType.REQUEST,
@@ -25,7 +27,6 @@ public class CharsetFilter implements Filter {
      * コンストラクタ
      */
     public CharsetFilter() {
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -34,6 +35,7 @@ public class CharsetFilter implements Filter {
      */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
+        //文字コードの変更
         request.setCharacterEncoding("UTF-8");
         chain.doFilter(request, response);
     }
