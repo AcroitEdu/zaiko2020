@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ログイン画面</title>
-<link rel="stylesheet" type="text/css" href="Style.css">
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <h1>在庫管理システム ログイン画面</h1>
