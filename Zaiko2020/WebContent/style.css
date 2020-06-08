@@ -1,61 +1,57 @@
 @charset "UTF-8";
 
 body {
-  font-family: sans-serif;
-  max-height: 500px;
-  height: 100%;
-  max-width: 800px;
-  width: 95%;
-  margin: 0 auto;
+	font-family: sans-serif;
+	max-height: 500px;
+	height: 100%;
+	max-width: 800px;
+	width: 95%;
+	margin: 0 auto;
 }
 
 h1 {
-  text-align: center;
+	text-align: center;
 }
 
-div.error{
+div.error {
+	text-align: center;
+	margin-top: 35px;
 	color: red;
 }
 
-div.form{
-  width: 60%;
-  margin: 0 auto;
-  margin-top: 30px;
-
+div.form {
+	width: 60%;
+	margin: 0 auto;
+	margin-top: 30px;
 }
 
 ul li {
-  list-style: none;
-  margin-top: 10px;
-  margin-bottom: 30px;
+	list-style: none;
+	margin-top: 10px;
+	margin-bottom: 30px;
 }
 
 label {
-  margin-right: 10px;
-  width: 100px;
-  float: left;
+	margin-right: 10px;
+	width: 100px;
+	float: left;
 }
 
-li input{
-  width: 300px;
-  height:;
-  border-radius: 5px;
-  border: solid 1px;
+li input {
+	width: 300px;
+	height:;
+	border-radius: 5px;
+	border: solid 1px;
 }
 
-p{
-  text-align: center;
+p {
+	text-align: center;
 }
 
 input.btn {
-  width:120px;
-  height:;
-  border: solid 1px;
-  border-radius: 5px;
-  background-color: ;
-}
-
-div.error{
-  text-align: center;
-  margin-top: 35px;
+	width: 120px;
+	height:;
+	border: solid 1px;
+	border-radius: 5px;
+	background-color:;
 }
