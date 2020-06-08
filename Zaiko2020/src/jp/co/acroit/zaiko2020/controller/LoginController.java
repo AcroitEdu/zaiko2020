@@ -64,6 +64,7 @@ public class LoginController extends HttpServlet {
 
 			//sessionにユーザー情報設定
 			if (comparator.compare(password, user.getPassword())) {
+				request.getSession().setAttribute("error", "");
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 				response.sendRedirect("/Zaiko2020/AfterLogin");

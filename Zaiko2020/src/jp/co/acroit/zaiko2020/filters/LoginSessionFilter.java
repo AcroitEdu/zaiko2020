@@ -49,12 +49,17 @@ public class LoginSessionFilter implements Filter {
             HttpServletRequest request = (HttpServletRequest) req;
             HttpServletResponse response = (HttpServletResponse) res;
             HttpSession session = request.getSession(false);
+
             //パスの前処理
-            String path = request.getRequestURI().substring(request.getContextPath().length())
+            String path = null;
+            path = request.getRequestURI().substring(request.getContextPath().length())
                     .replaceAll("/?Zaiko2020", "").replaceAll("[/]+$", "");
+
             //ログイン/ホワイトリスト判定
-            boolean loggedIn = (session != null && session.getAttribute(USER_ATTRIBUTE_NAME) != null);
-            boolean allowedPath = ALLOWED_PATHS.contains(path);
+            boolean loggedIn = false;
+            boolean allowedPath = false;
+            loggedIn = (session != null && session.getAttribute(USER_ATTRIBUTE_NAME) != null);
+            allowedPath = ALLOWED_PATHS.contains(path);
 
             if (loggedIn || allowedPath) {
                 chain.doFilter(req, res); // 許可
