@@ -61,21 +61,27 @@ public class LoginController extends HttpServlet {
 
 		//id検索
 		UserDataAccess uda = new UserDataAccess();
-		User user = uda.findById(id);
+		try{
+			User user = uda.findById(id);
 
-		if (user != null) {
-			PasswordComparator comparator = new PasswordComparator();
 
-			//sessionにユーザー情報設定
-			if (comparator.compare(password, user.getPassword())) {
-				request.getSession().setAttribute("error", "");
-				HttpSession session = request.getSession();
-				session.setAttribute("user", user);
-				response.sendRedirect("/Zaiko2020/AfterLogin");
-				return;
+			if (user != null) {
+				PasswordComparator comparator = new PasswordComparator();
+
+				//sessionにユーザー情報設定
+				if (comparator.compare(password, user.getPassword())) {
+					request.getSession().setAttribute("error", "");
+					HttpSession session = request.getSession();
+					session.setAttribute("user", user);
+					response.sendRedirect("/Zaiko2020/AfterLogin");
+					return;
+				}
 			}
+			request.getSession().setAttribute("error", "ユーザー名またはパスワードが間違っています。");
+			response.sendRedirect("/Zaiko2020/loginForm");
+		}catch (Exception e) {
+			request.getSession().setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
+			response.sendRedirect("/Zaiko2020/loginForm");
 		}
-		request.getSession().setAttribute("error", "ユーザー名またはパスワードが間違っています。");
-		response.sendRedirect("/Zaiko2020/loginForm");
 	}
 }

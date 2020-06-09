@@ -50,7 +50,7 @@ public class UserDataAccess {
 	DataSource datasource;
 
 	//id検索
-	public User findById(String id) {
+	public User findById(String id) throws SQLException {
 		Connection con = null;
 
 		try {
@@ -58,7 +58,7 @@ public class UserDataAccess {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, id);
 			ResultSet rs = ps.executeQuery();
-			
+
 			long number = -1;
 			String digest = null;
 			String idFound = null;
@@ -82,7 +82,7 @@ public class UserDataAccess {
 			return null;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return null;
+			throw e;
 		} finally {
 			if (con != null) {
 				try {
