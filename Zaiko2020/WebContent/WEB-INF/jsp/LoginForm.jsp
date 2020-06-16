@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ログイン画面</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>

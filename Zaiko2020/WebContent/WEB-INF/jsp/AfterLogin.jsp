@@ -3,25 +3,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 <style>
 body {
-	font-family: sans-serif;
+  font-family: sans-serif;
 }
 
 div {
-	text-align: center;
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	margin: auto;
-	width: 80%;
-	height: 3.2rem;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 80%;
+  height: 3.2rem;
 }
 
 label {
-	font-size: 150%;
+  font-size: 150%;
 }
 </style>
 <title>ログイン後仮画面</title>

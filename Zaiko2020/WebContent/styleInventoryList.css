@@ -1,0 +1,169 @@
+@charset "UTF-8";
+
+*{
+    font-family: 'Noto Sans JP', sans-serif;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    background-color: #f0f0f0;
+}
+.main{
+    min-width: 90%;
+    width: 1900px;
+    max-width: 99%;
+}
+
+/* ヘッダー */
+header .boxed-tabs{
+    display: flex;
+    flex-direction: row;
+}
+.boxed-tabs .tab{
+    margin: 2px 2px 0 2px;
+    flex-grow: 0;
+    width: fit-content;
+    background-color: #d0d0d0;
+    border-right: 1px solid #808080;
+}
+.boxed-tabs li.tab-current{
+    background-color: transparent;
+    border-right: 0 !important;
+
+}
+.boxed-tabs li.tab-space{
+    flex-grow: 2;
+    flex-shrink: 2;
+}
+.boxed-tabs li.tab-logout{
+    background-color: #f0a0a0;
+    border-right: 0 !important;
+}
+
+/* 検索条件 */
+.search-options form > ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.search-options li{
+    min-width: 500px;
+}
+.search-options li > label{
+    width: 20%;
+}
+.search-options li > .flexFormItem {
+    width: 80%;
+}
+.flexFormItem > #date, .flexFormItem > #beforeAfter{
+    width: 50%;
+}
+.flexFormItem > #stock{
+    width: auto;
+}
+.flexFormItem > #largeOrSmall{
+    width: 5em;
+}
+
+#searchButton{
+    margin: auto, 0, auto, auto;
+}
+
+/* ページ遷移 */
+
+.pagesBox{
+    display: flex;
+    flex-wrap: nowrap;
+    
+}
+
+.pagesBox > .pagesCounterWeight, .pagesBox > .pagesItemCount{
+    flex-grow: 2;
+    flex-shrink: 0;
+    min-width: 12em;
+}
+
+.pagesBox > .pagesSpace{
+    flex-shrink: 10;
+}
+.pagesBox > .pagesPrevNext{
+    width: 4em;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.pagesBox > .pagesJump{
+    width: 20%;
+    min-width: 20em;
+    max-width: 30em;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.pagesJump > form{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.pagesJump > form > span, .pagesJump > form > input.button{
+    width: fit-content;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.pagesJump > form > input#page{
+    flex-grow: 1;    
+}
+
+/* 書籍一覧*/
+#listTable{
+    margin: 7px;
+    border: 1px solid #d0d0d0;
+    max-height: 95%;
+    overflow: auto;
+}
+#listTable th{
+    background-color: #fff2ccff;
+    flex-grow: 2;
+}
+#listTable tr{
+    display: flex;
+    flex-wrap: nowrap;
+}
+#listTable th.headerFixed {
+    flex-grow: 0;
+}
+#listTable th.headerFit {
+    width: fit-content;
+}
+#listTable th.headerGrow1{
+    flex-grow: 1;
+}
+#listTable th.headerGrow2{
+    flex-grow: 2;
+}
+#headerSalesDate {
+    width: 4em;
+}
+
+#listTable th.sortArrows{
+    display: flex;
+    flex-direction: column;
+}
+
+.sortArrows .sortArrow{
+    font-size: 0.7em;
+    color: #00000080;
+}
+
+.sortArrows .sortArrowActive{
+    color: #000000ff !important;
+}
+.sortArrows .sortArrow:hover{
+    color: #000000ff;
+}
+
+#sortForm{
+    display: none;
+}
