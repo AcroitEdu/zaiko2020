@@ -78,38 +78,14 @@ var items = (List<Book>)session.getAttribute("items");
                             </div>
                         </li>
                     </ul>
+                    <input type="hidden" name="form" value="0">
                     <input id="searchButton" type="submit" class="button" value="検索">
                 </form>
             </div>
             <div id="error"></div>
             <div class="list">
                 <div class="pages">
-                    <ul class="pagesBox">
-                        <li class="pagesCounterWeight"></li>
-                        <li class="pagesSpace"></li>
-                        <li class="pagesPrevNext">
-                            <form name="prevPage" action="/Zaiko2020/inventoryList" method="post">
-                                <input type="hidden" name="page" value="${currentPage - 1}">
-                                <a href="javascript:prevPage.submit()">前へ</a>
-                            </form>
-                        </li>
-                        <li class="pagesJump">
-                            <form name="jumpPage" action="/Zaiko2020/inventoryList" method="post">
-                                <input type="number" name="page" id="page" min="1" max="${maxPage}"
-                                    value="${currentPage}">
-                                <span>/${maxPage}</span>
-                                <input type="submit" class="button" value="移動">
-                            </form>
-                        </li>
-                        <li class="pagesPrevNext">
-                            <form name="prevPage" action="/Zaiko2020/inventoryList" method="post">
-                                <input type="hidden" name="page" value="${currentPage + 1}">
-                                <a href="javascript:prevPage.submit()">次へ</a>
-                            </form>
-                        </li>
-                        <li class="pagesSpace"></li>
-                        <li class="pagesItemCount">${count} 件</li>
-                    </ul>
+                    <%@ include file="part/PageMover.jsp" %>
                 </div>
                 <div id="list">
                     <table id="listTable">
@@ -164,6 +140,7 @@ var items = (List<Book>)session.getAttribute("items");
                             <form id="sortForm" action="/Zaiko2020/inventoryList" method="post">
                                 <input type="hidden" id="sortIndex" name="index" value="0">
                                 <input type="hidden" id="sortDirection" name="direction" value="0">
+                                <input type="hidden" name="form" value="2">
                             </form>
                         </thead>
                         <tbody>
@@ -188,32 +165,7 @@ var items = (List<Book>)session.getAttribute("items");
                     </table>
                 </div>
                 <div class="pages">
-                    <ul class="pagesBox">
-                        <li class="pagesCounterWeight"></li>
-                        <li class="pagesSpace"></li>
-                        <li>
-                            <form name="prevPage" action="/Zaiko2020/inventoryList" method="post">
-                                <input type="hidden" name="page" value="${currentPage - 1}">
-                                <a href="javascript:prevPage.submit()">前へ</a>
-                            </form>
-                        </li>
-                        <li>
-                            <form name="jumpPage" action="/Zaiko2020/inventoryList" method="post">
-                                <input type="number" name="page" id="page" min="1" max="${maxPage}"
-                                    value="${currentPage}">
-                                <span>/${maxPage}</span>
-                                <input type="submit" class="button" value="移動">
-                            </form>
-                        </li>
-                        <li>
-                            <form name="nextPage" action="/Zaiko2020/inventoryList" method="post">
-                                <input type="hidden" name="page" value="${currentPage + 1}">
-                                <a href="javascript:nextPage.submit()">次へ</a>
-                            </form>
-                        </li>
-                        <li class="pagesSpace"></li>
-                        <li class="pagesItemCount">${count} 件</li>
-                    </ul>
+                    <%@ include file="part/PageMover.jsp" %>
                 </div>
             </div>
         </div>
@@ -221,4 +173,5 @@ var items = (List<Book>)session.getAttribute("items");
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/invenoryList.js"></script>
+
 </html>
