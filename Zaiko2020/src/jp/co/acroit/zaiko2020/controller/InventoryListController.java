@@ -115,9 +115,9 @@ public class InventoryListController extends HttpServlet {
 		BookDataAccess bda = new BookDataAccess();
 		List<Book> bookList;
 		try{
-			//bookList = bda.find(sc);
+			bookList = bda.find(sc);
 
-			//session.setAttribute("itemes", bookList);
+			session.setAttribute("itemes", bookList);
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
