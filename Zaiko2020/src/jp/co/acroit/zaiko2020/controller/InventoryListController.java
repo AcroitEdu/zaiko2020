@@ -35,32 +35,34 @@ public class InventoryListController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//初期条件
-		String book = null;				//書籍名
-		String publisher = null;		//出版社
+		//初期表示検索条件
+		String bookName = null;				//書籍名
 		String author = null;			//著者
+		String publisher = null;		//出版社
+		String isbn = null;				//isbn
 		String salsDate = null;		//発売日
-		String stock = null;			//在庫数
+		String stock = "0";			//在庫数
 		String salsDateFlag = null;	//発売日検索条件
-		String stockFlag = null;		//在庫数検索条件
+		String stockFlag = "gtoe";		//在庫数検索条件
 		String page = "0";				//表ページ数
 		String sort = "0";				//ソート条件:発売日
 		String lift = "-1";				//降順:-1
 
 		SearchCondition sc = new SearchCondition();
-		sc.setName(book);
-		sc.setName(publisher);
-		sc.setName(author);
-		sc.setName(salsDate);
-		sc.setName(stock);
-		sc.setName(salsDateFlag);
-		sc.setName(stockFlag);
-		sc.setName(page);
-		sc.setName(sort);
-		sc.setName(lift);
+		sc.setName(bookName);
+		sc.setAuthor(author);
+		sc.setPublisher(publisher);
+		sc.setIsbn(isbn);
+		sc.setSalesDate(salsDate);
+		sc.setStock(stock);
+		sc.setSalsDateFlag(salsDateFlag);
+		sc.setStockFlag(stockFlag);
+		sc.setPage(page);
+		sc.setSort(sort);
+		sc.setLift(lift);
 
 		//書籍検索
-		/*BookDataAccess bda = new BookDataAccess();
+		BookDataAccess bda = new BookDataAccess();
 		List<Book> bookList;
 		try{
 			bookList = bda.find(sc);
@@ -69,8 +71,9 @@ public class InventoryListController extends HttpServlet {
 			session.setAttribute("items", bookList);
 		}catch (Exception e) {
 			// TODO: handle exception
-		}*/
+		}
 
+		System.out.println("-----------------------------------------");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 		dispatcher.forward(request, response);
 
@@ -82,59 +85,74 @@ public class InventoryListController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
-		String book = null;				//書籍名
-		String publisher = null;		//出版社
+		String bookName = null;		//書籍名
 		String author = null;			//著者
+		String publisher = null;		//出版社
+		String isbn = null;				//isbn
 		String salsDate = null;		//発売日
-		String stock = "0";			//在庫数
+		String stock = "0";				//在庫数
 		String salsDateFlag = null;	//発売日検索条件
 		String stockFlag = "gtoe";		//在庫数検索条件
 		String page = "0";				//表ページ数
 		String sort = "0";				//ソート条件
-		String lift = "-1";			//昇順降順 true:1,false:-1
+		String lift = "-1";				//昇順降順 1/-1
 
-
+		int value = Integer.parseInt(request.getParameter("form"));
 
 		SearchCondition sc = new SearchCondition();
-		switch(0) {
+		switch(value) {
 		//検索ボタン
 		case 0:
 
-			book = request.getParameter("book");
-			publisher = request.getParameter("publisher");
+			System.out.println("case0------------------------------------------------");
+			//検索条件取得
+			bookName = request.getParameter("bookName");
 			author = request.getParameter("author");
+			publisher = request.getParameter("publisher");
+			isbn = request.getParameter("isbn");
 			salsDate = request.getParameter("salsdate");
 			stock = request.getParameter("stock");
-			salsDateFlag = request.getParameter("befororafter");
-			stockFlag = request.getParameter("largeorsmoll");
+			salsDateFlag = request.getParameter("beforeAfter");
+			stockFlag = request.getParameter("largeOrSmall");
 
-			sc.setName(book);
-			sc.setName(publisher);
-			sc.setName(author);
-			sc.setName(salsDate);
-			sc.setName(stock);
-			sc.setName(salsDateFlag);
-			sc.setName(stockFlag);
-			sc.setName(page);
-			sc.setName(sort);
-			sc.setName(lift);
 
+			sc.setName(bookName);
+			sc.setAuthor(author);
+			sc.setPublisher(publisher);
+			sc.setIsbn(isbn);
+			sc.setSalesDate(salsDate);
+			sc.setStock(stock);
+			sc.setSalsDateFlag(salsDateFlag);
+			sc.setStockFlag(stockFlag);
+			sc.setPage(page);
+			sc.setSort(sort);
+			sc.setLift(lift);
+
+			System.out.println("case0終了--------------------------------------------");
 			break;
 
 			//表ページ移動
 		case 1:
+
+			System.out.println("case1------------------------------------------------");
+			//表ページ取得
 			page = request.getParameter("");
 			sc.setPage(page);
 
+			System.out.println("case1終了--------------------------------------------");
 			break;
 
 			//ソート
 		case 2:
+
+			System.out.println("case2------------------------------------------------");
+			//ソート条件取得
 			sort = request.getParameter("");
 			lift = request.getParameter("");
-			sc.setName(sort);
-			sc.setName(lift);
+			sc.setSort(sort);
+			sc.setLift(lift);
 
+			System.out.println("case2終了--------------------------------------------");
 		}
 
 		HttpSession session = request.getSession();
@@ -143,18 +161,34 @@ public class InventoryListController extends HttpServlet {
 
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
+
+		//検索結果の総件数取得
+		if(value == 0) {
+			int count = 0;
+			int pageCount = 0;
+			count = bda.countAll();
+			pageCount = count / 200 + 1;
+			session.setAttribute("count", count);
+			session.setAttribute("maxPage", pageCount);
+		}
 		List<Book> bookList;
 		try{
 			bookList = bda.find(sc);
+			if(bookList.size() == 0) {
+				request.getSession().setAttribute("未定", "該当する書籍は見つかりませんでした。");
+			}
 
+			//書籍情報をセッションに設定
 			session.setAttribute("items", bookList);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+			dispatcher.forward(request, response);
+
 		}catch (Exception e) {
-			// TODO: handle exception
+			request.getSession().setAttribute("未定", "システムに異常が発生しています。システム管理者に連絡してください。");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+			dispatcher.forward(request, response);
 		}
-
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
-		dispatcher.forward(request, response);
 
 	}
 

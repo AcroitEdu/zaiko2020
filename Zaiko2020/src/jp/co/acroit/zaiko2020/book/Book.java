@@ -32,6 +32,9 @@ public class Book implements Serializable {
 		this.stock = stock;
 		this.deleteFlag = deleteFlag;
 	}
+	public Book() {
+
+	}
 
 	//各種ゲッターとセッター
 	public int getId() {
