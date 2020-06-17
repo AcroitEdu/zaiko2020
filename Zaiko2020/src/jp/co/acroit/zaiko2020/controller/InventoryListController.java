@@ -1,6 +1,8 @@
 package jp.co.acroit.zaiko2020.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -35,18 +37,26 @@ public class InventoryListController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//初期表示検索条件
+
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		//初期表示の検索条件設定
 		String bookName = null;				//書籍名
-		String author = null;			//著者
-		String publisher = null;		//出版社
-		String isbn = null;				//isbn
-		String salsDate = null;		//発売日
-		String stock = "0";			//在庫数
-		String salsDateFlag = null;	//発売日検索条件
+		String author = null;					//著者
+		String publisher = null;				//出版社
+		String isbn = null;						//isbn
+		String salsDate = sdf.format(date);		//発売日
+		String stock = "0";				//在庫数
+		String salsDateFlag = "after";	//発売日検索条件
 		String stockFlag = "gtoe";		//在庫数検索条件
-		String page = "0";				//表ページ数
+		String page = "1";				//表ページ数
 		String sort = "0";				//ソート条件:発売日
 		String lift = "-1";				//降順:-1
+
+
+
+
 
 		SearchCondition sc = new SearchCondition();
 		sc.setName(bookName);
@@ -73,7 +83,6 @@ public class InventoryListController extends HttpServlet {
 			// TODO: handle exception
 		}
 
-		System.out.println("-----------------------------------------");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 		dispatcher.forward(request, response);
 
@@ -83,7 +92,7 @@ public class InventoryListController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+System.out.println("---------------------");
 		request.setCharacterEncoding("UTF-8");
 		String bookName = null;		//書籍名
 		String author = null;			//著者
@@ -93,7 +102,7 @@ public class InventoryListController extends HttpServlet {
 		String stock = "0";				//在庫数
 		String salsDateFlag = null;	//発売日検索条件
 		String stockFlag = "gtoe";		//在庫数検索条件
-		String page = "0";				//表ページ数
+		String page = "1";				//表ページ数
 		String sort = "0";				//ソート条件
 		String lift = "-1";				//昇順降順 1/-1
 
@@ -114,7 +123,6 @@ public class InventoryListController extends HttpServlet {
 			stock = request.getParameter("stock");
 			salsDateFlag = request.getParameter("beforeAfter");
 			stockFlag = request.getParameter("largeOrSmall");
-
 
 			sc.setName(bookName);
 			sc.setAuthor(author);
@@ -147,11 +155,10 @@ public class InventoryListController extends HttpServlet {
 
 			System.out.println("case2------------------------------------------------");
 			//ソート条件取得
-			sort = request.getParameter("");
-			lift = request.getParameter("");
+			sort = request.getParameter("index");
+			lift = request.getParameter("direction");
 			sc.setSort(sort);
 			sc.setLift(lift);
-
 			System.out.println("case2終了--------------------------------------------");
 		}
 
@@ -161,12 +168,11 @@ public class InventoryListController extends HttpServlet {
 
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
-
 		//検索結果の総件数取得
 		if(value == 0) {
 			int count = 0;
 			int pageCount = 0;
-			count = bda.countAll();
+			//count = bda.countAll();
 			pageCount = count / 200 + 1;
 			session.setAttribute("count", count);
 			session.setAttribute("maxPage", pageCount);
@@ -174,7 +180,7 @@ public class InventoryListController extends HttpServlet {
 		List<Book> bookList;
 		try{
 			bookList = bda.find(sc);
-			if(bookList.size() == 0) {
+			if(bookList.isEmpty()) {
 				request.getSession().setAttribute("未定", "該当する書籍は見つかりませんでした。");
 			}
 
