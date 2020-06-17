@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import jp.co.acroit.zaiko2020.book.Book;
 import jp.co.acroit.zaiko2020.data.BookDataAccess;
@@ -44,8 +43,8 @@ public class InventoryListController extends HttpServlet {
 		String bookName = null;				//書籍名
 		String author = null;					//著者
 		String publisher = null;				//出版社
-		String isbn = null;						//isbn
-		String salsDate = sdf.format(date);		//発売日
+		String isbn = null;					//isbn
+		String salsDate = sdf.format(date);	//発売日
 		String stock = "0";						//在庫数
 		String salsDateFlag = "after";			//発売日検索条件
 		String stockFlag = "gtoe";				//在庫数検索条件
@@ -67,8 +66,6 @@ public class InventoryListController extends HttpServlet {
 		sc.setSort(sort);
 		sc.setLift(lift);
 
-		HttpSession session = request.getSession();
-
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
 
@@ -80,23 +77,24 @@ public class InventoryListController extends HttpServlet {
 			//総件数の取得
 			//count = bda.countAll();
 			pageCount = count / 200 + 1;
-			session.setAttribute("count", count);
-			session.setAttribute("maxPage", pageCount);
+			//総件数と最大ページ数をセッションに設定
+			request.getSession().setAttribute("count", count);
+			request.getSession().setAttribute("maxPage", pageCount);
 
 			bookList = bda.find(sc);
 
-			session.setAttribute("items", bookList);
+			request.getSession().setAttribute("items", bookList);
 
 			//該当書籍なし
 			if(bookList.isEmpty()) {
-				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
+				request.getSession().setAttribute("error", "該当する書籍は見つかりませんでした。");
 			}
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 
 		}catch (Exception e) {
-			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
+			request.getSession().setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
@@ -115,12 +113,12 @@ System.out.println("---------------------");
 		String bookName = null;		//書籍名
 		String author = null;			//著者
 		String publisher = null;		//出版社
-		String isbn = null;				//isbn
+		String isbn = null;			//isbn
 		String salsDate = null;		//発売日
 		String stock = "0";				//在庫数
 		String salsDateFlag = null;	//発売日検索条件
 		String stockFlag = "gtoe";		//在庫数検索条件
-		int page = 1;				//表ページ数
+		int page = 1;					//表ページ数
 		String sort = "0";				//ソート条件
 		String lift = "-1";				//昇順降順 1/-1
 
@@ -199,6 +197,7 @@ System.out.println("---------------------");
 			int pageCount = 0;
 			//count = bda.countAll();
 			pageCount = count / 200 + 1;
+			//総件数と最大ページ数をセッションに設定
 			request.getSession().setAttribute("count", count);
 			request.getSession().setAttribute("maxPage", pageCount);
 		}
