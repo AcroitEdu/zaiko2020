@@ -73,7 +73,7 @@ public class LoginController extends HttpServlet {
 					request.getSession().setAttribute("error", "");
 					HttpSession session = request.getSession();
 					session.setAttribute("user", user);
-					response.sendRedirect("/Zaiko2020/AfterLogin");
+					response.sendRedirect("/Zaiko2020/inventoryList");
 					return;
 				}
 			}
