@@ -1,5 +1,6 @@
 package jp.co.acroit.zaiko2020.data;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +18,9 @@ import jp.co.acroit.zaiko2020.book.Book;
  * @version 1.0
  * @author hiroe ishioka
  */
+
 public class BookDataAccess {
+
 
 	public BookDataAccess() {
 		url = "jdbc:mysql://localhost/zaiko2020?characterEncoding=UTF-8&serverTimezone=JST";
@@ -34,8 +37,6 @@ public class BookDataAccess {
 		priceColumn = "price";
 		stockColumn = "stock";
 		deleteflgColumn = "deleteflg";
-
-
 
 		PoolProperties p = new PoolProperties();
 
@@ -177,3 +178,4 @@ public class BookDataAccess {
 
 
 }
+
