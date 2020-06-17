@@ -1,5 +1,10 @@
 package jp.co.acroit.zaiko2020.data;
 
+/**
+ * 検索条件クラス
+ * @version 1.0
+ * @author Hiroki Tajima
+ */
 public class SearchCondition {
 	private String name;
 	private String publisher;

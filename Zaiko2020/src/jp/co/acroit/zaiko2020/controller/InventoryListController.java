@@ -16,7 +16,9 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
 import jp.co.acroit.zaiko2020.data.SearchCondition;
 
 /**
- * Servlet implementation class InventoryLIstContoller
+ * 在庫一覧サーブレット
+ * @version 1.0
+ * @author hiroki tajima
  */
 @WebServlet("/inventoryList")
 public class InventoryListController extends HttpServlet {
@@ -33,7 +35,7 @@ public class InventoryListController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//書記条件
+		//初期条件
 		String book = null;				//書籍名
 		String publisher = null;		//出版社
 		String author = null;			//著者
@@ -43,7 +45,7 @@ public class InventoryListController extends HttpServlet {
 		String stockFlag = null;		//在庫数検索条件
 		String page = "0";				//表ページ数
 		String sort = "0";				//ソート条件:発売日
-		String lift = "-1";			//降順:-1
+		String lift = "-1";				//降順:-1
 
 		SearchCondition sc = new SearchCondition();
 		sc.setName(book);
@@ -69,9 +71,8 @@ public class InventoryListController extends HttpServlet {
 			// TODO: handle exception
 		}*/
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/LoginForm.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 		dispatcher.forward(request, response);
-
 
 	}
 
@@ -152,7 +153,7 @@ public class InventoryListController extends HttpServlet {
 		}
 
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/LoginForm.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 		dispatcher.forward(request, response);
 
 	}

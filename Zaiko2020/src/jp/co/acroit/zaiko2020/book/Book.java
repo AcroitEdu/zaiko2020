@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * ユーザークラス
+ * 書籍クラス
  * @version 1.0
  * @author Hiroki Tajima
  */
