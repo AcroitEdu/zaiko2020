@@ -11,7 +11,6 @@ public class SearchCondition {
 	private String author;
 	private String isbn;
 	private String salesDate;
-	private String price;
 	private String stock;
 	private String salsDateFlag;
 	private String stockFlag;
@@ -49,12 +48,6 @@ public class SearchCondition {
 	}
 	public void setSalesDate(String salesDate) {
 		this.salesDate = salesDate;
-	}
-	public String getPrice() {
-		return price;
-	}
-	public void setPrice(String price) {
-		this.price = price;
 	}
 	public String getStock() {
 		return stock;
