@@ -14,7 +14,7 @@ public class SearchCondition {
 	private String stock;
 	private String salsDateFlag;
 	private String stockFlag;
-	private String page;
+	private int page;
 	private String sort;
 	private String lift;
 
@@ -67,10 +67,10 @@ public class SearchCondition {
 	public void setStockFlag(String stockFlag) {
 		this.stockFlag = stockFlag;
 	}
-	public String getPage() {
+	public int getPage() {
 		return page;
 	}
-	public void setPage(String page) {
+	public void setPage(int page) {
 		this.page = page;
 	}
 	public String getSort() {

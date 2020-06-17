@@ -6,6 +6,7 @@ var currentPage = (int)session.getAttribute("page");
 var maxPage = (int)session.getAttribute("maxPage");
 var count = (int)session.getAttribute("count");
 var items = (List<Book>)session.getAttribute("items");
+
 %>
 <!DOCTYPE html>
 <html lang='ja'>
