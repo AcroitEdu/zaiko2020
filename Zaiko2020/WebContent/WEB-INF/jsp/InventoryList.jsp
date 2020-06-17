@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="jp.co.acroit.zaiko2020.book.Book" %>
+<%@ page import="java.util.List" %>
 <%
-var currentPage = (int)session.getAttribute("page");
-var maxPage = (int)session.getAttribute("maxPage");
-var count = (int)session.getAttribute("count");
-var items = (List<Book>)session.getAttribute("items");
+int currentPage = (int)session.getAttribute("page");
+int maxPage = (int)session.getAttribute("maxPage");
+int count = (int)session.getAttribute("count");
+List<Book> items = (List<Book>)session.getAttribute("items");
 %>
 <!DOCTYPE html>
 <html lang='ja'>
@@ -82,7 +82,7 @@ var items = (List<Book>)session.getAttribute("items");
                     <input id="searchButton" type="submit" class="button" value="検索">
                 </form>
             </div>
-            <div id="error"></div>
+            <div id="error"><span>${sessionScope.error}</span></div>
             <div class="list">
                 <div class="pages">
                     <%@ include file="part/PageMover.jsp" %>
