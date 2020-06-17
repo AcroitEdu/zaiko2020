@@ -19,7 +19,7 @@ public class SearchCondition {
 	private String sort;
 	private String lift;
 
-
+	//各種ゲッターとセッター
 	public String getName() {
 		return name;
 	}

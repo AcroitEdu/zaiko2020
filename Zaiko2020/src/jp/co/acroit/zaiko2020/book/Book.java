@@ -19,6 +19,7 @@ public class Book implements Serializable {
 	private int stock;
 	private int deleteFlag;
 
+	//書籍情報の初期化
 	public Book(int id, String name, String publisher, String author, String isbn, Date salesDate, int price, int stock,
 			int deleteFlag) {
 		this.id = id;
@@ -32,10 +33,7 @@ public class Book implements Serializable {
 		this.deleteFlag = deleteFlag;
 	}
 
-	public Book() {
-
-	}
-
+	//各種ゲッターとセッター
 	public int getId() {
 		return id;
 	}
