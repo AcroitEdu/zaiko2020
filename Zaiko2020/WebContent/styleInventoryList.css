@@ -6,17 +6,23 @@
 }
 body{
     width: 100%;
-    background-color: #f0f0f0;
+    
 }
-.main{
+#main{
     min-width: 90%;
     width: 1900px;
     max-width: 99%;
+    min-height: 99%;
+    margin: auto;
+    background-color: #f0f0f0;
 }
 ul{
     list-style-type: none;
 }
-
+input, select{
+    border-radius: 5px;
+    border: 1.5px solid #00000080;
+}
 /* ヘッダー */
 header{
     width: 100%;
@@ -24,7 +30,7 @@ header{
 }
 header .boxed-tabs {
     background-color: #d0d0d0;
-    padding: 5px;
+    padding: 0 5px;
     width: 100%;
     margin: 0;
     display: flex;
@@ -42,7 +48,7 @@ header .boxed-tabs {
 .boxed-tabs li.tab-current{
     background-color: #f0f0f0;
     border-right: 0 !important;
-
+    border-radius: 7px 7px 0 0;
 }
 .boxed-tabs li.tab-space{
     flex-grow: 2;
@@ -63,41 +69,52 @@ header .boxed-tabs {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: stretch;
+    width: 100%;
+    padding: 0;
+
 }
 .search-options li{
-    min-width: 500px;
+    min-width: 400px;
     display: flex;
     flex-direction: row;
-    margin: 5px;
-
+    margin: 0.75em;
+    flex-grow: 1;
 }
 .search-options li > label{
     width: 20%;
-    text-align: center;
+    text-align: end;
+    padding-right: 1em;
 }
 .search-options li > .flexFormItem {
     width: 80%;
 }
 .search-options input, .search-options select{
     padding: 2px;
+    margin: 2px;
 }
 .search-options li > div{
     display: flex;
     flex-direction: row;
+}
+.search-options div > span{
+    padding-right: 1em;
+    padding-left: 0.25em;
 }
 .flexFormItem > #date, .flexFormItem > #beforeAfter{
     width: 50%;
 }
 .flexFormItem > #stock{
     width: auto;
+    flex-grow: 1;
 }
 .flexFormItem > #largeOrSmall{
     width: 50%;
 }
 
 #searchButton{
-    margin: auto, 0, auto, auto;
+    margin: auto 0.75em auto auto;
+    padding: 3px;
 }
 
 /* ページ遷移 */
@@ -106,6 +123,8 @@ header .boxed-tabs {
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
+    padding: 1em;
+
 }
 
 .pagesBox > .pagesCounterWeight, .pagesBox > .pagesItemCount{
@@ -139,11 +158,15 @@ header .boxed-tabs {
     display: flex;
     flex-wrap: nowrap;
 }
+.pagesBox > li{
+    text-align: center;
+}
 
 .pagesJump > form > span, .pagesJump > form > input.button{
     width: fit-content;
     flex-grow: 0;
     flex-shrink: 0;
+    margin: 3px;
 }
 
 .pagesJump > form > input#page{
@@ -151,16 +174,30 @@ header .boxed-tabs {
 }
 
 /* 書籍一覧*/
+
+#error{
+    color: red;
+    text-align: center;
+}
+
+#list{
+    margin: 5px;
+}
 #listTable{
-    margin: 7px;
+    margin: auto;
     border: 1px solid #d0d0d0;
     max-height: 95%;
     overflow: auto;
-    width: 100%;
+    width: 99%;
 }
 #listTable th{
     background-color: #fff2ccff;
     flex-grow: 2;
+    text-align: center;
+    border: 1px solid #00000040;
+}
+#listTable td {
+    border: 1px solid #00000040;
 }
 #listTable tr{
     display: flex;
@@ -179,7 +216,7 @@ header .boxed-tabs {
     flex-grow: 2;
 }
 #headerSalesDate {
-    width: 4em;
+    width: 8em;
 }
 
 #listTable th.sortArrows{
