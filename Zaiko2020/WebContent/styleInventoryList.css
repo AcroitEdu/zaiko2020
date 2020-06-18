@@ -169,6 +169,11 @@ header .boxed-tabs {
     margin: 5px;
 }
 
+.pagesBox .disabled{
+    text-decoration: none;
+    text-emphasis: none;
+}
+
 .pagesJump > form > input#page{
     flex-grow: 1;    
 }
