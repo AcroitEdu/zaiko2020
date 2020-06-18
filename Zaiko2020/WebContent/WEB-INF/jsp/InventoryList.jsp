@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="jp.co.acroit.zaiko2020.book.Book" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <%
 //HttpSession session = request.getSession();
 int currentPage = 1;
@@ -17,7 +17,7 @@ if(session.getAttribute("count") != null){
     count = (int)session.getAttribute("count");
 }
 List<Book> items = (List<Book>)session.getAttribute("items");
-SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY'年<br/>'MM'月'dd'日'");
+DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月'dd'日'");
 %>
 <!DOCTYPE html>
 <html lang='ja'>
@@ -104,8 +104,8 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY'年<br/>'MM'月'dd'日'
                 </div>
                 <div id="list">
                     <form id="sortForm" action="/Zaiko2020/inventoryList" method="post">
-                        <input type="hidden" id="sortIndex" name="index" value="${conditions.sort}">
-                        <input type="hidden" id="sortDirection" name="direction" value="${conditions.lift}">
+                        <input type="hidden" id="sortIndex" name="index" value="0">
+                        <input type="hidden" id="sortDirection" name="direction" value="0">
                         <input type="hidden" name="form" value="2">
                     </form>
                     <table id="listTable">
@@ -128,7 +128,8 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY'年<br/>'MM'月'dd'日'
                                     <span class="sortArrows">
                                         <span title="発売日 昇順でソートします" class="sortArrow" data-sort-direction="1">
                                             ↑</span>
-                                        <span title="発売日 降順でソートします" class="sortArrow" data-sort-direction="-1">
+                                        <span title="発売日 降順でソートします" class="sortArrow sortArrowActive"
+                                            data-sort-direction="-1">
                                             ↓</span>
                                     </span>
                                 </th>
@@ -174,7 +175,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY'年<br/>'MM'月'dd'日'
                                 <td class="dataName"><%=item.getName()%></td>
                                 <td class="dataAuthor"><%=item.getAuthor() %></td>
                                 <td class="dataPublisher"><%=item.getPublisher() %></td>
-                                <td class="dataSalesDate dataCenter"><%=dateFormat.format(item.getSalesDate()) %></td>
+                                <td class="dataSalesDate dataCenter"><%=item.getSalesDate().format(dateFormat) %></td>
                                 <td class="dataIsbn dataCenter"><%=item.getIsbn() %></td>
                                 <td class="dataPrice dataRight"><%=item.getPrice() %> 円</td>
                                 <td class="dataStock dataRight"><%=item.getStock() %> 冊</td>
