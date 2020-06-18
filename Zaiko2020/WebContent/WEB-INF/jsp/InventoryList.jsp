@@ -2,10 +2,19 @@
 <%@ page import="jp.co.acroit.zaiko2020.book.Book" %>
 <%@ page import="java.util.List" %>
 <%
-HttpSession session = request.getSession();
-int currentPage = (int)session.getAttribute("page");
-int maxPage = (int)session.getAttribute("maxPage");
-int count = (int)session.getAttribute("count");
+//HttpSession session = request.getSession();
+int currentPage = 1;
+if(session.getAttribute("page") != null){
+    currentPage = (int)session.getAttribute("page");
+}
+int maxPage = 1;
+if(session.getAttribute("maxPage") != null){
+    maxPage = (int)session.getAttribute("maxPage");
+}
+int count = 1;
+if(session.getAttribute("count") != null){
+    count = (int)session.getAttribute("count");
+}
 List<Book> items = (List<Book>)session.getAttribute("items");
 %>
 <!DOCTYPE html>
@@ -15,7 +24,7 @@ List<Book> items = (List<Book>)session.getAttribute("items");
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta http-equiv='X-UA-Compatible' content='ie=edge'>
     <title>在庫一覧</title>
-    <link rel='stylesheet' href='https://unpkg.com/ress/dist/ress.min.css'>
+    <link href="https://unpkg.com/sanitize.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styleInventoryList.css">
 </head>

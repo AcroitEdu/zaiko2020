@@ -13,21 +13,34 @@ body{
     width: 1900px;
     max-width: 99%;
 }
+ul{
+    list-style-type: none;
+}
 
 /* ヘッダー */
-header .boxed-tabs{
+header{
+    width: 100%;
+    margin:0;
+}
+header .boxed-tabs {
+    background-color: #d0d0d0;
+    padding: 5px;
+    width: 100%;
+    margin: 0;
     display: flex;
     flex-direction: row;
 }
 .boxed-tabs .tab{
-    margin: 2px 2px 0 2px;
+    margin: 0;
+    padding: 5px;
+    min-width: fit-content;
     flex-grow: 0;
-    width: fit-content;
-    background-color: #d0d0d0;
+    width: 25%;
+    background-color: transparent;
     border-right: 1px solid #808080;
 }
 .boxed-tabs li.tab-current{
-    background-color: transparent;
+    background-color: #f0f0f0;
     border-right: 0 !important;
 
 }
@@ -41,6 +54,11 @@ header .boxed-tabs{
 }
 
 /* 検索条件 */
+.search-options form{
+    max-width: 80%;
+    text-align: end;
+    margin: auto;
+}
 .search-options form > ul{
     display: flex;
     flex-direction: row;
@@ -49,12 +67,24 @@ header .boxed-tabs{
 }
 .search-options li{
     min-width: 500px;
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+
 }
 .search-options li > label{
     width: 20%;
+    text-align: center;
 }
 .search-options li > .flexFormItem {
     width: 80%;
+}
+.search-options input, .search-options select{
+    padding: 2px;
+}
+.search-options li > div{
+    display: flex;
+    flex-direction: row;
 }
 .flexFormItem > #date, .flexFormItem > #beforeAfter{
     width: 50%;
@@ -63,7 +93,7 @@ header .boxed-tabs{
     width: auto;
 }
 .flexFormItem > #largeOrSmall{
-    width: 5em;
+    width: 50%;
 }
 
 #searchButton{
@@ -75,17 +105,21 @@ header .boxed-tabs{
 .pagesBox{
     display: flex;
     flex-wrap: nowrap;
-    
+    width: 100%;
 }
 
 .pagesBox > .pagesCounterWeight, .pagesBox > .pagesItemCount{
     flex-grow: 2;
     flex-shrink: 0;
     min-width: 12em;
+    width: fit-content;
+    text-align: end;
+    
 }
 
 .pagesBox > .pagesSpace{
     flex-shrink: 10;
+    flex-grow: 10;
 }
 .pagesBox > .pagesPrevNext{
     width: 4em;
@@ -122,6 +156,7 @@ header .boxed-tabs{
     border: 1px solid #d0d0d0;
     max-height: 95%;
     overflow: auto;
+    width: 100%;
 }
 #listTable th{
     background-color: #fff2ccff;

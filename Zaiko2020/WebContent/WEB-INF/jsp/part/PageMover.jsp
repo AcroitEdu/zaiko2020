@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" session="false" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <ul class="pagesBox">
     <li class="pagesCounterWeight"></li>
     <li class="pagesSpace"></li>
