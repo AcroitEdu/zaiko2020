@@ -48,7 +48,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY'年<br/>'MM'月'dd'日'
                     <ul id="flexFormWrappable">
                         <li>
                             <label for="bookName">書籍名</label>
-                            <input class="flexFormItem" type="text" name="bookName" id="bookName"
+                            <input class="flexFormItem" type="text" name="name" id="bookName"
                                 value="${conditions.name}">
                         </li>
                         <li>
@@ -69,7 +69,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY'年<br/>'MM'月'dd'日'
                             <label for="beforeAfter">発売日</label>
                             <div class="flexFormItem">
                                 <input type="date" name="date" id="date" value="${conditions.salesDate}">
-                                <select name="beforeAfter" id="beforeAfter" value="${conditions.salesDateFlag}">
+                                <select name="beforeAfter" id="beforeAfter" data-value="${conditions.salesDateFlag}">
                                     <option value="unspecified">指定なし</option>
                                     <option value="equals">に一致</option>
                                     <option value="before">以前</option>
@@ -82,7 +82,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY'年<br/>'MM'月'dd'日'
                             <div class="flexFormItem">
                                 <input type="number" name="stock" id="stock" min="0" value="${conditions.stock}">
                                 <span>冊</span>
-                                <select name="largeOrSmall" id="largeOrSmall" value="${conditions.stockFlag}">
+                                <select name="largeOrSmall" id="largeOrSmall" data-value="${conditions.stockFlag}">
                                     <option value="unspecified">指定なし</option>
                                     <option value="lt">未満</option>
                                     <option value="ltoe">以下</option>

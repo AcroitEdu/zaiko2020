@@ -24,3 +24,9 @@ nextButtons.each(linkDetectOutOfRange);
 var prevButtons = $(".prevButton");
 prevButtons.click(linkSubmit);
 prevButtons.each(linkDetectOutOfRange);
+var selects = $("#beforeAfter, #largeOrSmall");
+selects.each(function (index, element) {
+    var elem = $(element);
+    var value = elem.attr("data-value");
+    elem.find(`option[value='${value}']`).prop("selected", true);
+});
