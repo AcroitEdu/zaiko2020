@@ -101,6 +101,8 @@ public class InventoryListController extends HttpServlet {
 				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
 			}
 
+			session.setAttribute("conditions", sc);
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 
@@ -135,9 +137,12 @@ public class InventoryListController extends HttpServlet {
 
 		int value = Integer.parseInt(request.getParameter("form"));
 
-		SearchCondition sc = new SearchCondition();
-
 		HttpSession session = request.getSession();
+		SearchCondition sc = (SearchCondition)session.getAttribute("conditions");
+		if(sc == null) {
+			sc = new SearchCondition();
+		}
+
 
 		switch (value) {
 		//検索ボタン
@@ -176,13 +181,14 @@ public class InventoryListController extends HttpServlet {
 			//表ページ取得
 			page = Integer.parseInt(request.getParameter("page"));
 
-			int maxPage = (int) request.getSession().getAttribute("maxPage");
+			int maxPage = (int) session.getAttribute("maxPage");
 			if (maxPage < page) {
 				session.setAttribute("error", "該当するページは見つかりませんでした。");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 				dispatcher.forward(request, response);
 			}
 			sc.setPage(page);
+
 
 			System.out.println("case1終了--------------------------------------------");
 			break;
@@ -199,7 +205,7 @@ public class InventoryListController extends HttpServlet {
 			System.out.println("case2終了--------------------------------------------");
 		}
 
-		//session.setAttribute("conditions", sc);
+		session.setAttribute("conditions", sc);
 
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
