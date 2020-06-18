@@ -5,14 +5,14 @@
     <li class="pagesPrevNext">
         <form name="prevPage" action="/Zaiko2020/inventoryList" method="post">
             <input type="hidden" name="form" value="1">
-            <input type="hidden" name="page" value="${currentPage - 1}">
+            <input type="hidden" name="page" class="inputPage" value="${page - 1}" data-max="${maxPage}">
             <a href="" class="prevButton">前へ</a>
         </form>
     </li>
     <li class="pagesJump">
         <form name="jumpPage" action="/Zaiko2020/inventoryList" method="post">
             <input type="hidden" name="form" value="1">
-            <input type="number" name="page" id="page" min="1" max="${maxPage}" value="${currentPage}">
+            <input type="number" name="page" min="1" max="${maxPage}" value="${page}">
             <span>/ ${maxPage}</span>
             <input type="submit" class="button" value="移動">
         </form>
@@ -20,7 +20,7 @@
     <li class="pagesPrevNext">
         <form name="nextPage" action="/Zaiko2020/inventoryList" method="post">
             <input type="hidden" name="form" value="1">
-            <input type="hidden" name="page" value="${currentPage + 1}">
+            <input type="hidden" name="page" class="inputPage" value="${page + 1}" data-max="${maxPage}">
             <a href="" class="nextButton">次へ</a>
         </form>
     </li>
