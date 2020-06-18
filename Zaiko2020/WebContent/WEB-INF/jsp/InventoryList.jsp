@@ -48,25 +48,28 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY'年<br/>'MM'月'dd'日'
                     <ul id="flexFormWrappable">
                         <li>
                             <label for="bookName">書籍名</label>
-                            <input class="flexFormItem" type="text" name="name" id="bookName">
+                            <input class="flexFormItem" type="text" name="bookName" id="bookName"
+                                value="${conditions.name}">
                         </li>
                         <li>
                             <label for="author">著者</label>
-                            <input class="flexFormItem" type="text" name="author" id="author">
+                            <input class="flexFormItem" type="text" name="author" id="author"
+                                value="${conditions.author}">
                         </li>
                         <li>
                             <label for="publisher">出版社</label>
-                            <input class="flexFormItem" type="text" name="publisher" id="publisher">
+                            <input class="flexFormItem" type="text" name="publisher" id="publisher"
+                                value="${conditions.publisher}">
                         </li>
                         <li>
                             <label for="isbn">ISBN</label>
-                            <input class="flexFormItem" type="number" name="isbn" id="isbn">
+                            <input class="flexFormItem" type="number" name="isbn" id="isbn" value="${conditions.isbn}">
                         </li>
                         <li>
                             <label for="beforeAfter">発売日</label>
                             <div class="flexFormItem">
-                                <input type="date" name="date" id="date">
-                                <select name="beforeAfter" id="beforeAfter">
+                                <input type="date" name="date" id="date" value="${conditions.salesDate}">
+                                <select name="beforeAfter" id="beforeAfter" value="${conditions.salesDateFlag}">
                                     <option value="unspecified">指定なし</option>
                                     <option value="equals">に一致</option>
                                     <option value="before">以前</option>
@@ -77,9 +80,9 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY'年<br/>'MM'月'dd'日'
                         <li>
                             <label for="largeOrSmall">在庫数</label>
                             <div class="flexFormItem">
-                                <input type="number" name="stock" id="stock" min="0">
+                                <input type="number" name="stock" id="stock" min="0" value="${conditions.stock}">
                                 <span>冊</span>
-                                <select name="largeOrSmall" id="largeOrSmall">
+                                <select name="largeOrSmall" id="largeOrSmall" value="${conditions.stockFlag}">
                                     <option value="unspecified">指定なし</option>
                                     <option value="lt">未満</option>
                                     <option value="ltoe">以下</option>
