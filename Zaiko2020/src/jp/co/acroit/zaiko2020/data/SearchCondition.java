@@ -12,7 +12,7 @@ public class SearchCondition {
 	private String isbn;
 	private String salesDate;
 	private String stock;
-	private String salsDateFlag;
+	private String salesDateFlag;
 	private String stockFlag;
 	private int page;
 	private String sort;
@@ -55,11 +55,11 @@ public class SearchCondition {
 	public void setStock(String stock) {
 		this.stock = stock;
 	}
-	public String getSalsDateFlag() {
-		return salsDateFlag;
+	public String getSalesDateFlag() {
+		return salesDateFlag;
 	}
-	public void setSalsDateFlag(String salsDateFlag) {
-		this.salsDateFlag = salsDateFlag;
+	public void setSalesDateFlag(String salsDateFlag) {
+		this.salesDateFlag = salsDateFlag;
 	}
 	public String getStockFlag() {
 		return stockFlag;
