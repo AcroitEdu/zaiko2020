@@ -3,7 +3,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%
-//HttpSession session = request.getSession();
 int currentPage = 1;
 if(session.getAttribute("page") != null){
     currentPage = (int)session.getAttribute("page");
@@ -16,7 +15,9 @@ int count = 1;
 if(session.getAttribute("count") != null){
     count = (int)session.getAttribute("count");
 }
+//表示する本の取得
 List<Book> items = (List<Book>)session.getAttribute("items");
+//日付フォーマットの作成
 DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月'dd'日'");
 %>
 <!DOCTYPE html>
@@ -104,8 +105,8 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                 </div>
                 <div id="list">
                     <form id="sortForm" action="/Zaiko2020/inventoryList" method="post">
-                        <input type="hidden" id="sortIndex" name="index" value="0">
-                        <input type="hidden" id="sortDirection" name="direction" value="0">
+                        <input type="hidden" id="sortIndex" name="index" value="${conditions.sort}">
+                        <input type="hidden" id="sortDirection" name="direction" value="${conditions.lift}">
                         <input type="hidden" name="form" value="2">
                     </form>
                     <table id="listTable">
@@ -128,8 +129,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                     <span class="sortArrows">
                                         <span title="発売日 昇順でソートします" class="sortArrow" data-sort-direction="1">
                                             ↑</span>
-                                        <span title="発売日 降順でソートします" class="sortArrow sortArrowActive"
-                                            data-sort-direction="-1">
+                                        <span title="発売日 降順でソートします" class="sortArrow" data-sort-direction="-1">
                                             ↓</span>
                                     </span>
                                 </th>

@@ -9,9 +9,7 @@ body{
     
 }
 #main{
-    min-width: 90%;
-    width: 1900px;
-    max-width: 99%;
+    width: 100%;
     min-height: 99%;
     margin: auto;
     background-color: #f0f0f0;
@@ -183,6 +181,7 @@ header .boxed-tabs {
 .pagesBox .disabled{
     text-decoration: none;
     text-emphasis: none;
+    cursor: default;
 }
 
 .pagesJump > form > input#page{

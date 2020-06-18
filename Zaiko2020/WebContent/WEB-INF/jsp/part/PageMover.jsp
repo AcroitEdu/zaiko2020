@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%//ページ移動の要素%>
 <ul class="pagesBox">
     <li class="pagesCounterWeight"></li>
     <li class="pagesSpace"></li>
