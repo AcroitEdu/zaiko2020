@@ -204,7 +204,7 @@ public class BookDataAccess {
 		for (int i = 0; i < whereData.length; i++) {
 
 			//条件が空白でない場合
-			if (!whereData[i].isEmpty()) {
+			if (whereData[i] != null && !whereData[i].isEmpty()) {
 
 				// 比較演算子の付与
 				switch (whereDataName[i]) {
