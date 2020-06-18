@@ -6,7 +6,7 @@
         <form name="prevPage" action="/Zaiko2020/inventoryList" method="post">
             <input type="hidden" name="form" value="1">
             <input type="hidden" name="page" value="${currentPage - 1}">
-            <a href="javascript:prevPage.submit()">前へ</a>
+            <a href="" class="prevButton">前へ</a>
         </form>
     </li>
     <li class="pagesJump">
@@ -18,10 +18,10 @@
         </form>
     </li>
     <li class="pagesPrevNext">
-        <form name="prevPage" action="/Zaiko2020/inventoryList" method="post">
+        <form name="nextPage" action="/Zaiko2020/inventoryList" method="post">
             <input type="hidden" name="form" value="1">
             <input type="hidden" name="page" value="${currentPage + 1}">
-            <a href="javascript:prevPage.submit()">次へ</a>
+            <a href="" class="nextButton">次へ</a>
         </form>
     </li>
     <li class="pagesSpace"></li>

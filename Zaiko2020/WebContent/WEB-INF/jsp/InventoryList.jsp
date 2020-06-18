@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="jp.co.acroit.zaiko2020.book.Book" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%
 //HttpSession session = request.getSession();
 int currentPage = 1;
@@ -16,6 +17,7 @@ if(session.getAttribute("count") != null){
     count = (int)session.getAttribute("count");
 }
 List<Book> items = (List<Book>)session.getAttribute("items");
+SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY'年<br/>'MM'月'dd'日'");
 %>
 <!DOCTYPE html>
 <html lang='ja'>
@@ -161,7 +163,7 @@ List<Book> items = (List<Book>)session.getAttribute("items");
                                 for(Book item : items){
                                 %>
                             <tr>
-                                <td class="dataControl">
+                                <td class="dataControl dataCenter">
                                     <a href="#">入荷</a>
                                     <span>/</span>
                                     <a href="#">出荷</a><br />
@@ -170,10 +172,10 @@ List<Book> items = (List<Book>)session.getAttribute("items");
                                 <td class="dataName"><%=item.getName()%></td>
                                 <td class="dataAuthor"><%=item.getAuthor() %></td>
                                 <td class="dataPublisher"><%=item.getPublisher() %></td>
-                                <td class="dataSalesDate"><%=item.getSalesDate() %></td>
-                                <td class="dataIsbn"><%=item.getIsbn() %></td>
-                                <td class="dataPrice"><%=item.getPrice() %></td>
-                                <td class="dataStock"><%=item.getStock() %></td>
+                                <td class="dataSalesDate dataCenter"><%=dateFormat.format(item.getSalesDate()) %></td>
+                                <td class="dataIsbn dataCenter"><%=item.getIsbn() %></td>
+                                <td class="dataPrice dataRight"><%=item.getPrice() %> 円</td>
+                                <td class="dataStock dataRight"><%=item.getStock() %> 冊</td>
                             </tr>
                             <%
                                 }
@@ -190,6 +192,6 @@ List<Book> items = (List<Book>)session.getAttribute("items");
     </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="js/invenoryList.js"></script>
+<script src="js/inventoryList.js"></script>
 
 </html>

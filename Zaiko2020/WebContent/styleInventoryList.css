@@ -166,7 +166,7 @@ header .boxed-tabs {
     width: fit-content;
     flex-grow: 0;
     flex-shrink: 0;
-    margin: 3px;
+    margin: 5px;
 }
 
 .pagesJump > form > input#page{
@@ -192,33 +192,46 @@ header .boxed-tabs {
 }
 #listTable th{
     background-color: #fff2ccff;
-    flex-grow: 2;
     text-align: center;
     border: 1px solid #00000040;
 }
 #listTable td {
     border: 1px solid #00000040;
 }
-#listTable tr{
-    display: flex;
-    flex-wrap: nowrap;
-}
+
 #listTable th.headerFixed {
     flex-grow: 0;
 }
 #listTable th.headerFit {
     width: fit-content;
 }
-#listTable th.headerGrow1{
-    flex-grow: 1;
+#headerControl{
+    width: 7em;
 }
-#listTable th.headerGrow2{
-    flex-grow: 2;
+#headerName, #headerAuthor{
+    width: 20%;
+}
+#headerPublisher{
+    width: 15%;
 }
 #headerSalesDate {
+    width: 6em;
+}
+#headerIsbn{
+    width: 12em;
+}
+#headerPrice{
     width: 8em;
 }
-
+#headerStock{
+    width: 8em;
+}
+.dataCenter{
+    text-align: center;
+}
+.dataRight{
+    text-align: end;
+}
 #listTable th.sortArrows{
     display: flex;
     flex-direction: column;
