@@ -420,6 +420,9 @@ public class BookDataAccess {
 			//末尾のセミコロンの加筆
 			query = query + ";";
 
+			System.out.println(query);
+
+			System.out.println("------------");
 
 			PreparedStatement ps = con.prepareStatement(query);
 
