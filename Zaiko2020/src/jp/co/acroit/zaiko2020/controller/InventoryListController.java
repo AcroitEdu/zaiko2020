@@ -52,7 +52,7 @@ public class InventoryListController extends HttpServlet {
 		String stockFlag = "gtoe"; //在庫数検索条件
 		int page = 1; //表ページ数
 		String sort = "0"; //ソート条件:発売日
-		String lift = "-1"; //降順:-1
+		String lift = "1"; //昇順降順 1/-1
 
 		SearchCondition sc = new SearchCondition();
 
@@ -103,6 +103,7 @@ public class InventoryListController extends HttpServlet {
 
 			session.setAttribute("conditions", sc);
 
+			session.setAttribute("error", "");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 
@@ -133,7 +134,7 @@ public class InventoryListController extends HttpServlet {
 		String stockFlag = "gtoe"; //在庫数検索条件
 		int page = 1; //表ページ数
 		String sort = "0"; //ソート条件
-		String lift = "-1"; //昇順降順 1/-1
+		String lift = "1"; //昇順降順 1/-1
 
 		int value = Integer.parseInt(request.getParameter("form"));
 
@@ -150,11 +151,11 @@ public class InventoryListController extends HttpServlet {
 
 			System.out.println("case0------------------------------------------------");
 			//検索条件取得
-			bookName = request.getParameter("bookName");
+			bookName = request.getParameter("name");
 			author = request.getParameter("author");
 			publisher = request.getParameter("publisher");
 			isbn = request.getParameter("isbn");
-			salsDate = request.getParameter("salsdate");
+			salsDate = request.getParameter("date");
 			stock = request.getParameter("stock");
 			salsDateFlag = request.getParameter("beforeAfter");
 			stockFlag = request.getParameter("largeOrSmall");
@@ -235,6 +236,7 @@ public class InventoryListController extends HttpServlet {
 			//書籍情報をセッションに設定
 			session.setAttribute("items", bookList);
 
+			session.setAttribute("error", "");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 
