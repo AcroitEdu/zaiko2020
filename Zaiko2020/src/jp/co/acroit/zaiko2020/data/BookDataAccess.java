@@ -207,7 +207,7 @@ public class BookDataAccess {
 
 				// 比較演算子の付与
 				switch (whereDataName[i]) {
-				case "salsDate": // 発売日の場合
+				case "salesDate": // 発売日の場合
 					switch (salsDateFlag) {
 					case "equals": // ～に一致
 						AddSql = "=";
