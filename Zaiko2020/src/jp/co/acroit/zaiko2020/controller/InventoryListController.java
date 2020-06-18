@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import jp.co.acroit.zaiko2020.book.Book;
 import jp.co.acroit.zaiko2020.data.BookDataAccess;
@@ -70,32 +71,41 @@ public class InventoryListController extends HttpServlet {
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
 
-		int count = 0;
-		int pageCount = 0;
+		HttpSession session = request.getSession();
 
 		List<Book> bookList;
 		try {
-			//総件数の取得
-			//count = bda.countAll();
-			pageCount = count / 200 + 1;
-			//総件数と最大ページ数をセッションに設定
-			request.getSession().setAttribute("count", count);
-			request.getSession().setAttribute("maxPage", pageCount);
+			int count = 0;
+			int pageCount = 0;
 
+			//総件数の取得
+			count = bda.countAll(sc);
+
+			//総ページ数
+			pageCount = count / 200 + 1;
+
+			//総件数と最大ページ数をセッションに設定
+			session.setAttribute("count", count);
+			session.setAttribute("maxPage", pageCount);
+			System.out.println(count);
+			System.out.println(pageCount);
+
+			//検索
 			bookList = bda.find(sc);
 
-			request.getSession().setAttribute("items", bookList);
+			//検索結果をセッションに設定
+			session.setAttribute("items", bookList);
 
 			//該当書籍なし
 			if (bookList.isEmpty()) {
-				request.getSession().setAttribute("error", "該当する書籍は見つかりませんでした。");
+				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
 			}
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 
 		} catch (Exception e) {
-			request.getSession().setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
+			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
@@ -126,6 +136,9 @@ public class InventoryListController extends HttpServlet {
 		int value = Integer.parseInt(request.getParameter("form"));
 
 		SearchCondition sc = new SearchCondition();
+
+		HttpSession session = request.getSession();
+
 		switch (value) {
 		//検索ボタン
 		case 0:
@@ -165,7 +178,7 @@ public class InventoryListController extends HttpServlet {
 
 			int maxPage = (int) request.getSession().getAttribute("maxPage");
 			if (maxPage < page) {
-				request.getSession().setAttribute("error", "該当するページは見つかりませんでした。");
+				session.setAttribute("error", "該当するページは見つかりませんでした。");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -186,35 +199,41 @@ public class InventoryListController extends HttpServlet {
 			System.out.println("case2終了--------------------------------------------");
 		}
 
-		request.getSession().setAttribute("conditions", sc);
+		//session.setAttribute("conditions", sc);
 
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
-		//検索結果の総件数取得
-		if (value == 0) {
-			int count = 0;
-			int pageCount = 0;
-			//count = bda.countAll();
-			pageCount = count / 200 + 1;
-			//総件数と最大ページ数をセッションに設定
-			request.getSession().setAttribute("count", count);
-			request.getSession().setAttribute("maxPage", pageCount);
-		}
 		List<Book> bookList;
 		try {
+
+			//総件数の取得
+			if (value == 0) {
+				int count = 0;
+				int pageCount = 0;
+				count = bda.countAll(sc);
+				pageCount = count / 200 + 1;
+
+				//総件数と最大ページ数をセッションに設定
+				session.setAttribute("count", count);
+				session.setAttribute("maxPage", pageCount);
+			}
+
+			//検索
 			bookList = bda.find(sc);
+
+			//該当なし
 			if (bookList.isEmpty()) {
-				request.getSession().setAttribute("error", "該当する書籍は見つかりませんでした。");
+				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
 			}
 
 			//書籍情報をセッションに設定
-			request.getSession().setAttribute("items", bookList);
+			session.setAttribute("items", bookList);
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 
 		} catch (Exception e) {
-			request.getSession().setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
+			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 		}
