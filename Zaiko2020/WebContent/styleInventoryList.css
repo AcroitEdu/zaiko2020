@@ -168,7 +168,18 @@ header .boxed-tabs {
     flex-shrink: 0;
     margin: 5px;
 }
+.pagesJump > form > input.inutPageNumber{
+    flex-grow: 1;
+    flex-shrink: 0;
+    margin: 5px;
+    text-align: end;
+}
 
+.link{
+    text-decoration: underline;
+    color: rgb(0,0,238);
+    cursor: pointer;
+}
 .pagesBox .disabled{
     text-decoration: none;
     text-emphasis: none;

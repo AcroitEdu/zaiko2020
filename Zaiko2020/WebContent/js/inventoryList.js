@@ -9,8 +9,8 @@ function linkDetectOutOfRange(index, element) {
         $(element).addClass("disabled");
     }
 }
-var sortable = $(".sortArrow");
-sortable.click(function () {    //矢印をクリックした
+var sortArrows = $(".sortArrow");
+sortArrows.click(function () {    //矢印をクリックした
     var sorting = $(this).parents(".listHeaderSortable");
     var index = sorting.attr("data-sort-index");
     var direction = $(this).attr("data-sort-direction");
@@ -30,3 +30,7 @@ selects.each(function (index, element) {
     var value = elem.attr("data-value");
     elem.find(`option[value='${value}']`).prop("selected", true);
 });
+var sortIndex = $("#sortIndex").val();
+var sortDirection = $("#sortDirection").val();
+var sortableHeaders = $(`#listHeaders > .listHeaderSortable[data-sort-index='${sortIndex}'] > .sortArrows > .sortArrow[data-sort-direction='${sortDirection}']`);
+sortableHeaders.addClass("sortArrowActive");

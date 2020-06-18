@@ -104,13 +104,13 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY'年<br/>'MM'月'dd'日'
                 </div>
                 <div id="list">
                     <form id="sortForm" action="/Zaiko2020/inventoryList" method="post">
-                        <input type="hidden" id="sortIndex" name="index" value="0">
-                        <input type="hidden" id="sortDirection" name="direction" value="0">
+                        <input type="hidden" id="sortIndex" name="index" value="${conditions.sort}">
+                        <input type="hidden" id="sortDirection" name="direction" value="${conditions.lift}">
                         <input type="hidden" name="form" value="2">
                     </form>
                     <table id="listTable">
                         <thead>
-                            <tr>
+                            <tr id="listHeaders">
                                 <th id="headerControl" class="headerFixed headerFit">
                                     操作
                                 </th>
@@ -128,8 +128,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY'年<br/>'MM'月'dd'日'
                                     <span class="sortArrows">
                                         <span title="発売日 昇順でソートします" class="sortArrow" data-sort-direction="1">
                                             ↑</span>
-                                        <span title="発売日 降順でソートします" class="sortArrow sortArrowActive"
-                                            data-sort-direction="-1">
+                                        <span title="発売日 降順でソートします" class="sortArrow" data-sort-direction="-1">
                                             ↓</span>
                                     </span>
                                 </th>
