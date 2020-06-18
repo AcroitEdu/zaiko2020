@@ -2,7 +2,7 @@
 <%@ page import="jp.co.acroit.zaiko2020.book.Book" %>
 <%@ page import="java.util.List" %>
 <%
-var session = request.getSession();
+HttpSession session = request.getSession();
 int currentPage = (int)session.getAttribute("page");
 int maxPage = (int)session.getAttribute("maxPage");
 int count = (int)session.getAttribute("count");
@@ -87,6 +87,11 @@ List<Book> items = (List<Book>)session.getAttribute("items");
                     <%@ include file="part/PageMover.jsp" %>
                 </div>
                 <div id="list">
+                    <form id="sortForm" action="/Zaiko2020/inventoryList" method="post">
+                        <input type="hidden" id="sortIndex" name="index" value="0">
+                        <input type="hidden" id="sortDirection" name="direction" value="0">
+                        <input type="hidden" name="form" value="2">
+                    </form>
                     <table id="listTable">
                         <thead>
                             <tr>
@@ -136,14 +141,10 @@ List<Book> items = (List<Book>)session.getAttribute("items");
                                     </span>
                                 </th>
                             </tr>
-                            <form id="sortForm" action="/Zaiko2020/inventoryList" method="post">
-                                <input type="hidden" id="sortIndex" name="index" value="0">
-                                <input type="hidden" id="sortDirection" name="direction" value="0">
-                                <input type="hidden" name="form" value="2">
-                            </form>
+
                         </thead>
                         <tbody>
-                            <%for(var item : items){%>
+                            <%for(Book item : items){%>
                             <tr>
                                 <td class="dataControl">
                                     <a href="#">入荷</a>
