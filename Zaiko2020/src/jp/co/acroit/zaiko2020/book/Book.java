@@ -1,7 +1,7 @@
 package jp.co.acroit.zaiko2020.book;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * 書籍クラス
@@ -14,20 +14,21 @@ public class Book implements Serializable {
 	private String publisher;
 	private String author;
 	private String isbn;
-	private Date salesDate;
+	private LocalDate salesDate;
 	private int price;
 	private int stock;
 	private int deleteFlag;
 
 	//書籍情報の初期化
-	public Book(int id, String name, String publisher, String author, String isbn, Date salesDate, int price, int stock,
+	public Book(int id, String name, String publisher, String author, String isbn, LocalDate dbSalsDate, int price,
+			int stock,
 			int deleteFlag) {
 		this.id = id;
 		this.name = name;
 		this.publisher = publisher;
 		this.author = author;
 		this.isbn = isbn;
-		this.salesDate = salesDate;
+		this.salesDate = dbSalsDate;
 		this.price = price;
 		this.stock = stock;
 		this.deleteFlag = deleteFlag;
@@ -74,11 +75,11 @@ public class Book implements Serializable {
 		this.isbn = isbn;
 	}
 
-	public Date getSalesDate() {
+	public LocalDate getSalesDate() {
 		return salesDate;
 	}
 
-	public void setSalesDate(Date salesDate) {
+	public void setSalesDate(LocalDate salesDate) {
 		this.salesDate = salesDate;
 	}
 
