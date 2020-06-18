@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
@@ -89,7 +89,7 @@ public class BookDataAccess {
 			String dbPublisher = null; // 出版社の取得
 			String dbAuthor = null; // 著者の取得
 			String dbIsbn = null; // ISBNの取得
-			Date dbSalsDate; // 発売日の取得
+			LocalDate dbSalsDate; // 発売日の取得
 			int dbPrice = 0; // 価格の取得
 			int dbStock = 0; // 在庫数の取得
 			int dbDeleteflg = 0;
@@ -104,7 +104,7 @@ public class BookDataAccess {
 				//dbPublisher = rs.getString(publisherColumn);
 				dbAuthor = rs.getString(authorColumn);
 				dbIsbn = rs.getString(isbnColumn);
-				dbSalsDate = rs.getDate(salesDateColumn);
+				dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
 				dbPrice = rs.getInt(priceColumn);
 				dbStock = rs.getInt(stockColumn);
 
