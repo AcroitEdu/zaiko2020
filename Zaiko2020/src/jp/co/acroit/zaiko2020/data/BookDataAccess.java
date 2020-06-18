@@ -101,7 +101,7 @@ public class BookDataAccess {
 			while (rs.next()) {
 				dbId = rs.getInt(idColumn);
 				dbBookName = rs.getString(titleColumn);
-				dbPublisher = rs.getString(publisherColumn);
+				//dbPublisher = rs.getString(publisherColumn);
 				dbAuthor = rs.getString(authorColumn);
 				dbIsbn = rs.getString(isbnColumn);
 				dbSalsDate = rs.getDate(salesDateColumn);
@@ -140,12 +140,11 @@ public class BookDataAccess {
 			con = datasource.getConnection();
 
 			//実クエリの固定部分
-			query = "SELECT libraryHoldings=COUNT(*) AS libraryHoldings FROM books";
+			query = "SELECT COUNT(*) AS libraryHoldings FROM books";
 			//実クエリへの加筆
 			sqlWhere(sc);
 			sqlOrderBy(sc);
 			sqlSemicolon();
-
 
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
@@ -251,7 +250,7 @@ public class BookDataAccess {
 					// フィールドの付与
 					if (AddSql.equals("LIKE")) { //文字列の検索の場合
 						AddSql = AddSql + " '%" + whereData[i] + "%'";
-					} else if (whereDataName[i].equals("salsDate")) { //発売日の検索の場合
+					} else if (whereDataName[i].equals(salesDateColumn)) { //発売日の検索の場合
 						AddSql = AddSql + " '" + whereData[i] + "'";
 					} else { // 数値の検索の場合
 						AddSql = AddSql + " " + whereData[i];
@@ -287,7 +286,7 @@ public class BookDataAccess {
 		String lift = sc.getLift(); //昇順・降順の取得
 		switch (sort) {
 		case "0": // 発売日でソート
-			query = query + "salsDate";
+			query = query + salesDateColumn;
 			break;
 		case "1": // ISBNでソート
 			query = query + "isbn";
