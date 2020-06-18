@@ -245,7 +245,7 @@ public class BookDataAccess {
 				}
 
 				//検索条件が指定なしでない場合にSQLへの加筆を行う
-				if (!AddSql.isEmpty()) {
+				if (AddSql != null && !AddSql.isEmpty()) {
 
 					// フィールドの付与
 					if (AddSql.equals("LIKE")) { //文字列の検索の場合
