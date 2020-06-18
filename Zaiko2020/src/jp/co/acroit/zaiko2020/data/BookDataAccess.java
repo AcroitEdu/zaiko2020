@@ -21,7 +21,7 @@ import jp.co.acroit.zaiko2020.book.Book;
 public class BookDataAccess {
 
 	public BookDataAccess() {
-		url = "jdbc:mysql://localhost/zaiko2020?characterEncoding=UTF-8&serverTimezone=JST";
+		url = "jdbc:mysql://localhost/zaiko2020?characterEncoding=UTF-8&serverTimezone=JST&zeroDateTimeBehavior=convertToNull";
 		driver = "com.mysql.cj.jdbc.Driver";
 		username = "tomcat";
 		password = "RC2-Z%b9e85PWqR";
