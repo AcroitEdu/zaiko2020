@@ -62,7 +62,7 @@ public class InventoryListController extends HttpServlet {
 		sc.setIsbn(isbn);
 		sc.setSalesDate(salsDate);
 		sc.setStock(stock);
-		sc.setSalsDateFlag(salsDateFlag);
+		sc.setSalesDateFlag(salsDateFlag);
 		sc.setStockFlag(stockFlag);
 		sc.setPage(page);
 		sc.setSort(sort);
@@ -165,7 +165,7 @@ public class InventoryListController extends HttpServlet {
 			sc.setIsbn(isbn);
 			sc.setSalesDate(salsDate);
 			sc.setStock(stock);
-			sc.setSalsDateFlag(salsDateFlag);
+			sc.setSalesDateFlag(salsDateFlag);
 			sc.setStockFlag(stockFlag);
 			sc.setPage(page);
 			sc.setSort(sort);

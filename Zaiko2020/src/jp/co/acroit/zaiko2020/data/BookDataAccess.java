@@ -184,7 +184,7 @@ public class BookDataAccess {
 		String isbn = sc.getIsbn(); //ISBNの取得
 		String salsDate = sc.getSalesDate(); //発売日の取得
 		String stock = sc.getStock(); //在庫数の取得
-		String salsDateFlag = sc.getSalsDateFlag(); //発売日検索条件の取得
+		String salsDateFlag = sc.getSalesDateFlag(); //発売日検索条件の取得
 		String stockFlag = sc.getStockFlag(); //在庫数検索条件の取得
 
 		// queryに継ぎ足す部分の一時保存
