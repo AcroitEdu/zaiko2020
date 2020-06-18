@@ -43,17 +43,17 @@ public class InventoryListController extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		//初期表示の検索条件設定
-		String bookName = null; //書籍名
-		String author = null; //著者
-		String publisher = null; //出版社
-		String isbn = null; //isbn
-		String salsDate = sdf.format(date); //発売日
-		String stock = "0"; //在庫数
-		String salsDateFlag = "after"; //発売日検索条件
-		String stockFlag = "gtoe"; //在庫数検索条件
-		int page = 1; //表ページ数
-		String sort = "0"; //ソート条件:発売日
-		String lift = "1"; //昇順降順 1/-1
+		String bookName = null;
+		String author = null;
+		String publisher = null;
+		String isbn = null;
+		String salsDate = sdf.format(date);
+		String stock = "0";
+		String salsDateFlag = "after";
+		String stockFlag = "gtoe";
+		int page = 1;
+		String sort = "0";
+		String lift = "1";
 
 		SearchCondition sc = new SearchCondition();
 
@@ -104,13 +104,14 @@ public class InventoryListController extends HttpServlet {
 			}
 
 			session.setAttribute("conditions", sc);
-
 			session.setAttribute("error", "");
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 
 		} catch (Exception e) {
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 			e.printStackTrace();
@@ -123,28 +124,27 @@ public class InventoryListController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("---------------------");
 		request.setCharacterEncoding("UTF-8");
-		String bookName = null; //書籍名
-		String author = null; //著者
-		String publisher = null; //出版社
-		String isbn = null; //isbn
-		String salsDate = null; //発売日
-		String stock = null; //在庫数
-		String salsDateFlag = null; //発売日検索条件
-		String stockFlag = null; //在庫数検索条件
-		int page = 1; //表ページ数
-		String sort = "0"; //ソート条件
-		String lift = "1"; //昇順降順 1/-1
+		String bookName = null;
+		String author = null;
+		String publisher = null;
+		String isbn = null;
+		String salsDate = null;
+		String stock = null;
+		String salsDateFlag = null;
+		String stockFlag = null;
+		int page = 1; //
+		String sort = "0";
+		String lift = "1";
 
 		int value = Integer.parseInt(request.getParameter("form"));
 
 		HttpSession session = request.getSession();
 		SearchCondition sc = (SearchCondition)session.getAttribute("conditions");
+
 		if(sc == null) {
 			sc = new SearchCondition();
 		}
-
 
 		switch (value) {
 		//検索ボタン
@@ -173,16 +173,11 @@ public class InventoryListController extends HttpServlet {
 			sc.setSort(sort);
 			sc.setLift(lift);
 
-			System.out.println("case0終了--------------------------------------------");
 			break;
 
 		//表ページ移動
 		case 1:
-
-			System.out.println("case1------------------------------------------------");
-			//表ページ取得
 			page = Integer.parseInt(request.getParameter("page"));
-
 			int maxPage = (int) session.getAttribute("maxPage");
 			if (maxPage < page) {
 				session.setAttribute("error", "該当するページは見つかりませんでした。");
@@ -190,28 +185,24 @@ public class InventoryListController extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 			sc.setPage(page);
-
-
-			System.out.println("case1終了--------------------------------------------");
 			break;
 
 		//ソート
 		case 2:
-
-			System.out.println("case2------------------------------------------------");
 			//ソート条件取得
 			sort = request.getParameter("index");
 			lift = request.getParameter("direction");
 			sc.setSort(sort);
 			sc.setLift(lift);
-			System.out.println("case2終了--------------------------------------------");
 		}
 
+		//検索結果をセッションに設定
 		session.setAttribute("conditions", sc);
 
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
 		List<Book> bookList = new ArrayList<Book>();
+
 		try {
 
 			//総件数の取得
@@ -239,11 +230,13 @@ public class InventoryListController extends HttpServlet {
 			session.setAttribute("page", page);
 
 			session.setAttribute("error", "");
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 
 		} catch (Exception e) {
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 		}
