@@ -19,15 +19,17 @@ List<Book> items = (List<Book>)session.getAttribute("items");
 %>
 <!DOCTYPE html>
 <html lang='ja'>
+
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta http-equiv='X-UA-Compatible' content='ie=edge'>
     <title>在庫一覧</title>
-    <link href="https://unpkg.com/sanitize.css" rel="stylesheet"/>
+    <link href="https://unpkg.com/sanitize.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styleInventoryList.css">
 </head>
+
 <body>
     <div id="main">
         <header>
@@ -153,7 +155,11 @@ List<Book> items = (List<Book>)session.getAttribute("items");
 
                         </thead>
                         <tbody>
-                            <%for(Book item : items){%>
+                            <%
+                            if(items != null)
+                            {
+                                for(Book item : items){
+                                %>
                             <tr>
                                 <td class="dataControl">
                                     <a href="#">入荷</a>
@@ -161,15 +167,18 @@ List<Book> items = (List<Book>)session.getAttribute("items");
                                     <a href="#">出荷</a><br />
                                     <a href="#">編集</a>
                                 </td>
-                                <td class="dataName">${item.name}</td>
-                                <td class="dataAuthor">${item.author}</td>
-                                <td class="dataPublisher">${item.publisher}</td>
-                                <td class="dataSalesDate">${item.salesDate}</td>
-                                <td class="dataIsbn">${item.isbn}</td>
-                                <td class="dataPrice">${item.price}</td>
-                                <td class="dataStock">${item.stock}</td>
+                                <td class="dataName"><%=item.getName()%></td>
+                                <td class="dataAuthor"><%=item.getAuthor() %></td>
+                                <td class="dataPublisher"><%=item.getPublisher() %></td>
+                                <td class="dataSalesDate"><%=item.getSalesDate() %></td>
+                                <td class="dataIsbn"><%=item.getIsbn() %></td>
+                                <td class="dataPrice"><%=item.getPrice() %></td>
+                                <td class="dataStock"><%=item.getStock() %></td>
                             </tr>
-                            <%}%>
+                            <%
+                                }
+                            }
+                            %>
                         </tbody>
                     </table>
                 </div>

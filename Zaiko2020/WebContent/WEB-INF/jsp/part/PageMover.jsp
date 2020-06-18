@@ -13,7 +13,7 @@
         <form name="jumpPage" action="/Zaiko2020/inventoryList" method="post">
             <input type="hidden" name="form" value="1">
             <input type="number" name="page" id="page" min="1" max="${maxPage}" value="${currentPage}">
-            <span>/${maxPage}</span>
+            <span>/ ${maxPage}</span>
             <input type="submit" class="button" value="移動">
         </form>
     </li>

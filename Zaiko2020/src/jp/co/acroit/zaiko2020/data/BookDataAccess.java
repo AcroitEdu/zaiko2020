@@ -138,12 +138,144 @@ public class BookDataAccess {
 
 		try {
 			con = datasource.getConnection();
+<<<<<<< HEAD
 			//実クエリの固定部分
 			query = "SELECT libraryHoldings=COUNT(*) AS libraryHoldings FROM books";
 			//実クエリへの加筆
 			sqlWhere(sc);
 			sqlOrderBy(sc);
 			sqlSemicolon();
+=======
+
+			String bookName = sc.getName();						//書籍名の取得
+			String publisher = sc.getPublisher();			//出版社の取得
+			String author = sc.getAuthor();					//著者の取得
+			String isbn = sc.getIsbn();						//ISBNの取得
+			String salsDate = sc.getSalesDate();			//発売日の取得
+			String stock = sc.getStock();					//在庫数の取得
+			String salsDateFlag = sc.getSalsDateFlag();	//発売日検索条件の取得
+			String stockFlag = sc.getStockFlag();			//在庫数検索条件の取得
+			int page = sc.getPage();						//表ページ数の取得
+			String sort = sc.getSort();						//ソート条件の取得
+			String lift = sc.getLift();						//昇順・降順の取得
+
+
+
+
+			// SQLに書き加える部分の一時保存
+			String AddSql = null;
+
+			// SQLのWHERE句で用いるカラム名
+			String[] whereDataName = {"title", "publisher", "author" , "isbn", "salsDate", "stock"};
+			// SQLのWHERE句で用いるフィールド
+			String[] whereData = {bookName, publisher, author, isbn , salsDate, stock};
+
+			// WHERE句を加えたか否か
+			boolean isAddWhere = false;
+
+			// SQLのWHERE句の生成
+			for (int i = 0; i < whereData.length; i++) {
+
+				//条件が空白でない場合
+				if(!whereData[i].isEmpty()) {
+
+					// 比較演算子の付与
+					switch (whereDataName[i]) {
+						case "salsDate": // 発売日の場合
+							switch (salsDateFlag) {
+								case "equals": // ～に一致
+									AddSql = "=";
+									break;
+								case "before": // ～以前
+									AddSql = "<=";
+									break;
+								case "after": // ～以降
+									AddSql = ">=";
+									break;
+							}
+							break;
+						case "stock": // 在庫数の場合
+							switch (stockFlag) {
+								case "lt": // ～未満
+									AddSql = "<";
+									break;
+								case "ltoe": // ～以下
+									AddSql = "<=";
+									break;
+								case "equals": // ～に等しい
+									AddSql = "=";
+									break;
+								case "gtoe": // ～以上
+									AddSql = ">=";
+									break;
+								case "gt": // ～より多い
+									AddSql = ">";
+									break;
+
+							}
+							break;
+						default: // 上記以外(あいまい検索)の場合
+							AddSql = "LIKE";
+					}
+
+					//検索条件が指定なしでない場合にSQLへの加筆を行う
+					if (!AddSql.isEmpty()) {
+
+						// フィールドの付与
+						if(AddSql.equals("LIKE")) { //文字列の検索の場合
+							AddSql = AddSql + " '%" + whereData[i] + "%'";
+						} else if(whereDataName[i].equals("salsDate")) { //発売日の検索の場合
+							AddSql = AddSql + " '" + whereData[i] + "'";
+						} else { // 数値の検索の場合
+							AddSql = AddSql + " " + whereData[i];
+						}
+
+						//カラム名の付与
+						AddSql = " " + whereDataName[i] + " "  + AddSql;
+
+						// １つ目にはWHEREを、二つ目以降はANDを先頭に付与
+						if(isAddWhere) {
+							AddSql = " AND" + AddSql;
+						} else {
+							AddSql = " WHERE" + AddSql;
+							isAddWhere = true;
+						}
+
+						//SQLへの加筆
+						query = query + AddSql;
+					}
+				}
+				AddSql = null;
+			}
+
+			// ORDER BY句の生成
+			AddSql = " ORDER BY ";
+			switch (sort) {
+				case "0": // 発売日でソート
+					AddSql = AddSql + "salsDate";
+					break;
+				case "1": // ISBNでソート
+					AddSql = AddSql + "isbn";
+					break;
+				case "2": // 在庫数のソート
+					AddSql = AddSql + "stock";
+					break;
+			}
+			if (lift.equals("1")) { // 昇順の場合
+				AddSql = AddSql + " ASC";
+			} else { // 降順の場合
+				AddSql = AddSql + " DESC";
+			}
+			//SQLへの加筆
+			query = query + AddSql;
+
+			//末尾のセミコロンの加筆
+			query = query + ";";
+
+			System.out.println(query);
+
+			System.out.println("------------");
+>>>>>>> branch 'master' of https://github.com/AcroitEdu/zaiko2020.git
 
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
