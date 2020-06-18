@@ -73,7 +73,7 @@ List<Book> items = (List<Book>)session.getAttribute("items");
                             </div>
                         </li>
                         <li>
-                            <label for="largeOrSmall">発売日</label>
+                            <label for="largeOrSmall">在庫数</label>
                             <div class="flexFormItem">
                                 <input type="number" name="stock" id="stock" min="0">
                                 <span>冊</span>
