@@ -2,6 +2,7 @@ package jp.co.acroit.zaiko2020.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -73,7 +74,7 @@ public class InventoryListController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		List<Book> bookList;
+		List<Book> bookList = new ArrayList<Book>();
 		try {
 			int count = 0;
 			int pageCount = 0;
@@ -84,8 +85,9 @@ public class InventoryListController extends HttpServlet {
 			//総ページ数
 			pageCount = count / 200 + 1;
 
-			//総件数と最大ページ数をセッションに設定
+			//総件数・現ページ・最大ページ数をセッションに設定
 			session.setAttribute("count", count);
+			session.setAttribute("page", page);
 			session.setAttribute("maxPage", pageCount);
 			System.out.println(count);
 			System.out.println(pageCount);
@@ -109,7 +111,6 @@ public class InventoryListController extends HttpServlet {
 
 		} catch (Exception e) {
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 			e.printStackTrace();
@@ -210,7 +211,7 @@ public class InventoryListController extends HttpServlet {
 
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
-		List<Book> bookList;
+		List<Book> bookList = new ArrayList<Book>();
 		try {
 
 			//総件数の取得
@@ -220,7 +221,7 @@ public class InventoryListController extends HttpServlet {
 				count = bda.countAll(sc);
 				pageCount = count / 200 + 1;
 
-				//総件数と最大ページ数をセッションに設定
+				//総件数・最大ページ数をセッションに設定
 				session.setAttribute("count", count);
 				session.setAttribute("maxPage", pageCount);
 			}
@@ -233,8 +234,9 @@ public class InventoryListController extends HttpServlet {
 				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
 			}
 
-			//書籍情報をセッションに設定
+			//書籍情報・現ページをセッションに設定
 			session.setAttribute("items", bookList);
+			session.setAttribute("page", page);
 
 			session.setAttribute("error", "");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
