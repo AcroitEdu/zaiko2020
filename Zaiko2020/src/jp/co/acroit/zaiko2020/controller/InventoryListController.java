@@ -130,9 +130,9 @@ public class InventoryListController extends HttpServlet {
 		String publisher = null; //出版社
 		String isbn = null; //isbn
 		String salsDate = null; //発売日
-		String stock = "0"; //在庫数
+		String stock = null; //在庫数
 		String salsDateFlag = null; //発売日検索条件
-		String stockFlag = "gtoe"; //在庫数検索条件
+		String stockFlag = null; //在庫数検索条件
 		int page = 1; //表ページ数
 		String sort = "0"; //ソート条件
 		String lift = "1"; //昇順降順 1/-1
