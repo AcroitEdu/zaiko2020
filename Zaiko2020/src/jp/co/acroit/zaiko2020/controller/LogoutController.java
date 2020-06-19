@@ -29,7 +29,7 @@ public class LogoutController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 //セッションの破棄
+		//セッションの破棄
 		request.getSession().invalidate();
 		//セッションの再生成
 		request.getSession(true);
