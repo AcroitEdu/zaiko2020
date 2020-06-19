@@ -73,8 +73,8 @@ public class InventoryListController extends HttpServlet {
 		BookDataAccess bda = new BookDataAccess();
 
 		HttpSession session = request.getSession();
-
 		List<Book> bookList = new ArrayList<Book>();
+
 		try {
 			int count = 0;
 			int pageCount = 0;
@@ -95,23 +95,20 @@ public class InventoryListController extends HttpServlet {
 			//検索
 			bookList = bda.find(sc);
 
-			//検索結果をセッションに設定
+			//検索結果・検索条件をセッションに設定
 			session.setAttribute("items", bookList);
+			session.setAttribute("conditions", sc);
 
 			//該当書籍なし
 			if (bookList.isEmpty()) {
 				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
 			}
 
-			session.setAttribute("conditions", sc);
 			session.setAttribute("error", "");
-
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
-
 		} catch (Exception e) {
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 			e.printStackTrace();
@@ -136,7 +133,6 @@ public class InventoryListController extends HttpServlet {
 		int page = 1; //
 		int sort = 0;
 		int lift = 1;
-
 		int value = Integer.parseInt(request.getParameter("form"));
 
 		HttpSession session = request.getSession();
@@ -149,8 +145,6 @@ public class InventoryListController extends HttpServlet {
 		switch (value) {
 		//検索ボタン
 		case 0:
-
-			System.out.println("case0------------------------------------------------");
 			//検索条件取得
 			bookName = request.getParameter("name");
 			author = request.getParameter("author");
@@ -170,12 +164,10 @@ public class InventoryListController extends HttpServlet {
 			sc.setSalesDateFlag(salsDateFlag);
 			sc.setStockFlag(stockFlag);
 			sc.setPage(page);
-			sc.setSort(sort);
-			sc.setLift(lift);
 
 			break;
 
-		//表ページ移動
+			//表ページ移動
 		case 1:
 			page = Integer.parseInt(request.getParameter("page"));
 			int maxPage = (int) session.getAttribute("maxPage");
@@ -187,7 +179,7 @@ public class InventoryListController extends HttpServlet {
 			sc.setPage(page);
 			break;
 
-		//ソート
+			//ソート
 		case 2:
 			//ソート条件取得
 			sort = Integer.parseInt(request.getParameter("index"));
@@ -233,7 +225,7 @@ public class InventoryListController extends HttpServlet {
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
-			
+
 		}
 
 	}
