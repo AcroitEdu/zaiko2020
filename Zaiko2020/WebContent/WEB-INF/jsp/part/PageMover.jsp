@@ -1,4 +1,8 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%
+//「次へ」や「前へ」、「移動」等の、ページ移動の機能を持つ。
+//InventoryList.jspからincludeして使う。
+%>
 <ul class="pagesBox">
     <li class="pagesCounterWeight"></li>
     <li class="pagesSpace"></li>

@@ -134,9 +134,11 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                     発売日
                                     <span class="sortArrows">
                                         <span class="sortArrow" title="発売日 昇順でソートします" data-sort-direction="1">
-                                            ↑</span>
+                                            ↑
+                                        </span>
                                         <span class="sortArrow" title="発売日 降順でソートします" data-sort-direction="-1">
-                                            ↓</span>
+                                            ↓
+                                        </span>
                                     </span>
                                 </th>
                                 <th id="headerIsbn" class="listHeaderSortable headerFixed headerFit"
@@ -144,9 +146,11 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                     ISBN
                                     <span class="sortArrows">
                                         <span class="sortArrow" title="ISBN 昇順でソートします" data-sort-direction="1">
-                                            ↑</span>
+                                            ↑
+                                        </span>
                                         <span class="sortArrow" title="ISBN 降順でソートします" data-sort-direction="-1">
-                                            ↓</span>
+                                            ↓
+                                        </span>
                                     </span>
                                 </th>
                                 <th id="headerPrice" class="headerFit headerGrow1">
@@ -157,9 +161,11 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                     在庫数
                                     <span class="sortArrows">
                                         <span class="sortArrow" title="在庫数 昇順でソートします" data-sort-direction="1">
-                                            ↑</span>
+                                            ↑
+                                        </span>
                                         <span class="sortArrow" title="在庫数 降順でソートします" data-sort-direction="-1">
-                                            ↓</span>
+                                            ↓
+                                        </span>
                                     </span>
                                 </th>
                             </tr>
@@ -175,7 +181,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                 <td class="dataControl dataCenter">
                                     <a href="#">入荷</a>
                                     <span>/</span>
-                                    <a href="#">出荷</a><br />
+                                    <a href="#">出荷</a><br>
                                     <a href="#">編集</a>
                                 </td>
                                 <td class="dataName"><%=item.getName() %></td>
@@ -183,7 +189,8 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                 <td class="dataPublisher"><%=item.getPublisher() %></td>
                                 <td class="dataSalesDate dataCenter"><%=item.getSalesDate().format(dateFormat) %></td>
                                 <td class="dataIsbn dataCenter"><%=item.getIsbn() %></td>
-                                <td class="dataPrice dataRight"><%=item.getPrice() %> 円</td> <!-- 数字をダブルクリックしたときの利便性を考慮しスペースを挿入-->
+                                <td class="dataPrice dataRight"><%=item.getPrice() %> 円</td>
+                                <!--数字をダブルクリックしたときの利便性を考慮しスペースを挿入-->
                                 <td class="dataStock dataRight"><%=item.getStock() %> 冊</td>
                             </tr>
                             <%
