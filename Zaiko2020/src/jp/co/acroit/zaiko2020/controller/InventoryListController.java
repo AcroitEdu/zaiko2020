@@ -25,7 +25,6 @@ import jp.co.acroit.zaiko2020.data.SearchCondition;
  */
 @WebServlet("/inventoryList")
 public class InventoryListController extends HttpServlet {
-	private BookDataAccess bookDataAccess;
 	private static final long serialVersionUID = 1L;
 
 	/**
