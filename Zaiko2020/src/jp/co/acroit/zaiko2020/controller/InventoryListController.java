@@ -25,14 +25,13 @@ import jp.co.acroit.zaiko2020.data.SearchCondition;
  */
 @WebServlet("/inventoryList")
 public class InventoryListController extends HttpServlet {
-	private BookDataAccess bookDataAccess;
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public InventoryListController() {
-		//super();
+		super();
 	}
 
 	@Override
@@ -73,6 +72,7 @@ public class InventoryListController extends HttpServlet {
 		BookDataAccess bda = new BookDataAccess();
 
 		HttpSession session = request.getSession();
+		session.setAttribute("error", "");
 		List<Book> bookList = new ArrayList<Book>();
 
 		try {
@@ -104,7 +104,6 @@ public class InventoryListController extends HttpServlet {
 				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
 			}
 
-			session.setAttribute("error", "");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
@@ -130,13 +129,14 @@ public class InventoryListController extends HttpServlet {
 		String stock = null;
 		String salsDateFlag = null;
 		String stockFlag = null;
-		int page = 1; //
-		int sort = 0;
-		int lift = 1;
+		int page = 1;	//1ページ目
+		int sort = 0;	//発売日
+		int lift = 1;	//昇順
 		int value = Integer.parseInt(request.getParameter("form"));
 
 		HttpSession session = request.getSession();
 		SearchCondition sc = (SearchCondition)session.getAttribute("conditions");
+		session.setAttribute("error", "");
 
 		if(sc == null) {
 			sc = new SearchCondition();
@@ -181,7 +181,6 @@ public class InventoryListController extends HttpServlet {
 
 			//ソート
 		case 2:
-			//ソート条件取得
 			sort = Integer.parseInt(request.getParameter("index"));
 			lift = Integer.parseInt(request.getParameter("direction"));
 			sc.setSort(sort);
@@ -218,7 +217,6 @@ public class InventoryListController extends HttpServlet {
 			session.setAttribute("items", bookList);
 			session.setAttribute("page", page);
 
-			session.setAttribute("error", "");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {

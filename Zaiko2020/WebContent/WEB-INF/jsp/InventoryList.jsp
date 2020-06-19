@@ -28,9 +28,9 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta http-equiv='X-UA-Compatible' content='ie=edge'>
     <title>在庫一覧</title>
-    <link href="https://unpkg.com/sanitize.css" rel="stylesheet" />
+    <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styleInventoryList.css">
+    <link href="styleInventoryList.css" rel="stylesheet">
 </head>
 
 <body>
@@ -40,7 +40,11 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                 <li class="tab-current tab">在庫一覧</li>
                 <li class="tab">追加</li>
                 <li class="tab-space tab"></li>
-                <li class="tab-logout tab">ログアウト</li>
+                <li class="tab-logout tab">
+                    <form id="logoutForm" action="/Zaiko2020/logout" method="post">
+                        <a href="javascript:if(window.confirm(`ログアウトしますか?`))$(`#logoutForm`).submit();">ログアウト</a>
+                    </form>
+                </li>
             </ul>
         </header>
         <div class="content">
@@ -49,28 +53,28 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                     <ul id="flexFormWrappable">
                         <li>
                             <label for="bookName">書籍名</label>
-                            <input class="flexFormItem" type="text" name="name" id="bookName"
+                            <input type="text" id="bookName" class="flexFormItem" name="name"
                                 value="${conditions.name}">
                         </li>
                         <li>
                             <label for="author">著者</label>
-                            <input class="flexFormItem" type="text" name="author" id="author"
+                            <input type="text" id="author" class="flexFormItem" name="author"
                                 value="${conditions.author}">
                         </li>
                         <li>
                             <label for="publisher">出版社</label>
-                            <input class="flexFormItem" type="text" name="publisher" id="publisher"
+                            <input type="text" id="publisher" class="flexFormItem" name="publisher"
                                 value="${conditions.publisher}">
                         </li>
                         <li>
                             <label for="isbn">ISBN</label>
-                            <input class="flexFormItem" type="number" name="isbn" id="isbn" value="${conditions.isbn}">
+                            <input type="number" id="isbn" class="flexFormItem" name="isbn" value="${conditions.isbn}">
                         </li>
                         <li>
                             <label for="beforeAfter">発売日</label>
                             <div class="flexFormItem">
-                                <input type="date" name="date" id="date" value="${conditions.salesDate}">
-                                <select name="beforeAfter" id="beforeAfter" data-value="${conditions.salesDateFlag}">
+                                <input type="date" id="date" name="date" value="${conditions.salesDate}">
+                                <select id="beforeAfter" name="beforeAfter" data-value="${conditions.salesDateFlag}">
                                     <option value="unspecified">指定なし</option>
                                     <option value="equals">に一致</option>
                                     <option value="before">以前</option>
@@ -81,9 +85,9 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                         <li>
                             <label for="largeOrSmall">在庫数</label>
                             <div class="flexFormItem">
-                                <input type="number" name="stock" id="stock" min="0" value="${conditions.stock}">
+                                <input type="number" id="stock" name="stock" min="0" value="${conditions.stock}">
                                 <span>冊</span>
-                                <select name="largeOrSmall" id="largeOrSmall" data-value="${conditions.stockFlag}">
+                                <select id="largeOrSmall" name="largeOrSmall" data-value="${conditions.stockFlag}">
                                     <option value="unspecified">指定なし</option>
                                     <option value="lt">未満</option>
                                     <option value="ltoe">以下</option>
@@ -95,10 +99,12 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                         </li>
                     </ul>
                     <input type="hidden" name="form" value="0">
-                    <input id="searchButton" type="submit" class="button" value="検索">
+                    <input type="submit" id="searchButton" class="button" value="検索">
                 </form>
             </div>
-            <div id="error"><span>${sessionScope.error}</span></div>
+            <div id="error">
+                <span>${sessionScope.error}</span>
+            </div>
             <div class="list">
                 <div class="pages">
                     <%@ include file="part/PageMover.jsp" %>
@@ -127,20 +133,24 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                 <th id="headerSalesDate" class="listHeaderSortable headerFixed" data-sort-index="0">
                                     発売日
                                     <span class="sortArrows">
-                                        <span title="発売日 昇順でソートします" class="sortArrow" data-sort-direction="1">
-                                            ↑</span>
-                                        <span title="発売日 降順でソートします" class="sortArrow" data-sort-direction="-1">
-                                            ↓</span>
+                                        <span class="sortArrow" title="発売日 昇順でソートします" data-sort-direction="1">
+                                            ↑
+                                        </span>
+                                        <span class="sortArrow" title="発売日 降順でソートします" data-sort-direction="-1">
+                                            ↓
+                                        </span>
                                     </span>
                                 </th>
                                 <th id="headerIsbn" class="listHeaderSortable headerFixed headerFit"
                                     data-sort-index="1">
                                     ISBN
                                     <span class="sortArrows">
-                                        <span title="ISBN 昇順でソートします" class="sortArrow" data-sort-direction="1">
-                                            ↑</span>
-                                        <span title="ISBN 降順でソートします" class="sortArrow" data-sort-direction="-1">
-                                            ↓</span>
+                                        <span class="sortArrow" title="ISBN 昇順でソートします" data-sort-direction="1">
+                                            ↑
+                                        </span>
+                                        <span class="sortArrow" title="ISBN 降順でソートします" data-sort-direction="-1">
+                                            ↓
+                                        </span>
                                     </span>
                                 </th>
                                 <th id="headerPrice" class="headerFit headerGrow1">
@@ -150,10 +160,12 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                     data-sort-index="2">
                                     在庫数
                                     <span class="sortArrows">
-                                        <span title="在庫数 昇順でソートします" class="sortArrow" data-sort-direction="1">
-                                            ↑</span>
-                                        <span title="在庫数 降順でソートします" class="sortArrow" data-sort-direction="-1">
-                                            ↓</span>
+                                        <span class="sortArrow" title="在庫数 昇順でソートします" data-sort-direction="1">
+                                            ↑
+                                        </span>
+                                        <span class="sortArrow" title="在庫数 降順でソートします" data-sort-direction="-1">
+                                            ↓
+                                        </span>
                                     </span>
                                 </th>
                             </tr>
@@ -169,15 +181,16 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                 <td class="dataControl dataCenter">
                                     <a href="#">入荷</a>
                                     <span>/</span>
-                                    <a href="#">出荷</a><br />
+                                    <a href="#">出荷</a><br>
                                     <a href="#">編集</a>
                                 </td>
-                                <td class="dataName"><%=item.getName()%></td>
+                                <td class="dataName"><%=item.getName() %></td>
                                 <td class="dataAuthor"><%=item.getAuthor() %></td>
                                 <td class="dataPublisher"><%=item.getPublisher() %></td>
                                 <td class="dataSalesDate dataCenter"><%=item.getSalesDate().format(dateFormat) %></td>
                                 <td class="dataIsbn dataCenter"><%=item.getIsbn() %></td>
                                 <td class="dataPrice dataRight"><%=item.getPrice() %> 円</td>
+                                <!--数字をダブルクリックしたときの利便性を考慮しスペースを挿入-->
                                 <td class="dataStock dataRight"><%=item.getStock() %> 冊</td>
                             </tr>
                             <%

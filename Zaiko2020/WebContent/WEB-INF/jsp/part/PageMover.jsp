@@ -1,12 +1,15 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%//ページ移動の要素%>
+<%
+//「次へ」や「前へ」、「移動」等の、ページ移動の機能を持つ。
+//InventoryList.jspからincludeして使う。
+%>
 <ul class="pagesBox">
     <li class="pagesCounterWeight"></li>
     <li class="pagesSpace"></li>
     <li class="pagesPrevNext">
         <form name="prevPage" action="/Zaiko2020/inventoryList" method="post">
             <input type="hidden" name="form" value="1">
-            <input type="hidden" name="page" class="inputPage" value="${conditions.page - 1}" data-max="${maxPage}">
+            <input type="hidden" class="inputPage" name="page" value="${conditions.page - 1}" data-max="${maxPage}">
             <span class="link prevButton">前へ</span>
         </form>
     </li>
@@ -21,7 +24,7 @@
     <li class="pagesPrevNext">
         <form name="nextPage" action="/Zaiko2020/inventoryList" method="post">
             <input type="hidden" name="form" value="1">
-            <input type="hidden" name="page" class="inputPage" value="${conditions.page + 1}" data-max="${maxPage}">
+            <input type="hidden" class="inputPage" name="page" value="${conditions.page + 1}" data-max="${maxPage}">
             <span class="link nextButton">次へ</span>
         </form>
     </li>
