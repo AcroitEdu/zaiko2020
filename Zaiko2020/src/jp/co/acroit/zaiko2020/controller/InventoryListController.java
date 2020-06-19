@@ -31,7 +31,7 @@ public class InventoryListController extends HttpServlet {
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public InventoryListController() {
-		//super();
+		super();
 	}
 
 	@Override
@@ -129,9 +129,9 @@ public class InventoryListController extends HttpServlet {
 		String stock = null;
 		String salsDateFlag = null;
 		String stockFlag = null;
-		int page = 1; //
-		int sort = 0;
-		int lift = 1;
+		int page = 1;	//1ページ目
+		int sort = 0;	//発売日
+		int lift = 1;	//昇順
 		int value = Integer.parseInt(request.getParameter("form"));
 
 		HttpSession session = request.getSession();
@@ -181,7 +181,6 @@ public class InventoryListController extends HttpServlet {
 
 			//ソート
 		case 2:
-			//ソート条件取得
 			sort = Integer.parseInt(request.getParameter("index"));
 			lift = Integer.parseInt(request.getParameter("direction"));
 			sc.setSort(sort);

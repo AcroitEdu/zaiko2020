@@ -3,7 +3,7 @@ package jp.co.acroit.zaiko2020.data;
 /**
  * 検索条件クラス
  * @version 1.0
- * @author Hiroki Tajima
+ * @author hiroki tajima
  */
 public class SearchCondition {
 	private String name;
@@ -15,10 +15,8 @@ public class SearchCondition {
 	private String salesDateFlag;
 	private String stockFlag;
 	private int page;
-	//ソートする項目(0: 発売日, 1: ISBN, 2: 在庫数)
-	private int sort;
-	//ソート順序(1: 昇順, -1: 降順)
-	private int lift;
+	private int sort;	//ソートする項目(0: 発売日, 1: ISBN, 2: 在庫数)
+	private int lift;	//ソート順序(1: 昇順, -1: 降順)
 
 	//各種ゲッターとセッター
 	public String getName() {

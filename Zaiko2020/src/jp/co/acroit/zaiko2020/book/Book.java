@@ -6,7 +6,7 @@ import java.time.LocalDate;
 /**
  * 書籍クラス
  * @version 1.0
- * @author Hiroki Tajima
+ * @author hiroki tajima
  */
 public class Book implements Serializable {
 	private int id;
