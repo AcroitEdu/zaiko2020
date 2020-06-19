@@ -40,7 +40,11 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                 <li class="tab-current tab">在庫一覧</li>
                 <li class="tab">追加</li>
                 <li class="tab-space tab"></li>
-                <li class="tab-logout tab">ログアウト</li>
+                <li class="tab-logout tab">
+                    <form action="/Zaiko2020/logout" id="logoutForm" method="post">
+                        <a href="javascript:$(`#logoutForm`).submit()">ログアウト</a>
+                    </form>
+                </li>
             </ul>
         </header>
         <div class="content">
