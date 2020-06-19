@@ -1,9 +1,11 @@
+//postリクエストを送信するリンク(「次へ」等)の処理
 function linkSubmit() {
     if ($(this).hasClass("disabled")) return;
     var form = $(this).parent();
     form.submit();
 }
 
+//「次へ」及び「前へ」に対する範囲チェックと範囲外の操作の無効化
 function linkDetectOutOfRange(index, element) {
     var input = $(element).parent().find(".inputPage");
     if (input.val() < 1 || input.val() > input.attr("data-max")) {
@@ -12,7 +14,8 @@ function linkDetectOutOfRange(index, element) {
 }
 
 var sortArrows = $(".sortArrow");
-sortArrows.click(function () {    //矢印をクリックした
+//ソート欄の矢印をクリックした時の処理
+sortArrows.click(function () {
     var sorting = $(this).parents(".listHeaderSortable");
     var index = sorting.attr("data-sort-index");
     var direction = $(this).attr("data-sort-direction");
