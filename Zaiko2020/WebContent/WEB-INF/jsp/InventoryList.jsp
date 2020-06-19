@@ -42,7 +42,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                 <li class="tab-space tab"></li>
                 <li class="tab-logout tab">
                     <form action="/Zaiko2020/logout" id="logoutForm" method="post">
-                        <a href="javascript:$(`#logoutForm`).submit()">ログアウト</a>
+                        <a href="javascript:if(window.confirm(`ログアウトしますか?`))$(`#logoutForm`).submit();">ログアウト</a>
                     </form>
                 </li>
             </ul>
