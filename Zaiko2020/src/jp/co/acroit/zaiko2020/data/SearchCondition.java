@@ -16,9 +16,9 @@ public class SearchCondition {
 	private String stockFlag;
 	private int page;
 	//ソートする項目(0: 発売日, 1: ISBN, 2: 在庫数)
-	private String sort;
+	private int sort;
 	//ソート順序(1: 昇順, -1: 降順)
-	private String lift;
+	private int lift;
 
 	//各種ゲッターとセッター
 	public String getName() {
@@ -93,19 +93,19 @@ public class SearchCondition {
 		this.page = page;
 	}
 
-	public String getSort() {
+	public int getSort() {
 		return sort;
 	}
 
-	public void setSort(String sort) {
+	public void setSort(int sort) {
 		this.sort = sort;
 	}
 
-	public String getLift() {
+	public int getLift() {
 		return lift;
 	}
 
-	public void setLift(String lift) {
+	public void setLift(int lift) {
 		this.lift = lift;
 	}
 
