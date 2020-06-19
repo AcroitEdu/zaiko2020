@@ -21,11 +21,13 @@ import jp.co.acroit.zaiko2020.book.Book;
 public class BookDataAccess {
 
 	public BookDataAccess() {
+		// 接続情報を格納する
 		url = "jdbc:mysql://localhost/zaiko2020?characterEncoding=UTF-8&serverTimezone=JST&zeroDateTimeBehavior=convertToNull";
 		driver = "com.mysql.cj.jdbc.Driver";
 		username = "tomcat";
 		password = "RC2-Z%b9e85PWqR";
-		query = "SELECT * FROM books";
+
+		// カラム名を格納する
 		idColumn = "id";
 		titleColumn = "title";
 		publisherColumn = "publisher";
@@ -74,24 +76,24 @@ public class BookDataAccess {
 
 			//実クエリの固定部分
 			query = "SELECT * FROM books";
-			//実クエリへの加筆
-			sqlWhere(sc);
-			sqlOrderBy(sc);
-			sqlLimit(sc);
-			sqlSemicolon();
 
+			//実クエリへの加筆
+			query = query + sqlWhere(sc) + sqlOrderBy(sc) + sqlLimit(sc) + sqlSemicolon();
+
+			//クエリの送信・実行
 			PreparedStatement ps = con.prepareStatement(query);
+			//DBから受け取る用
 			ResultSet rs = ps.executeQuery();
 
 			// sqlから取り出したものを入れる変数
 			int dbId = 0;
 			String dbBookName = null;
-			String dbPublisher = null; // 出版社の取得
-			String dbAuthor = null; // 著者の取得
-			String dbIsbn = null; // ISBNの取得
-			LocalDate dbSalsDate; // 発売日の取得
-			int dbPrice = 0; // 価格の取得
-			int dbStock = 0; // 在庫数の取得
+			String dbPublisher = null;
+			String dbAuthor = null;
+			String dbIsbn = null;
+			LocalDate dbSalsDate;
+			int dbPrice = 0;
+			int dbStock = 0;
 			int dbDeleteflg = 0;
 
 			// sqlから取り出した書籍情報をまとめるリスト
@@ -141,10 +143,9 @@ public class BookDataAccess {
 
 			//実クエリの固定部分
 			query = "SELECT COUNT(*) AS libraryHoldings FROM books";
+
 			//実クエリへの加筆
-			sqlWhere(sc);
-			sqlOrderBy(sc);
-			sqlSemicolon();
+			query = query + sqlWhere(sc) + sqlOrderBy(sc) + sqlSemicolon();
 
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
@@ -159,6 +160,8 @@ public class BookDataAccess {
 			rs.close();
 			con.close();
 			con = null;
+
+			// 総件数の送信
 			return libraryHoldings;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -173,33 +176,34 @@ public class BookDataAccess {
 		}
 	}
 
-	//WHERE句の生成・加筆
-	public void sqlWhere(SearchCondition sc) {
-		//Where句をここに生成し最後に実クエリに加筆する
+	//WHERE句の生成
+	public String sqlWhere(SearchCondition sc) {
+		//Where句をここに生成する
 		String query = "";
 
-		String bookName = sc.getName(); //書籍名の取得
-		String publisher = sc.getPublisher(); //出版社の取得
-		String author = sc.getAuthor(); //著者の取得
-		String isbn = sc.getIsbn(); //ISBNの取得
-		String salsDate = sc.getSalesDate(); //発売日の取得
-		String stock = sc.getStock(); //在庫数の取得
-		String salsDateFlag = sc.getSalesDateFlag(); //発売日検索条件の取得
-		String stockFlag = sc.getStockFlag(); //在庫数検索条件の取得
+		//各検索条件の取得
+		String bookName = sc.getName();
+		String publisher = sc.getPublisher();
+		String author = sc.getAuthor();
+		String isbn = sc.getIsbn();
+		String salsDate = sc.getSalesDate();
+		String stock = sc.getStock();
+		String salsDateFlag = sc.getSalesDateFlag();
+		String stockFlag = sc.getStockFlag();
 
 		// queryに継ぎ足す部分の一時保存
 		String AddSql = null;
 
-		// SQLのWHERE句で用いるカラム名
+		// WHERE句で用いるカラム名
 		String[] whereDataName = { titleColumn, publisherColumn, authorColumn,
 				isbnColumn, salesDateColumn, stockColumn };
-		// SQLのWHERE句で用いるフィールド
+		// WHERE句で用いるフィールド
 		String[] whereData = { bookName, publisher, author, isbn, salsDate, stock };
 
-		// WHERE句を加えたか否か
+		// WHERE句を一度でも加えたか否か
 		boolean isAddWhere = false;
 
-		// SQLのWHERE句の生成
+		// WHERE句の生成
 		for (int i = 0; i < whereData.length; i++) {
 
 			//条件が空白でない場合
@@ -259,10 +263,9 @@ public class BookDataAccess {
 					//カラム名の付与
 					AddSql = " " + whereDataName[i] + " " + AddSql;
 
-					// １つ目にはWHEREを、二つ目以降はANDを先頭に付与
-					if (isAddWhere) {
+					if (isAddWhere) { // WHERE句２つ目以降の条件には先頭にANDを付与
 						AddSql = " AND" + AddSql;
-					} else {
+					} else { // WHERE句最初の条件には先頭にWHEREを付与
 						AddSql = " WHERE" + AddSql;
 						isAddWhere = true;
 					}
@@ -274,16 +277,18 @@ public class BookDataAccess {
 			AddSql = null;
 		}
 
-		// 実クエリへの加筆
-		this.query += query;
+		return query;
 	}
 
-	// ORDER BY句の生成・加筆
-	public void sqlOrderBy(SearchCondition sc) {
-		//ORDERBY句をここに生成し最後に実クエリに加筆する
+	// ORDER BY句の生成
+	public String sqlOrderBy(SearchCondition sc) {
+		//ORDER BY句をここに生成する
 		String query = " ORDER BY ";
-		String sort = sc.getSort(); //ソート条件の取得
+
+		String sort = sc.getSort(); //ソート項目の取得
 		String lift = sc.getLift(); //昇順・降順の取得
+
+		//ORDER BY句の生成
 		switch (sort) {
 		case "0": // 発売日でソート
 			query = query + salesDateColumn;
@@ -301,19 +306,24 @@ public class BookDataAccess {
 			query = query + " DESC";
 		}
 
-		// 実クエリへの加筆
-		this.query += query;
+		return query;
 	}
 
-	// LIMIT句の生成・加筆
-	public void sqlLimit(SearchCondition sc) {
-		int page = sc.getPage(); //表ページ数の取得
-		// 実クエリへの加筆
-		query = query + " LIMIT " + String.valueOf((page - 1) * 200) + ", 200";
+	// LIMIT句の生成
+	public String sqlLimit(SearchCondition sc) {
+		//LIMIT句をここに生成する
+		String query = null;
+		//表ページ数の取得
+		int page = sc.getPage();
+
+		//LIMIT句の生成
+		query = " LIMIT " + String.valueOf((page - 1) * 200) + ", 200";
+
+		return query;
 	}
 
-	// SQLの最後のセミコロンの加筆
-	public void sqlSemicolon() {
-		query = query + ";";
+	// クエリの最後のセミコロン
+	public String sqlSemicolon() {
+		return ";";
 	}
 }
