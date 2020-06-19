@@ -98,7 +98,7 @@ public class BookDataAccess {
 			while (rs.next()) {
 				dbId = rs.getInt(idColumn);
 				dbBookName = rs.getString(titleColumn);
-				//dbPublisher = rs.getString(publisherColumn);
+				//dbPublisher = rs.getString(publisherColumn);	//現在、出版社のデータがないため除外
 				dbAuthor = rs.getString(authorColumn);
 				dbIsbn = rs.getString(isbnColumn);
 				dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
