@@ -72,6 +72,7 @@ public class InventoryListController extends HttpServlet {
 		BookDataAccess bda = new BookDataAccess();
 
 		HttpSession session = request.getSession();
+		session.setAttribute("error", "");
 		List<Book> bookList = new ArrayList<Book>();
 
 		try {
@@ -103,7 +104,6 @@ public class InventoryListController extends HttpServlet {
 				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
 			}
 
-			session.setAttribute("error", "");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
@@ -136,6 +136,7 @@ public class InventoryListController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		SearchCondition sc = (SearchCondition)session.getAttribute("conditions");
+		session.setAttribute("error", "");
 
 		if(sc == null) {
 			sc = new SearchCondition();
@@ -217,7 +218,6 @@ public class InventoryListController extends HttpServlet {
 			session.setAttribute("items", bookList);
 			session.setAttribute("page", page);
 
-			session.setAttribute("error", "");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
