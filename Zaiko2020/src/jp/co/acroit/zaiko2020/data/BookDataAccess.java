@@ -285,22 +285,21 @@ public class BookDataAccess {
 		//ORDER BY句をここに生成する
 		String query = " ORDER BY ";
 
-		String sort = sc.getSort(); //ソート項目の取得
-		String lift = sc.getLift(); //昇順・降順の取得
+		int sort = sc.getSort(); //ソート条件の取得
+		int lift = sc.getLift(); //昇順・降順の取得
 
-		//ORDER BY句の生成
 		switch (sort) {
-		case "0": // 発売日でソート
+		case 0: // 発売日でソート
 			query = query + salesDateColumn;
 			break;
-		case "1": // ISBNでソート
+		case 1: // ISBNでソート
 			query = query + "isbn";
 			break;
-		case "2": // 在庫数のソート
+		case 2: // 在庫数のソート
 			query = query + "stock";
 			break;
 		}
-		if (lift.equals("1")) { // 昇順の場合
+		if (lift == 1) { // 昇順の場合
 			query = query + " ASC";
 		} else { // 降順の場合
 			query = query + " DESC";
