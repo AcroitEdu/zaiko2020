@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-body {
+body{
 	font-family: sans-serif;
 	max-height: 500px;
 	height: 100%;
@@ -9,45 +9,45 @@ body {
 	margin: 0 auto;
 }
 
-h1 {
+h1{
 	text-align: center;
 }
 
-div.error {
+div.error{
 	text-align: center;
 	margin-top: 35px;
 	color: red;
 }
 
-div.form {
+div.form{
 	width: 60%;
 	margin: 0 auto;
 	margin-top: 30px;
 }
 
-ul li {
+ul li{
 	list-style: none;
 	margin-top: 10px;
 	margin-bottom: 30px;
 }
 
-label {
+label{
 	margin-right: 10px;
 	width: 100px;
 	float: left;
 }
 
-li input {
+li input{
 	width: 300px;
 	border-radius: 5px;
 	border: solid 1px;
 }
 
-p {
+p{
 	text-align: center;
 }
 
-input.btn {
+input.btn{
 	width: 120px;
 	border: solid 1px;
 	border-radius: 5px;
