@@ -52,8 +52,8 @@ public class InventoryListController extends HttpServlet {
 		String salsDateFlag = "after";
 		String stockFlag = "gtoe";
 		int page = 1;
-		String sort = "0";
-		String lift = "1";
+		int sort = 0;
+		int lift = 1;
 
 		SearchCondition sc = new SearchCondition();
 
@@ -134,8 +134,8 @@ public class InventoryListController extends HttpServlet {
 		String salsDateFlag = null;
 		String stockFlag = null;
 		int page = 1; //
-		String sort = "0";
-		String lift = "1";
+		int sort = 0;
+		int lift = 1;
 
 		int value = Integer.parseInt(request.getParameter("form"));
 
@@ -190,8 +190,8 @@ public class InventoryListController extends HttpServlet {
 		//ソート
 		case 2:
 			//ソート条件取得
-			sort = request.getParameter("index");
-			lift = request.getParameter("direction");
+			sort = Integer.parseInt(request.getParameter("index"));
+			lift = Integer.parseInt(request.getParameter("direction"));
 			sc.setSort(sort);
 			sc.setLift(lift);
 		}
