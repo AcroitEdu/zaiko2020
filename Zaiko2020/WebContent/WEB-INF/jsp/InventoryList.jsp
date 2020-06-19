@@ -169,7 +169,6 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                     </span>
                                 </th>
                             </tr>
-
                         </thead>
                         <tbody>
                             <%
