@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * ログアウト処理
- * @author k-oishi
+ * @author Koki OISHI
  * @version 1.0
  */
 @WebServlet("/logout")
@@ -29,10 +29,12 @@ public class LogoutController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getSession().invalidate(); //セッションの破棄
-		request.getSession(true); //セッションの再生成
-		request.getSession().setAttribute("error", "ログアウトしました。"); //エラーメッセージの設定
-		response.sendRedirect("/Zaiko2020/loginForm"); //ログインフォームへリダイレクト
+		 //セッションの破棄
+		request.getSession().invalidate();
+		//セッションの再生成
+		request.getSession(true);
+		request.getSession().setAttribute("error", "ログアウトしました。");
+		response.sendRedirect("/Zaiko2020/loginForm");
 	}
 
 }
