@@ -80,7 +80,6 @@ public class BookDataAccess {
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 
-			//sqlから取り出したものを入れる変数
 			int dbId = 0;
 			String dbBookName = null;
 			String dbPublisher = null;
@@ -91,10 +90,8 @@ public class BookDataAccess {
 			int dbStock = 0;
 			int dbDeleteflg = 0;
 
-			//sqlから取り出した書籍情報をまとめるリスト
 			List<Book> bookList = new ArrayList<Book>();
 
-			//リストに１冊ずつ加えていく
 			while (rs.next()) {
 				dbId = rs.getInt(idColumn);
 				dbBookName = rs.getString(titleColumn);
@@ -114,7 +111,6 @@ public class BookDataAccess {
 			con.close();
 			con = null;
 
-			//リストの送信
 			return bookList;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -136,16 +132,13 @@ public class BookDataAccess {
 		try {
 			con = datasource.getConnection();
 
-			//実クエリの固定部分
+			//クエリの生成
 			query = "SELECT COUNT(*) AS libraryHoldings FROM books";
-
-			//実クエリへの加筆
 			query = query + sqlWhere(sc) + sqlOrderBy(sc) + ";";
 
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 
-			//sqlから取り出した総件数を入れる変数
 			int libraryHoldings = 0;
 
 			//総件数を取得する
@@ -156,7 +149,6 @@ public class BookDataAccess {
 			con.close();
 			con = null;
 
-			//総件数の送信
 			return libraryHoldings;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -236,7 +228,6 @@ public class BookDataAccess {
 					case "gt":		//～より多い
 						AddSql = ">";
 						break;
-
 					}
 					break;
 				default:		//上記以外(あいまい検索)の場合
