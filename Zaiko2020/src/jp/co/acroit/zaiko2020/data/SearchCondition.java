@@ -15,7 +15,9 @@ public class SearchCondition {
 	private String salesDateFlag;
 	private String stockFlag;
 	private int page;
+	//ソートする項目(0: 発売日, 1: ISBN, 2: 在庫数)
 	private String sort;
+	//ソート順序(1: 昇順, -1: 降順)
 	private String lift;
 
 	//各種ゲッターとセッター
