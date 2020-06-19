@@ -83,7 +83,7 @@ public class InventoryListController extends HttpServlet {
 			count = bda.countAll(sc);
 
 			//総ページ数
-			pageCount = count / 200 + 1;
+			pageCount = (count + 199) / 200;
 
 			//総件数・現ページ・最大ページ数をセッションに設定
 			session.setAttribute("count", count);
@@ -200,7 +200,7 @@ public class InventoryListController extends HttpServlet {
 				int count = 0;
 				int pageCount = 0;
 				count = bda.countAll(sc);
-				pageCount = count / 200 + 1;
+				pageCount = (count + 199) / 200;
 
 				//総件数・最大ページ数をセッションに設定
 				session.setAttribute("count", count);
