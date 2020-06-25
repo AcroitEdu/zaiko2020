@@ -114,7 +114,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                     <table id="listTable">
                         <thead>
                             <tr id="listHeaders">
-                                <th id="headerControl" class="headerFixed headerFit">
+                                <th id="headerControl" class="headerFixed">
                                     操作
                                 </th>
                                 <th id="headerName" class="headerGrow2">
@@ -137,8 +137,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                         </span>
                                     </span>
                                 </th>
-                                <th id="headerIsbn" class="listHeaderSortable headerFixed headerFit"
-                                    data-sort-index="1">
+                                <th id="headerIsbn" class="listHeaderSortable headerFixed" data-sort-index="1">
                                     ISBN
                                     <span class="sortArrows">
                                         <span class="sortArrow" title="ISBN 昇順でソートします" data-sort-direction="1">
@@ -149,11 +148,10 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                         </span>
                                     </span>
                                 </th>
-                                <th id="headerPrice" class="headerFit headerGrow1">
+                                <th id="headerPrice" class="headerGrow1">
                                     価格
                                 </th>
-                                <th id="headerStock" class="listHeaderSortable headerFit headerGrow1"
-                                    data-sort-index="2">
+                                <th id="headerStock" class="listHeaderSortable headerGrow1" data-sort-index="2">
                                     在庫数
                                     <span class="sortArrows">
                                         <span class="sortArrow" title="在庫数 昇順でソートします" data-sort-direction="1">
