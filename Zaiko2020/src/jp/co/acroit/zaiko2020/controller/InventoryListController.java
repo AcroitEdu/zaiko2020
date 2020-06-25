@@ -162,6 +162,13 @@ public class InventoryListController extends HttpServlet {
 
 			//表ページ移動
 		case 1:
+			String pageNumberCheck; //ページ番号の空白判定用
+			pageNumberCheck = request.getParameter("page");
+			if (pageNumberCheck == null || pageNumberCheck.isEmpty()) {
+				session.setAttribute("error", "ページ番号を入力してください。");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+				dispatcher.forward(request, response);
+			}
 			page = Integer.parseInt(request.getParameter("page"));
 			int maxPage = (int) session.getAttribute("maxPage");
 			if (maxPage < page) {
