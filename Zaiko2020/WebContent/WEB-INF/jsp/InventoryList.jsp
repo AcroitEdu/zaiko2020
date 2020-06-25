@@ -42,7 +42,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                 <li class="tab-space tab"></li>
                 <li class="tab-logout tab">
                     <form id="logoutForm" action="/Zaiko2020/logout" method="post">
-                        <a href="javascript:if(window.confirm(`ログアウトしますか?`))$(`#logoutForm`).submit();">ログアウト</a>
+                        <span id="logoutButton">ログアウト</span>
                     </form>
                 </li>
             </ul>
@@ -75,7 +75,6 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                             <div class="flexFormItem">
                                 <input type="date" id="date" name="date" value="${conditions.salesDate}">
                                 <select id="beforeAfter" name="beforeAfter" data-value="${conditions.salesDateFlag}">
-                                    <option value="unspecified">指定なし</option>
                                     <option value="equals">に一致</option>
                                     <option value="before">以前</option>
                                     <option value="after">以降</option>
@@ -88,12 +87,9 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                 <input type="number" id="stock" name="stock" min="0" value="${conditions.stock}">
                                 <span>冊</span>
                                 <select id="largeOrSmall" name="largeOrSmall" data-value="${conditions.stockFlag}">
-                                    <option value="unspecified">指定なし</option>
-                                    <option value="lt">未満</option>
                                     <option value="ltoe">以下</option>
                                     <option value="equals">に等しい</option>
                                     <option value="gtoe">以上</option>
-                                    <option value="gt">より多い</option>
                                 </select>
                             </div>
                         </li>

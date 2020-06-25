@@ -8,7 +8,8 @@ function linkSubmit() {
 //「次へ」及び「前へ」に対する範囲チェックと範囲外の操作の無効化
 function linkDetectOutOfRange(index, element) {
     var input = $(element).parent().find(".inputPage");
-    if (input.val() < 1 || input.val() > input.attr("data-max")) {
+    var value = parseInt(input.val());
+    if (value < 1 || value > parseInt(input.attr("data-max"))) {
         $(element).addClass("disabled");
     }
 }
@@ -49,3 +50,10 @@ var sortIndex = $("#sortIndex").val();
 var sortDirection = $("#sortDirection").val();
 var sortableHeaders = $(`#listHeaders > .listHeaderSortable[data-sort-index='${sortIndex}'] > .sortArrows > .sortArrow[data-sort-direction='${sortDirection}']`);
 sortableHeaders.addClass("sortArrowActive");
+
+//ログアウトボタンを押したときの処理
+$("#logoutButton").click(function () {
+    if (window.confirm(`ログアウトしますか?`)) {
+        $(`#logoutForm`).submit();
+    }
+});
