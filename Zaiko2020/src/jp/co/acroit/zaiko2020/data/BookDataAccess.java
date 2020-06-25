@@ -37,16 +37,6 @@ public class BookDataAccess {
 		deleteflgColumn = "deleteflg";
 		libraryHoldingsColumn = "libraryHoldings";
 
-//		PoolProperties p = new PoolProperties();
-//
-//		//接続情報の設定
-//		p.setUrl(url);
-//		p.setDriverClassName(driver);
-//		p.setUsername(username);
-//		p.setPassword(password);
-//
-//		datasource = new DataSource();
-//		datasource.setPoolProperties(p);
 	}
 
 	String url;
@@ -64,14 +54,12 @@ public class BookDataAccess {
 	String stockColumn;
 	String deleteflgColumn;
 	String libraryHoldingsColumn;
-	//DataSource datasource;
 
 	//書籍検索
 	public List<Book> find(SearchCondition sc) throws SQLException {
 		Connection con = null;
 		try {
 			con = DriverManager.getConnection(url,username,password);
-			//con = datasource.getConnection();
 
 			//クエリの生成・実行
 			query = "SELECT * FROM books";
@@ -130,8 +118,6 @@ public class BookDataAccess {
 
 		try {
 			con = DriverManager.getConnection(url,username,password);
-			//con = datasource.getConnection();
-
 			//クエリの生成
 			query = "SELECT COUNT(*) AS libraryHoldings FROM books";
 			query = query + sqlWhere(sc) + sqlOrderBy(sc) + ";";

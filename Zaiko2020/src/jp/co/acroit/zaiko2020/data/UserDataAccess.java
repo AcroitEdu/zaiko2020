@@ -25,16 +25,6 @@ public class UserDataAccess {
 		idColumn = "name";
 		passwordColumn = "pass";
 
-//		PoolProperties p = new PoolProperties();
-//
-//		// 接続情報の設定
-//		p.setUrl(url);
-//		p.setDriverClassName(driver);
-//		p.setUsername(username);
-//		p.setPassword(password);
-//
-//		datasource = new DataSource();
-//		datasource.setPoolProperties(p);
 	}
 
 	String url;
@@ -45,7 +35,6 @@ public class UserDataAccess {
 	String numberColumn;
 	String idColumn;
 	String passwordColumn;
-	//DataSource datasource;
 
 	//id検索
 	public User findById(String id) throws SQLException, ClassNotFoundException {
@@ -54,7 +43,6 @@ public class UserDataAccess {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(url,username,password);
-			//con = datasource.getConnection();
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, id);
 			ResultSet rs = ps.executeQuery();
