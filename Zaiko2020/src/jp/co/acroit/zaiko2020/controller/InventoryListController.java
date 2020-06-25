@@ -82,8 +82,6 @@ public class InventoryListController extends HttpServlet {
 			session.setAttribute("count", count);
 			session.setAttribute("page", page);
 			session.setAttribute("maxPage", pageCount);
-			System.out.println(count);
-			System.out.println(pageCount);
 
 			//検索
 			bookList = bda.find(sc);
