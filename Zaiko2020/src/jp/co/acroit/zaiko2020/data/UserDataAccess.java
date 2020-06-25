@@ -1,12 +1,10 @@
 package jp.co.acroit.zaiko2020.data;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import org.apache.tomcat.jdbc.pool.DataSource;
-import org.apache.tomcat.jdbc.pool.PoolProperties;
 
 import jp.co.acroit.zaiko2020.user.User;
 
@@ -27,16 +25,16 @@ public class UserDataAccess {
 		idColumn = "name";
 		passwordColumn = "pass";
 
-		PoolProperties p = new PoolProperties();
-
-		// 接続情報の設定
-		p.setUrl(url);
-		p.setDriverClassName(driver);
-		p.setUsername(username);
-		p.setPassword(password);
-
-		datasource = new DataSource();
-		datasource.setPoolProperties(p);
+//		PoolProperties p = new PoolProperties();
+//
+//		// 接続情報の設定
+//		p.setUrl(url);
+//		p.setDriverClassName(driver);
+//		p.setUsername(username);
+//		p.setPassword(password);
+//
+//		datasource = new DataSource();
+//		datasource.setPoolProperties(p);
 	}
 
 	String url;
@@ -47,14 +45,16 @@ public class UserDataAccess {
 	String numberColumn;
 	String idColumn;
 	String passwordColumn;
-	DataSource datasource;
+	//DataSource datasource;
 
 	//id検索
-	public User findById(String id) throws SQLException {
+	public User findById(String id) throws SQLException, ClassNotFoundException {
 		Connection con = null;
 
 		try {
-			con = datasource.getConnection();
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection(url,username,password);
+			//con = datasource.getConnection();
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, id);
 			ResultSet rs = ps.executeQuery();

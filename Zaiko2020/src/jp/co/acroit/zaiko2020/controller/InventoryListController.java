@@ -206,6 +206,7 @@ public class InventoryListController extends HttpServlet {
 			if (bookList.isEmpty()) {
 				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
 			}
+
 			//書籍情報・現ページをセッションに設定
 			session.setAttribute("items", bookList);
 			session.setAttribute("page", page);

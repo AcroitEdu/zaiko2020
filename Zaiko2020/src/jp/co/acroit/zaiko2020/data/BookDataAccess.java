@@ -1,15 +1,13 @@
 package jp.co.acroit.zaiko2020.data;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.tomcat.jdbc.pool.DataSource;
-import org.apache.tomcat.jdbc.pool.PoolProperties;
 
 import jp.co.acroit.zaiko2020.book.Book;
 
@@ -39,16 +37,16 @@ public class BookDataAccess {
 		deleteflgColumn = "deleteflg";
 		libraryHoldingsColumn = "libraryHoldings";
 
-		PoolProperties p = new PoolProperties();
-
-		//接続情報の設定
-		p.setUrl(url);
-		p.setDriverClassName(driver);
-		p.setUsername(username);
-		p.setPassword(password);
-
-		datasource = new DataSource();
-		datasource.setPoolProperties(p);
+//		PoolProperties p = new PoolProperties();
+//
+//		//接続情報の設定
+//		p.setUrl(url);
+//		p.setDriverClassName(driver);
+//		p.setUsername(username);
+//		p.setPassword(password);
+//
+//		datasource = new DataSource();
+//		datasource.setPoolProperties(p);
 	}
 
 	String url;
@@ -66,13 +64,14 @@ public class BookDataAccess {
 	String stockColumn;
 	String deleteflgColumn;
 	String libraryHoldingsColumn;
-	DataSource datasource;
+	//DataSource datasource;
 
 	//書籍検索
 	public List<Book> find(SearchCondition sc) throws SQLException {
 		Connection con = null;
 		try {
-			con = datasource.getConnection();
+			con = DriverManager.getConnection(url,username,password);
+			//con = datasource.getConnection();
 
 			//クエリの生成・実行
 			query = "SELECT * FROM books";
@@ -80,7 +79,6 @@ public class BookDataAccess {
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 
-			//sqlから取り出したものを入れる変数
 			int dbId = 0;
 			String dbBookName = null;
 			String dbPublisher = null;
@@ -91,14 +89,12 @@ public class BookDataAccess {
 			int dbStock = 0;
 			int dbDeleteflg = 0;
 
-			//sqlから取り出した書籍情報をまとめるリスト
 			List<Book> bookList = new ArrayList<Book>();
 
-			//リストに１冊ずつ加えていく
 			while (rs.next()) {
 				dbId = rs.getInt(idColumn);
 				dbBookName = rs.getString(titleColumn);
-				//dbPublisher = rs.getString(publisherColumn);	//現在、出版社のデータがないため除外
+				dbPublisher = rs.getString(publisherColumn);
 				dbAuthor = rs.getString(authorColumn);
 				dbIsbn = rs.getString(isbnColumn);
 				dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
@@ -114,7 +110,6 @@ public class BookDataAccess {
 			con.close();
 			con = null;
 
-			//リストの送信
 			return bookList;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -134,18 +129,16 @@ public class BookDataAccess {
 		Connection con = null;
 
 		try {
-			con = datasource.getConnection();
+			con = DriverManager.getConnection(url,username,password);
+			//con = datasource.getConnection();
 
-			//実クエリの固定部分
+			//クエリの生成
 			query = "SELECT COUNT(*) AS libraryHoldings FROM books";
-
-			//実クエリへの加筆
 			query = query + sqlWhere(sc) + sqlOrderBy(sc) + ";";
 
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 
-			//sqlから取り出した総件数を入れる変数
 			int libraryHoldings = 0;
 
 			//総件数を取得する
@@ -156,7 +149,6 @@ public class BookDataAccess {
 			con.close();
 			con = null;
 
-			//総件数の送信
 			return libraryHoldings;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -236,7 +228,6 @@ public class BookDataAccess {
 					case "gt":		//～より多い
 						AddSql = ">";
 						break;
-
 					}
 					break;
 				default:		//上記以外(あいまい検索)の場合
