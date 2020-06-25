@@ -59,7 +59,8 @@ header .boxed-tabs{
 
 /* 検索条件 */
 .search-options form{
-    max-width: 80%;
+    width: 80%;
+    max-width: 1000px;
     text-align: end;
     margin: auto;
 }
