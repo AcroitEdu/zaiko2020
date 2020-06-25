@@ -16,7 +16,8 @@
     <li class="pagesJump">
         <form name="jumpPage" action="/Zaiko2020/inventoryList" method="post">
             <input type="hidden" name="form" value="1">
-            <input type="number" class="inutPageNumber" name="page" min="1" max="${maxPage}" value="${conditions.page}">
+            <input type="number" class="inutPageNumber" name="page" required min="1" max="${maxPage}"
+                value="${conditions.page}">
             <span>/ ${maxPage}</span>
             <input type="submit" class="button" value="移動">
         </form>
