@@ -7,6 +7,7 @@
 }
 body{
     width: 100%;
+    max-width: 1920px;
     min-height: 100%;
 }
 #main{
@@ -31,7 +32,7 @@ header .boxed-tabs{
     background-color: #d0d0d0;
     padding: 0;
     width: 100%;
-    margin: 0;
+    margin: 0 -0.5px;
     display: flex;
     flex-direction: row;
 }
@@ -50,7 +51,8 @@ header .boxed-tabs{
 }
 .boxed-tabs li.tab-space{
     flex-grow: 0;
-    flex-shrink: 0;
+    flex-shrink: 1;
+    padding: 0;
 }
 .boxed-tabs li.tab-logout{
     background-color: #f0a0a0;
@@ -81,39 +83,45 @@ header .boxed-tabs{
     flex-grow: 1;
 }
 .search-options li > label{
-    width: 5em;
+    width: 20%;
     text-align: end;
     padding-right: 1em;
 }
 .search-options li > .flexFormItem{
-    width: auto;
-    flex-grow: 1;
+    width: 80%;
+    flex-grow: 0;
 }
 .search-options input, .search-options select{
     padding: 2px;
-    margin: 2px;
 }
-.search-options input[type="date"], .search-options select{
+.search-options input[type="date"]{
     border-radius: 0;
+    width: 25%;
+}
+#beforeAfter{
+    border-radius: 0;
+    width: 32.5%;
+    margin-left: 5%;
 }
 .search-options li > div{
     display: flex;
     flex-direction: row;
 }
 .search-options div > span{
+    width: 10%;
     padding-right: 1em;
-    padding-left: 0.25em;
 }
-.flexFormItem > #date, .flexFormItem > #beforeAfter{
-    width: 50%;
+.flexFormItem > #date{
+    width: 62.5%;
 }
 .flexFormItem > #stock{
-    width: auto;
+    width: 50%;
     flex-grow: 1;
     text-align: end;
 }
 .flexFormItem > #largeOrSmall{
-    width: 50%;
+    border-radius: 0;
+    width: 32.5%;
 }
 #searchButton{
     margin: auto 0.75em auto auto;
@@ -126,15 +134,15 @@ header .boxed-tabs{
 .pagesBox{
     display: flex;
     flex-wrap: nowrap;
-    width: 100%;
-    padding: 1em;
+    width: 90%;
+    padding: 0;
     vertical-align: middle;
+    margin: auto;
 }
 .pagesBox > .pagesCounterWeight, .pagesBox > .pagesItemCount{
     flex-grow: 2;
     flex-shrink: 0;
-    min-width: 12em;
-    width: fit-content;
+    width: 20%;
     text-align: end;
 }
 .pagesBox > .pagesSpace{
@@ -147,9 +155,7 @@ header .boxed-tabs{
     flex-shrink: 0;
 }
 .pagesBox > .pagesJump{
-    width: fit-content;
-    min-width: 10em;
-    max-width: 30em;
+    width: 20%;
     padding: 0 2em;
     flex-grow: 0;
     flex-shrink: 0;
@@ -163,10 +169,25 @@ header .boxed-tabs{
     margin: auto;
 }
 .pagesJump > form > span{
-    width: fit-content;
-    flex-grow: 0;
+    display: inline-flex;
+    flex-grow: 1;
     flex-shrink: 0;
     margin: 5px;
+}
+.pagesJump > form > span > input.inutPageNumber{
+    width: 50%;
+    margin: 5px;
+    text-align: end;
+}
+.pagesJump > form > span > span.pageDelimiter{
+    margin: 5px;
+    text-align: center
+}
+.pagesJump > form > span > span.maxPage{
+    flex-grow: 1;
+    flex-shrink: 0;
+    margin: 5px;
+    text-align: end;
 }
 .pagesJump > form > input.button{
     width: fit-content;
@@ -175,12 +196,6 @@ header .boxed-tabs{
     flex-grow: 0;
     flex-shrink: 0;
     margin: 5px;
-}
-.pagesJump > form > input.inutPageNumber{
-    flex-grow: 1;
-    flex-shrink: 0;
-    margin: 5px;
-    text-align: end;
 }
 .link{
     text-decoration: underline;
@@ -202,14 +217,15 @@ header .boxed-tabs{
     text-align: center;
 }
 #list{
-    margin: 5px;
+    margin: auto;
+    width: 90%;
 }
 #listTable{
     margin: auto;
     border: 1px solid #d0d0d0;
     max-height: 95%;
     overflow: auto;
-    width: 99%;
+    width: 100%;
     background-color: white;
     table-layout: fixed;
 }
@@ -230,6 +246,9 @@ header .boxed-tabs{
 #headerControl{
     width: 100px;
     min-width: 100px;
+}
+#headerName, #headerAuthor, #headerPublisher{
+    width: 370px;
 }
 #headerSalesDate{
     width: 100px;
