@@ -32,18 +32,21 @@ header .boxed-tabs{
     background-color: #d0d0d0;
     padding: 0;
     width: 100%;
-    margin: 0 -0.5px;
+    margin: 0;
     display: flex;
     flex-direction: row;
 }
 .boxed-tabs .tab{
-    margin: 0 -0.5px;
+    margin: 0 0 -1px 0;
     padding: 5px;
     min-width: fit-content;
     flex-grow: 0;
     width: 25%;
     background-color: transparent;
-    border: 1px solid #000;
+    border-bottom: 1px solid black;
+}
+.boxed-tabs .tab + .tab{
+    border-left: 1px solid black;
 }
 .boxed-tabs li.tab-current{
     background-color: #f0f0f0;
