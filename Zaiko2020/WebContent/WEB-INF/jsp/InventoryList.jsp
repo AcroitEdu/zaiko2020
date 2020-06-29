@@ -87,8 +87,8 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                 <input type="number" id="stock" name="stock" min="0" value="${conditions.stock}">
                                 <span>冊</span>
                                 <select id="largeOrSmall" name="largeOrSmall" data-value="${conditions.stockFlag}">
-                                    <option value="ltoe">以下</option>
                                     <option value="equals">に等しい</option>
+                                    <option value="ltoe">以下</option>
                                     <option value="gtoe">以上</option>
                                 </select>
                             </div>
