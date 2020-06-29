@@ -68,7 +68,8 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                         </li>
                         <li>
                             <label for="isbn">ISBN</label>
-                            <input type="number" id="isbn" class="flexFormItem" name="isbn" value="${conditions.isbn}">
+                            <input type="number" id="isbn" class="flexFormItem" name="isbn" min="0" max="9999999999999"
+                                value="${conditions.isbn}">
                         </li>
                         <li>
                             <label for="beforeAfter">発売日</label>
