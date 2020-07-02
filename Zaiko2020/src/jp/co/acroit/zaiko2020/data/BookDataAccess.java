@@ -112,6 +112,60 @@ public class BookDataAccess {
 		}
 	}
 
+	//idによる書籍の検索
+	public Book findid(String id) throws SQLException {
+		Connection con = null;
+		try {
+			con = DriverManager.getConnection(url,username,password);
+
+			//クエリの生成・実行
+			query = "SELECT * FROM books" + idColumn + "=" + id;
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+
+			int dbId = 0;
+			String dbBookName = null;
+			String dbPublisher = null;
+			String dbAuthor = null;
+			String dbIsbn = null;
+			LocalDate dbSalsDate = null;
+			int dbPrice = 0;
+			int dbStock = 0;
+			int dbDeleteflg = 0;
+
+			//List<Book> bookList = new ArrayList<Book>();
+
+			while (rs.next()) {
+				dbId = rs.getInt(idColumn);
+				dbBookName = rs.getString(titleColumn);
+				dbPublisher = rs.getString(publisherColumn);
+				dbAuthor = rs.getString(authorColumn);
+				dbIsbn = rs.getString(isbnColumn);
+				dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
+				dbPrice = rs.getInt(priceColumn);
+				dbStock = rs.getInt(stockColumn);
+
+				dbDeleteflg = rs.getInt(deleteflgColumn);
+			}
+			rs.close();
+			con.close();
+			con = null;
+
+			return new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
+					dbDeleteflg);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception ignore) {
+				}
+			}
+		}
+	}
+
 	//総件数の取得
 	public int countAll(SearchCondition sc) throws SQLException {
 		Connection con = null;
@@ -137,6 +191,70 @@ public class BookDataAccess {
 
 			return libraryHoldings;
 		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception ignore) {
+				}
+			}
+		}
+	}
+
+	//処理対象書籍 在庫数取得
+	public int findStock(String id) throws SQLException {
+		Connection con = null;
+		try {
+			con = DriverManager.getConnection(url,username,password);
+
+			//クエリの生成・実行
+			query = "SELECT * FROM books WHERE " + stockColumn + "=" + id + ";";
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+
+			int dbstock = 0;
+
+			while (rs.next()) {
+				dbstock = rs.getInt(stockColumn);
+			}
+			rs.close();
+			con.close();
+			con = null;
+
+			return dbstock;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception ignore) {
+				}
+			}
+		}
+	}
+
+	//DB在庫数更新処理
+	public void update(String id,String stock) throws SQLException {
+		Connection con = null;
+		try {
+			con = DriverManager.getConnection(url,username,password);
+			//オートコミットOFF
+			con.setAutoCommit(false);
+
+			 query = "UPDATE books SET " + stockColumn + " = " + stock + " WHERE " + idColumn + " = " + id + ";" ;
+
+			 PreparedStatement ps = con.prepareStatement(query);
+			 ps.executeQuery();
+
+			 //コミット
+			 con.commit();
+
+		} catch (SQLException e) {
+			con.rollback();
 			e.printStackTrace();
 			throw e;
 		} finally {
