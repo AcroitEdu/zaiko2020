@@ -1,0 +1,98 @@
+@charset "UTF-8";
+/* 入出荷共通スタイルシート */
+
+/* 共通 */
+*{
+    font-family: 'Noto Sans JP', sans-serif;
+    box-sizing: border-box;
+}
+
+/* ヘッダー */
+header{
+    width: 100%;
+    text-align: start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+#mode{
+    width: 25%;
+    text-align: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+#error{
+    color: red;
+    text-align: center;
+    margin: auto;
+}
+
+/* 書籍情報 */
+#details{
+    width: 1200px;
+    
+}
+
+/* 入力フォーム */
+#inoutForm{
+    width: 100%;
+    text-align: center;
+}
+#inoutForm > span{
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+}
+#inoutForm > span > label{
+    padding: 0.5em;
+}
+#count{
+    padding: 5px;
+    text-align: end;
+}
+.unit{
+    padding: 0.5em;
+}
+.button{
+    border-radius: 6px;
+    width: 115px;
+    padding: 8px;
+}
+.button-border{
+    border: 1.5px solid #00000080;
+}
+.button-main{
+    background-color: #4a86e8ff;
+    color:white;
+}
+.button-cancel{
+    background-color: white;
+    color: #4a86e8;
+    border: 1px solid #00000060;
+}
+.button-cancel.button-border{
+    background-color: white;
+    color: black;
+}
+/* ダイアログ */
+dialog{
+    width: fit-content;
+    height: fit-content;
+    padding: 50px 20px;
+}
+dialog::backdrop, dialog + .backdrop{
+  background-color: #11451400;
+}
+#dialogForm{
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+#dialogForm > p{
+    width: 100%;
+    text-align: center;
+    padding: 2em 5px;
+}
