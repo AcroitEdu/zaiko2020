@@ -13,8 +13,8 @@ import jp.co.acroit.zaiko2020.book.Book;
 
 /**
  * 書籍データベースアクセスクラス
- * @version 1.0
- * @author hiroe ishioka
+ * @version 2.0
+ * @author hiroki tajima
  */
 public class BookDataAccess {
 
