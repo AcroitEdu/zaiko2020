@@ -248,7 +248,7 @@ public class BookDataAccess {
 			 query = "UPDATE books SET " + stockColumn + " = " + stock + " WHERE " + idColumn + " = " + id + ";" ;
 
 			 PreparedStatement ps = con.prepareStatement(query);
-			 ps.executeQuery();
+			 ps.executeUpdate();
 
 			 //コミット
 			 con.commit();
@@ -256,6 +256,7 @@ public class BookDataAccess {
 		} catch (SQLException e) {
 			con.rollback();
 			e.printStackTrace();
+			System.out.println(query);
 			throw e;
 		} finally {
 			if (con != null) {
