@@ -3,8 +3,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%
-String mode = "出荷";
-String caption = "";
 %>
 <!DOCTYPE html>
 <html lang='ja'>
@@ -13,7 +11,7 @@ String caption = "";
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta http-equiv='X-UA-Compatible' content='ie=edge'>
-    <title><%=mode%></title>
+    <title>処理完了</title>
     <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="js/dialog/dialog-polyfill.css" />
@@ -21,14 +19,29 @@ String caption = "";
 </head>
 
 <body>
-    <jsp:include page="part/BookInOutForm.jsp">
-        <jsp:param name="mode" value="<%=mode %>" />
-        <jsp:param name="book" value="${book}" />
-        <jsp:param name="action" value="ship" />
-    </jsp:include>
+    <div id="main">
+        <header>
+            <span id="complete">処理を実行しました。</span>
+        </header>
+        <div id="error">
+            <span>${sessionScope.error}</span>
+        </div>
+        <div id="details">
+            <jsp:include page="part/BookDetails.jsp">
+                <jsp:param value="caption" name="更新後の書籍情報" />
+                <jsp:param value="book" name="${book }" />
+            </jsp:include>
+        </div>
+        <div id="inout">
+            <form id="inoutForm" action="/Zaiko2020/inventoryList" method="post">
+                <input type="hidden" name="form" value="4">
+                <input type="submit" id="execute" class="button button-main button-border" value="OK">
+            </form>
+        </div>
+    </div>
 </body>
 <script src="js/dialog/dialog-polyfill.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="js/ArrivalForm.js"></script>
+<script src="js/ResultForm.js"></script>
 
 </html>

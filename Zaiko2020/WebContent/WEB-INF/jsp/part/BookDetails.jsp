@@ -12,7 +12,7 @@
     <caption>${caption }</caption>
     <colgroup>
         <col class="table-header">
-        <col>
+        <col class="table-content">
     </colgroup>
     <tr>
         <th scope="row">書籍名</th>
@@ -32,7 +32,9 @@
     </tr>
     <tr>
         <th scope="row">発売日</th>
-        <td><fmt:formatDate value="${book.salesDate.format(dateFormat)}" pattern="YYYY'年'MM'月'dd'日'"/></td>
+        <td>
+            <fmt:formatDate value="${book.salesDate.format(dateFormat)}" pattern="YYYY'年'MM'月'dd'日'" />
+        </td>
     </tr>
     <tr>
         <th scope="row">価格</th>

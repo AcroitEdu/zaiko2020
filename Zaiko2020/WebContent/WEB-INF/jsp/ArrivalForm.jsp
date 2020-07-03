@@ -16,14 +16,15 @@ String caption = "";
     <title><%=mode%></title>
     <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-    <link href="styleBookInOut.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="js/dialog/dialog-polyfill.css" />
+    <link href="styleBookInOut.css" rel="stylesheet">
 </head>
 
 <body>
-    <jsp:include page="part/BookInOutForm.jsp" >
-        <jsp:param name="mode" value="<%=mode %>"/>
-        <jsp:param name="book" value="${book}"/>
+    <jsp:include page="part/BookInOutForm.jsp">
+        <jsp:param name="mode" value="<%=mode %>" />
+        <jsp:param name="book" value="${book}" />
+        <jsp:param name="action" value="arrive" />
     </jsp:include>
 </body>
 <script src="js/dialog/dialog-polyfill.js"></script>

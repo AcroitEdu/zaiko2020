@@ -57,3 +57,9 @@ $("#logoutButton").click(function () {
         $(`#logoutForm`).submit();
     }
 });
+
+//「入荷」をクリックしたときの処理
+$(".buttonArrive").click(linkSubmit);
+
+//「出荷」をクリックしたときの処理
+$(".buttonShip").click(linkSubmit);

@@ -13,7 +13,7 @@ import jp.co.acroit.zaiko2020.book.Book;
 
 /**
  * 書籍データベースアクセスクラス
- * @version 2.1
+ * @version 2.2
  * @author hiroki tajima
  */
 public class BookDataAccess {
@@ -59,7 +59,7 @@ public class BookDataAccess {
 	public List<Book> find(SearchCondition sc) throws SQLException {
 		Connection con = null;
 		try {
-			con = DriverManager.getConnection(url,username,password);
+			con = DriverManager.getConnection(url, username, password);
 
 			//クエリの生成・実行
 			query = "SELECT * FROM books";
@@ -113,10 +113,10 @@ public class BookDataAccess {
 	}
 
 	//idによる書籍の検索
-	public Book findid(int id) throws SQLException {
+	public Book findId(int id) throws SQLException {
 		Connection con = null;
 		try {
-			con = DriverManager.getConnection(url,username,password);
+			con = DriverManager.getConnection(url, username, password);
 
 			//クエリの生成・実行
 			query = "SELECT * FROM books WHERE " + idColumn + "=" + id;
@@ -132,8 +132,6 @@ public class BookDataAccess {
 			int dbPrice = 0;
 			int dbStock = 0;
 			int dbDeleteflg = 0;
-
-			//List<Book> bookList = new ArrayList<Book>();
 
 			while (rs.next()) {
 				dbId = rs.getInt(idColumn);
@@ -171,7 +169,7 @@ public class BookDataAccess {
 		Connection con = null;
 
 		try {
-			con = DriverManager.getConnection(url,username,password);
+			con = DriverManager.getConnection(url, username, password);
 			//クエリの生成
 			query = "SELECT COUNT(*) AS libraryHoldings FROM books";
 			query = query + sqlWhere(sc) + sqlOrderBy(sc) + ";";
@@ -207,7 +205,7 @@ public class BookDataAccess {
 	public int findStock(int id) throws SQLException {
 		Connection con = null;
 		try {
-			con = DriverManager.getConnection(url,username,password);
+			con = DriverManager.getConnection(url, username, password);
 
 			//クエリの生成・実行
 			query = "SELECT * FROM books WHERE " + stockColumn + "=" + id + ";";
@@ -246,22 +244,65 @@ public class BookDataAccess {
 	}
 
 	//DB在庫数更新処理
-	public void update(int id,int stock) throws SQLException {
+	public Book update(int id, int stock) throws SQLException {
 		Connection con = null;
 		try {
 
-			con = DriverManager.getConnection(url,username,password);
+			con = DriverManager.getConnection(url, username, password);
 
 			//オートコミットOFF
 			con.setAutoCommit(false);
+			query = "SELECT " + stockColumn + " FROM books WHERE " + idColumn + "=" + id + " for update;";
 
-			 query = "UPDATE books SET " + stockColumn + " = " + stock + " WHERE " + idColumn + " = " + id + ";" ;
+			PreparedStatement ps1 = con.prepareStatement(query);
+			ps1.executeUpdate();
+			ResultSet rs = ps1.executeQuery();
+			int zaiko = rs.getInt(stockColumn);
 
-			 PreparedStatement ps = con.prepareStatement(query);
-			 ps.executeUpdate();
+			query = "UPDATE books SET " + stockColumn + " = " + (zaiko + stock) + " WHERE " + idColumn + " = " + id
+					+ ";";
 
-			 //コミット
-			 con.commit();
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.executeUpdate();
+
+			//クエリの生成・実行
+			query = "SELECT * FROM books WHERE " + idColumn + "=" + id;
+			PreparedStatement ps2 = con.prepareStatement(query);
+			ResultSet rs2 = ps2.executeQuery();
+
+			int dbId = 0;
+			String dbBookName = null;
+			String dbPublisher = null;
+			String dbAuthor = null;
+			String dbIsbn = null;
+			LocalDate dbSalsDate = null;
+			int dbPrice = 0;
+			int dbStock = 0;
+			int dbDeleteflg = 0;
+
+			while (rs2.next()) {
+				dbId = rs2.getInt(idColumn);
+				dbBookName = rs2.getString(titleColumn);
+				dbPublisher = rs2.getString(publisherColumn);
+				dbAuthor = rs2.getString(authorColumn);
+				dbIsbn = rs2.getString(isbnColumn);
+				dbSalsDate = rs2.getDate(salesDateColumn).toLocalDate();
+				dbPrice = rs2.getInt(priceColumn);
+				dbStock = rs2.getInt(stockColumn);
+
+				dbDeleteflg = rs.getInt(deleteflgColumn);
+			}
+			rs.close();
+			con.close();
+			con = null;
+
+			Book book = new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
+					dbDeleteflg);
+
+			//コミット
+			con.commit();
+
+			return book;
 
 		} catch (SQLException e) {
 
@@ -321,39 +362,39 @@ public class BookDataAccess {
 
 				//比較演算子の付与
 				switch (whereDataName[i]) {
-				case "salesDate":	//発売日の場合
+				case "salesDate": //発売日の場合
 					switch (salsDateFlag) {
-					case "equals":	//～に一致
+					case "equals": //～に一致
 						AddSql = "=";
 						break;
-					case "before":	//～以前
+					case "before": //～以前
 						AddSql = "<=";
 						break;
-					case "after":	//～以降
+					case "after": //～以降
 						AddSql = ">=";
 						break;
 					}
 					break;
-				case "stock":		//在庫数の場合
+				case "stock": //在庫数の場合
 					switch (stockFlag) {
-					case "lt":		//～未満
+					case "lt": //～未満
 						AddSql = "<";
 						break;
-					case "ltoe":	//～以下
+					case "ltoe": //～以下
 						AddSql = "<=";
 						break;
-					case "equals":	//～に等しい
+					case "equals": //～に等しい
 						AddSql = "=";
 						break;
-					case "gtoe":	//～以上
+					case "gtoe": //～以上
 						AddSql = ">=";
 						break;
-					case "gt":		//～より多い
+					case "gt": //～より多い
 						AddSql = ">";
 						break;
 					}
 					break;
-				default:		//上記以外(あいまい検索)の場合
+				default: //上記以外(あいまい検索)の場合
 					AddSql = "LIKE";
 				}
 
@@ -361,20 +402,20 @@ public class BookDataAccess {
 				if (AddSql != null && !AddSql.isEmpty()) {
 
 					//フィールドの付与
-					if (AddSql.equals("LIKE")) {							//文字列の検索の場合
+					if (AddSql.equals("LIKE")) { //文字列の検索の場合
 						AddSql = AddSql + " '%" + whereData[i] + "%'";
-					} else if (whereDataName[i].equals(salesDateColumn)) {	//発売日の検索の場合
+					} else if (whereDataName[i].equals(salesDateColumn)) { //発売日の検索の場合
 						AddSql = AddSql + " '" + whereData[i] + "'";
-					} else {												//数値の検索の場合
+					} else { //数値の検索の場合
 						AddSql = AddSql + " " + whereData[i];
 					}
 
 					//カラム名の付与
 					AddSql = " " + whereDataName[i] + " " + AddSql;
 
-					if (isAddWhere) {	//WHERE句２つ目以降の条件には先頭にANDを付与
+					if (isAddWhere) { //WHERE句２つ目以降の条件には先頭にANDを付与
 						AddSql = " AND" + AddSql;
-					} else {			//WHERE句最初の条件には先頭にWHEREを付与
+					} else { //WHERE句最初の条件には先頭にWHEREを付与
 						AddSql = " WHERE" + AddSql;
 						isAddWhere = true;
 					}
@@ -393,24 +434,24 @@ public class BookDataAccess {
 		//生成した文字列の一時保存
 		String query = " ORDER BY ";
 
-		int sort = sc.getSort();	//ソート条件の取得
-		int lift = sc.getLift();	//昇順・降順の取得
+		int sort = sc.getSort(); //ソート条件の取得
+		int lift = sc.getLift(); //昇順・降順の取得
 
 		//生成
 		switch (sort) {
-		case 0:		//発売日でソート
+		case 0: //発売日でソート
 			query = query + salesDateColumn;
 			break;
-		case 1:		//ISBNでソート
+		case 1: //ISBNでソート
 			query = query + "isbn";
 			break;
-		case 2:		//在庫数のソート
+		case 2: //在庫数のソート
 			query = query + "stock";
 			break;
 		}
-		if (lift == 1) {	//昇順の場合
+		if (lift == 1) { //昇順の場合
 			query = query + " ASC";
-		} else {		//降順の場合
+		} else { //降順の場合
 			query = query + " DESC";
 		}
 		return query;
