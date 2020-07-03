@@ -200,7 +200,7 @@ public class BookDataAccess {
 				query = "UPDATE books SET " + stockColumn + " = " + updateStock + " WHERE " + idColumn + " = " + id
 						+ ";";
 				PreparedStatement ps2 = con.prepareStatement(query);
-				System.out.println(ps);ps2.executeUpdate();
+				ps2.executeUpdate();
 
 
 				//クエリの生成・実行
