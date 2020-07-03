@@ -178,7 +178,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                         <span class="link buttonArrive">入荷</span>
                                     </form>
                                     <span>/</span>
-                                    <form action="/Zaiko2020/shipForm" method="post" class="formEditLink inline">
+                                    <form action="/Zaiko2020/shippingForm" method="post" class="formEditLink inline">
                                         <input type="hidden" name="id" value="<%=item.getId() %>">
                                         <span class="link buttonShip">出荷</span>
                                     </form>
