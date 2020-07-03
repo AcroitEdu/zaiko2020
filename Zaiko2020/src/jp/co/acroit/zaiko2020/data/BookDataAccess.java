@@ -13,7 +13,7 @@ import jp.co.acroit.zaiko2020.book.Book;
 
 /**
  * 書籍データベースアクセスクラス
- * @version 2.0
+ * @version 2.1
  * @author hiroki tajima
  */
 public class BookDataAccess {
@@ -113,13 +113,13 @@ public class BookDataAccess {
 	}
 
 	//idによる書籍の検索
-	public Book findid(String id) throws SQLException {
+	public Book findid(int id) throws SQLException {
 		Connection con = null;
 		try {
 			con = DriverManager.getConnection(url,username,password);
 
 			//クエリの生成・実行
-			query = "SELECT * FROM books" + idColumn + "=" + id;
+			query = "SELECT * FROM books WHERE " + idColumn + "=" + id;
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 
@@ -204,7 +204,7 @@ public class BookDataAccess {
 	}
 
 	//処理対象書籍 在庫数取得
-	public int findStock(String id) throws SQLException {
+	public int findStock(int id) throws SQLException {
 		Connection con = null;
 		try {
 			con = DriverManager.getConnection(url,username,password);
@@ -224,24 +224,34 @@ public class BookDataAccess {
 			con = null;
 
 			return dbstock;
+
 		} catch (SQLException e) {
+
 			e.printStackTrace();
 			throw e;
+
 		} finally {
+
 			if (con != null) {
+
 				try {
+
 					con.close();
+
 				} catch (Exception ignore) {
+
 				}
 			}
 		}
 	}
 
 	//DB在庫数更新処理
-	public void update(String id,String stock) throws SQLException {
+	public void update(int id,int stock) throws SQLException {
 		Connection con = null;
 		try {
+
 			con = DriverManager.getConnection(url,username,password);
+
 			//オートコミットOFF
 			con.setAutoCommit(false);
 
@@ -254,15 +264,23 @@ public class BookDataAccess {
 			 con.commit();
 
 		} catch (SQLException e) {
+
 			con.rollback();
+
 			e.printStackTrace();
 			System.out.println(query);
 			throw e;
+
 		} finally {
+
 			if (con != null) {
+
 				try {
+
 					con.close();
+
 				} catch (Exception ignore) {
+
 				}
 			}
 		}
