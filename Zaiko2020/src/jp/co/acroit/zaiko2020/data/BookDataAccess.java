@@ -264,7 +264,7 @@ public class BookDataAccess {
 			int newStock = stock + arrival;
 
 			//入荷
-			if(0 < newStock || newStock >= 1000000) {
+			if(0 > newStock || newStock >= 1000000) {
 				con.rollback();
 				throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
 			}
