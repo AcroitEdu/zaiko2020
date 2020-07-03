@@ -13,7 +13,7 @@ import jp.co.acroit.zaiko2020.book.Book;
 
 /**
  * 書籍データベースアクセスクラス
- * @version 2.2
+ * @version 2.3
  * @author hiroki tajima
  */
 public class BookDataAccess {
@@ -244,7 +244,7 @@ public class BookDataAccess {
 	}
 
 	//DB在庫数更新処理
-	public Book update(int id, int stock) throws SQLException {
+	public Book update(int id, int arrival) throws SQLException {
 		Connection con = null;
 		try {
 
@@ -252,14 +252,23 @@ public class BookDataAccess {
 
 			//オートコミットOFF
 			con.setAutoCommit(false);
+
+
 			query = "SELECT " + stockColumn + " FROM books WHERE " + idColumn + "=" + id + " for update;";
-
 			PreparedStatement ps1 = con.prepareStatement(query);
-			ps1.executeUpdate();
+			ps1.executeQuery();
 			ResultSet rs = ps1.executeQuery();
-			int zaiko = rs.getInt(stockColumn);
+			int stock = rs.getInt(stockColumn);
 
-			query = "UPDATE books SET " + stockColumn + " = " + (zaiko + stock) + " WHERE " + idColumn + " = " + id
+			int newStock = stock + arrival;
+
+			//入荷
+			if(0 < newStock || newStock >= 1000000) {
+				con.rollback();
+				throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
+			}
+
+			query = "UPDATE books SET " + stockColumn + " = " + newStock + " WHERE " + idColumn + " = " + id
 					+ ";";
 
 			PreparedStatement ps = con.prepareStatement(query);
