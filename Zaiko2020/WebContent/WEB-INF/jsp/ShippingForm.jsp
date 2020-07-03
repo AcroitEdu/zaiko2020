@@ -22,7 +22,7 @@ String caption = "";
 
 <body>
     <jsp:include page="part/BookInOutForm.jsp">
-        <jsp:param name="mode" value="<%=mode %>" />
+        <jsp:param name="mode" value="出荷" />
         <jsp:param name="book" value="${book}" />
         <jsp:param name="action" value="ship" />
     </jsp:include>
