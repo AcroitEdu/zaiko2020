@@ -218,6 +218,7 @@ header .boxed-tabs{
 #error{
     color: red;
     text-align: center;
+    margin: 10px auto;
 }
 #list{
     margin: auto;
@@ -287,4 +288,7 @@ header .boxed-tabs{
 }
 #sortForm{
     display: none;
+}
+.inline{
+    display: inline;
 }

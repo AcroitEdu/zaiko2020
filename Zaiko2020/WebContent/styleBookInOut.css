@@ -6,7 +6,36 @@
     font-family: 'Noto Sans JP', sans-serif;
     box-sizing: border-box;
 }
-
+*:active{
+    outline: none;
+}
+html{
+    height: 100%;
+}
+body{
+    width: 100%;
+    max-width: 1920px;
+    min-height: stretch;
+    min-height: -webkit-fill-available;
+    background-color: #f0f0f0;
+}
+#main{
+    width: 100%;
+    height: stretch;
+    min-height: -webkit-fill-available;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: stretch;
+}
+#content{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: start;
+    flex-grow: 1;
+}
 /* ヘッダー */
 header{
     width: 100%;
@@ -20,55 +49,139 @@ header{
     text-align: center;
     flex-grow: 0;
     flex-shrink: 0;
+    padding: 10px;
+    font-size: large;
+}
+#complete{
+    width: 100%;
+    text-align: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 30px 10px 10px 10px;
 }
 #error{
     color: red;
     text-align: center;
     margin: auto;
+    margin: 10px auto;
 }
 
 /* 書籍情報 */
 #details{
-    width: 1200px;
-    
+    max-width: 1200px;
+    width: 100%;
+    margin: 10px auto;
+    flex-grow: 0;
+}
+#details > table{
+    width: 100%;
+    margin: auto;
+}
+.table-header{
+    background-color: #fff2ccff;
+    text-align: center;
+    border: 1px solid #00000040;
+    width: 130px;
+}
+.table-content{
+    background-color: white;
+    text-align: start;
+}
+#details th{
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #00000080;
+}
+#details td{
+    text-align: start;
+    padding: 5px;
+    border: 1px solid #00000080;
 }
 
+
 /* 入力フォーム */
-#inoutForm{
+#footer{
+    margin: auto;
     width: 100%;
+    display: flex;
+    justify-content: end;
+}
+#inout{
+    width: fit-content;
     text-align: center;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+#inout > *{
+    margin: 5px auto;
+}
+#inout > span > *{
+    margin: 5px;
+}
+#inoutForm{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+#inoutForm input{
+    border-radius: 4px;
+    border: 1.5px solid black;
 }
 #inoutForm > span{
+    width: 100%;
+    margin: 5px;
     display: flex;
     margin: auto;
     flex-direction: row;
+    justify-content: center;
 }
 #inoutForm > span > label{
-    padding: 0.5em;
+    padding: 5px;
+    width: 4em;
+    text-align: end;
+}
+#inoutForm > span > span{
+    padding: 5px;
+    width: 4em;
+    text-align: start;
 }
 #count{
     padding: 5px;
     text-align: end;
 }
 .unit{
-    padding: 0.5em;
+    padding: 5px;
+}
+#inoutForm .button{
+    margin: 15px 5px;
 }
 .button{
     border-radius: 6px;
     width: 115px;
     padding: 8px;
+    border: none;
 }
-.button-border{
+.button:not(.button-border):focus{
+    border: none;
+    outline: none;
+}
+.button.button-border{
     border: 1.5px solid #00000080;
 }
 .button-main{
     background-color: #4a86e8ff;
     color:white;
+    font-size: large;
 }
 .button-cancel{
     background-color: white;
     color: #4a86e8;
     border: 1px solid #00000060;
+    font-size: large;
 }
 .button-cancel.button-border{
     background-color: white;
@@ -78,12 +191,13 @@ header{
 dialog{
     width: fit-content;
     height: fit-content;
-    padding: 50px 20px;
+    margin: auto;
+    border: 1px solid black;
 }
 dialog::backdrop, dialog + .backdrop{
-  background-color: #11451400;
+    background-color: rgba(0,0,0,0.5);
 }
-#dialogForm{
+#dialogContent{
     width: fit-content;
     height: fit-content;
     display: flex;
@@ -91,7 +205,7 @@ dialog::backdrop, dialog + .backdrop{
     flex-wrap: wrap;
     justify-content: space-around;
 }
-#dialogForm > p{
+#dialogContent > p{
     width: 100%;
     text-align: center;
     padding: 2em 5px;
