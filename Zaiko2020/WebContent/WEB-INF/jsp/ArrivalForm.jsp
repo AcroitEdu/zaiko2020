@@ -22,8 +22,8 @@ String caption = "";
 
 <body>
     <jsp:include page="part/BookInOutForm.jsp">
-        <jsp:param name="mode" value="<%=mode %>" />
-        <jsp:param name="book" value="${book}" />
+        <jsp:param name="mode" value="<%=mode%>" />
+        <jsp:param name="book" value="${book }" />
         <jsp:param name="action" value="arrive" />
     </jsp:include>
 </body>
