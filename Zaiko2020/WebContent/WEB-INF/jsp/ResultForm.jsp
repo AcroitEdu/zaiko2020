@@ -27,7 +27,7 @@
             <span>${sessionScope.error}</span>
         </div>
         <div id="details">
-            <jsp:include page="BookDetails.jsp">
+            <jsp:include page="part/BookDetails.jsp">
                 <jsp:param value="caption" name="更新後の書籍情報" />
                 <jsp:param value="book" name="${book }" />
             </jsp:include>
