@@ -14,7 +14,7 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
 
 /**
  * 出荷処理サーブレット
- * @version 1.0
+ * @version 1.1
  * @author hiroe ishioka
  */
 @WebServlet("/ship")
@@ -65,6 +65,11 @@ public class ShippingProcessingController extends HttpServlet {
 			session.setAttribute("book", foundBook);
 
 			response.sendRedirect("/Zaiko2020/resultForm");
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println("判定エラー");
+			session.setAttribute("error", "出荷数が在庫数を超過するためキャンセルされました。");
+			System.out.println(session.getAttribute("error"));
+			response.sendRedirect("/Zaiko2020/shippingForm");
 		} catch (Exception e) {
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/shippingForm");
