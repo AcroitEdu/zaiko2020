@@ -57,16 +57,23 @@ public class ArrivalProcessingController extends HttpServlet {
 			//操作・読込
 			foundBook = bda.update(id, count);
 
-			if(0 > foundBook.getStock() || foundBook.getStock() >= 1000000) {
-				//con.rollback();
-				throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
-			}
+//			if(0 > foundBook.getStock() || foundBook.getStock() >= 1000000) {
+//				//con.rollback();
+//				throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
+//			}
 
 			//検索結果をセッションに設定
 			session.setAttribute("book", foundBook);
 
 
 			response.sendRedirect("/Zaiko2020/resultForm");
+
+		} catch (IndexOutOfBoundsException e) {
+			session.setAttribute("error", "保管可能な在庫数を超過するためキャンセルされました。");
+
+			System.out.println(session.getAttribute("error"));
+
+			response.sendRedirect("/Zaiko2020/arrivalForm");
 		} catch (Exception e) {
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/arrivalForm");
