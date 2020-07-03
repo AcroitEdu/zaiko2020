@@ -258,6 +258,7 @@ public class BookDataAccess {
 			PreparedStatement ps1 = con.prepareStatement(query);
 			ps1.executeQuery();
 			ResultSet rs = ps1.executeQuery();
+			rs.next();
 			int stock = rs.getInt(stockColumn);
 
 			int newStock = stock + arrival;
