@@ -1,15 +1,18 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page import="jp.co.acroit.zaiko2020.book.Book" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Date" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 //書籍名や在庫数等の、本の情報を表示する。
 //ArrivalForm.jspやShippingForm.jsp、Result.jspからincludeして使う。
 //caption変数の値をcaption要素として表示する。
+//日付フォーマットの作成
+DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'日'");
 %>
 <table>
-    <caption>${caption }</caption>
+    <caption><%=request.getParameter("caption")%></caption>
     <colgroup>
         <col class="table-header">
         <col class="table-content">
@@ -33,15 +36,15 @@
     <tr>
         <th scope="row">発売日</th>
         <td>
-            <fmt:formatDate value="${book.salesDate.format(dateFormat)}" pattern="YYYY'年'MM'月'dd'日'" />
+            <%=((Book)session.getAttribute("book")).getSalesDate().format(dateFormat)%>
         </td>
     </tr>
     <tr>
         <th scope="row">価格</th>
-        <td>${book.price}</td>
+        <td>${book.price} 円</td>
     </tr>
     <tr>
         <th scope="row">在庫数</th>
-        <td>${book.stock}</td>
+        <td>${book.stock} 冊</td>
     </tr>
 </table>
