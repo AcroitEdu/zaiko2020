@@ -289,3 +289,6 @@ header .boxed-tabs{
 #sortForm{
     display: none;
 }
+.inline{
+    display: inline;
+}
