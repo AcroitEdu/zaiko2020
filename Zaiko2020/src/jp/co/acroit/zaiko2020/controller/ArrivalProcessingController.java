@@ -57,13 +57,14 @@ public class ArrivalProcessingController extends HttpServlet {
 			//操作・読込
 			foundBook = bda.update(id, count);
 
+			if(0 > foundBook.getStock() || foundBook.getStock() >= 1000000) {
+				//con.rollback();
+				throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
+			}
+
 			//検索結果をセッションに設定
 			session.setAttribute("book", foundBook);
 
-			//該当書籍なし ※あり得ない
-//			if (specificBook.isEmpty()) {
-//				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
-//			}
 
 			response.sendRedirect("/Zaiko2020/resultForm");
 		} catch (Exception e) {
