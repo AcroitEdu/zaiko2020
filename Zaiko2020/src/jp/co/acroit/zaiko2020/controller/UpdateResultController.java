@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 更新結果サーブレット
- * @version 1.0
+ * @version 1.1
  * @author hiroki tajima
  */
-@WebServlet("/UpdateResult")
+@WebServlet("/resultForm")
 public class UpdateResultController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -29,7 +29,7 @@ public class UpdateResultController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/-----------.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ResultForm,jsp");
 		dispatcher.forward(request, response);
 	}
 
