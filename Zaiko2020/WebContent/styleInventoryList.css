@@ -218,6 +218,7 @@ header .boxed-tabs{
 #error{
     color: red;
     text-align: center;
+    margin: 10px auto;
 }
 #list{
     margin: auto;
