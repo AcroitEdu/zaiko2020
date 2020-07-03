@@ -2,19 +2,20 @@ package jp.co.acroit.zaiko2020.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import jp.co.acroit.zaiko2020.book.Book;
 import jp.co.acroit.zaiko2020.data.BookDataAccess;
 
 /**
  * Servlet implementation class ArrivalProcessingController
  */
-@WebServlet("/ArrivalProcessingController")
+@WebServlet("/arrive")
 public class ArrivalProcessingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,21 +38,24 @@ public class ArrivalProcessingController extends HttpServlet {
 
 		int id = 0;
 		int stock = 0;
+		int count = 0;
 
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
+
+		HttpSession session = request.getSession();
+		Book foundBook;
 
 		try {
 
 			//IDの取得
 			id = Integer.parseInt(request.getParameter("id"));
-			stock = bda.findStock(id);
+			count = Integer.parseInt(request.getParameter("count"));
 
-			//IDをセッションに設定
-			session.setAttribute("id", id);
 
-			//検索
-			foundBook = bda.findid(id);
+
+			//操作・読込
+			foundBook = bda.update(id, count);
 
 			//検索結果をセッションに設定
 			session.setAttribute("book", foundBook);
@@ -61,12 +65,10 @@ public class ArrivalProcessingController extends HttpServlet {
 //				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
 //			}
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect("/Zaiko2020/resultForm");
 		} catch (Exception e) {
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect("/Zaiko2020/arrivalForm");
 			e.printStackTrace();
 		}
 

@@ -18,7 +18,7 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
  * @version 1.0
  * @author hiroe ishioka
  */
-@WebServlet("/ArrivalController")
+@WebServlet("/arrivalForm")
 public class ArrivalController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -29,7 +29,7 @@ public class ArrivalController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 
 		//特定書籍の検索条件設定
 		int id = 0;
@@ -49,7 +49,7 @@ public class ArrivalController extends HttpServlet {
 			session.setAttribute("id", id);
 
 			//検索
-			foundBook = bda.findid(id);
+			foundBook = bda.findId(id);
 
 			//検索結果をセッションに設定
 			session.setAttribute("book", foundBook);
@@ -63,7 +63,7 @@ public class ArrivalController extends HttpServlet {
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
 			dispatcher.forward(request, response);
 			e.printStackTrace();
 		}
