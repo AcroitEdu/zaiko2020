@@ -13,7 +13,9 @@ import jp.co.acroit.zaiko2020.book.Book;
 import jp.co.acroit.zaiko2020.data.BookDataAccess;
 
 /**
- * Servlet implementation class ArrivalProcessingController
+ * 入荷処理サーブレット
+ * @version 1.0
+ * @author hiroe ishioka
  */
 @WebServlet("/arrive")
 public class ArrivalProcessingController extends HttpServlet {
@@ -51,8 +53,6 @@ public class ArrivalProcessingController extends HttpServlet {
 			//IDの取得
 			id = Integer.parseInt(request.getParameter("id"));
 			count = Integer.parseInt(request.getParameter("count"));
-
-
 
 			//操作・読込
 			foundBook = bda.update(id, count);

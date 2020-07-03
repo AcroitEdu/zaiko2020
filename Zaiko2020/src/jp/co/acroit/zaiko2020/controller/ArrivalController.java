@@ -24,12 +24,9 @@ public class ArrivalController extends HttpServlet {
 
     public ArrivalController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
 
 		//特定書籍の検索条件設定
 		int id = 0;
@@ -54,11 +51,6 @@ public class ArrivalController extends HttpServlet {
 			//検索結果をセッションに設定
 			session.setAttribute("book", foundBook);
 
-			//該当書籍なし ※あり得ない
-//			if (specificBook.isEmpty()) {
-//				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
-//			}
-
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
@@ -67,22 +59,9 @@ public class ArrivalController extends HttpServlet {
 			dispatcher.forward(request, response);
 			e.printStackTrace();
 		}
-
-
-
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
-
-
-
-
-
 	}
-
 }
