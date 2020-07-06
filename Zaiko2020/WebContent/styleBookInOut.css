@@ -118,6 +118,9 @@ header{
 #inout > *{
     margin: 5px auto;
 }
+#inout > span{
+    display: flex;
+}
 #inout > span > *{
     margin: 5px;
 }

@@ -37,7 +37,10 @@
             </form>
             <span>
                 <button id="execute" class="button button-main button-border">実行</button>
-                <button id="cancel" class="button button-cancel button-border">キャンセル</button>
+                <form id="cancelForm" action="/Zaiko2020/inventoryList" method="post">
+                    <input type="hidden" name="form" value="4">
+                    <input type="submit" id="cancel" class="button button-cancel button-border" value="キャンセル">
+                </form>
             </span>
         </div>
     </footer>
