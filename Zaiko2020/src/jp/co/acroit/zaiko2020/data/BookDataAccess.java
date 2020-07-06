@@ -19,13 +19,13 @@ import jp.co.acroit.zaiko2020.book.Book;
 public class BookDataAccess {
 
 	public BookDataAccess() {
-		//接続情報を格納する
+		//接続情報を格納する。
 		url = "jdbc:mysql://localhost/zaiko2020?characterEncoding=UTF-8&serverTimezone=JST&zeroDateTimeBehavior=convertToNull";
 		driver = "com.mysql.cj.jdbc.Driver";
 		username = "tomcat";
 		password = "RC2-Z%b9e85PWqR";
 
-		//カラム名を格納する
+		//カラム名を格納する。
 		idColumn = "id";
 		titleColumn = "title";
 		publisherColumn = "publisher";
@@ -55,13 +55,13 @@ public class BookDataAccess {
 	String deleteflgColumn;
 	String libraryHoldingsColumn;
 
-	//書籍検索
+	//書籍検索を行うメソッド
 	public List<Book> find(SearchCondition sc) throws SQLException {
 		Connection con = null;
 		try {
 			con = DriverManager.getConnection(url, username, password);
 
-			//クエリの生成・実行
+			//クエリの生成・実行を行う。
 			query = "SELECT * FROM books";
 			query = query + sqlWhere(sc) + sqlOrderBy(sc) + sqlLimit(sc) + ";";
 			PreparedStatement ps = con.prepareStatement(query);
@@ -111,7 +111,7 @@ public class BookDataAccess {
 		}
 	}
 
-	//idによる書籍の検索
+	//idによる書籍の検索を行うメソッド
 	public Book findId(int id) throws SQLException {
 
 		Connection con = null;
@@ -120,7 +120,7 @@ public class BookDataAccess {
 
 			con = DriverManager.getConnection(url, username, password);
 
-			//クエリの生成・実行
+			//クエリの生成・実行を行う。
 			query = "SELECT * FROM books WHERE " + idColumn + "=" + id + ";";
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
@@ -174,14 +174,14 @@ public class BookDataAccess {
 		}
 	}
 
-	//DB在庫数更新処理
+	//DB在庫数更新処理を行うメソッド
 		public Book update(int id, int input) throws SQLException {
 			Connection con = null;
 			try {
 
 				con = DriverManager.getConnection(url, username, password);
 
-				//オートコミットOFF
+				//オートコミットOFFにする。
 				con.setAutoCommit(false);
 				query = "SELECT " + stockColumn + " FROM books WHERE " + idColumn + "=" + id + " for update;";
 				PreparedStatement ps1 = con.prepareStatement(query);
@@ -191,9 +191,10 @@ public class BookDataAccess {
 
 				int stock = rs1.getInt(stockColumn);
 
+				//DBを更新する値の計算を行う。(出荷の場合はinputにマイナスの値が入る)
 				int updateStock = stock + input;
 
-				//入荷・出荷判定
+				//入荷・出荷が可能なのか、判定を行う。
 				if(updateStock < 0  || 999999 < updateStock) {
 					con.rollback();
 					throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
@@ -205,7 +206,7 @@ public class BookDataAccess {
 				PreparedStatement ps2 = con.prepareStatement(query);
 				ps2.executeUpdate();
 
-				//更新後書籍取得
+				//更新後の書籍情報を取得取得する。
 				query = "SELECT id,title,author,publisher,salesDate,isbn,price,stock,deleteflg FROM books WHERE " + idColumn + "=" + id + ";";
 				PreparedStatement ps3 = con.prepareStatement(query);
 				ResultSet rs2 = ps3.executeQuery();
@@ -237,7 +238,7 @@ public class BookDataAccess {
 				rs1.close();
 				rs2.close();
 
-				//コミット
+				//問題がなければコミットを行う。
 				con.commit();
 				con.close();
 				con = null;
@@ -249,6 +250,7 @@ public class BookDataAccess {
 
 			} catch (SQLException e) {
 
+				//エラー発生時にロールバックを行う。
 				con.rollback();
 				e.printStackTrace();
 				throw e;
@@ -268,13 +270,13 @@ public class BookDataAccess {
 			}
 		}
 
-	//総件数の取得
+	//総件数の取得を行うメソッド
 	public int countAll(SearchCondition sc) throws SQLException {
 		Connection con = null;
 
 		try {
 			con = DriverManager.getConnection(url, username, password);
-			//クエリの生成
+			//クエリの生成・実行を行う。
 			query = "SELECT COUNT(*) AS libraryHoldings FROM books";
 			query = query + sqlWhere(sc) + sqlOrderBy(sc) + ";";
 
@@ -283,7 +285,7 @@ public class BookDataAccess {
 
 			int libraryHoldings = 0;
 
-			//総件数を取得する
+			//該当する書籍の総研の取得を行う。
 			while (rs.next()) {
 				libraryHoldings = rs.getInt(libraryHoldingsColumn);
 			}
@@ -305,9 +307,9 @@ public class BookDataAccess {
 		}
 	}
 
-	//WHERE句の生成
+	//WHERE句の生成を行うメソッド
 	public String sqlWhere(SearchCondition sc) {
-		//生成した文字列の一時保存
+		//生成した文字列の一時保存を行う。
 		String query = "";
 
 		//各検索条件の取得
@@ -320,7 +322,7 @@ public class BookDataAccess {
 		String salsDateFlag = sc.getSalesDateFlag();
 		String stockFlag = sc.getStockFlag();
 
-		//queryに継ぎ足す部分の一時保存
+		//queryに継ぎ足す部分の一時保存場所
 		String AddSql = null;
 
 		//WHERE句で用いるカラム名
@@ -332,7 +334,6 @@ public class BookDataAccess {
 		//WHERE句を一度でも加えたか否か
 		boolean isAddWhere = false;
 
-		//生成
 		for (int i = 0; i < whereData.length; i++) {
 
 			//条件が空白でない場合
