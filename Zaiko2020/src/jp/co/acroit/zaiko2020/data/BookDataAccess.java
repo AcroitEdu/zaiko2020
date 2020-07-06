@@ -22,10 +22,8 @@ public class BookDataAccess {
 		//接続情報を格納する
 		url = "jdbc:mysql://localhost/zaiko2020?characterEncoding=UTF-8&serverTimezone=JST&zeroDateTimeBehavior=convertToNull";
 		driver = "com.mysql.cj.jdbc.Driver";
-		username = "root";
-		password = "";
-		//username = "tomcat";
-		//password = "RC2-Z%b9e85PWqR";
+		username = "tomcat";
+		password = "RC2-Z%b9e85PWqR";
 
 		//カラム名を格納する
 		idColumn = "id";
