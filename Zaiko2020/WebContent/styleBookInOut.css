@@ -120,7 +120,7 @@ header{
 }
 #inout > span{
     display: flex;
-    width: 350px;
+    width: 370px;
     justify-content: space-between;
 }
 #inout > span > *{
