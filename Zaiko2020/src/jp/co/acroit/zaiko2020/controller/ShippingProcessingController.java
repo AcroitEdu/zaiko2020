@@ -53,13 +53,12 @@ public class ShippingProcessingController extends HttpServlet {
 			id = Integer.parseInt(request.getParameter("id"));
 			count = Integer.parseInt(request.getParameter("count"));
 
-			//操作・読込
-			foundBook = bda.update(id, -count);
-
-			if(0 > foundBook.getStock() || foundBook.getStock() >= 1000000) {
-				//con.rollback();
+			if(0 > count || count >= 1000000) {
 				throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
 			}
+
+			//操作・読込
+			foundBook = bda.update(id, -count);
 
 			//検索結果をセッションに設定
 			session.setAttribute("book", foundBook);
