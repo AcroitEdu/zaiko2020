@@ -20,7 +20,7 @@ import jp.co.acroit.zaiko2020.data.SearchCondition;
 
 /**
  * 在庫一覧サーブレット
- * @version 1.0
+ * @version 1.1
  * @author hiroki tajima
  */
 @WebServlet("/inventoryList")
@@ -30,6 +30,9 @@ public class InventoryListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		session.setAttribute("flg", false);
 
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -64,7 +67,7 @@ public class InventoryListController extends HttpServlet {
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
 
-		HttpSession session = request.getSession();
+		//HttpSession session = request.getSession();
 		session.setAttribute("error", "");
 		List<Book> bookList = new ArrayList<Book>();
 
@@ -112,6 +115,7 @@ public class InventoryListController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+
 		String bookName = null;
 		String author = null;
 		String publisher = null;
@@ -126,6 +130,7 @@ public class InventoryListController extends HttpServlet {
 		int value = Integer.parseInt(request.getParameter("form"));
 
 		HttpSession session = request.getSession();
+		session.setAttribute("flg", false);
 		SearchCondition sc = (SearchCondition)session.getAttribute("conditions");
 		session.setAttribute("error", "");
 

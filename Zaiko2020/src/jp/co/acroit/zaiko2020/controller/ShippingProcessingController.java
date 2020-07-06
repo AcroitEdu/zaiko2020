@@ -14,7 +14,7 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
 
 /**
  * 出荷処理サーブレット
- * @version 1.1
+ * @version 1.2
  * @author hiroe ishioka
  */
 @WebServlet("/ship")
@@ -28,8 +28,6 @@ public class ShippingProcessingController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -37,14 +35,22 @@ public class ShippingProcessingController extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 
+		HttpSession session = request.getSession();
+		boolean flg = (boolean) session.getAttribute("flg");
+
+		if(flg) {
+			session.setAttribute("error", "再読み込み");
+			session.setAttribute("flg", false);
+			response.sendRedirect("/Zaiko2020/shippingForm");
+			return;
+		}
+
 		int id = 0;
-		int stock = 0;
 		int count = 0;
 
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
 
-		HttpSession session = request.getSession();
 		Book foundBook;
 
 		try {
@@ -62,6 +68,8 @@ public class ShippingProcessingController extends HttpServlet {
 
 			//検索結果をセッションに設定
 			session.setAttribute("book", foundBook);
+
+			session.setAttribute("flg", true);
 
 			response.sendRedirect("/Zaiko2020/resultForm");
 		} catch (IndexOutOfBoundsException e) {
