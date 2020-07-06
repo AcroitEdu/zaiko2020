@@ -3,7 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%
-//入荷画面
+//本の情報と入荷フォームを表示する。
 
 String mode = "入荷";
 String caption = "";
@@ -18,7 +18,7 @@ String caption = "";
     <title><%=mode%></title>
     <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="js/dialog/dialog-polyfill.css" />
+    <link href="js/dialog/dialog-polyfill.css" rel="stylesheet" type="text/css">
     <link href="styleBookInOut.css" rel="stylesheet">
 </head>
 
