@@ -3,7 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%
-//出荷画面
+//本の情報と出荷フォームを表示する。
 
 String mode = "出荷";
 String caption = "";
@@ -18,15 +18,15 @@ String caption = "";
     <title><%=mode%></title>
     <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="js/dialog/dialog-polyfill.css" />
+    <link href="js/dialog/dialog-polyfill.css" rel="stylesheet" type="text/css">
     <link href="styleBookInOut.css" rel="stylesheet">
 </head>
 
 <body>
     <jsp:include page="part/BookInOutForm.jsp">
-        <jsp:param name="mode" value="出荷" />
-        <jsp:param name="book" value="${book}" />
-        <jsp:param name="action" value="ship" />
+        <jsp:param name="mode" value="<%=mode%>" />
+        <jsp:param name="book" value="${book }" />
+        <jsp:param name="action" value="arrive" />
     </jsp:include>
 </body>
 <script src="js/dialog/dialog-polyfill.js"></script>

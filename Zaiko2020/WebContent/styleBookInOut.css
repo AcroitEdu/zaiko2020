@@ -1,5 +1,7 @@
 @charset "UTF-8";
-/* 入出荷共通スタイルシート */
+/*
+    ShippingForm.jsp、ArrivalForm.jsp、ResultForm.jspのスタイルを定義する。
+*/
 
 /* 共通 */
 *{
@@ -15,14 +17,14 @@ html{
 body{
     width: 100%;
     max-width: 1920px;
-    min-height: stretch;
-    min-height: -webkit-fill-available;
+    min-height: stretch;    /* 標準 */
+    min-height: -webkit-fill-available; /* Chrome系ブラウザ */
     background-color: #f0f0f0;
 }
 #main{
     width: 100%;
-    height: stretch;
-    min-height: -webkit-fill-available;
+    height: stretch;    /* 標準 */
+    min-height: -webkit-fill-available; /* Chrome系ブラウザ */
     margin: 0;
     display: flex;
     flex-direction: column;
