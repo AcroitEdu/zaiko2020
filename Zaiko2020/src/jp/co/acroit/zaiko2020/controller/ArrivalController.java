@@ -35,12 +35,15 @@ public class ArrivalController extends HttpServlet {
 		BookDataAccess bda = new BookDataAccess();
 
 		HttpSession session = request.getSession();
-		session.setAttribute("error", "");
 		Book foundBook;
 
 		try {
 			//IDの取得
-			id = Integer.parseInt(request.getParameter("id"));
+			if(request.getParameter("id") == null) { //入荷処理のエラーでリダイレクトされ、左方の値が存在しない時
+				id = (int)session.getAttribute("id");
+			} else {								  //在庫一覧で入荷を押された時
+				id = Integer.parseInt(request.getParameter("id"));
+			}
 
 			//IDをセッションに設定
 			session.setAttribute("id", id);
@@ -62,6 +65,11 @@ public class ArrivalController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+
+		//エラーメッセージの初期化
+		session.setAttribute("error", "");
+
 		doGet(request, response);
 	}
 }
