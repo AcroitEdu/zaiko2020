@@ -39,9 +39,9 @@ public class ArrivalController extends HttpServlet {
 
 		try {
 			//IDの取得
-			if(request.getParameter("id") == null) { //入荷処理のエラーでリダイレクトされ、左方の値が存在しない時
+			if(request.getParameter("id") == null) {	//入荷処理のエラーでリダイレクトされ、左方の値が存在しない時
 				id = (int)session.getAttribute("id");
-			} else {								  //在庫一覧で入荷を押された時
+			} else {	 //在庫一覧で入荷を押された時
 				id = Integer.parseInt(request.getParameter("id"));
 			}
 
@@ -57,10 +57,12 @@ public class ArrivalController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
+
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
 			dispatcher.forward(request, response);
 			e.printStackTrace();
+
 		}
 	}
 

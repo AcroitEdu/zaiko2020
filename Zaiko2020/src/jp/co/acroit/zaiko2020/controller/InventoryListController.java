@@ -66,9 +66,6 @@ public class InventoryListController extends HttpServlet {
 
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
-
-		//HttpSession session = request.getSession();
-		session.setAttribute("error", "");
 		List<Book> bookList = new ArrayList<Book>();
 
 		try {
@@ -95,16 +92,20 @@ public class InventoryListController extends HttpServlet {
 
 			//該当書籍なし
 			if (bookList.isEmpty()) {
+
 				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
+
 			}
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
+
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 			e.printStackTrace();
+
 		}
 
 	}
@@ -135,7 +136,9 @@ public class InventoryListController extends HttpServlet {
 		session.setAttribute("error", "");
 
 		if(sc == null) {
+
 			sc = new SearchCondition();
+
 		}
 
 		switch (value) {
@@ -169,19 +172,25 @@ public class InventoryListController extends HttpServlet {
 			String pageNumberCheck = null;
 			pageNumberCheck = request.getParameter("page");
 			if (pageNumberCheck == null || pageNumberCheck.isEmpty()) {
+
 				session.setAttribute("error", "ページ番号を入力してください。");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 				dispatcher.forward(request, response);
 				return;
+
 			}
+
 			page = Integer.parseInt(request.getParameter("page"));
 			int maxPage = (int) session.getAttribute("maxPage");
 			if (maxPage < page) {
+
 				session.setAttribute("error", "該当するページは見つかりませんでした。");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 				dispatcher.forward(request, response);
 				return;
+
 			}
+
 			sc.setPage(page);
 			break;
 
@@ -192,6 +201,8 @@ public class InventoryListController extends HttpServlet {
 			sc.setPage(1);
 			sc.setSort(sort);
 			sc.setLift(lift);
+			break;
+
 		}
 
 		//検索結果をセッションに設定
@@ -204,6 +215,7 @@ public class InventoryListController extends HttpServlet {
 		try {
 			//総件数の取得
 			if (value == 0) {
+
 				int count = 0;
 				int pageCount = 0;
 				count = bda.countAll(sc);
@@ -212,13 +224,17 @@ public class InventoryListController extends HttpServlet {
 				//総件数・最大ページ数をセッションに設定
 				session.setAttribute("count", count);
 				session.setAttribute("maxPage", pageCount);
+
 			}
+
 			//検索
 			bookList = bda.find(sc);
 
 			//該当なし
 			if (bookList.isEmpty()) {
+
 				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
+
 			}
 
 			//書籍情報・現ページをセッションに設定
@@ -227,7 +243,9 @@ public class InventoryListController extends HttpServlet {
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
+
 		} catch (Exception e) {
+
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);

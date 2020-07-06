@@ -40,20 +40,19 @@ public class ArrivalProcessingController extends HttpServlet {
 		boolean flg = (boolean) session.getAttribute("flg");
 
 		if(flg) {
-			session.setAttribute("error", "再読み込み");
+
+			session.setAttribute("error", "入荷処理は既に実行されています。最初からやり直してください。");
 			session.setAttribute("flg", false);
 			response.sendRedirect("/Zaiko2020/arrivalForm");
 			return;
-		}
 
+		}
 
 		int id = 0;
 		int count = 0;
 
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
-
-		//HttpSession session = request.getSession();
 		Book foundBook;
 
 		try {
@@ -62,7 +61,8 @@ public class ArrivalProcessingController extends HttpServlet {
 			id = Integer.parseInt(request.getParameter("id"));
 			count = Integer.parseInt(request.getParameter("count"));
 
-			if(0 > count || count >= 1000000) {
+			if(count < 0 || 999999 < count) {
+
 				throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
 			}
 
@@ -77,15 +77,16 @@ public class ArrivalProcessingController extends HttpServlet {
 			response.sendRedirect("/Zaiko2020/resultForm");
 
 		} catch (IndexOutOfBoundsException e) {
+
 			session.setAttribute("error", "保管可能な在庫数を超過するためキャンセルされました。");
-
-			System.out.println(session.getAttribute("error"));
-
 			response.sendRedirect("/Zaiko2020/arrivalForm");
+
 		} catch (Exception e) {
+
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/arrivalForm");
 			e.printStackTrace();
+
 		}
 
 

@@ -39,10 +39,12 @@ public class ShippingProcessingController extends HttpServlet {
 		boolean flg = (boolean) session.getAttribute("flg");
 
 		if(flg) {
-			session.setAttribute("error", "再読み込み");
+
+			session.setAttribute("error", "出荷処理は既に実行されています。最初からやり直してください。");
 			session.setAttribute("flg", false);
 			response.sendRedirect("/Zaiko2020/shippingForm");
 			return;
+
 		}
 
 		int id = 0;
@@ -59,8 +61,10 @@ public class ShippingProcessingController extends HttpServlet {
 			id = Integer.parseInt(request.getParameter("id"));
 			count = Integer.parseInt(request.getParameter("count"));
 
-			if(0 > count || count >= 1000000) {
+			if(count < 0 || 999999 < count) {
+
 				throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
+
 			}
 
 			//操作・読込
@@ -73,14 +77,16 @@ public class ShippingProcessingController extends HttpServlet {
 
 			response.sendRedirect("/Zaiko2020/resultForm");
 		} catch (IndexOutOfBoundsException e) {
-			System.out.println("判定エラー");
+
 			session.setAttribute("error", "出荷数が在庫数を超過するためキャンセルされました。");
-			System.out.println(session.getAttribute("error"));
 			response.sendRedirect("/Zaiko2020/shippingForm");
+
 		} catch (Exception e) {
+
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/shippingForm");
 			e.printStackTrace();
+
 		}
 
 	}

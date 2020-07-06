@@ -40,9 +40,9 @@ public class ShippingController extends HttpServlet {
 
 		try {
 			//IDの取得
-			if(request.getParameter("id") == null) { //出荷処理のエラーでリダイレクトされ、左方の値が存在しない時
+			if(request.getParameter("id") == null) {	//出荷処理のエラーでリダイレクトされ、左方の値が存在しない時
 				id = (int)session.getAttribute("id");
-			} else {								  //在庫一覧で出荷を押された時の最初のidの読み込み
+			} else {	//在庫一覧で出荷を押された時の最初のidの読み込み
 				id = Integer.parseInt(request.getParameter("id"));
 			}
 
