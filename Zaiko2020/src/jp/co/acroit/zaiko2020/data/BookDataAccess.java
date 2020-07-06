@@ -173,22 +173,20 @@ public class BookDataAccess {
 
 				//オートコミットOFF
 				con.setAutoCommit(false);
-
-				//更新クエリ
 				query = "SELECT " + stockColumn + " FROM books WHERE " + idColumn + "=" + id + " for update;";
-				PreparedStatement ps = con.prepareStatement(query);
-				ps.executeQuery();
-				ResultSet rs = ps.executeQuery();
-				rs.next();
-				int stock = rs.getInt(stockColumn);
+				PreparedStatement ps1 = con.prepareStatement(query);
+				ps1.executeQuery();
+				ResultSet rs1 = ps1.executeQuery();
+				rs1.next();
+
+				int stock = rs1.getInt(stockColumn);
 
 
-				int updateStock =stock + input;
+				int updateStock = stock + input;
 				System.out.println(updateStock);
 
 				//入荷・出荷判定
 				if(updateStock < 0  || 999999 < updateStock) {
-					System.out.println("判定エラー");
 					con.rollback();
 					throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
 				}
@@ -217,6 +215,7 @@ public class BookDataAccess {
 				int dbDeleteflg = 0;
 
 				while (rs2.next()) {
+
 					dbId = rs2.getInt(idColumn);
 					dbBookName = rs2.getString(titleColumn);
 					dbPublisher = rs2.getString(publisherColumn);
@@ -226,9 +225,10 @@ public class BookDataAccess {
 					dbPrice = rs2.getInt(priceColumn);
 					dbStock = rs2.getInt(stockColumn);
 					dbDeleteflg = rs2.getInt(deleteflgColumn);
+
 				}
 
-				rs.close();
+				rs1.close();
 				rs2.close();
 
 				//コミット
@@ -242,10 +242,9 @@ public class BookDataAccess {
 				return book;
 
 			} catch (SQLException e) {
-				con.rollback();
 
+				con.rollback();
 				e.printStackTrace();
-				System.out.println(query);
 				throw e;
 
 			} finally {
@@ -299,48 +298,6 @@ public class BookDataAccess {
 			}
 		}
 	}
-
-	//処理対象書籍 在庫数取得
-//	public int findStock(int id) throws SQLException {
-//		Connection con = null;
-//		try {
-//			con = DriverManager.getConnection(url, username, password);
-//
-//			//クエリの生成・実行
-//			query = "SELECT * FROM books WHERE " + stockColumn + "=" + id + ";";
-//			PreparedStatement ps = con.prepareStatement(query);
-//			ResultSet rs = ps.executeQuery();
-//
-//			int dbstock = 0;
-//
-//			while (rs.next()) {
-//				dbstock = rs.getInt(stockColumn);
-//			}
-//			rs.close();
-//			con.close();
-//			con = null;
-//
-//			return dbstock;
-//
-//		} catch (SQLException e) {
-//
-//			e.printStackTrace();
-//			throw e;
-//
-//		} finally {
-//
-//			if (con != null) {
-//
-//				try {
-//
-//					con.close();
-//
-//				} catch (Exception ignore) {
-//
-//				}
-//			}
-//		}
-//	}
 
 	//WHERE句の生成
 	public String sqlWhere(SearchCondition sc) {
