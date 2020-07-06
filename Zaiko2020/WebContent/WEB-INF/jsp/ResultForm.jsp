@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%
+//結果表示画面
 %>
 <!DOCTYPE html>
 <html lang='ja'>

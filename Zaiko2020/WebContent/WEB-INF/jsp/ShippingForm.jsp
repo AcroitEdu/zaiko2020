@@ -3,6 +3,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%
+//出荷画面
+
 String mode = "出荷";
 String caption = "";
 %>

@@ -1,8 +1,3 @@
-//「キャンセル」押下時
-$("#cancel").click(function () {
-    document.location.href = "/Zaiko2020/inventoryList";
-});
-
 //「実行」押下時
 $("#execute").click(function () {
     if ($("#inoutForm")[0].reportValidity()) {
