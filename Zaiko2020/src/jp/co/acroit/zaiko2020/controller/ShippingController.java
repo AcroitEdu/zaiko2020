@@ -15,7 +15,7 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
 
 /**
  * 出荷画面サーブレット
- * @version 1.0
+ * @version 1.1
  * @author hiroe ishioka
  */
 @WebServlet("/shippingForm")
@@ -58,10 +58,12 @@ public class ShippingController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ShippingForm.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
+
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ShippingForm.jsp");
 			dispatcher.forward(request, response);
 			e.printStackTrace();
+
 		}
 
 	}
