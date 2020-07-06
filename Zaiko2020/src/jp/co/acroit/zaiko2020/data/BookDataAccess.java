@@ -113,8 +113,11 @@ public class BookDataAccess {
 
 	//idによる書籍の検索
 	public Book findId(int id) throws SQLException {
+
 		Connection con = null;
+
 		try {
+
 			con = DriverManager.getConnection(url, username, password);
 
 			//クエリの生成・実行
@@ -133,6 +136,7 @@ public class BookDataAccess {
 			int dbDeleteflg = 0;
 
 			while (rs.next()) {
+
 				dbId = rs.getInt(idColumn);
 				dbBookName = rs.getString(titleColumn);
 				dbPublisher = rs.getString(publisherColumn);
@@ -141,8 +145,8 @@ public class BookDataAccess {
 				dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
 				dbPrice = rs.getInt(priceColumn);
 				dbStock = rs.getInt(stockColumn);
-
 				dbDeleteflg = rs.getInt(deleteflgColumn);
+
 			}
 			rs.close();
 			con.close();
@@ -151,18 +155,24 @@ public class BookDataAccess {
 			return new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
 					dbDeleteflg);
 		} catch (SQLException e) {
+
 			e.printStackTrace();
 			throw e;
+
 		} finally {
+
 			if (con != null) {
+
 				try {
+
 					con.close();
+
 				} catch (Exception ignore) {
+
 				}
 			}
 		}
 	}
-
 
 	//DB在庫数更新処理
 		public Book update(int id, int input) throws SQLException {
@@ -181,9 +191,7 @@ public class BookDataAccess {
 
 				int stock = rs1.getInt(stockColumn);
 
-
 				int updateStock = stock + input;
-				System.out.println(updateStock);
 
 				//入荷・出荷判定
 				if(updateStock < 0  || 999999 < updateStock) {
@@ -191,15 +199,13 @@ public class BookDataAccess {
 					throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
 				}
 
-
 				//更新クエリ
 				query = "UPDATE books SET " + stockColumn + " = " + updateStock + " WHERE " + idColumn + " = " + id
 						+ ";";
 				PreparedStatement ps2 = con.prepareStatement(query);
 				ps2.executeUpdate();
 
-
-				//クエリの生成・実行
+				//更新後書籍取得
 				query = "SELECT id,title,author,publisher,salesDate,isbn,price,stock,deleteflg FROM books WHERE " + idColumn + "=" + id + ";";
 				PreparedStatement ps3 = con.prepareStatement(query);
 				ResultSet rs2 = ps3.executeQuery();
