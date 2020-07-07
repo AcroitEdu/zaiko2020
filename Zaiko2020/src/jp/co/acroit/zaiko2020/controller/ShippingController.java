@@ -40,9 +40,15 @@ public class ShippingController extends HttpServlet {
 
 		try {
 			//IDの取得
-			if(request.getParameter("id") == null) {	//出荷処理のエラーでリダイレクトされ、左方の値が存在しない時
-				id = (int)session.getAttribute("id");
-			} else {									//在庫一覧で入荷を押され、左方の値が存在する時
+			if (request.getParameter("id") == null) { //出荷処理のエラーでリダイレクトされ、左方の値が存在しない時
+				if (session.getAttribute("id") != null) {
+					id = (int) session.getAttribute("id");
+				} else {
+					session.setAttribute("error", "書籍を選択してください。");
+					response.sendRedirect("/Zaiko2020/inventoryList");
+					return;
+				}
+			} else { //在庫一覧で入荷を押され、左方の値が存在する時
 				id = Integer.parseInt(request.getParameter("id"));
 			}
 
