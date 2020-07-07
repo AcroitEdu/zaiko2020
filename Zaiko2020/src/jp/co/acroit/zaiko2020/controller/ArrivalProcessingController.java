@@ -62,7 +62,7 @@ public class ArrivalProcessingController extends HttpServlet {
 			id = Integer.parseInt(request.getParameter("id"));
 			count = Integer.parseInt(request.getParameter("count"));
 
-			if(count < 0 || 999999 < count) {
+			if(count < 1 || 999999 < count) {
 
 				throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
 			}
