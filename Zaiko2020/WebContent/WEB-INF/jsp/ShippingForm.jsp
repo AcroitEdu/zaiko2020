@@ -26,7 +26,7 @@ String caption = "";
     <jsp:include page="part/BookInOutForm.jsp">
         <jsp:param name="mode" value="<%=mode%>" />
         <jsp:param name="book" value="${book }" />
-        <jsp:param name="action" value="arrive" />
+        <jsp:param name="action" value="ship" />
     </jsp:include>
 </body>
 <script src="js/dialog/dialog-polyfill.js"></script>
