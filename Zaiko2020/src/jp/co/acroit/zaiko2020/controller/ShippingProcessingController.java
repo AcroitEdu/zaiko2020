@@ -14,7 +14,7 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
 
 /**
  * 出荷処理サーブレット
- * @version 1.2
+ * @version 1.3
  * @author hiroe ishioka
  */
 @WebServlet("/ship")
@@ -36,8 +36,9 @@ public class ShippingProcessingController extends HttpServlet {
 		doGet(request, response);
 
 		HttpSession session = request.getSession();
-		boolean flg = (boolean) session.getAttribute("flg");
 
+		//同じ入荷画面で2度入荷処理を行おうとしていないかの確認
+		boolean flg = (boolean) session.getAttribute("flg");
 		if(flg) {
 
 			session.setAttribute("error", "出荷処理は既に実行されています。最初からやり直してください。");
@@ -50,14 +51,14 @@ public class ShippingProcessingController extends HttpServlet {
 		int id = 0;
 		int count = 0;
 
-		//書籍検索
+		//書籍の検索用
 		BookDataAccess bda = new BookDataAccess();
 
 		Book foundBook;
 
 		try {
 
-			//IDの取得
+			//IDと出荷数を取得する
 			id = Integer.parseInt(request.getParameter("id"));
 			count = Integer.parseInt(request.getParameter("count"));
 
@@ -67,7 +68,7 @@ public class ShippingProcessingController extends HttpServlet {
 
 			}
 
-			//操作・読込
+			//DBを操作し読み込む
 			foundBook = bda.update(id, -count);
 
 			//検索結果をセッションに設定
@@ -77,12 +78,12 @@ public class ShippingProcessingController extends HttpServlet {
 
 			response.sendRedirect("/Zaiko2020/resultForm");
 		} catch (IndexOutOfBoundsException e) {
-
+			//エラーを返し出荷画面にリダイレクト
 			session.setAttribute("error", "出荷数が在庫数を超過するためキャンセルされました。");
 			response.sendRedirect("/Zaiko2020/shippingForm");
 
 		} catch (Exception e) {
-
+			//エラーを返し出荷画面にリダイレクト
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/shippingForm");
 			e.printStackTrace();

@@ -15,7 +15,7 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
 
 /**
  * 出荷画面サーブレット
- * @version 1.1
+ * @version 1.2
  * @author hiroe ishioka
  */
 @WebServlet("/shippingForm")
@@ -29,10 +29,10 @@ public class ShippingController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		//特定書籍の検索条件設定
+		//特定書籍の検索条件設定用
 		int id = 0;
 
-		//書籍検索
+		//書籍の検索用
 		BookDataAccess bda = new BookDataAccess();
 
 		HttpSession session = request.getSession();
@@ -42,23 +42,22 @@ public class ShippingController extends HttpServlet {
 			//IDの取得
 			if(request.getParameter("id") == null) {	//出荷処理のエラーでリダイレクトされ、左方の値が存在しない時
 				id = (int)session.getAttribute("id");
-			} else {	//在庫一覧で出荷を押された時の最初のidの読み込み
+			} else {									//在庫一覧で入荷を押され、左方の値が存在する時
 				id = Integer.parseInt(request.getParameter("id"));
 			}
 
 			//IDをセッションに設定
 			session.setAttribute("id", id);
 
-			//検索
+			//特定書籍の検索を行い、結果をセッションに設定
 			foundBook = bda.findId(id);
-
-			//検索結果をセッションに設定
 			session.setAttribute("book", foundBook);
 
+			//出荷画面へフォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ShippingForm.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
-
+			//エラーを返し在庫一覧へフォワード
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ShippingForm.jsp");
 			dispatcher.forward(request, response);
