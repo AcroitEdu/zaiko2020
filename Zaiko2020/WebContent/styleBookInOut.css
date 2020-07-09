@@ -128,17 +128,17 @@ header{
 #inout > span > *{
     margin: 5px;
 }
-#inoutForm{
+#inoutInput{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
 }
-#inoutForm input{
+#inoutInput input{
     border-radius: 4px;
     border: 1.5px solid black;
 }
-#inoutForm > span{
+#inoutInput > span{
     width: 100%;
     margin: 5px;
     display: flex;
@@ -146,12 +146,12 @@ header{
     flex-direction: row;
     justify-content: center;
 }
-#inoutForm > span > label{
+#inoutInput > span > label{
     padding: 5px;
     width: 4em;
     text-align: end;
 }
-#inoutForm > span > span{
+#inoutInput > span > span{
     padding: 5px;
     width: 4em;
     text-align: start;
@@ -163,7 +163,7 @@ header{
 .unit{
     padding: 5px;
 }
-#inoutForm .button{
+#inoutInput .button{
     margin: 15px 5px;
 }
 .button{

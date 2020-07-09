@@ -12,7 +12,9 @@ const checkValid = () => {
 //「実行」押下時
 $("#execute").click(function () {
     if (checkValid()) {
-        $("#countConfirm").text(parseInt($("#count").val()));
+        var count = parseInt($("#count").val());
+        $("#countConfirm").text(count);
+        $("#countHidden").val(count);
         $("#dialogSubmit")[0].showModal();
     }
 });
