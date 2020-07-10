@@ -154,7 +154,7 @@ public class InventoryListController extends HttpServlet {
 			salsDateFlag = request.getParameter("beforeAfter");
 			stockFlag = request.getParameter("largeOrSmall");
 
-			if (!isbn.matches("^[0-9]*$") || isbn.length() > 13 || !stock.matches("^[0-9]*$")) {
+			if (!isbn.matches("^[0-9]*$") || 13 < isbn.length() || !stock.matches("^[0-9]*$")) {
 				session.setAttribute("error", "指定されている形式で入力してください。");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 				dispatcher.forward(request, response);
