@@ -154,6 +154,15 @@ public class InventoryListController extends HttpServlet {
 			salsDateFlag = request.getParameter("beforeAfter");
 			stockFlag = request.getParameter("largeOrSmall");
 
+			if (!isbn.matches("^[0-9]*$") || isbn.length() > 13 || !stock.matches("^[0-9]*$")) {
+				session.setAttribute("error", "指定されている形式で入力してください。");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+				dispatcher.forward(request, response);
+//				request.getSession().setAttribute("error", "指定されている形式で入力してください。");
+//				response.sendRedirect("/Zaiko2020/loginForm");
+//				return;
+			}
+
 			sc.setName(bookName);
 			sc.setAuthor(author);
 			sc.setPublisher(publisher);
