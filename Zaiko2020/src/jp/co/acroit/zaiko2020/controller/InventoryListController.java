@@ -190,8 +190,7 @@ public class InventoryListController extends HttpServlet {
 			}
 
 			//入力値チェック
-			if (!pageNumberCheck.matches("^[0-9]*$") || Integer.parseInt(request.getParameter(pageNumberCheck)) < 1 ||
-					(int) session.getAttribute("maxPage") < Integer.parseInt(request.getParameter(pageNumberCheck))) {
+			if (!pageNumberCheck.matches("^[0-9]*$") || Integer.parseInt(pageNumberCheck) < 1) {
 
 				session.setAttribute("error", "指定されている形式で入力してください。");
 				break;

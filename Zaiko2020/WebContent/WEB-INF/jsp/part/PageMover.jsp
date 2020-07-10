@@ -17,8 +17,9 @@
         <form name="jumpPage" action="/Zaiko2020/inventoryList" method="post">
             <input type="hidden" name="form" value="1">
             <span>
-                <input type="number" class="inutPageNumber" name="page" required min="1" max="${maxPage}"
-                    value="${conditions.page}">
+<%--                 <input type="number" class="inutPageNumber" name="page" required min="1" max="${maxPage}" --%>
+<%--                     value="${conditions.page}"> --%>
+				<input type="text" class="inutPageNumber" name="page" required pattern="^[0-9]+$">
                 <span class="pageDelimiter">/</span>
                 <span class="maxPage">${maxPage}</span>
             </span>
