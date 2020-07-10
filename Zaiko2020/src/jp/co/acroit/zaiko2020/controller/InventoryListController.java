@@ -1,6 +1,7 @@
 package jp.co.acroit.zaiko2020.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -154,13 +155,12 @@ public class InventoryListController extends HttpServlet {
 			salsDateFlag = request.getParameter("beforeAfter");
 			stockFlag = request.getParameter("largeOrSmall");
 
+			//入力値チェック
 			if (!isbn.matches("^[0-9]*$") || 13 < isbn.length() || !stock.matches("^[0-9]*$")) {
+
 				session.setAttribute("error", "指定されている形式で入力してください。");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
-				dispatcher.forward(request, response);
-//				request.getSession().setAttribute("error", "指定されている形式で入力してください。");
-//				response.sendRedirect("/Zaiko2020/loginForm");
-//				return;
+				break;
+
 			}
 
 			sc.setName(bookName);
@@ -250,6 +250,12 @@ public class InventoryListController extends HttpServlet {
 			session.setAttribute("items", bookList);
 			session.setAttribute("page", page);
 
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+			dispatcher.forward(request, response);
+
+		} catch (SQLException e) {
+
+			session.setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 

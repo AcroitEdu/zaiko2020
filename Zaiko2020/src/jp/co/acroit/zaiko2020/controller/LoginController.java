@@ -2,8 +2,6 @@ package jp.co.acroit.zaiko2020.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -68,8 +66,9 @@ public class LoginController extends HttpServlet {
 
 		}
 
+
 		//入力された文字列のチェック
-		if(check(id) || check(password)) {
+		if(!id.matches("^[0-9a-zA-Z]+$") || !password.matches("^[0-9a-zA-Z]+$")) {
 
 			request.getSession().setAttribute("error", "指定されている形式で入力してください。");
 			response.sendRedirect("/Zaiko2020/loginForm");
@@ -115,22 +114,4 @@ public class LoginController extends HttpServlet {
 
 		}
 	}
-
-	//文字列のチェックを行うメソッド
-	public static boolean check(String check) {
-
-		//半角英数字を指定
-		Pattern p = Pattern.compile("^[0-9a-zA-Z]+$");
-        Matcher m = p.matcher(check);
-
-        if(m.find()) {
-
-        	return false;
-
-        }else {
-
-        	return true;
-
-        }
-    }
 }
