@@ -60,7 +60,7 @@ public class LoginController extends HttpServlet {
 
 		if (isIdBlank || isPasswordBlank) {
 
-			request.getSession().setAttribute("error", "ユーザー名とパスワードを入力してください。");
+			request.getSession().setAttribute("error", "IDとPASSWORDを入力してください。");
 			response.sendRedirect("/Zaiko2020/loginForm");
 			return;
 
@@ -99,7 +99,7 @@ public class LoginController extends HttpServlet {
 				}
 			}
 
-			request.getSession().setAttribute("error", "ユーザー名またはパスワードが間違っています。");
+			request.getSession().setAttribute("error", "IDもしくはPASSWORDに誤りがあります。");
 			response.sendRedirect("/Zaiko2020/loginForm");
 
 		}catch (SQLException e) {
