@@ -29,7 +29,8 @@
             <div id="inoutInput">
                 <span>
                     <label for="count"><%=request.getParameter("mode")%>数</label>
-                    <input type="number" id="count" required max="999999" min="1">
+                    <input type="text" id="count" required pattern="^[0-9]+$" maxlength="6">
+<!--                     <input type="number" id="count" required max="999999" min="1"> -->
                     <span class="unit">冊</span>
                 </span>
                 <br>
