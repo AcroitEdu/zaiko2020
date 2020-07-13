@@ -189,15 +189,16 @@ public class InventoryListController extends HttpServlet {
 
 			}
 
+			page = Integer.parseInt(request.getParameter("page"));
+
 			//入力値チェック
-			if (!pageNumberCheck.matches("^[0-9]*$") || Integer.parseInt(pageNumberCheck) < 1) {
+			if (!pageNumberCheck.matches("^[0-9]*$") || page < 1) {
 
 				session.setAttribute("error", "指定されている形式で入力してください。");
 				break;
 
 			}
 
-			page = Integer.parseInt(request.getParameter("page"));
 			int maxPage = (int) session.getAttribute("maxPage");
 			if (maxPage < page) {
 
@@ -222,7 +223,7 @@ public class InventoryListController extends HttpServlet {
 
 		}
 
-		//検索結果をセッションに設定
+		//検索をセッションに設定
 		session.setAttribute("conditions", sc);
 
 		//書籍検索
