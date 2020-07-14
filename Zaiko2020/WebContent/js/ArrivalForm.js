@@ -25,7 +25,7 @@ const checkValid = () => {
     } else if (0 < $("#count").val().match(/^[\x20-\x7e]+$/) && value <= 6) {
     	$("#count")[0].setCustomValidity("");
     }else{
-    	$("#count")[0].setCustomValidity(`指定された形式で入力してください。`);
+    	$("#count")[0].setCustomValidity(`指定されている形式で入力してください。`);
     }
     return $("#inoutForm")[0].reportValidity();
 };
