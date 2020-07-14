@@ -48,6 +48,7 @@ $("#dialogExecute").click(function () {
     $("#inoutForm")[0].submit();
 });
 
+//エンターキー無効化
 $(function(){
     $("input"). keydown(function(e) {
         if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
