@@ -1,6 +1,7 @@
 package jp.co.acroit.zaiko2020.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -80,6 +81,10 @@ public class ArrivalProcessingController extends HttpServlet {
 		} catch (IndexOutOfBoundsException e) {
 			//エラーを返し入荷画面にリダイレクト
 			session.setAttribute("error", "保管可能な在庫数を超過するためキャンセルされました。");
+			response.sendRedirect("/Zaiko2020/arrivalForm");
+
+		} catch (SQLException e) {
+			session.setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/arrivalForm");
 
 		} catch (Exception e) {
