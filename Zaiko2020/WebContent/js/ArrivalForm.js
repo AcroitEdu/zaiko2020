@@ -1,20 +1,39 @@
-//入力チェック処理
+////入力チェック処理
+////const checkValid = () => {
+////    if ($("#count").val().search(/[^0-9]/) < 0) {
+////        $("#count")[0].setCustomValidity("");
+////    } else {
+////        var value = parseInt($("#count").val().replace(/[^0-9].*/, ""));
+////        $("#count")[0].setCustomValidity(`有効な値を入力してください。有効な値として最も近いのは${value}と${value + 1}です。`);
+////    }
+////    return $("#inoutForm")[0].reportValidity();
+////};
+//
+////「実行」押下時
+//$("#execute").click(function () {
+////    if (checkValid()) {
+//        $("#countConfirm").text(parseInt($("#count").val()));
+//        $("#dialogSubmit")[0].showModal();
+////    }
+//});
+
+//入力値チェック
 const checkValid = () => {
-    if ($("#count").val().search(/[^0-9]/) < 0) {
-        $("#count")[0].setCustomValidity("");
-    } else {
-        var value = parseInt($("#count").val().replace(/[^0-9].*/, ""));
-        $("#count")[0].setCustomValidity(`有効な値を入力してください。有効な値として最も近いのは${value}と${value + 1}です。`);
+    if (!$("#count").val()) {
+        $("#count")[0].setCustomValidity(`このフィールドを入力してください。`);
+    } else if (0 < $("#count").val().match(/^[\x20-\x7e]+$/)) {
+    	$("#count")[0].setCustomValidity("");
+    }else{
+    	$("#count")[0].setCustomValidity(`指定された形式で入力してください。`);
     }
     return $("#inoutForm")[0].reportValidity();
 };
 
+
 //「実行」押下時
 $("#execute").click(function () {
     if (checkValid()) {
-        var count = parseInt($("#count").val());
-        $("#countConfirm").text(count);
-        $("#countHidden").val(count);
+        $("#countConfirm").text(parseInt($("#count").val()));
         $("#dialogSubmit")[0].showModal();
     }
 });
@@ -27,4 +46,14 @@ $("#dialogCancel").click(function () {
 //ダイアログ内「実行」押下時
 $("#dialogExecute").click(function () {
     $("#inoutForm")[0].submit();
+});
+
+$(function(){
+    $("input"). keydown(function(e) {
+        if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
+            return false;
+        } else {
+            return true;
+        }
+    });
 });

@@ -26,18 +26,15 @@
     </div>
     <footer>
         <div id="inout">
-            <div id="inoutInput">
+            <form id="inoutForm" action="/Zaiko2020/<%=request.getParameter("action")%>" method="post">
                 <span>
                     <label for="count"><%=request.getParameter("mode")%>数</label>
-                    <input type="text" id="count" required pattern="^[0-9]+$" maxlength="6">
-<!--                     <input type="number" id="count" required max="999999" min="1"> -->
+<!--                     <input type="number" id="count" name="count" required max="999999" min="1"> -->
+                    <input type="text" id="count" name="count" required pattern="^[0-9]+$" maxlength="6">
+                    <input type="hidden" id="formId" name="id" value="${book.id }">
                     <span class="unit">冊</span>
                 </span>
                 <br>
-            </div>
-            <form id="inoutForm" action="/Zaiko2020/<%=request.getParameter("action")%>" method="post">
-                <input type="hidden" id="formId" name="id" value="${book.id }">
-                <input type="hidden" id="countHidden" name="count">
             </form>
             <span>
                 <button id="execute" class="button button-main button-border">実行</button>
