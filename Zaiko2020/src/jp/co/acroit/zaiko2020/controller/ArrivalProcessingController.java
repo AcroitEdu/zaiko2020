@@ -3,6 +3,7 @@ package jp.co.acroit.zaiko2020.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,6 +53,7 @@ public class ArrivalProcessingController extends HttpServlet {
 
 		int id = 0;
 		int count = 0;
+		System.out.println(id + "----" + count);
 
 		//書籍の検索用
 		BookDataAccess bda = new BookDataAccess();
@@ -84,13 +86,16 @@ public class ArrivalProcessingController extends HttpServlet {
 			response.sendRedirect("/Zaiko2020/arrivalForm");
 
 		} catch (SQLException e) {
+
 			session.setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/arrivalForm");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
+			dispatcher.forward(request, response);
 
 		} catch (Exception e) {
-			//エラーを返し入荷画面にリダイレクト
+			//エラーを返しリダイレクト
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/arrivalForm");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
+			dispatcher.forward(request, response);
 			e.printStackTrace();
 
 		}

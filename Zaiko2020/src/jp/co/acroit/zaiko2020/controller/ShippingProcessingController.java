@@ -1,7 +1,9 @@
 package jp.co.acroit.zaiko2020.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -82,13 +84,21 @@ public class ShippingProcessingController extends HttpServlet {
 			session.setAttribute("error", "出荷数が在庫数を超過するためキャンセルされました。");
 			response.sendRedirect("/Zaiko2020/shippingForm");
 
+		} catch (SQLException e) {
+
+			session.setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ShippingForm.jsp");
+			dispatcher.forward(request, response);
+
 		} catch (Exception e) {
-			//エラーを返し出荷画面にリダイレクト
+			//エラーを返しリダイレクト
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/shippingForm");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ShippingForm.jsp");
+			dispatcher.forward(request, response);
 			e.printStackTrace();
 
 		}
+
 
 	}
 

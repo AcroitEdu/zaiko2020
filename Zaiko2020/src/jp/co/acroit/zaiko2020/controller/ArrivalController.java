@@ -1,6 +1,7 @@
 package jp.co.acroit.zaiko2020.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -63,10 +64,16 @@ public class ArrivalController extends HttpServlet {
 			//入荷画面へフォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
 			dispatcher.forward(request, response);
+		} catch (SQLException e) {
+
+			session.setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+			dispatcher.forward(request, response);
+
 		} catch (Exception e) {
 			//エラーを返しリダイレクト
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 			e.printStackTrace();
 
