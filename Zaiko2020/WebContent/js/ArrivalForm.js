@@ -17,18 +17,18 @@
 ////    }
 //});
 
-//入力値チェック
+//入力値チェック処理
 const checkValid = () => {
+	var value = String($("#count").val()).length;
     if (!$("#count").val()) {
         $("#count")[0].setCustomValidity(`このフィールドを入力してください。`);
-    } else if (0 < $("#count").val().match(/^[\x20-\x7e]+$/)) {
+    } else if (0 < $("#count").val().match(/^[\x20-\x7e]+$/) && value <= 6) {
     	$("#count")[0].setCustomValidity("");
     }else{
     	$("#count")[0].setCustomValidity(`指定された形式で入力してください。`);
     }
     return $("#inoutForm")[0].reportValidity();
 };
-
 
 //「実行」押下時
 $("#execute").click(function () {
