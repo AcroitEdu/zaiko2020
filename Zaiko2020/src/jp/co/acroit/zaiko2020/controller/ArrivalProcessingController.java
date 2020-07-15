@@ -52,7 +52,6 @@ public class ArrivalProcessingController extends HttpServlet {
 
 		int id = 0;
 		int count = 0;
-		System.out.println(id + "----" + count);
 
 		//書籍の検索用
 		BookDataAccess bda = new BookDataAccess();
@@ -64,8 +63,6 @@ public class ArrivalProcessingController extends HttpServlet {
 			id = Integer.parseInt(request.getParameter("id"));
 			count = Integer.parseInt(request.getParameter("count"));
 
-			System.out.println(id + "----" + count);
-
 			if(count < 1 || 999999 < count) {
 
 				System.out.println("エラー");
@@ -73,7 +70,6 @@ public class ArrivalProcessingController extends HttpServlet {
 
 			}
 
-			System.out.println("--------------");
 			//DBを操作し読み込む
 			foundBook = bda.update(id, count);
 

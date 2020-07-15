@@ -18,8 +18,10 @@ public class UserDataAccess {
 	public UserDataAccess() {
 		url = "jdbc:mysql://localhost/zaiko2020?characterEncoding=UTF-8&serverTimezone=JST";
 		driver = "com.mysql.cj.jdbc.Driver";
-		username = "tomcat";
-		password = "RC2-Z%b9e85PWqR";
+		username = "root";
+		password = "";
+//		username = "tomcat";
+//		password = "RC2-Z%b9e85PWqR";
 		query = "SELECT * FROM user WHERE name = ?";
 		numberColumn = "id";
 		idColumn = "name";
