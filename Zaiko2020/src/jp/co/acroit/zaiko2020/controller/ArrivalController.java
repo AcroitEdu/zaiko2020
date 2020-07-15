@@ -45,6 +45,7 @@ public class ArrivalController extends HttpServlet {
 				if (session.getAttribute("id") != null) {
 					id = (int) session.getAttribute("id");
 				} else {
+					System.out.println("エラー");
 					session.setAttribute("error", "書籍を選択してください。");
 					response.sendRedirect("/Zaiko2020/inventoryList");
 					return;
@@ -67,14 +68,16 @@ public class ArrivalController extends HttpServlet {
 		} catch (SQLException e) {
 
 			session.setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
-			dispatcher.forward(request, response);
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+//			dispatcher.forward(request, response);
+			response.sendRedirect("/Zaiko2020/inventoryList");
 
 		} catch (Exception e) {
 			//エラーを返しリダイレクト
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
-			dispatcher.forward(request, response);
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+//			dispatcher.forward(request, response);
+			response.sendRedirect("/Zaiko2020/inventoryList");
 			e.printStackTrace();
 
 		}

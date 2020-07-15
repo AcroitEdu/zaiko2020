@@ -3,7 +3,6 @@ package jp.co.acroit.zaiko2020.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -65,11 +64,16 @@ public class ArrivalProcessingController extends HttpServlet {
 			id = Integer.parseInt(request.getParameter("id"));
 			count = Integer.parseInt(request.getParameter("count"));
 
+			System.out.println(id + "----" + count);
+
 			if(count < 1 || 999999 < count) {
 
+				System.out.println("エラー");
 				throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
+
 			}
 
+			System.out.println("--------------");
 			//DBを操作し読み込む
 			foundBook = bda.update(id, count);
 
@@ -87,15 +91,18 @@ public class ArrivalProcessingController extends HttpServlet {
 
 		} catch (SQLException e) {
 
+			System.out.println("-------------------");
 			session.setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
-			dispatcher.forward(request, response);
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
+//			dispatcher.forward(request, response);
+			response.sendRedirect("/Zaiko2020/arrivalForm");
 
 		} catch (Exception e) {
-			//エラーを返しリダイレクト
+
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
-			dispatcher.forward(request, response);
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
+//			dispatcher.forward(request, response);
+			response.sendRedirect("/Zaiko2020/arrivalForm");
 			e.printStackTrace();
 
 		}
