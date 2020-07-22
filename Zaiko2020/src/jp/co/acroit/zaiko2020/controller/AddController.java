@@ -28,7 +28,7 @@ public class AddController extends HttpServlet {
 		Branch = request.getParameter("button");
 
 		switch(Branch) {
-		case "実行":
+		case "キャンセル":
 			HttpSession session = request.getSession();
 			session.setAttribute("titile", "");
 			session.setAttribute("publisher", "");

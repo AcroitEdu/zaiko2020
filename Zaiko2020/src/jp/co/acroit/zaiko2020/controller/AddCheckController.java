@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
  * @version 1.0
  * @author hiroki tajima
  */
-@WebServlet("/AddCheckController")
+@WebServlet("/AddCheck")
 public class AddCheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
