@@ -38,58 +38,39 @@ public class AddCheckController extends HttpServlet {
 		int stock = 0;
 		int deleteFlg = 0;
 
+		title = request.getParameter("bookname");
+		publisher = request.getParameter("publisher");
+		author = request.getParameter("author");
+		isbn = request.getParameter("isbn");
+		date = LocalDate.parse(request.getParameter("date"), DateTimeFormatter.ISO_DATE);
+		price = Integer.parseInt(request.getParameter("price"));
+		stock = Integer.parseInt(request.getParameter("stock"));
+
+		Book book = new Book(0, null, null, null, null, null, 0, 0, 0);
+
+		book.setName(title);
+		book.setPublisher(publisher);
+		book.setAuthor(author);
+		book.setIsbn(isbn);
+		book.setSalesDate(date);
+		book.setPrice(price);
+		book.setStock(stock);
+		book.setDeleteFlag(deleteFlg);
 
 		HttpSession session = request.getSession();
-
-		try {
-
-			if(request.getParameter("bookname") == null || request.getParameter("publisher") == null || request.getParameter("author") == null || request.getParameter("isbn") == null || request.getParameter("date") == null || request.getParameter("price") == null || request.getParameter("stock") == null) {
-				throw new NullPointerException();
-			}
-
-			title = request.getParameter("bookname");
-			publisher = request.getParameter("publisher");
-			author = request.getParameter("author");
-			isbn = request.getParameter("isbn");
-			date = LocalDate.parse(request.getParameter("date"), DateTimeFormatter.ISO_DATE);
-			price = Integer.parseInt(request.getParameter("price"));
-			stock = Integer.parseInt(request.getParameter("stock"));
-
-			Book addbook = new Book(0, null, null, null, null, null, 0, 0, 0);
-
-			addbook.setName(title);
-			addbook.setPublisher(publisher);
-			addbook.setAuthor(author);
-			addbook.setIsbn(isbn);
-			addbook.setSalesDate(date);
-			addbook.setPrice(price);
-			addbook.setStock(stock);
-			addbook.setDeleteFlag(deleteFlg);
-
-			session.setAttribute("book", addbook);
+		session.setAttribute("book", book);
 
 
-//			session.setAttribute("titile", title);
-//			session.setAttribute("publisher", publisher);
-//			session.setAttribute("author", author);
-//			session.setAttribute("isbn", isbn);
-//			session.setAttribute("date", date);
-//			session.setAttribute("price", price);
-//			session.setAttribute("stock", stock);
+//		session.setAttribute("titile", title);
+//		session.setAttribute("publisher", publisher);
+//		session.setAttribute("author", author);
+//		session.setAttribute("isbn", isbn);
+//		session.setAttribute("date", date);
+//		session.setAttribute("price", price);
+//		session.setAttribute("stock", stock);
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/AddCheck.jsp");
-			dispatcher.forward(request, response);
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-			session.setAttribute("error", "指定されている形式で入力してください。");
-			response.sendRedirect("/Zaiko2020/inventoryList");
-		} catch (Exception e) {
-			e.printStackTrace();
-			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/inventoryList");
-		}
-
-
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/AddCheck.jsp");
+		dispatcher.forward(request, response);
 
 	}
 

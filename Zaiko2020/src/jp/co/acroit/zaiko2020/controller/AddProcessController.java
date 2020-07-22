@@ -37,17 +37,12 @@ public class AddProcessController extends HttpServlet {
 //		int dbDeleteflg = 0;
 
 		HttpSession session = request.getSession();
-		Book addbook = (Book)session.getAttribute("book");
-		Book book;
+		Book book = (Book)session.getAttribute("items");
+
 
 		BookDataAccess bda = new BookDataAccess();
 		try {
-			bda.add(addbook);
-			book = bda.addSearch(addbook);
-			session.setAttribute("book", book);
-
-			response.sendRedirect("/Zaiko2020/resultForm");
-
+			bda.add(book);
 		} catch (SQLException e) {
 
 			session.setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
@@ -56,6 +51,8 @@ public class AddProcessController extends HttpServlet {
 		} catch (Exception e) {
 			//エラーを返しリダイレクト
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+//			dispatcher.forward(request, response);
 			response.sendRedirect("/Zaiko2020/logout");
 			e.printStackTrace();
 

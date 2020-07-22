@@ -68,11 +68,15 @@ public class ArrivalController extends HttpServlet {
 		} catch (SQLException e) {
 
 			session.setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+//			dispatcher.forward(request, response);
 			response.sendRedirect("/Zaiko2020/inventoryList");
 
 		} catch (Exception e) {
 			//エラーを返しリダイレクト
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+//			dispatcher.forward(request, response);
 			response.sendRedirect("/Zaiko2020/inventoryList");
 			e.printStackTrace();
 
