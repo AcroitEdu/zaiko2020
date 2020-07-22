@@ -408,6 +408,69 @@ public class BookDataAccess {
 
 	}
 
+	//書籍の追加後に追加した書籍を取得するメソッド
+		public Book addSearch(Book book) throws SQLException {
+			Connection con = null;
+
+			try {
+
+				con = DriverManager.getConnection(url, username, password);
+
+				//クエリの生成・実行を行う。
+				query = "SELECT * FROM books WHERE " + titleColumn  + " = " + book.getName() + " AND " + authorColumn   + " = " + book.getAuthor() + " AND " + publisherColumn  + " = " + book.getPublisher() + " AND " + salesDateColumn   + " = " + book.getSalesDate() + " AND " + isbnColumn   + " = " + book.getIsbn() + " AND " + priceColumn   + " = " + book.getPrice() + " AND " + stockColumn   + " = " + book.getStock() + ";";
+				PreparedStatement ps = con.prepareStatement(query);
+				ResultSet rs = ps.executeQuery();
+
+				int dbId = 0;
+				String dbBookName = null;
+				String dbPublisher = null;
+				String dbAuthor = null;
+				String dbIsbn = null;
+				LocalDate dbSalsDate = null;
+				int dbPrice = 0;
+				int dbStock = 0;
+				int dbDeleteflg = 0;
+
+				while (rs.next()) {
+
+					dbId = rs.getInt(idColumn);
+					dbBookName = rs.getString(titleColumn);
+					dbPublisher = rs.getString(publisherColumn);
+					dbAuthor = rs.getString(authorColumn);
+					dbIsbn = rs.getString(isbnColumn);
+					dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
+					dbPrice = rs.getInt(priceColumn);
+					dbStock = rs.getInt(stockColumn);
+					dbDeleteflg = rs.getInt(deleteflgColumn);
+
+				}
+				rs.close();
+				con.close();
+				con = null;
+
+				return new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
+						dbDeleteflg);
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+				throw e;
+
+			} finally {
+
+				if (con != null) {
+
+					try {
+
+						con.close();
+
+					} catch (Exception ignore) {
+
+					}
+				}
+			}
+
+		}
+
 	//書籍の削除を行うメソッド
 	public void delete(int id) throws SQLException {
 		Connection con = null;
