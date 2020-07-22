@@ -40,7 +40,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                 <li class="tab-current tab">在庫一覧</li>
                 <li class="tab">
                 	<form id="addForm" action="/Zaiko2020/Add" method="post">
-                        <input type="submit" id="addButton" class="button" value="追加">
+                        <input type="submit" id="addButton" class="button" name="button" value="追加">
                     </form>
                 </li>
                 <li class="tab-space tab"></li>
