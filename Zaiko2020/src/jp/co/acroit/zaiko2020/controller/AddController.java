@@ -1,6 +1,7 @@
 package jp.co.acroit.zaiko2020.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import jp.co.acroit.zaiko2020.book.Book;
+
 /**
  * 追加画面サーブレット
- * @version 1.0
+ * @version 1.1
  * @author hiroki tajima
  */
 @WebServlet("/Add")
@@ -26,17 +29,37 @@ public class AddController extends HttpServlet {
 
 		String Branch = null;
 		Branch = request.getParameter("button");
+		System.out.println(Branch);
+
+
+		String title = null;
+		String publisher = null;
+		String author = null;
+		String isbn = null;
+		LocalDate date = null;
+		int price = 0;
+		int stock = 0;
+		int deleteFlg = 0;
+
+
+
 
 		switch(Branch) {
-		case "キャンセル":
+		case "追加":
+			Book book = new Book(0, null, null, null, null, null, 0, 0, 0);
+
+			book.setName(title);
+			book.setPublisher(publisher);
+			book.setAuthor(author);
+			book.setIsbn(isbn);
+			book.setSalesDate(date);
+			book.setPrice(price);
+			book.setStock(stock);
+			book.setDeleteFlag(deleteFlg);
+
 			HttpSession session = request.getSession();
-			session.setAttribute("titile", "");
-			session.setAttribute("publisher", "");
-			session.setAttribute("author", "");
-			session.setAttribute("isbn", "");
-			session.setAttribute("date", "");
-			session.setAttribute("price", "");
-			session.setAttribute("stock", "");
+			session.setAttribute("book", book);
+
 			break;
 		}
 
