@@ -46,19 +46,19 @@ public class AddController extends HttpServlet {
 
 		switch(Branch) {
 		case "追加":
-			Book book = new Book(0, null, null, null, null, null, 0, 0, 0);
+			Book addbook = new Book(0, null, null, null, null, null, 0, 0, 0);
 
-			book.setName(title);
-			book.setPublisher(publisher);
-			book.setAuthor(author);
-			book.setIsbn(isbn);
-			book.setSalesDate(date);
-			book.setPrice(price);
-			book.setStock(stock);
-			book.setDeleteFlag(deleteFlg);
+			addbook.setName(title);
+			addbook.setPublisher(publisher);
+			addbook.setAuthor(author);
+			addbook.setIsbn(isbn);
+			addbook.setSalesDate(date);
+			addbook.setPrice(price);
+			addbook.setStock(stock);
+			addbook.setDeleteFlag(deleteFlg);
 
 			HttpSession session = request.getSession();
-			session.setAttribute("book", book);
+			session.setAttribute("book", addbook);
 
 			break;
 		}
