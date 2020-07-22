@@ -1,6 +1,8 @@
 package jp.co.acroit.zaiko2020.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import jp.co.acroit.zaiko2020.book.Book;
 
 /**
  * 追加確認サーブレット
@@ -29,27 +33,41 @@ public class AddCheckController extends HttpServlet {
 		String publisher = null;
 		String author = null;
 		String isbn = null;
-		String date = null;
+		LocalDate date = null;
 		int price = 0;
 		int stock = 0;
-		int dbDeleteflg = 0;
+		int deleteFlg = 0;
 
 		title = request.getParameter("bookname");
 		publisher = request.getParameter("publisher");
 		author = request.getParameter("author");
 		isbn = request.getParameter("isbn");
-		date = request.getParameter("date");
+		date = LocalDate.parse(request.getParameter("date"), DateTimeFormatter.ISO_DATE);
 		price = Integer.parseInt(request.getParameter("price"));
 		stock = Integer.parseInt(request.getParameter("stock"));
 
+		Book book = new Book(0, null, null, null, null, null, 0, 0, 0);
+
+		book.setName(title);
+		book.setPublisher(publisher);
+		book.setAuthor(author);
+		book.setIsbn(isbn);
+		book.setSalesDate(date);
+		book.setPrice(price);
+		book.setStock(stock);
+		book.setDeleteFlag(deleteFlg);
+
 		HttpSession session = request.getSession();
-		session.setAttribute("titile", title);
-		session.setAttribute("publisher", publisher);
-		session.setAttribute("author", author);
-		session.setAttribute("isbn", isbn);
-		session.setAttribute("date", date);
-		session.setAttribute("price", price);
-		session.setAttribute("stock", stock);
+		session.setAttribute("book", book);
+
+
+//		session.setAttribute("titile", title);
+//		session.setAttribute("publisher", publisher);
+//		session.setAttribute("author", author);
+//		session.setAttribute("isbn", isbn);
+//		session.setAttribute("date", date);
+//		session.setAttribute("price", price);
+//		session.setAttribute("stock", stock);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/AddCheck.jsp");
 		dispatcher.forward(request, response);
