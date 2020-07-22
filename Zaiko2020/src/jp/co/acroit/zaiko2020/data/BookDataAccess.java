@@ -24,8 +24,8 @@ public class BookDataAccess {
 		driver = "com.mysql.cj.jdbc.Driver";
 		username = "root";
 		password = "";
-		//		username = "tomcat";
-		//		password = "RC2-Z%b9e85PWqR";
+//		username = "tomcat";
+//		password = "RC2-Z%b9e85PWqR";
 
 		//カラム名を格納する。
 		idColumn = "id";
@@ -117,63 +117,63 @@ public class BookDataAccess {
 	}
 
 	//書籍検索（deleatflg=1）を行うメソッド
-	public List<Book> findDleat(SearchCondition sc) throws SQLException {
-		Connection con = null;
-		try {
-			con = DriverManager.getConnection(url, username, password);
+		public List<Book> findDleat(SearchCondition sc) throws SQLException {
+			Connection con = null;
+			try {
+				con = DriverManager.getConnection(url, username, password);
 
-			//クエリの生成・実行を行う。
-			query = "SELECT * FROM books";
-			//検索条件＋deleatflg = 0
-			query = query + sqlWhere(sc) + " AND " + deleteflgColumn + " = 1 " + sqlOrderBy(sc) + sqlLimit(sc) + ";";
-			System.out.println(query);
-			PreparedStatement ps = con.prepareStatement(query);
-			ResultSet rs = ps.executeQuery();
+				//クエリの生成・実行を行う。
+				query = "SELECT * FROM books";
+				//検索条件＋deleatflg = 0
+				query = query + sqlWhere(sc) + " AND " + deleteflgColumn + " = 1 " + sqlOrderBy(sc) + sqlLimit(sc) + ";";
+				System.out.println(query);
+				PreparedStatement ps = con.prepareStatement(query);
+				ResultSet rs = ps.executeQuery();
 
 
-			int dbId = 0;
-			String dbBookName = null;
-			String dbPublisher = null;
-			String dbAuthor = null;
-			String dbIsbn = null;
-			LocalDate dbSalsDate;
-			int dbPrice = 0;
-			int dbStock = 0;
-			int dbDeleteflg = 0;
+				int dbId = 0;
+				String dbBookName = null;
+				String dbPublisher = null;
+				String dbAuthor = null;
+				String dbIsbn = null;
+				LocalDate dbSalsDate;
+				int dbPrice = 0;
+				int dbStock = 0;
+				int dbDeleteflg = 0;
 
-			List<Book> bookList = new ArrayList<Book>();
+				List<Book> bookList = new ArrayList<Book>();
 
-			while (rs.next()) {
-				dbId = rs.getInt(idColumn);
-				dbBookName = rs.getString(titleColumn);
-				dbPublisher = rs.getString(publisherColumn);
-				dbAuthor = rs.getString(authorColumn);
-				dbIsbn = rs.getString(isbnColumn);
-				dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
-				dbPrice = rs.getInt(priceColumn);
-				dbStock = rs.getInt(stockColumn);
-				dbDeleteflg = rs.getInt(deleteflgColumn);
-				Book aBook = new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
-						dbDeleteflg);
-				bookList.add(aBook);
-			}
-			rs.close();
-			con.close();
-			con = null;
+				while (rs.next()) {
+					dbId = rs.getInt(idColumn);
+					dbBookName = rs.getString(titleColumn);
+					dbPublisher = rs.getString(publisherColumn);
+					dbAuthor = rs.getString(authorColumn);
+					dbIsbn = rs.getString(isbnColumn);
+					dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
+					dbPrice = rs.getInt(priceColumn);
+					dbStock = rs.getInt(stockColumn);
+					dbDeleteflg = rs.getInt(deleteflgColumn);
+					Book aBook = new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
+							dbDeleteflg);
+					bookList.add(aBook);
+				}
+				rs.close();
+				con.close();
+				con = null;
 
-			return bookList;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw e;
-		} finally {
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception ignore) {
+				return bookList;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw e;
+			} finally {
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception ignore) {
+					}
 				}
 			}
 		}
-	}
 
 	//idによる書籍の検索を行うメソッド
 	public Book findId(int id) throws SQLException {
@@ -240,99 +240,99 @@ public class BookDataAccess {
 
 	//DB在庫数更新処理を行うメソッド
 	public Book update(int id, int input) throws SQLException {
-		Connection con = null;
-		try {
+			Connection con = null;
+			try {
 
-			con = DriverManager.getConnection(url, username, password);
+				con = DriverManager.getConnection(url, username, password);
 
-			//オートコミットOFFにする。
-			con.setAutoCommit(false);
-			query = "SELECT " + stockColumn + " FROM books WHERE " + idColumn + "=" + id + " for update;";
-			PreparedStatement ps1 = con.prepareStatement(query);
-			ps1.executeQuery();
-			ResultSet rs1 = ps1.executeQuery();
-			rs1.next();
+				//オートコミットOFFにする。
+				con.setAutoCommit(false);
+				query = "SELECT " + stockColumn + " FROM books WHERE " + idColumn + "=" + id + " for update;";
+				PreparedStatement ps1 = con.prepareStatement(query);
+				ps1.executeQuery();
+				ResultSet rs1 = ps1.executeQuery();
+				rs1.next();
 
-			int stock = rs1.getInt(stockColumn);
+				int stock = rs1.getInt(stockColumn);
 
-			//DBを更新する値の計算を行う。(出荷の場合はinputにマイナスの値が入る)
-			int updateStock = stock + input;
+				//DBを更新する値の計算を行う。(出荷の場合はinputにマイナスの値が入る)
+				int updateStock = stock + input;
 
-			//入荷・出荷が可能なのか、判定を行う。
-			if(updateStock < 0  || 999999 < updateStock) {
+				//入荷・出荷が可能なのか、判定を行う。
+				if(updateStock < 0  || 999999 < updateStock) {
+					con.rollback();
+					throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
+				}
+
+				//更新クエリ
+				query = "UPDATE books SET " + stockColumn + " = " + updateStock + " WHERE " + idColumn + " = " + id + "LAST_INSERT_ID(null) is null and "
+						+ ";";
+				PreparedStatement ps2 = con.prepareStatement(query);
+				ps2.executeUpdate();
+
+				//更新後の書籍情報を取得取得する。
+				query = "SELECT id,title,author,publisher,salesDate,isbn,price,stock,deleteflg FROM books WHERE " + idColumn + "=" + id + ";";
+				PreparedStatement ps3 = con.prepareStatement(query);
+				ResultSet rs2 = ps3.executeQuery();
+
+				int dbId = 0;
+				String dbBookName = null;
+				String dbPublisher = null;
+				String dbAuthor = null;
+				String dbIsbn = null;
+				LocalDate dbSalsDate = null;
+				int dbPrice = 0;
+				int dbStock = 0;
+				int dbDeleteflg = 0;
+
+				while (rs2.next()) {
+
+					dbId = rs2.getInt(idColumn);
+					dbBookName = rs2.getString(titleColumn);
+					dbPublisher = rs2.getString(publisherColumn);
+					dbAuthor = rs2.getString(authorColumn);
+					dbIsbn = rs2.getString(isbnColumn);
+					dbSalsDate = rs2.getDate(salesDateColumn).toLocalDate();
+					dbPrice = rs2.getInt(priceColumn);
+					dbStock = rs2.getInt(stockColumn);
+					dbDeleteflg = rs2.getInt(deleteflgColumn);
+
+				}
+
+				rs1.close();
+				rs2.close();
+
+				//問題がなければコミットを行う。
+				con.commit();
+				con.close();
+				con = null;
+
+				Book book = new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
+						dbDeleteflg);
+
+				return book;
+
+			} catch (SQLException e) {
+
+				//エラー発生時にロールバックを行う。
 				con.rollback();
-				throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
-			}
+				e.printStackTrace();
+				throw e;
 
-			//更新クエリ
-			query = "UPDATE books SET " + stockColumn + " = " + updateStock + " WHERE " + idColumn + " = " + id + "LAST_INSERT_ID(null) is null and "
-					+ ";";
-			PreparedStatement ps2 = con.prepareStatement(query);
-			ps2.executeUpdate();
+			} finally {
 
-			//更新後の書籍情報を取得取得する。
-			query = "SELECT id,title,author,publisher,salesDate,isbn,price,stock,deleteflg FROM books WHERE " + idColumn + "=" + id + ";";
-			PreparedStatement ps3 = con.prepareStatement(query);
-			ResultSet rs2 = ps3.executeQuery();
+				if (con != null) {
 
-			int dbId = 0;
-			String dbBookName = null;
-			String dbPublisher = null;
-			String dbAuthor = null;
-			String dbIsbn = null;
-			LocalDate dbSalsDate = null;
-			int dbPrice = 0;
-			int dbStock = 0;
-			int dbDeleteflg = 0;
+					try {
 
-			while (rs2.next()) {
+						con.close();
 
-				dbId = rs2.getInt(idColumn);
-				dbBookName = rs2.getString(titleColumn);
-				dbPublisher = rs2.getString(publisherColumn);
-				dbAuthor = rs2.getString(authorColumn);
-				dbIsbn = rs2.getString(isbnColumn);
-				dbSalsDate = rs2.getDate(salesDateColumn).toLocalDate();
-				dbPrice = rs2.getInt(priceColumn);
-				dbStock = rs2.getInt(stockColumn);
-				dbDeleteflg = rs2.getInt(deleteflgColumn);
+					} catch (Exception ignore) {
 
-			}
-
-			rs1.close();
-			rs2.close();
-
-			//問題がなければコミットを行う。
-			con.commit();
-			con.close();
-			con = null;
-
-			Book book = new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
-					dbDeleteflg);
-
-			return book;
-
-		} catch (SQLException e) {
-
-			//エラー発生時にロールバックを行う。
-			con.rollback();
-			e.printStackTrace();
-			throw e;
-
-		} finally {
-
-			if (con != null) {
-
-				try {
-
-					con.close();
-
-				} catch (Exception ignore) {
-
+					}
 				}
 			}
 		}
-	}
 
 	//総件数の取得を行うメソッド
 	public int countAll(SearchCondition sc) throws SQLException {
