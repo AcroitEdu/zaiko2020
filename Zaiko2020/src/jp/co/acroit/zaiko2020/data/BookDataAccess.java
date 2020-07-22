@@ -372,7 +372,7 @@ public class BookDataAccess {
 	}
 
 	//書籍の追加を行うメソッド
-	public void add(SearchCondition sc) throws SQLException {
+	public void add(Book book) throws SQLException {
 		Connection con = null;
 		try {
 			con = DriverManager.getConnection(url, username, password);
@@ -381,7 +381,7 @@ public class BookDataAccess {
 			con.setAutoCommit(false);
 			//クエリの生成・実行を行う。
 			query = "INSERT INTO books (title,author,publisher,salesDate,isbn,price,stock,deleteflg)" +
-					"VALUES ('"+/* + 書籍名 + */"','"+/* + 出版社 + */"','"+/* + 著者 + */"','"+/* + 発売日 + */"','"+/* + ISBN + */"',"+/* + 価格 + */","+/* + 在庫数 + */",0)";
+					"VALUES ('" + book.getName() + "','" + book.getAuthor() + "','" + book.getPublisher() + "','" + book.getSalesDate() + "','" + book.getIsbn() + "'," + book.getPrice() + "," + book.getStock() + ",0)";
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 
