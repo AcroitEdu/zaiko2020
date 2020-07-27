@@ -383,13 +383,14 @@ public class BookDataAccess {
 			query = "INSERT INTO books (title,author,publisher,salesDate,isbn,price,stock,deleteflg)" +
 					"VALUES ('" + book.getName() + "','" + book.getAuthor() + "','" + book.getPublisher() + "','" + book.getSalesDate() + "','" + book.getIsbn() + "'," + book.getPrice() + "," + book.getStock() + ",0)";
 			PreparedStatement ps = con.prepareStatement(query);
-			ResultSet rs = ps.executeQuery();
+			//ResultSet rs = ps.executeQuery();
+			System.out.println(query);
 
 
 			//問題がなければコミットを行う。
 			con.commit();
 
-			rs.close();
+			//rs.close();
 			con.close();
 			con = null;
 
@@ -417,7 +418,8 @@ public class BookDataAccess {
 				con = DriverManager.getConnection(url, username, password);
 
 				//クエリの生成・実行を行う。
-				query = "SELECT * FROM books WHERE " + titleColumn  + " = " + book.getName() + " AND " + authorColumn   + " = " + book.getAuthor() + " AND " + publisherColumn  + " = " + book.getPublisher() + " AND " + salesDateColumn   + " = " + book.getSalesDate() + " AND " + isbnColumn   + " = " + book.getIsbn() + " AND " + priceColumn   + " = " + book.getPrice() + " AND " + stockColumn   + " = " + book.getStock() + ";";
+				query = "SELECT * FROM books WHERE " + titleColumn  + " = '" + book.getName() + "' AND " + authorColumn   + " = '" + book.getAuthor() + "' AND " + publisherColumn  + " = '" + book.getPublisher() + "' AND " + salesDateColumn   + " = '" + book.getSalesDate() + "' AND " + isbnColumn   + " = " + book.getIsbn() + " AND " + priceColumn   + " = " + book.getPrice() + " AND " + stockColumn   + " = " + book.getStock() + ";";
+				System.out.println(query);
 				PreparedStatement ps = con.prepareStatement(query);
 				ResultSet rs = ps.executeQuery();
 
@@ -522,7 +524,7 @@ public class BookDataAccess {
 	}
 
 	//書籍の編集を行うメソッド
-	public void edit(/*書籍情報*/int id) throws SQLException {
+	public void edit(Book book,int id) throws SQLException {
 		Connection con = null;
 		try {
 
