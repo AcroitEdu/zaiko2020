@@ -51,11 +51,11 @@ public class AddCheckController extends HttpServlet {
 
 		try {
 
-			if(request.getParameter("bookname") == null || request.getParameter("publisher") == null || request.getParameter("author") == null || request.getParameter("isbn") == null || request.getParameter("date") == null || request.getParameter("price") == null || request.getParameter("stock") == null) {
+			if(request.getParameter("bookName") == null || request.getParameter("publisher") == null || request.getParameter("author") == null || request.getParameter("isbn") == null || request.getParameter("date") == null || request.getParameter("price") == null || request.getParameter("stock") == null) {
 				throw new NullPointerException();
 			}
 
-			title = request.getParameter("bookname");
+			title = request.getParameter("bookName");
 			publisher = request.getParameter("publisher");
 			author = request.getParameter("author");
 			isbn = request.getParameter("isbn");
