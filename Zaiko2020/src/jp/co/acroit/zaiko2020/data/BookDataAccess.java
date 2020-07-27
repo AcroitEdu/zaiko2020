@@ -383,7 +383,7 @@ public class BookDataAccess {
 			query = "INSERT INTO books (title,author,publisher,salesDate,isbn,price,stock,deleteflg)" +
 					"VALUES ('" + book.getName() + "','" + book.getAuthor() + "','" + book.getPublisher() + "','" + book.getSalesDate() + "','" + book.getIsbn() + "'," + book.getPrice() + "," + book.getStock() + ",0)";
 			PreparedStatement ps = con.prepareStatement(query);
-			//ResultSet rs = ps.executeQuery();
+			ps.executeUpdate();
 			System.out.println(query);
 
 
@@ -409,12 +409,14 @@ public class BookDataAccess {
 
 	}
 
+
 	//書籍の追加後に追加した書籍を取得するメソッド
 		public Book addSearch(Book book) throws SQLException {
 			Connection con = null;
 
 			try {
 
+				System.out.println("");
 				con = DriverManager.getConnection(url, username, password);
 
 				//クエリの生成・実行を行う。
