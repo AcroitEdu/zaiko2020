@@ -44,8 +44,13 @@
 			<td>${book.stock}冊</td>
 		</tr>
 	</table>
-	<input type="submit" id="addButton" class="button" name="button" value="実行">
-	<input type="button" id="cancelButton" class="button" name="button" value="キャンセル">
-
+	<span>
+		<form id="addForm" action="/Zaiko2020/AddProcess" method="post">
+			<input type="submit" id="add" class="button button-main button-border" value="実行">
+		</form>
+		<form id="cancelForm" name="button" action="/Zaiko2020//Add" method="post">
+			<input type="submit" id="cancel" class="button button-cancel button-border" value="キャンセル">
+		</form>
+	</span>
 </body>
 </html>
