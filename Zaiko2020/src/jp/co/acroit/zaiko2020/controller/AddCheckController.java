@@ -1,8 +1,10 @@
 package jp.co.acroit.zaiko2020.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.ZoneId;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,15 +30,21 @@ public class AddCheckController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		String title = null;
 		String publisher = null;
 		String author = null;
+		Date day = null;
 		String isbn = null;
-		LocalDate date = null;
+		LocalDate salsDate = null;
 		int price = 0;
 		int stock = 0;
 		int deleteFlg = 0;
+
+
+
 
 
 		HttpSession session = request.getSession();
@@ -51,7 +59,8 @@ public class AddCheckController extends HttpServlet {
 			publisher = request.getParameter("publisher");
 			author = request.getParameter("author");
 			isbn = request.getParameter("isbn");
-			date = LocalDate.parse(request.getParameter("date"), DateTimeFormatter.ISO_DATE);
+			day = sdf.parse(request.getParameter("date"));
+			salsDate = day.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 			price = Integer.parseInt(request.getParameter("price"));
 			stock = Integer.parseInt(request.getParameter("stock"));
 
@@ -61,7 +70,7 @@ public class AddCheckController extends HttpServlet {
 			addbook.setPublisher(publisher);
 			addbook.setAuthor(author);
 			addbook.setIsbn(isbn);
-			addbook.setSalesDate(date);
+			addbook.setSalesDate(salsDate);
 			addbook.setPrice(price);
 			addbook.setStock(stock);
 			addbook.setDeleteFlag(deleteFlg);

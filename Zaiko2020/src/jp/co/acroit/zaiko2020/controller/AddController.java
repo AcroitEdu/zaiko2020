@@ -36,7 +36,7 @@ public class AddController extends HttpServlet {
 		String publisher = null;
 		String author = null;
 		String isbn = null;
-		LocalDate date = null;
+		LocalDate salsDate = null;
 		int price = 0;
 		int stock = 0;
 		int deleteFlg = 0;
@@ -52,7 +52,7 @@ public class AddController extends HttpServlet {
 			addbook.setPublisher(publisher);
 			addbook.setAuthor(author);
 			addbook.setIsbn(isbn);
-			addbook.setSalesDate(date);
+			addbook.setSalesDate(salsDate);
 			addbook.setPrice(price);
 			addbook.setStock(stock);
 			addbook.setDeleteFlag(deleteFlg);
