@@ -36,8 +36,8 @@ public class AddCheckController extends HttpServlet {
 		String title = null;
 		String publisher = null;
 		String author = null;
-		Date day = null;
 		String isbn = null;
+		Date day = null;
 		LocalDate salsDate = null;
 		int price = 0;
 		int stock = 0;
