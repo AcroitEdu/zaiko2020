@@ -232,7 +232,10 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                         <span class="link buttonShip">出荷</span>
                                     </form>
                                     <br>
-                                    <a href="#">編集</a>
+                                    <form action="/Zaiko2020/Edit" method="post" class="formEditLink inline">
+                                        <input type="hidden" name="id" value="<%=item.getId() %>">
+                                        <span class="link buttonEdit">編集</span>
+                                    </form>
                                 </td>
                                 <td class="dataName"><%=item.getName() %></td>
                                 <td class="dataAuthor"><%=item.getAuthor() %></td>
