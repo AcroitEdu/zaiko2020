@@ -396,6 +396,9 @@ public class BookDataAccess {
 
 			return;
 		} catch (SQLException e) {
+
+			//エラー発生時にロールバックを行う。
+			con.rollback();
 			e.printStackTrace();
 			throw e;
 		} finally {
