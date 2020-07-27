@@ -31,19 +31,19 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 		</header>
 		<div class="content">
 			<div class="add-options">
-				<form name="addOptions" action="/Zaiko2020/AddCheckController" method="post">
+				<form name="addOptions" action="/Zaiko2020/AddCheck" method="post">
 					<ul>
 						<li>
 							<label for="bookName">書籍名</label>
-							<textarea id="bookName" rows="3" name="bookName">"${book.title}"</textarea>
+							<textarea id="bookName" rows="3" name="bookName">${book.name}</textarea>
 						</li>
 						<li>
 							<label for="author">著者</label>
-							<textarea id="author" rows ="3" name="author">"${book.author}"</textarea>
+							<textarea id="author" rows ="3" name="author">${book.author}</textarea>
 						</li>
 						<li>
 							<label for="publisher">出版社</label>
-							<textarea id="publisher" rows ="3" name="publisher">"${book.publisher}"</textarea>
+							<textarea id="publisher" rows ="3" name="publisher">${book.publisher}</textarea>
 
 						</li>
 						<li>
@@ -52,7 +52,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                         </li>
                         <li>
                             <label for="date">発売日</label>
-                            <input type="date" id="date" name="date" value="${book.date}">
+                            <input type="date" id="date" name="date" value="${book.salesDate}">
                         </li>
                         <li>
                             <label for="stock">在庫数</label>

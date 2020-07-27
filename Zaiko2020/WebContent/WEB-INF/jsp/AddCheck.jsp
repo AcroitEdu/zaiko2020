@@ -33,8 +33,7 @@
 		</tr>
 		<tr>
 			<th scope="row">発売日</th>
-			<td><%=((Book) session.getAttribute("book")).getSalesDate().format(dateFormat)%>
-			</td>
+			<td>${book.salesDate}</td>
 		</tr>
 		<tr>
 			<th scope="row">価格</th>
