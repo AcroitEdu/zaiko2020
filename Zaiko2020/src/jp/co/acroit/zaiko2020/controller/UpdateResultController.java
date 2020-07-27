@@ -33,14 +33,14 @@ public class UpdateResultController extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.setAttribute("error", "");
-		boolean flg = (boolean) session.getAttribute("flg");
-		if (!flg) {
-
-			session.setAttribute("error", "処理が行われていません。");
-			response.sendRedirect("/Zaiko2020/inventoryList");
-			return;
-
-		}
+//		boolean flg = (boolean) session.getAttribute("flg");
+//		if (!flg) {
+//
+//			session.setAttribute("error", "処理が行われていません。");
+//			response.sendRedirect("/Zaiko2020/inventoryList");
+//			return;
+//
+//		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ResultForm.jsp");
 		dispatcher.forward(request, response);
 	}
