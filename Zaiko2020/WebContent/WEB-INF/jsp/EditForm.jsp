@@ -19,6 +19,9 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 	<div id="main">
 		<header>
 			<h1>編集</h1>
+			<form id="deleteForm" action="/Zaiko2020/DeleteCheck" method="post">
+                <input type="submit" id="delete" class="button button-warning button-border" value="書籍の削除">
+            </form>
 		</header>
 		<div class="content">
 			<div class="edit-options">
