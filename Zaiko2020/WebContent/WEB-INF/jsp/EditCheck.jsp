@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,6 +45,7 @@
 	</table>
 	<span>
 		<form id="editForm" action="/Zaiko2020/EditProcess" method="post">
+			<input type="hidden" name="id" value="${book.id}">
 			<input type="submit" name="button" id="edit" class="button button-main button-border" value="実行">
 		</form>
 		<form id="cancelForm" action="/Zaiko2020//Edit" method="post">
