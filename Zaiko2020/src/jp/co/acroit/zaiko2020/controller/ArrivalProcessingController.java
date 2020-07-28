@@ -87,11 +87,12 @@ public class ArrivalProcessingController extends HttpServlet {
 
 		} catch (SQLException e) {
 
-			System.out.println("-------------------");
-			session.setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
-//			dispatcher.forward(request, response);
-			response.sendRedirect("/Zaiko2020/arrivalForm");
+			//セッションの破棄
+			request.getSession().invalidate();
+			//セッションの再生成
+			request.getSession(true);
+			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
+			response.sendRedirect("/Zaiko2020/loginForm");
 
 		} catch (Exception e) {
 

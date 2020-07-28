@@ -67,8 +67,12 @@ public class ArrivalController extends HttpServlet {
 			dispatcher.forward(request, response);
 		} catch (SQLException e) {
 
-			session.setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/inventoryList");
+			//セッションの破棄
+			request.getSession().invalidate();
+			//セッションの再生成
+			request.getSession(true);
+			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
+			response.sendRedirect("/Zaiko2020/loginForm");
 
 		} catch (Exception e) {
 			//エラーを返しリダイレクト

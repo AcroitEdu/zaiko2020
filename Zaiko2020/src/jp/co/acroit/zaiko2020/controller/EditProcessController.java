@@ -25,27 +25,49 @@ public class EditProcessController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//		doGet(request, response);
+
+		//idを取得する
 		int id = 0;
 
-		id = Integer.parseInt(request.getParameter("id"));
-
 		HttpSession session = request.getSession();
+
+		//書籍の編集内容を取得する
 		Book editbook = (Book)session.getAttribute("book");
+
 		Book book;
 
 		BookDataAccess bda = new BookDataAccess();
+
 		try {
+
+			id = (int)session.getAttribute("id");
+			System.out.println(id);
+
+			//書籍情報の編集
 			bda.edit(editbook,id);
-			book = bda.addSearch(editbook);
+			//編集後の書籍情報を取得
+			book = bda.findId(id);
+			//取得した書籍の情報をセッションに設定する
 			session.setAttribute("book", book);
 
 			response.sendRedirect("/Zaiko2020/resultForm");
 
 		} catch (SQLException e) {
 
-			session.setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/inventoryList");
+			//セッションの破棄
+			request.getSession().invalidate();
+			//セッションの再生成
+			request.getSession(true);
+			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
+			response.sendRedirect("/Zaiko2020/loginForm");
 
 		} catch (Exception e) {
 			//エラーを返しリダイレクト
@@ -54,14 +76,6 @@ public class EditProcessController extends HttpServlet {
 			e.printStackTrace();
 
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

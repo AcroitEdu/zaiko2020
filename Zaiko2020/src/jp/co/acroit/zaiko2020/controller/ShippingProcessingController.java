@@ -86,11 +86,12 @@ public class ShippingProcessingController extends HttpServlet {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-			session.setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ShippingForm.jsp");
-//			dispatcher.forward(request, response);
-			response.sendRedirect("/Zaiko2020/shippingForm");
+			//セッションの破棄
+			request.getSession().invalidate();
+			//セッションの再生成
+			request.getSession(true);
+			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
+			response.sendRedirect("/Zaiko2020/loginForm");
 
 		} catch (Exception e) {
 
