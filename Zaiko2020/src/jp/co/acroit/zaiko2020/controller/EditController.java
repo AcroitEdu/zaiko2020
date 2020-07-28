@@ -36,8 +36,14 @@ public class EditController extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 
-		//特定書籍の検索条件設定用
+		String branch = null;
 		int id = 0;
+
+
+		branch = request.getParameter("button");
+		System.out.println(branch);
+
+
 
 		//書籍の検索用
 		BookDataAccess bda = new BookDataAccess();
@@ -47,17 +53,22 @@ public class EditController extends HttpServlet {
 
 
 		try {
-			//IDの取得
-
-			id = Integer.parseInt(request.getParameter("id"));
 
 
-			//IDをセッションに設定
-			session.setAttribute("id", id);
+			switch(branch) {
+			case "編集":
+				//IDの取得
+				id = Integer.parseInt(request.getParameter("id"));
 
-			//特定書籍の検索し、結果をセッションに設定
-			foundBook = bda.findId(id);
-			session.setAttribute("book", foundBook);
+
+				//IDをセッションに設定
+				session.setAttribute("id", id);
+
+				//特定書籍の検索し、結果をセッションに設定
+				foundBook = bda.findId(id);
+				session.setAttribute("book", foundBook);
+			}
+
 
 			//編集画面へフォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/EditForm.jsp");
