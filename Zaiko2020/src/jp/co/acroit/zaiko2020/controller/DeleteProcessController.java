@@ -18,8 +18,8 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
  * @version 1.0
  * @author hiroki tajima
  */
-@WebServlet("/Delete")
-public class DeleteController extends HttpServlet {
+@WebServlet("/DeleteProcess")
+public class DeleteProcessController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
