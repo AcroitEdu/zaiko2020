@@ -16,7 +16,7 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
 /**
  * Servlet implementation class EditProcessController
  */
-@WebServlet("/EditProcessController")
+@WebServlet("/EditProcess")
 public class EditProcessController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
