@@ -569,21 +569,25 @@ public class BookDataAccess {
 		Connection con = null;
 		try {
 
+			System.out.println("-----------");
 			con = DriverManager.getConnection(url, username, password);
 
 			//オートコミットOFFにする。
 			con.setAutoCommit(false);
-			query = "SELECT " + titleColumn + "," + publisherColumn + "," + authorColumn + "," + salesDateColumn + "," + isbnColumn + "," + priceColumn + "," + stockColumn + "," + " FROM books WHERE " + idColumn + "=" + id + " for update;";
+			query = "SELECT " + titleColumn + "," + publisherColumn + "," + authorColumn + "," + salesDateColumn + "," + isbnColumn + "," + priceColumn + "," + stockColumn + " FROM books WHERE " + idColumn + " = " + id + " for update;";
+			System.out.println(query);
 			PreparedStatement ps1 = con.prepareStatement(query);
 			ps1.executeQuery();
 			ResultSet rs1 = ps1.executeQuery();
 			rs1.next();
 
 			//更新クエリ
-			query = "UPDATE books SET " + deleteflgColumn + " = 1 WHERE " + idColumn + " = " + id
-					+ ";";
+			query = "UPDATE books SET " + titleColumn + " = '" + book.getName() + "'," + publisherColumn + " = '" + book.getPublisher() + "'," + authorColumn + " = '" + book.getAuthor() + "'," + salesDateColumn + " = '" + book.getSalesDate() + "'," + isbnColumn + " = '" + book.getIsbn() + "'," + priceColumn + " = " + book.getPrice() + "," + stockColumn + " = " + book.getStock() + " WHERE " + idColumn + " = " + id + ";";
+			System.out.println(query);
 			PreparedStatement ps2 = con.prepareStatement(query);
 			ps2.executeUpdate();
+
+			System.out.println("成功");
 
 			rs1.close();
 
@@ -615,7 +619,22 @@ public class BookDataAccess {
 	}
 
 	//書籍の復元を行うメソッド
+	public void restoration(String[] checkedId) throws SQLException {
 
+		Connection con = null;
+		try {
+
+			con = DriverManager.getConnection(url, username, password);
+
+			//オートコミットOFFにする。
+			con.setAutoCommit(false);
+
+
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 
 
 	//WHERE句の生成を行うメソッド
