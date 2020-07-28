@@ -36,9 +36,9 @@ public class AddController extends HttpServlet {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
 
-		String Branch = null;
-		Branch = request.getParameter("button");
-		System.out.println(Branch);
+		String branch = null;
+		branch = request.getParameter("button");
+		System.out.println(branch);
 
 
 		String title = null;
@@ -53,7 +53,7 @@ public class AddController extends HttpServlet {
 
 
 
-		switch(Branch) {
+		switch(branch) {
 		case "追加":
 			Book addbook = new Book(0, null, null, null, null, null, 0, 0, 0);
 
