@@ -54,9 +54,6 @@ public class AddCheckController extends HttpServlet {
 		int deleteFlg = 0;
 
 
-
-
-
 		HttpSession session = request.getSession();
 
 		try {
@@ -87,17 +84,9 @@ public class AddCheckController extends HttpServlet {
 
 			session.setAttribute("book", addbook);
 
-
-//			session.setAttribute("titile", title);
-//			session.setAttribute("publisher", publisher);
-//			session.setAttribute("author", author);
-//			session.setAttribute("isbn", isbn);
-//			session.setAttribute("date", date);
-//			session.setAttribute("price", price);
-//			session.setAttribute("stock", stock);
-
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/AddCheck.jsp");
 			dispatcher.forward(request, response);
+
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 			session.setAttribute("error", "指定されている形式で入力してください。");
@@ -105,7 +94,7 @@ public class AddCheckController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/inventoryList");
+			response.sendRedirect("/Zaiko2020/addForm");
 		}
 	}
 
