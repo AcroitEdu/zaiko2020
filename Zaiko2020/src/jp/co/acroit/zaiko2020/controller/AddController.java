@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import jp.co.acroit.zaiko2020.book.Book;
 
 /**
- * 追加画面サーブレット
+ * 追加サーブレット
  * @version 1.1
  * @author hiroki tajima
  */
@@ -37,9 +37,6 @@ public class AddController extends HttpServlet {
 //		doGet(request, response);
 
 		String branch = null;
-		branch = request.getParameter("button");
-		System.out.println(branch);
-
 
 		String title = null;
 		String publisher = null;
@@ -50,39 +47,50 @@ public class AddController extends HttpServlet {
 		int stock = 0;
 		int deleteFlg = 0;
 
+		HttpSession session = request.getSession();
 
+		try {
 
+			branch = request.getParameter("button");
+			System.out.println(branch);
 
-		switch(branch) {
-		case "追加":
-			Book addbook = new Book(0, null, null, null, null, null, 0, 0, 0);
+			switch(branch) {
+			case "追加":
+				Book addbook = new Book(0, null, null, null, null, null, 0, 0, 0);
 
-			addbook.setName(title);
-			addbook.setPublisher(publisher);
-			addbook.setAuthor(author);
-			addbook.setIsbn(isbn);
-			addbook.setSalesDate(salsDate);
-			addbook.setPrice(price);
-			addbook.setStock(stock);
-			addbook.setDeleteFlag(deleteFlg);
+				addbook.setName(title);
+				addbook.setPublisher(publisher);
+				addbook.setAuthor(author);
+				addbook.setIsbn(isbn);
+				addbook.setSalesDate(salsDate);
+				addbook.setPrice(price);
+				addbook.setStock(stock);
+				addbook.setDeleteFlag(deleteFlg);
 
-			HttpSession session = request.getSession();
-			session.setAttribute("book", addbook);
+				session.setAttribute("book", addbook);
 
-			break;
+				break;
+			}
+
+//			HttpSession session = request.getSession();
+//			session.setAttribute("titile", "");
+//			session.setAttribute("publisher", "");
+//			session.setAttribute("author", "");
+//			session.setAttribute("isbn", "");
+//			session.setAttribute("date", "");
+//			session.setAttribute("price", "");
+//			session.setAttribute("stock", "");
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/AddForm.jsp");
+			dispatcher.forward(request, response);
+
+		}catch (Exception e) {
+
+			e.printStackTrace();
+			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
+			response.sendRedirect("/Zaiko2020/inventoryList");
 		}
 
-//		HttpSession session = request.getSession();
-//		session.setAttribute("titile", "");
-//		session.setAttribute("publisher", "");
-//		session.setAttribute("author", "");
-//		session.setAttribute("isbn", "");
-//		session.setAttribute("date", "");
-//		session.setAttribute("price", "");
-//		session.setAttribute("stock", "");
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/AddForm.jsp");
-		dispatcher.forward(request, response);
 	}
 
 }
