@@ -45,7 +45,7 @@ public class EditCheckController extends HttpServlet {
 
 		try {
 
-			if(request.getParameter("bookName") == null || request.getParameter("publisher") == null || request.getParameter("author") == null || request.getParameter("isbn") == null || request.getParameter("date") == null || request.getParameter("price") == null || request.getParameter("stock") == null) {
+			if(request.getParameter("bookName").isEmpty() || request.getParameter("publisher").isEmpty() || request.getParameter("author").isEmpty() || request.getParameter("isbn").isEmpty() || request.getParameter("date").isEmpty() || request.getParameter("price").isEmpty() || request.getParameter("stock").isEmpty()) {
 				throw new NullPointerException();
 			}
 
@@ -60,6 +60,7 @@ public class EditCheckController extends HttpServlet {
 
 			Book addbook = new Book(0, null, null, null, null, null, 0, 0, 0);
 
+			addbook.setId((int)session.getAttribute("id"));
 			addbook.setName(title);
 			addbook.setPublisher(publisher);
 			addbook.setAuthor(author);
@@ -71,25 +72,16 @@ public class EditCheckController extends HttpServlet {
 
 			session.setAttribute("book", addbook);
 
-
-//			session.setAttribute("titile", title);
-//			session.setAttribute("publisher", publisher);
-//			session.setAttribute("author", author);
-//			session.setAttribute("isbn", isbn);
-//			session.setAttribute("date", date);
-//			session.setAttribute("price", price);
-//			session.setAttribute("stock", stock);
-
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/EditCheck.jsp");
 			dispatcher.forward(request, response);
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 			session.setAttribute("error", "指定されている形式で入力してください。");
-			response.sendRedirect("/Zaiko2020/inventoryList");
+			response.sendRedirect("/Zaiko2020/Edit");
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/inventoryList");
+			response.sendRedirect("/Zaiko2020/Edit");
 		}
 
 

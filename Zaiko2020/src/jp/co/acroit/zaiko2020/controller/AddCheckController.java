@@ -54,11 +54,12 @@ public class AddCheckController extends HttpServlet {
 		int deleteFlg = 0;
 
 
+
 		HttpSession session = request.getSession();
 
 		try {
 
-			if(request.getParameter("bookName") == null || request.getParameter("publisher") == null || request.getParameter("author") == null || request.getParameter("isbn") == null || request.getParameter("date") == null || request.getParameter("price") == null || request.getParameter("stock") == null) {
+			if(request.getParameter("bookName").isEmpty() || request.getParameter("publisher").isEmpty() || request.getParameter("author").isEmpty() || request.getParameter("isbn").isEmpty() || request.getParameter("date").isEmpty() || request.getParameter("price").isEmpty() || request.getParameter("stock").isEmpty()) {
 				throw new NullPointerException();
 			}
 
@@ -90,11 +91,11 @@ public class AddCheckController extends HttpServlet {
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 			session.setAttribute("error", "指定されている形式で入力してください。");
-			response.sendRedirect("/Zaiko2020/addForm");
+			response.sendRedirect("/Zaiko2020/Add");
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/addForm");
+			response.sendRedirect("/Zaiko2020/Add");
 		}
 	}
 
