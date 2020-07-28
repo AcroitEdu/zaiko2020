@@ -19,8 +19,8 @@ import jp.co.acroit.zaiko2020.book.Book;
 /**
  * Servlet implementation class EditChekController
  */
-@WebServlet("/EditChek")
-public class EditChekController extends HttpServlet {
+@WebServlet("/EditCheck")
+public class EditCheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
