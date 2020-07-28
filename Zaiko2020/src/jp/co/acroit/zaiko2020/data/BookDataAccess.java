@@ -117,7 +117,7 @@ public class BookDataAccess {
 	}
 
 	//書籍検索（deleatflg=1）を行うメソッド
-		public List<Book> findDleat(SearchCondition sc) throws SQLException {
+		public List<Book> findDeleat(SearchCondition sc) throws SQLException {
 			Connection con = null;
 			try {
 				con = DriverManager.getConnection(url, username, password);
@@ -265,8 +265,7 @@ public class BookDataAccess {
 				}
 
 				//更新クエリ
-				query = "UPDATE books SET " + stockColumn + " = " + updateStock + " WHERE " + idColumn + " = " + id + "LAST_INSERT_ID(null) is null and "
-						+ ";";
+				query = "UPDATE books SET " + stockColumn + " = " + updateStock + " WHERE " + idColumn + " = " + id + ";";
 				PreparedStatement ps2 = con.prepareStatement(query);
 				ps2.executeUpdate();
 
@@ -334,7 +333,7 @@ public class BookDataAccess {
 			}
 		}
 
-	//総件数の取得を行うメソッド
+	//総件数(deleatflg=0)の取得を行うメソッド
 	public int countAll(SearchCondition sc) throws SQLException {
 		Connection con = null;
 
@@ -342,7 +341,7 @@ public class BookDataAccess {
 			con = DriverManager.getConnection(url, username, password);
 			//クエリの生成・実行を行う。
 			query = "SELECT COUNT(*) AS libraryHoldings FROM books";
-			query = query + sqlWhere(sc) + sqlOrderBy(sc) + ";";
+			query = query + sqlWhere(sc) + " AND " + deleteflgColumn + " = 0 " + sqlOrderBy(sc) + ";";
 
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
@@ -370,6 +369,43 @@ public class BookDataAccess {
 			}
 		}
 	}
+
+	//総件数(deleatflg=1)の取得を行うメソッド
+		public int countAllDeleat(SearchCondition sc) throws SQLException {
+			Connection con = null;
+
+			try {
+				con = DriverManager.getConnection(url, username, password);
+				//クエリの生成・実行を行う。
+				query = "SELECT COUNT(*) AS libraryHoldings FROM books";
+				query = query + sqlWhere(sc) +" AND " + deleteflgColumn + " = 1 " + sqlOrderBy(sc) + ";";
+
+				PreparedStatement ps = con.prepareStatement(query);
+				ResultSet rs = ps.executeQuery();
+
+				int libraryHoldings = 0;
+
+				//該当する書籍の総研の取得を行う。
+				while (rs.next()) {
+					libraryHoldings = rs.getInt(libraryHoldingsColumn);
+				}
+				rs.close();
+				con.close();
+				con = null;
+
+				return libraryHoldings;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw e;
+			} finally {
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception ignore) {
+					}
+				}
+			}
+		}
 
 	//書籍の追加を行うメソッド
 	public void add(Book book) throws SQLException {
