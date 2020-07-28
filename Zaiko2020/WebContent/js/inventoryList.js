@@ -63,3 +63,6 @@ $(".buttonArrive").click(linkSubmit);
 
 //「出荷」をクリックしたときの処理
 $(".buttonShip").click(linkSubmit);
+
+//「編集」をクリックしたときの処理
+$(".buttonEdit").click(linkSubmit);
