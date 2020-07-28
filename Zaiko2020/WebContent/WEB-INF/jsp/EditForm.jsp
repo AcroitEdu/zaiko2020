@@ -22,7 +22,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 		</header>
 		<div class="content">
 			<div class="edit-options">
-				<form name="editOptions" action="/Zaiko2020/EditChekController" method="post">
+				<form name="editOptions" action="/Zaiko2020/EditCheck" method="post">
 					<ul>
 						<li>
 							<label for="bookName">書籍名</label>
@@ -58,8 +58,9 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 					<input type="submit" name="button" id="edit" class="button button-main button-border" value="実行">
 				</form>
 				<form id="cancelForm" action="/Zaiko2020/inventoryList" method="post">
-					<input type="submit" name="button" id="cancel" class="button button-cancel button-border" value="キャンセル">
-				</form>
+                	<input type="hidden" name="form" value="4">
+                	<input type="submit" id="cancel" class="button button-cancel button-border" value="キャンセル">
+                </form>
 			</div>
 		</div>
 	</div>
