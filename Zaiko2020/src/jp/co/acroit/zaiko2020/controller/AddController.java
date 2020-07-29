@@ -34,8 +34,8 @@ public class AddController extends HttpServlet {
 		String author = null;
 		String isbn = null;
 		LocalDate salsDate = null;
-		int price = 0;
-		int stock = 0;
+		String price = null;
+		String stock = null;
 		int deleteFlg = 0;
 
 		HttpSession session = request.getSession();
@@ -50,7 +50,7 @@ public class AddController extends HttpServlet {
 
 			switch(branch) {
 			case "追加":
-				Book addbook = new Book(0, null, null, null, null, null, 0, 0, 0);
+				Book addbook = new Book(0, null, null, null, null, null, null, null, 0);
 
 				addbook.setName(title);
 				addbook.setPublisher(publisher);

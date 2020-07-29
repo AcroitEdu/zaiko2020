@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.co.acroit.zaiko2020.book.Book;
-import jp.co.acroit.zaiko2020.book.FormBook;
 
 /**
  * 書籍データベースアクセスクラス
@@ -79,8 +78,8 @@ public class BookDataAccess {
 			String dbAuthor = null;
 			String dbIsbn = null;
 			LocalDate dbSalsDate;
-			int dbPrice = 0;
-			int dbStock = 0;
+			String dbPrice = null;
+			String dbStock = null;
 			int dbDeleteflg = 0;
 
 			List<Book> bookList = new ArrayList<Book>();
@@ -92,8 +91,8 @@ public class BookDataAccess {
 				dbAuthor = rs.getString(authorColumn);
 				dbIsbn = rs.getString(isbnColumn);
 				dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
-				dbPrice = rs.getInt(priceColumn);
-				dbStock = rs.getInt(stockColumn);
+				dbPrice = rs.getString(priceColumn);
+				dbStock = rs.getString(stockColumn);
 				dbDeleteflg = rs.getInt(deleteflgColumn);
 				Book aBook = new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
 						dbDeleteflg);
@@ -138,8 +137,8 @@ public class BookDataAccess {
 				String dbAuthor = null;
 				String dbIsbn = null;
 				LocalDate dbSalsDate;
-				int dbPrice = 0;
-				int dbStock = 0;
+				String dbPrice = null;
+				String dbStock = null;
 				int dbDeleteflg = 0;
 
 				List<Book> bookList = new ArrayList<Book>();
@@ -151,8 +150,8 @@ public class BookDataAccess {
 					dbAuthor = rs.getString(authorColumn);
 					dbIsbn = rs.getString(isbnColumn);
 					dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
-					dbPrice = rs.getInt(priceColumn);
-					dbStock = rs.getInt(stockColumn);
+					dbPrice = rs.getString(priceColumn);
+					dbStock = rs.getString(stockColumn);
 					dbDeleteflg = rs.getInt(deleteflgColumn);
 					Book aBook = new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
 							dbDeleteflg);
@@ -196,8 +195,8 @@ public class BookDataAccess {
 			String dbAuthor = null;
 			String dbIsbn = null;
 			LocalDate dbSalsDate = null;
-			int dbPrice = 0;
-			int dbStock = 0;
+			String dbPrice = null;
+			String dbStock = null;
 			int dbDeleteflg = 0;
 
 			while (rs.next()) {
@@ -208,8 +207,8 @@ public class BookDataAccess {
 				dbAuthor = rs.getString(authorColumn);
 				dbIsbn = rs.getString(isbnColumn);
 				dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
-				dbPrice = rs.getInt(priceColumn);
-				dbStock = rs.getInt(stockColumn);
+				dbPrice = rs.getString(priceColumn);
+				dbStock = rs.getString(stockColumn);
 				dbDeleteflg = rs.getInt(deleteflgColumn);
 
 			}
@@ -281,8 +280,8 @@ public class BookDataAccess {
 				String dbAuthor = null;
 				String dbIsbn = null;
 				LocalDate dbSalsDate = null;
-				int dbPrice = 0;
-				int dbStock = 0;
+				String dbPrice = null;
+				String dbStock = null;
 				int dbDeleteflg = 0;
 
 				while (rs2.next()) {
@@ -293,8 +292,8 @@ public class BookDataAccess {
 					dbAuthor = rs2.getString(authorColumn);
 					dbIsbn = rs2.getString(isbnColumn);
 					dbSalsDate = rs2.getDate(salesDateColumn).toLocalDate();
-					dbPrice = rs2.getInt(priceColumn);
-					dbStock = rs2.getInt(stockColumn);
+					dbPrice = rs2.getString(priceColumn);
+					dbStock = rs2.getString(stockColumn);
 					dbDeleteflg = rs2.getInt(deleteflgColumn);
 
 				}
@@ -424,7 +423,7 @@ public class BookDataAccess {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.executeUpdate();
 			System.out.println(query);
-			
+
 			//問題がなければコミットを行う。
 			con.commit();
 
@@ -472,8 +471,8 @@ public class BookDataAccess {
 				String dbAuthor = null;
 				String dbIsbn = null;
 				LocalDate dbSalsDate = null;
-				int dbPrice = 0;
-				int dbStock = 0;
+				String dbPrice = null;
+				String dbStock = null;
 				int dbDeleteflg = 0;
 
 				while (rs.next()) {
@@ -484,8 +483,8 @@ public class BookDataAccess {
 					dbAuthor = rs.getString(authorColumn);
 					dbIsbn = rs.getString(isbnColumn);
 					dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
-					dbPrice = rs.getInt(priceColumn);
-					dbStock = rs.getInt(stockColumn);
+					dbPrice = rs.getString(priceColumn);
+					dbStock = rs.getString(stockColumn);
 					dbDeleteflg = rs.getInt(deleteflgColumn);
 
 				}
