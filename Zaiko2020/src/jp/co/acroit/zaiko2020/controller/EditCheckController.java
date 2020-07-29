@@ -45,14 +45,10 @@ public class EditCheckController extends HttpServlet {
 
 		try {
 
+			//入力値のnull判定
 			if(request.getParameter("bookName").isEmpty() || request.getParameter("publisher").isEmpty() || request.getParameter("author").isEmpty() || request.getParameter("isbn").isEmpty() || request.getParameter("date").isEmpty() || request.getParameter("price").isEmpty() || request.getParameter("stock").isEmpty()) {
 				throw new NullPointerException();
 			}
-
-			if(Integer.parseInt(price) < 1 || 999999 < Integer.parseInt(price) || Integer.parseInt(stock) < 1 || 999999 < Integer.parseInt(stock) ) {
-				throw new IndexOutOfBoundsException("DBの最小値・最大値を超える入力");
-			}
-
 
 			title = request.getParameter("bookName");
 			publisher = request.getParameter("publisher");
@@ -62,6 +58,20 @@ public class EditCheckController extends HttpServlet {
 			salsDate = day.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 			price = request.getParameter("price");
 			stock = request.getParameter("stock");
+
+			//文字チェック
+			if (!isbn.matches("^[0-9]*$") || !stock.matches("^[0-9]*$") || !isbn.matches("^[0-9]*$") || 13 == isbn.length()) {
+
+				session.setAttribute("error", "指定されている形式で入力してください。");
+				response.sendRedirect("/Zaiko2020/Add");
+			}
+
+			//値の範囲チェック
+			if(Integer.parseInt(price) < 1 || 999999 < Integer.parseInt(price) || Integer.parseInt(stock) < 1 || 999999 < Integer.parseInt(stock) ) {
+				session.setAttribute("error", "指定されている形式で入力してください。");
+				response.sendRedirect("/Zaiko2020/Add");
+			}
+
 
 			Book addbook = new Book(0, null, null, null, null, null, null, null, 0);
 
