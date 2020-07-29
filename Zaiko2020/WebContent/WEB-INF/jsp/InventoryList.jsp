@@ -38,15 +38,15 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
         <header>
             <ul class="boxed-tabs">
                 <li class="tab-current tab">在庫一覧</li>
-                <li class="tab">
-                	<form id="addForm" action="/Zaiko2020/Add" method="post">
-                        <input type="submit" id="addButton" class="button" name="button" value="追加">
+                <li id="addButton" class="tab">
+                	<form id="addForm" class="button" name="button" action="/Zaiko2020/Add" method="post">
+                        <span>追加</span>
                     </form>
                 </li>
                 <li class="tab-space tab"></li>
-                <li class="tab-logout tab">
+                <li id="logoutButton" class="tab-logout tab">
                     <form id="logoutForm" action="/Zaiko2020/logout" method="post">
-                        <span id="logoutButton">ログアウト</span>
+						<span>ログアウト</span>
                     </form>
                 </li>
             </ul>

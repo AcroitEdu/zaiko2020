@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+/* 共通 */
+*{
+    font-family: 'Noto Sans JP', sans-serif;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    max-width: 1920px;
+    min-height: 100%;
+    background-color: #f0f0f0;
+}
+#main{
+    width: 100%;
+    min-height: 100%;
+    margin: auto;
+
+}
+ul{
+    list-style-type: none;
+    padding-inline-start: 0;
+}
+input{
+    border-radius: 5px;
+    border: 1.5px solid #00000080;
+}
+/* ヘッダー */
+header{
+    width: 100%;
+    margin: 0;
+}
+header .boxed-tabs{
+    background-color: #d0d0d0;
+    padding: 0;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+.boxed-tabs .tab{
+    margin: 0 0 -1px 0;
+    padding: 5px;
+    min-width: fit-content;
+    flex-grow: 0;
+    width: 25%;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+}
+.boxed-tabs .tab + .tab{
+    border-left: 1px solid black;
+}
+.boxed-tabs li.tab-current{
+    background-color: #f0f0f0;
+    border-bottom: 0 !important;
+}
+.boxed-tabs li.tab-space{
+    flex-grow: 0;
+    flex-shrink: 1;
+    padding: 0;
+}
+.boxed-tabs li.tab-logout{
+    background-color: #f0a0a0;
+    border-right: 0 !important;
+}
+
+/* 入力フォーム */
+
+.add-options {
+	width: 80%;
+	max-width: 1200px;
+	margin: 0 auto;
+	text-align:center;
+}
+
+.add-options li {
+	display: flex;
+	align-items: center;
+	margin-bottom:10px;
+}
+.add-options li label {
+	width: 120px;
+	padding-right: 10px;
+	text-align: right;
+}
+.add-options li textarea{
+	width: 1070px;
+	text-align; left;
+}
+.add-options li input{
+	width: 14em;
+	text-align; left
+}
+
+#stock, #price{
+	text-align: right;
+}
+
+.add-options input[type="submit"]{
+	border-radius: 6px;
+    width: 115px;
+    padding: 8px;
+    border: 1.5px solid #00000080;
+    background-color: #4a86e8ff;
+    color:white;
+    font-size: large;
+}
+
+/* 書籍一覧*/
+#error{
+    color: red;
+    text-align: center;
+    margin: 10px auto;
+}
