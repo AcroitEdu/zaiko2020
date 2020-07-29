@@ -62,6 +62,11 @@ public class AddCheckController extends HttpServlet {
 			price = request.getParameter("price");
 			stock = request.getParameter("stock");
 
+			if(Integer.parseInt(price) < 1 || 999999 < Integer.parseInt(price) || Integer.parseInt(stock) < 1 || 999999 < Integer.parseInt(stock) ) {
+				throw new IndexOutOfBoundsException("DBの最小値・最大値を超える入力");
+			}
+
+
 			Book addbook = new Book(0, null, null, null, null, null, null, null, 0);
 
 			addbook.setName(title);
@@ -82,7 +87,12 @@ public class AddCheckController extends HttpServlet {
 			e.printStackTrace();
 			session.setAttribute("error", "指定されている形式で入力してください。");
 			response.sendRedirect("/Zaiko2020/Add");
-		} catch (Exception e) {
+		} catch (IndexOutOfBoundsException e) {
+			//エラーを返し入荷画面にリダイレクト
+			session.setAttribute("error", "指定されている形式で入力してください。");
+			response.sendRedirect("/Zaiko2020/Add");
+
+		}  catch (Exception e) {
 			e.printStackTrace();
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/Add");

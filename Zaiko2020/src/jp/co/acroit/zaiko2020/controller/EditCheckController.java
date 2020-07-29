@@ -49,6 +49,11 @@ public class EditCheckController extends HttpServlet {
 				throw new NullPointerException();
 			}
 
+			if(Integer.parseInt(price) < 1 || 999999 < Integer.parseInt(price) || Integer.parseInt(stock) < 1 || 999999 < Integer.parseInt(stock) ) {
+				throw new IndexOutOfBoundsException("DBの最小値・最大値を超える入力");
+			}
+
+
 			title = request.getParameter("bookName");
 			publisher = request.getParameter("publisher");
 			author = request.getParameter("author");
