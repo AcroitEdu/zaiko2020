@@ -21,7 +21,9 @@ public class DeleteCheckController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/DeleteCheck.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -32,8 +34,6 @@ public class DeleteCheckController extends HttpServlet {
 		doGet(request, response);
 
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/DeleteCheck.jsp");
-		dispatcher.forward(request, response);
 	}
 
 }
