@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.co.acroit.zaiko2020.book.Book;
+import jp.co.acroit.zaiko2020.book.FormBook;
 
 /**
  * 書籍データベースアクセスクラス
@@ -314,7 +315,9 @@ public class BookDataAccess {
 			} catch (SQLException e) {
 
 				//エラー発生時にロールバックを行う。
-				con.rollback();
+				if(con != null) {
+					con.rollback();
+				}
 				e.printStackTrace();
 				throw e;
 
@@ -421,20 +424,20 @@ public class BookDataAccess {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.executeUpdate();
 			System.out.println(query);
-
-
+			
 			//問題がなければコミットを行う。
 			con.commit();
 
-			//rs.close();
 			con.close();
 			con = null;
 
 			return;
 		} catch (SQLException e) {
-
 			//エラー発生時にロールバックを行う。
-			con.rollback();
+			if(con != null) {
+				con.rollback();
+			}
+
 			e.printStackTrace();
 			throw e;
 		} finally {
@@ -450,12 +453,11 @@ public class BookDataAccess {
 
 
 	//書籍の追加後に追加した書籍を取得するメソッド
-		public Book addSearch(Book book) throws SQLException {
+	public Book addSearch(Book book) throws SQLException {
 			Connection con = null;
 
 			try {
 
-				System.out.println("");
 				con = DriverManager.getConnection(url, username, password);
 
 				//クエリの生成・実行を行う。
@@ -545,7 +547,9 @@ public class BookDataAccess {
 		} catch (SQLException e) {
 
 			//エラー発生時にロールバックを行う。
-			con.rollback();
+			if(con != null) {
+				con.rollback();
+			}
 			e.printStackTrace();
 			throw e;
 
@@ -599,7 +603,9 @@ public class BookDataAccess {
 		} catch (SQLException e) {
 
 			//エラー発生時にロールバックを行う。
-			con.rollback();
+			if(con != null) {
+				con.rollback();
+			}
 			e.printStackTrace();
 			throw e;
 
