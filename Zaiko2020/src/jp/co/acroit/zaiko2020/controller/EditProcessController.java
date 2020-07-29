@@ -48,7 +48,7 @@ public class EditProcessController extends HttpServlet {
 
 		try {
 
-			id = (int)session.getAttribute("id");
+			id = Integer.parseInt(request.getParameter("id"));
 			System.out.println(id);
 
 			//書籍情報の編集
@@ -69,10 +69,11 @@ public class EditProcessController extends HttpServlet {
 			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/loginForm");
 
+
 		} catch (Exception e) {
 			//エラーを返しリダイレクト
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/logout");
+			response.sendRedirect("/Zaiko2020/Edit");
 			e.printStackTrace();
 
 		}

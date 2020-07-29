@@ -36,8 +36,8 @@ public class EditCheckController extends HttpServlet {
 		String isbn = null;
 		Date day = null;
 		LocalDate salsDate = null;
-		int price = 0;
-		int stock = 0;
+		String price = null;
+		String stock = null;
 		int deleteFlg = 0;
 
 
@@ -45,7 +45,8 @@ public class EditCheckController extends HttpServlet {
 
 		try {
 
-			if(request.getParameter("bookName") == null || request.getParameter("publisher") == null || request.getParameter("author") == null || request.getParameter("isbn") == null || request.getParameter("date") == null || request.getParameter("price") == null || request.getParameter("stock") == null) {
+			//入力値のnull判定
+			if(request.getParameter("bookName").isEmpty() || request.getParameter("publisher").isEmpty() || request.getParameter("author").isEmpty() || request.getParameter("isbn").isEmpty() || request.getParameter("date").isEmpty() || request.getParameter("price").isEmpty() || request.getParameter("stock").isEmpty()) {
 				throw new NullPointerException();
 			}
 
@@ -55,11 +56,26 @@ public class EditCheckController extends HttpServlet {
 			isbn = request.getParameter("isbn");
 			day = sdf.parse(request.getParameter("date"));
 			salsDate = day.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			price = Integer.parseInt(request.getParameter("price"));
-			stock = Integer.parseInt(request.getParameter("stock"));
+			price = request.getParameter("price");
+			stock = request.getParameter("stock");
 
-			Book addbook = new Book(0, null, null, null, null, null, 0, 0, 0);
+			//文字チェック
+			if (!isbn.matches("^[0-9]*$") || !stock.matches("^[0-9]*$") || !isbn.matches("^[0-9]*$") || 13 == isbn.length()) {
 
+				session.setAttribute("error", "指定されている形式で入力してください。");
+				response.sendRedirect("/Zaiko2020/Add");
+			}
+
+			//値の範囲チェック
+			if(Integer.parseInt(price) < 1 || 999999 < Integer.parseInt(price) || Integer.parseInt(stock) < 1 || 999999 < Integer.parseInt(stock) ) {
+				session.setAttribute("error", "指定されている形式で入力してください。");
+				response.sendRedirect("/Zaiko2020/Add");
+			}
+
+
+			Book addbook = new Book(0, null, null, null, null, null, null, null, 0);
+
+			addbook.setId((int)session.getAttribute("id"));
 			addbook.setName(title);
 			addbook.setPublisher(publisher);
 			addbook.setAuthor(author);
@@ -71,25 +87,16 @@ public class EditCheckController extends HttpServlet {
 
 			session.setAttribute("book", addbook);
 
-
-//			session.setAttribute("titile", title);
-//			session.setAttribute("publisher", publisher);
-//			session.setAttribute("author", author);
-//			session.setAttribute("isbn", isbn);
-//			session.setAttribute("date", date);
-//			session.setAttribute("price", price);
-//			session.setAttribute("stock", stock);
-
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/EditCheck.jsp");
 			dispatcher.forward(request, response);
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 			session.setAttribute("error", "指定されている形式で入力してください。");
-			response.sendRedirect("/Zaiko2020/inventoryList");
+			response.sendRedirect("/Zaiko2020/Edit");
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/inventoryList");
+			response.sendRedirect("/Zaiko2020/Edit");
 		}
 
 

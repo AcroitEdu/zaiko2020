@@ -13,7 +13,7 @@ import jp.co.acroit.zaiko2020.book.Book;
 
 /**
  * 書籍データベースアクセスクラス
- * @version 2.4
+ * @version 3.2
  * @author hiroki tajima
  */
 public class BookDataAccess {
@@ -78,8 +78,8 @@ public class BookDataAccess {
 			String dbAuthor = null;
 			String dbIsbn = null;
 			LocalDate dbSalsDate;
-			int dbPrice = 0;
-			int dbStock = 0;
+			String dbPrice = null;
+			String dbStock = null;
 			int dbDeleteflg = 0;
 
 			List<Book> bookList = new ArrayList<Book>();
@@ -91,8 +91,8 @@ public class BookDataAccess {
 				dbAuthor = rs.getString(authorColumn);
 				dbIsbn = rs.getString(isbnColumn);
 				dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
-				dbPrice = rs.getInt(priceColumn);
-				dbStock = rs.getInt(stockColumn);
+				dbPrice = rs.getString(priceColumn);
+				dbStock = rs.getString(stockColumn);
 				dbDeleteflg = rs.getInt(deleteflgColumn);
 				Book aBook = new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
 						dbDeleteflg);
@@ -137,8 +137,8 @@ public class BookDataAccess {
 				String dbAuthor = null;
 				String dbIsbn = null;
 				LocalDate dbSalsDate;
-				int dbPrice = 0;
-				int dbStock = 0;
+				String dbPrice = null;
+				String dbStock = null;
 				int dbDeleteflg = 0;
 
 				List<Book> bookList = new ArrayList<Book>();
@@ -150,8 +150,8 @@ public class BookDataAccess {
 					dbAuthor = rs.getString(authorColumn);
 					dbIsbn = rs.getString(isbnColumn);
 					dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
-					dbPrice = rs.getInt(priceColumn);
-					dbStock = rs.getInt(stockColumn);
+					dbPrice = rs.getString(priceColumn);
+					dbStock = rs.getString(stockColumn);
 					dbDeleteflg = rs.getInt(deleteflgColumn);
 					Book aBook = new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
 							dbDeleteflg);
@@ -195,8 +195,8 @@ public class BookDataAccess {
 			String dbAuthor = null;
 			String dbIsbn = null;
 			LocalDate dbSalsDate = null;
-			int dbPrice = 0;
-			int dbStock = 0;
+			String dbPrice = null;
+			String dbStock = null;
 			int dbDeleteflg = 0;
 
 			while (rs.next()) {
@@ -207,8 +207,8 @@ public class BookDataAccess {
 				dbAuthor = rs.getString(authorColumn);
 				dbIsbn = rs.getString(isbnColumn);
 				dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
-				dbPrice = rs.getInt(priceColumn);
-				dbStock = rs.getInt(stockColumn);
+				dbPrice = rs.getString(priceColumn);
+				dbStock = rs.getString(stockColumn);
 				dbDeleteflg = rs.getInt(deleteflgColumn);
 
 			}
@@ -280,8 +280,8 @@ public class BookDataAccess {
 				String dbAuthor = null;
 				String dbIsbn = null;
 				LocalDate dbSalsDate = null;
-				int dbPrice = 0;
-				int dbStock = 0;
+				String dbPrice = null;
+				String dbStock = null;
 				int dbDeleteflg = 0;
 
 				while (rs2.next()) {
@@ -292,8 +292,8 @@ public class BookDataAccess {
 					dbAuthor = rs2.getString(authorColumn);
 					dbIsbn = rs2.getString(isbnColumn);
 					dbSalsDate = rs2.getDate(salesDateColumn).toLocalDate();
-					dbPrice = rs2.getInt(priceColumn);
-					dbStock = rs2.getInt(stockColumn);
+					dbPrice = rs2.getString(priceColumn);
+					dbStock = rs2.getString(stockColumn);
 					dbDeleteflg = rs2.getInt(deleteflgColumn);
 
 				}
@@ -314,7 +314,9 @@ public class BookDataAccess {
 			} catch (SQLException e) {
 
 				//エラー発生時にロールバックを行う。
-				con.rollback();
+				if(con != null) {
+					con.rollback();
+				}
 				e.printStackTrace();
 				throw e;
 
@@ -422,19 +424,19 @@ public class BookDataAccess {
 			ps.executeUpdate();
 			System.out.println(query);
 
-
 			//問題がなければコミットを行う。
 			con.commit();
 
-			//rs.close();
 			con.close();
 			con = null;
 
 			return;
 		} catch (SQLException e) {
-
 			//エラー発生時にロールバックを行う。
-			con.rollback();
+			if(con != null) {
+				con.rollback();
+			}
+
 			e.printStackTrace();
 			throw e;
 		} finally {
@@ -450,12 +452,11 @@ public class BookDataAccess {
 
 
 	//書籍の追加後に追加した書籍を取得するメソッド
-		public Book addSearch(Book book) throws SQLException {
+	public Book addSearch(Book book) throws SQLException {
 			Connection con = null;
 
 			try {
 
-				System.out.println("");
 				con = DriverManager.getConnection(url, username, password);
 
 				//クエリの生成・実行を行う。
@@ -470,8 +471,8 @@ public class BookDataAccess {
 				String dbAuthor = null;
 				String dbIsbn = null;
 				LocalDate dbSalsDate = null;
-				int dbPrice = 0;
-				int dbStock = 0;
+				String dbPrice = null;
+				String dbStock = null;
 				int dbDeleteflg = 0;
 
 				while (rs.next()) {
@@ -482,8 +483,8 @@ public class BookDataAccess {
 					dbAuthor = rs.getString(authorColumn);
 					dbIsbn = rs.getString(isbnColumn);
 					dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
-					dbPrice = rs.getInt(priceColumn);
-					dbStock = rs.getInt(stockColumn);
+					dbPrice = rs.getString(priceColumn);
+					dbStock = rs.getString(stockColumn);
 					dbDeleteflg = rs.getInt(deleteflgColumn);
 
 				}
@@ -523,6 +524,7 @@ public class BookDataAccess {
 
 			//オートコミットOFFにする。
 			con.setAutoCommit(false);
+			//削除対象のレコードをロック
 			query = "SELECT " + deleteflgColumn + " FROM books WHERE " + idColumn + "=" + id + " for update;";
 			PreparedStatement ps1 = con.prepareStatement(query);
 			ps1.executeQuery();
@@ -545,7 +547,9 @@ public class BookDataAccess {
 		} catch (SQLException e) {
 
 			//エラー発生時にロールバックを行う。
-			con.rollback();
+			if(con != null) {
+				con.rollback();
+			}
 			e.printStackTrace();
 			throw e;
 
@@ -574,6 +578,7 @@ public class BookDataAccess {
 
 			//オートコミットOFFにする。
 			con.setAutoCommit(false);
+			//更新対象のレコードをロック
 			query = "SELECT " + titleColumn + "," + publisherColumn + "," + authorColumn + "," + salesDateColumn + "," + isbnColumn + "," + priceColumn + "," + stockColumn + " FROM books WHERE " + idColumn + " = " + id + " for update;";
 			System.out.println(query);
 			PreparedStatement ps1 = con.prepareStatement(query);
@@ -599,7 +604,9 @@ public class BookDataAccess {
 		} catch (SQLException e) {
 
 			//エラー発生時にロールバックを行う。
-			con.rollback();
+			if(con != null) {
+				con.rollback();
+			}
 			e.printStackTrace();
 			throw e;
 
@@ -621,6 +628,14 @@ public class BookDataAccess {
 	//書籍の復元を行うメソッド
 	public void restoration(String[] checkedId) throws SQLException {
 
+		String where = null;
+
+		//WHERE条件の作成
+		for (int i = 0 ; i < checkedId.length - 1 ; i++) {
+			where = where + idColumn + " = " + checkedId[i] + " OR ";
+		}
+		where = where + idColumn + " = " + checkedId[checkedId.length];
+
 		Connection con = null;
 		try {
 
@@ -628,11 +643,46 @@ public class BookDataAccess {
 
 			//オートコミットOFFにする。
 			con.setAutoCommit(false);
+			//更新対象のレコードをロック
+			query = "SELECT " + deleteflgColumn + " FROM books WHERE " + where + " for update;";
+			PreparedStatement ps1 = con.prepareStatement(query);
+			ps1.executeQuery();
+			ResultSet rs1 = ps1.executeQuery();
+			rs1.next();
 
+			//復元クエリの作成と実行
+			query = "UPDATE books SET " + deleteflgColumn + " = 1 WHERE " + where + ";";
+			PreparedStatement ps2 = con.prepareStatement(query);
+			ps2.executeUpdate();
 
+			rs1.close();
 
-		} catch (Exception e) {
-			// TODO: handle exception
+			//問題がなければコミットを行う。
+			con.commit();
+			con.close();
+			con = null;
+
+		} catch (SQLException e) {
+
+			//エラー発生時にロールバックを行う。
+			if(con != null) {
+				con.rollback();
+			}
+			e.printStackTrace();
+			throw e;
+
+		} finally {
+
+			if (con != null) {
+
+				try {
+
+					con.close();
+
+				} catch (Exception ignore) {
+
+				}
+			}
 		}
 	}
 

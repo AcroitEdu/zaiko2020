@@ -30,16 +30,6 @@ public class AddCheckController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		doGet(request, response);
-
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -49,16 +39,18 @@ public class AddCheckController extends HttpServlet {
 		String isbn = null;
 		Date day = null;
 		LocalDate salsDate = null;
-		int price = 0;
-		int stock = 0;
+		String price = null;
+		String stock = null;
 		int deleteFlg = 0;
+
 
 
 		HttpSession session = request.getSession();
 
 		try {
 
-			if(request.getParameter("bookName") == null || request.getParameter("publisher") == null || request.getParameter("author") == null || request.getParameter("isbn") == null || request.getParameter("date") == null || request.getParameter("price") == null || request.getParameter("stock") == null) {
+			//入力値のnullチェック
+			if(request.getParameter("bookName").isEmpty() || request.getParameter("publisher").isEmpty() || request.getParameter("author").isEmpty() || request.getParameter("isbn").isEmpty() || request.getParameter("date").isEmpty() || request.getParameter("price").isEmpty() || request.getParameter("stock").isEmpty()) {
 				throw new NullPointerException();
 			}
 
@@ -68,10 +60,24 @@ public class AddCheckController extends HttpServlet {
 			isbn = request.getParameter("isbn");
 			day = sdf.parse(request.getParameter("date"));
 			salsDate = day.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			price = Integer.parseInt(request.getParameter("price"));
-			stock = Integer.parseInt(request.getParameter("stock"));
+			price = request.getParameter("price");
+			stock = request.getParameter("stock");
 
-			Book addbook = new Book(0, null, null, null, null, null, 0, 0, 0);
+			//文字チェック
+			if (!isbn.matches("^[0-9]*$") || !stock.matches("^[0-9]*$") || !isbn.matches("^[0-9]*$") || 13 == isbn.length()) {
+
+				session.setAttribute("error", "指定されている形式で入力してください。");
+				response.sendRedirect("/Zaiko2020/Add");
+			}
+
+			//値の範囲チェック
+			if(Integer.parseInt(price) < 1 || 999999 < Integer.parseInt(price) || Integer.parseInt(stock) < 1 || 999999 < Integer.parseInt(stock) ) {
+				session.setAttribute("error", "指定されている形式で入力してください。");
+				response.sendRedirect("/Zaiko2020/Add");
+			}
+
+
+			Book addbook = new Book(0, null, null, null, null, null, null, null, 0);
 
 			addbook.setName(title);
 			addbook.setPublisher(publisher);
@@ -90,12 +96,27 @@ public class AddCheckController extends HttpServlet {
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 			session.setAttribute("error", "指定されている形式で入力してください。");
-			response.sendRedirect("/Zaiko2020/addForm");
-		} catch (Exception e) {
+			response.sendRedirect("/Zaiko2020/Add");
+		} catch (IndexOutOfBoundsException e) {
+			//エラーを返し入荷画面にリダイレクト
+			session.setAttribute("error", "指定されている形式で入力してください。");
+			response.sendRedirect("/Zaiko2020/Add");
+
+		}  catch (Exception e) {
 			e.printStackTrace();
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/addForm");
+			response.sendRedirect("/Zaiko2020/Add");
 		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+
+
 	}
 
 }

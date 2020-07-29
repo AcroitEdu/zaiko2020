@@ -36,16 +36,6 @@ public class AddProcessController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-//		String title = null;
-//		String publisher = null;
-//		String author = null;
-//		String isbn = null;
-//		String date = null;
-//		int price = 0;
-//		int stock = 0;
-//		int dbDeleteflg = 0;
-
 		HttpSession session = request.getSession();
 		Book addbook = (Book)session.getAttribute("book");
 		Book book;
@@ -70,7 +60,7 @@ public class AddProcessController extends HttpServlet {
 		} catch (Exception e) {
 			//エラーを返しリダイレクト
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/logout");
+			response.sendRedirect("/Zaiko2020/Add");
 			e.printStackTrace();
 
 		}

@@ -15,13 +15,13 @@ public class Book implements Serializable {
 	private String author;
 	private String isbn;
 	private LocalDate salesDate;
-	private int price;
-	private int stock;
+	private String price;
+	private String stock;
 	private int deleteFlag;
 
 	//書籍情報の初期化
-	public Book(int id, String name, String publisher, String author, String isbn, LocalDate dbSalsDate, int price,
-			int stock,
+	public Book(int id, String name, String publisher, String author, String isbn, LocalDate dbSalsDate, String price,
+			String stock,
 			int deleteFlag) {
 		this.id = id;
 		this.name = name;
@@ -83,19 +83,19 @@ public class Book implements Serializable {
 		this.salesDate = salesDate;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
-	public int getStock() {
+	public String getStock() {
 		return stock;
 	}
 
-	public void setStock(int stock) {
+	public void setStock(String stock) {
 		this.stock = stock;
 	}
 

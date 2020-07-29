@@ -27,15 +27,6 @@ public class AddController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		doGet(request, response);
-
 		String branch = null;
 
 		String title = null;
@@ -43,20 +34,23 @@ public class AddController extends HttpServlet {
 		String author = null;
 		String isbn = null;
 		LocalDate salsDate = null;
-		int price = 0;
-		int stock = 0;
+		String price = null;
+		String stock = null;
 		int deleteFlg = 0;
 
 		HttpSession session = request.getSession();
 
 		try {
 
-			branch = request.getParameter("button");
-			System.out.println(branch);
+			if (request.getParameter("button") == null) {
+				branch = "エラー";
+			} else {
+				branch = request.getParameter("button");
+			}
 
 			switch(branch) {
 			case "追加":
-				Book addbook = new Book(0, null, null, null, null, null, 0, 0, 0);
+				Book addbook = new Book(0, null, null, null, null, null, null, null, 0);
 
 				addbook.setName(title);
 				addbook.setPublisher(publisher);
@@ -72,15 +66,6 @@ public class AddController extends HttpServlet {
 				break;
 			}
 
-//			HttpSession session = request.getSession();
-//			session.setAttribute("titile", "");
-//			session.setAttribute("publisher", "");
-//			session.setAttribute("author", "");
-//			session.setAttribute("isbn", "");
-//			session.setAttribute("date", "");
-//			session.setAttribute("price", "");
-//			session.setAttribute("stock", "");
-
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/AddForm.jsp");
 			dispatcher.forward(request, response);
 
@@ -89,7 +74,18 @@ public class AddController extends HttpServlet {
 			e.printStackTrace();
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/inventoryList");
+
 		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+
+
 
 	}
 
