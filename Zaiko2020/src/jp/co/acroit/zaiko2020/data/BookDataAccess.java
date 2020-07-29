@@ -13,7 +13,7 @@ import jp.co.acroit.zaiko2020.book.Book;
 
 /**
  * 書籍データベースアクセスクラス
- * @version 2.4
+ * @version 3.2
  * @author hiroki tajima
  */
 public class BookDataAccess {
@@ -524,6 +524,7 @@ public class BookDataAccess {
 
 			//オートコミットOFFにする。
 			con.setAutoCommit(false);
+			//削除対象のレコードをロック
 			query = "SELECT " + deleteflgColumn + " FROM books WHERE " + idColumn + "=" + id + " for update;";
 			PreparedStatement ps1 = con.prepareStatement(query);
 			ps1.executeQuery();
@@ -577,6 +578,7 @@ public class BookDataAccess {
 
 			//オートコミットOFFにする。
 			con.setAutoCommit(false);
+			//更新対象のレコードをロック
 			query = "SELECT " + titleColumn + "," + publisherColumn + "," + authorColumn + "," + salesDateColumn + "," + isbnColumn + "," + priceColumn + "," + stockColumn + " FROM books WHERE " + idColumn + " = " + id + " for update;";
 			System.out.println(query);
 			PreparedStatement ps1 = con.prepareStatement(query);
@@ -641,13 +643,14 @@ public class BookDataAccess {
 
 			//オートコミットOFFにする。
 			con.setAutoCommit(false);
+			//更新対象のレコードをロック
 			query = "SELECT " + deleteflgColumn + " FROM books WHERE " + where + " for update;";
 			PreparedStatement ps1 = con.prepareStatement(query);
 			ps1.executeQuery();
 			ResultSet rs1 = ps1.executeQuery();
 			rs1.next();
 
-			//復元クエリ
+			//復元クエリの作成と実行
 			query = "UPDATE books SET " + deleteflgColumn + " = 1 WHERE " + where + ";";
 			PreparedStatement ps2 = con.prepareStatement(query);
 			ps2.executeUpdate();
