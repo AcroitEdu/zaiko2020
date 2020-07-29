@@ -626,6 +626,14 @@ public class BookDataAccess {
 	//書籍の復元を行うメソッド
 	public void restoration(String[] checkedId) throws SQLException {
 
+		String where = null;
+
+		//WHERE条件の作成
+		for (int i = 0 ; i < checkedId.length - 1 ; i++) {
+			where = where + idColumn + " = " + checkedId[i] + " OR ";
+		}
+		where = where + idColumn + " = " + checkedId[checkedId.length];
+
 		Connection con = null;
 		try {
 
@@ -633,11 +641,45 @@ public class BookDataAccess {
 
 			//オートコミットOFFにする。
 			con.setAutoCommit(false);
+			query = "SELECT " + deleteflgColumn + " FROM books WHERE " + where + " for update;";
+			PreparedStatement ps1 = con.prepareStatement(query);
+			ps1.executeQuery();
+			ResultSet rs1 = ps1.executeQuery();
+			rs1.next();
 
+			//復元クエリ
+			query = "UPDATE books SET " + deleteflgColumn + " = 1 WHERE " + where + ";";
+			PreparedStatement ps2 = con.prepareStatement(query);
+			ps2.executeUpdate();
 
+			rs1.close();
 
-		} catch (Exception e) {
-			// TODO: handle exception
+			//問題がなければコミットを行う。
+			con.commit();
+			con.close();
+			con = null;
+
+		} catch (SQLException e) {
+
+			//エラー発生時にロールバックを行う。
+			if(con != null) {
+				con.rollback();
+			}
+			e.printStackTrace();
+			throw e;
+
+		} finally {
+
+			if (con != null) {
+
+				try {
+
+					con.close();
+
+				} catch (Exception ignore) {
+
+				}
+			}
 		}
 	}
 
