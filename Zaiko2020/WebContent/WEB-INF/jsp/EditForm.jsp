@@ -14,6 +14,8 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 <meta charset="UTF-8">
 <title>書籍の編集</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/sanitize.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="styleEditForm.css">
 </head>
 <body>
 	<div id="main">
@@ -25,7 +27,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 		</header>
 		<div class="content">
 			<div class="edit-options">
-				<form name="editOptions" action="/Zaiko2020/EditCheck" method="post">
+				<form id="editForm" name="editOptions" action="/Zaiko2020/EditCheck" method="post">
 					<ul>
 						<li>
 							<label for="bookName">書籍名</label>
@@ -58,12 +60,15 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 							<span>冊</span>
 						</li>
 					</ul>
-					<input type="submit" name="button" id="edit" class="button button-main button-border" value="実行">
 				</form>
-				<form id="cancelForm" action="/Zaiko2020/inventoryList" method="post">
-                	<input type="hidden" name="form" value="4">
-                	<input type="submit" id="cancel" class="button button-cancel button-border" value="キャンセル">
-                </form>
+				<form id="cancelForm" action="/Zaiko2020/inventoryList"" method="post">
+					<input type="hidden" name="form" value="4">
+				</form>
+				<div id="buttons">
+						<input type="submit" name="button" id="edit" class="button button-main button-border" value="実行" form="editForm">
+						<input type="submit" name="button" id="cancel" class="button button-cancel button-border" value="キャンセル" form="cancelForm">
+
+				</div>
 			</div>
 		</div>
 	</div>

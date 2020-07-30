@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+/* 共通 */
+*{
+    font-family: 'Noto Sans JP', sans-serif;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    max-width: 1920px;
+    min-height: 100%;
+    background-color: #f0f0f0;
+}
+#main{
+    width: 100%;
+    min-height: 100%;
+    margin: auto;
+
+}
+ul{
+    list-style-type: none;
+    padding-inline-start: 0;
+}
+input{
+    border-radius: 5px;
+    border: 1.5px solid #00000080;
+}
+/* ヘッダー */
+header{
+	display:flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+header h1 {
+	margin-left: 20px;
+}
+header form{
+	margin-right: 20px;
+	margin-top: 30px;
+}
+/* 入力フォーム */
+
+.edit-options {
+	width: 80%;
+	max-width: 1200px;
+	margin: 0 auto;
+	text-align:center;
+}
+
+.edit-options li {
+	display: flex;
+	align-items: center;
+	margin-bottom:10px;
+}
+.edit-options li label {
+	width: 120px;
+	padding-right: 10px;
+	text-align: right;
+}
+.edit-options li textarea{
+	width: 1070px;
+	text-align; left;
+}
+.edit-options li input{
+	width: 14em;
+	text-align; left
+}
+
+#stock, #price{
+	text-align: right;
+}
+
+
+.button{
+    border-radius: 6px;
+    width: 115px;
+    padding: 8px;
+    border: none;
+}
+
+.button.button-border{
+    border: 1.5px solid #00000080;
+}
+.button-main{
+    background-color: #4a86e8ff;
+    color:white;
+    font-size: large;
+}
+.button-cancel{
+    background-color: white;
+    color: #4a86e8;
+    border: 1px solid #00000060;
+    font-size: large;
+}
+.button-cancel.button-border{
+    background-color: white;
+    color: black;
+}
+
+.button-warning {
+	background-color: red;
+    color: white;
+    border: 1px solid #00000060;
+    font-size: large;
+}
+
+#buttons{
+	width:100%;
+	display: flex;
+	justify-content: center;
+}
+
+#buttons input{
+	margin: 20px 60px;
+}
+
+/* 書籍一覧*/
+#error{
+    color: red;
+    text-align: center;
+    margin: 10px auto;
+}
