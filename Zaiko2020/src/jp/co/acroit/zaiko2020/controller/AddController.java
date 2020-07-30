@@ -1,6 +1,7 @@
 package jp.co.acroit.zaiko2020.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import jp.co.acroit.zaiko2020.book.Book;
 
 /**
  * 追加サーブレット
@@ -24,49 +27,46 @@ public class AddController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-//		String branch = null;
-//
-//		String title = null;
-//		String publisher = null;
-//		String author = null;
-//		String isbn = null;
-//		LocalDate salsDate = null;
-//		String price = null;
-//		String stock = null;
-//		int deleteFlg = 0;
+		String branch = null;
+
+		String title = null;
+		String publisher = null;
+		String author = null;
+		String isbn = null;
+		LocalDate salsDate = null;
+		String price = null;
+		String stock = null;
 
 		HttpSession session = request.getSession();
 
 		try {
 
-//			if (request.getParameter("button") == null) {
-//				branch = "エラー";
-//			} else {
-//				branch = request.getParameter("button");
-//			}
-//
-//			switch(branch) {
-//			case "追加":
-//				Book addbook = new Book(0, null, null, null, null, null, null, null, 0);
-//
-//				addbook.setName(title);
-//				addbook.setPublisher(publisher);
-//				addbook.setAuthor(author);
-//				addbook.setIsbn(isbn);
-//				addbook.setSalesDate(salsDate);
-//				addbook.setPrice(price);
-//				addbook.setStock(stock);
-//				addbook.setDeleteFlag(deleteFlg);
-//
-//				session.setAttribute("addbook", addbook);
-//
-//				break;
-//			}
+			if (request.getParameter("form") == null) {
+				branch = "エラー";
+			} else {
+				branch = request.getParameter("form");
+			}
+
+			switch(branch) {
+			case "追加":
+				System.out.println("スイッチ文");
+				Book resetbook = new Book(0, null, null, null, null, null, null, null, 0);
+
+				resetbook.setName(title);
+				resetbook.setPublisher(publisher);
+				resetbook.setAuthor(author);
+				resetbook.setIsbn(isbn);
+				resetbook.setSalesDate(salsDate);
+				resetbook.setPrice(price);
+				resetbook.setStock(stock);
+
+				session.setAttribute("book", resetbook);
+			}
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/AddForm.jsp");
 			dispatcher.forward(request, response);
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 
 			e.printStackTrace();
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
