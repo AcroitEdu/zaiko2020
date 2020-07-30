@@ -47,7 +47,7 @@ public class RestorationController extends HttpServlet {
 		String isbn = null;
 //		String salsDate = sdf.format(date);
 		String salsDate = null;
-		String stock = "0";
+		String stock = null;
 		String salsDateFlag = "after";	//～以降
 		String stockFlag = "gtoe";			//～以上
 		int page = 1;
