@@ -53,9 +53,7 @@ sortableHeaders.addClass("sortArrowActive");
 
 //追加ボタンを押したときの処理
 $("#addButton").click(function () {
-	if (window.confirm(`追加しますか?`)) {
-        $(`#addForm`).submit();
-    }
+	$(`#addForm`).submit();
 });
 
 //ログアウトボタンを押したときの処理

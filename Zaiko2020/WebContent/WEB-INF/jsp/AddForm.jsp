@@ -21,12 +21,17 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 	<div id="main">
 		<header>
 			<ul class="boxed-tabs">
-				<li class="tab">在庫一覧</li>
+				<li id="inventoryListButton" class="tab">
+					<form id="inventoryListForm" action="/Zaiko2020/inventoryList" method="post">
+						<input type="hidden" name="form" value="4">
+						<span>在庫一覧</span>
+					</form>
+				</li>
 				<li class="tab-current tab">追加</li>
 				<li class="tab">復元</li>
-				<li class="tab-logout tab">
+				<li  id="logoutButton" class="tab-logout tab">
 					<form id="logoutForm" action="/Zaiko2020/logout" method="post">
-						<span id="logoutButton">ログアウト</span>
+						<span>ログアウト</span>
 					</form>
 				</li>
 			</ul>
@@ -53,7 +58,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 						</li>
 						<li>
                             <label for="isbn">ISBN</label>
-                            <input type="text" id="isbn" name="isbn" pattern="^[0-9]+$" maxlength="13" value="${book.isbn}" required>
+                            <input type="text" id="isbn" name="isbn" pattern="^[0-9]{13}$" maxlength="13" value="${book.isbn}" required>
                         </li>
                         <li>
                             <label for="date">発売日</label>
