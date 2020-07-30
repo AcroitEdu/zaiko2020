@@ -68,7 +68,7 @@ public class BookDataAccess {
 			//クエリの生成・実行を行う。
 			query = "SELECT * FROM books";
 			//検索条件＋deleatflg = 0
-			query = query + sqlWhere(sc) + " AND " + deleteflgColumn + " = 0 " + sqlOrderBy(sc) + sqlLimit(sc) + ";";
+			query = query + " WHERE " + sqlWhere(sc) + " " + deleteflgColumn + " = 0 " + sqlOrderBy(sc) + sqlLimit(sc) + ";";
 			System.out.println(query);
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
@@ -127,7 +127,7 @@ public class BookDataAccess {
 				//クエリの生成・実行を行う。
 				query = "SELECT * FROM books";
 				//検索条件＋deleatflg = 0
-				query = query + sqlWhere(sc) + " AND " + deleteflgColumn + " = 1 " + sqlOrderBy(sc) + sqlLimit(sc) + ";";
+				query = query + " WHERE " + sqlWhere(sc) + " " + deleteflgColumn + " = 1 " + sqlOrderBy(sc) + sqlLimit(sc) + ";";
 				System.out.println(query);
 				PreparedStatement ps = con.prepareStatement(query);
 				ResultSet rs = ps.executeQuery();
@@ -345,7 +345,7 @@ public class BookDataAccess {
 			con = DriverManager.getConnection(url, username, password);
 			//クエリの生成・実行を行う。
 			query = "SELECT COUNT(*) AS libraryHoldings FROM books";
-			query = query + sqlWhere(sc) + " AND " + deleteflgColumn + " = 0 " + sqlOrderBy(sc) + ";";
+			query = query + " WHERE " + sqlWhere(sc) + " " + deleteflgColumn + " = 0 " + sqlOrderBy(sc) + ";";
 
 			System.out.println(query);
 			PreparedStatement ps = con.prepareStatement(query);
@@ -383,7 +383,7 @@ public class BookDataAccess {
 				con = DriverManager.getConnection(url, username, password);
 				//クエリの生成・実行を行う。
 				query = "SELECT COUNT(*) AS libraryHoldings FROM books";
-				query = query + sqlWhere(sc) +" AND " + deleteflgColumn + " = 1 " + sqlOrderBy(sc) + ";";
+				query = query + " WHERE " + sqlWhere(sc) + " " + deleteflgColumn + " = 1 " + sqlOrderBy(sc) + ";";
 
 				PreparedStatement ps = con.prepareStatement(query);
 				ResultSet rs = ps.executeQuery();
@@ -668,7 +668,7 @@ public class BookDataAccess {
 				}
 			}
 
-			//編集中の書籍のflgを立てるメソッド
+			//編集中の書籍のflgを戻すメソッド
 			public void flgReturn(int id) throws SQLException {
 				Connection con = null;
 				try {
@@ -685,7 +685,7 @@ public class BookDataAccess {
 					rs1.next();
 
 					//更新flgクエリ
-					query = "UPDATE books SET " + updateflgColumn + " = 1 WHERE " + idColumn + " = " + id
+					query = "UPDATE books SET " + updateflgColumn + " = 0 WHERE " + idColumn + " = " + id
 							+ ";";
 					PreparedStatement ps2 = con.prepareStatement(query);
 					ps2.executeUpdate();
@@ -935,7 +935,7 @@ public class BookDataAccess {
 					if (isAddWhere) { //WHERE句２つ目以降の条件には先頭にANDを付与
 						AddSql = " AND" + AddSql;
 					} else { //WHERE句最初の条件には先頭にWHEREを付与
-						AddSql = " WHERE" + AddSql;
+//						AddSql = " WHERE" + AddSql;
 						isAddWhere = true;
 					}
 
@@ -944,6 +944,10 @@ public class BookDataAccess {
 				}
 			}
 			AddSql = null;
+		}
+
+		if(!query.isEmpty()) {
+			query = query + " AND ";
 		}
 		return query;
 	}
