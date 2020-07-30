@@ -409,6 +409,9 @@ public class BookDataAccess {
 			}
 		}
 
+	
+
+
 	//書籍の追加を行うメソッド
 	public void add(Book book) throws SQLException {
 		Connection con = null;
@@ -628,13 +631,20 @@ public class BookDataAccess {
 	//書籍の復元を行うメソッド
 	public void restoration(String[] checkedId) throws SQLException {
 
-		String where = null;
+		String where = "";
+		int last = checkedId.length;
 
 		//WHERE条件の作成
-		for (int i = 0 ; i < checkedId.length - 1 ; i++) {
-			where = where + idColumn + " = " + checkedId[i] + " OR ";
+		for (int i = 0 ; i < checkedId.length ; i++) {
+			System.out.println(i);
+			System.out.println(checkedId[i]);
+			if(i == checkedId.length - 1) {
+				where = where + idColumn + " = " + checkedId[i];
+			} else {
+				where = where + idColumn + " = " + checkedId[i] + " OR ";
+			}
 		}
-		where = where + idColumn + " = " + checkedId[checkedId.length];
+
 
 		Connection con = null;
 		try {
@@ -649,9 +659,9 @@ public class BookDataAccess {
 			ps1.executeQuery();
 			ResultSet rs1 = ps1.executeQuery();
 			rs1.next();
-
+			
 			//復元クエリの作成と実行
-			query = "UPDATE books SET " + deleteflgColumn + " = 1 WHERE " + where + ";";
+			query = "UPDATE books SET " + deleteflgColumn + " = 0 WHERE " + where + ";";
 			PreparedStatement ps2 = con.prepareStatement(query);
 			ps2.executeUpdate();
 
