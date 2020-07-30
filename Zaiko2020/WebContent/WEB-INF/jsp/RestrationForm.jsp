@@ -48,6 +48,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 				</li>
                 <li id="addButton" class="tab">
                 	<form id="addForm" class="button" name="button" action="/Zaiko2020/Add" method="post">
+                		<input type="hidden" name="form" value="追加">
                         <span>追加</span>
                     </form>
                 </li>
