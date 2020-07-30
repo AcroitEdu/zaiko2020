@@ -2,55 +2,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
 <title>書籍情報変更の確認</title>
+	<link href="https://unpkg.com/sanitize.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="js/dialog/dialog-polyfill.css" />
+    <link href="styleBookInOut.css" rel="stylesheet">
+    <link href="styleCheck.css" rel="stylesheet">
 
 </head>
 <body>
-	<h1>以下の内容で書籍情報の変更を行います。</h1>
-	<table>
-		<caption><%=request.getParameter("caption")%></caption>
-		<colgroup>
-			<col class="table-header">
-			<col class="table-content">
-		</colgroup>
-		<tr>
-			<th scope="row">書籍名</th>
-			<td>${book.name}</td>
-		</tr>
-		<tr>
-			<th scope="row">著者</th>
-			<td>${book.author}</td>
-		</tr>
-		<tr>
-			<th scope="row">出版社</th>
-			<td>${book.publisher}</td>
-		</tr>
-		<tr>
-			<th scope="row">ISBN</th>
-			<td>${book.isbn}</td>
-		</tr>
-		<tr>
-			<th scope="row">発売日</th>
-			<td>${book.salesDate}</td>
-		</tr>
-		<tr>
-			<th scope="row">価格</th>
-			<td>${book.price}円</td>
-		</tr>
-		<tr>
-			<th scope="row">在庫数</th>
-			<td>${book.stock}冊</td>
-		</tr>
-	</table>
-	<span>
-		<form id="editForm" action="/Zaiko2020/EditProcess" method="post">
-			<input type="hidden" name="id" value="${book.id}">
-			<input type="submit" name="button" id="edit" class="button button-main button-border" value="実行">
-		</form>
-		<form id="cancelForm" action="/Zaiko2020//Edit" method="post">
-			<input type="submit" name="button" id="cancel" class="button button-cancel button-border" value="キャンセル">
-		</form>
-	</span>
+	<div id="main">
+		<header>
+			<span id="complete">以下の内容で書籍情報の変更を行います。</span>
+		</header>
+		<div id="error">
+			<span>${sessionScope.error}</span>
+		</div>
+		<div id="details">
+			<jsp:include page="part/BookDetails.jsp">
+				<jsp:param name="caption" value=" " />
+				<jsp:param name="book" value="${book}" />
+			</jsp:include>
+		</div>
+		<div id="buttons">
+			<form id="editForm" action="/Zaiko2020/EditProcess" method="post">
+				<input type="hidden" name="id" value="${book.id}">
+				<input type="submit" name="button" id="edit" class="button button-main button-border" value="実行">
+			</form>
+			<form id="cancelForm" action="/Zaiko2020//Edit" method="post">
+				<input type="submit" name="button" id="cancel" class="button button-cancel button-border" value="キャンセル">
+			</form>
+		</div>
+    </div>
 </body>
+<script src="js/dialog/dialog-polyfill.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </html>
