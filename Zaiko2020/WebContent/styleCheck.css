@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/*
+    追加、編集、削除確認画面のスタイルを定義する。
+*/
+
+#buttons{
+	width:100%;
+	display: flex;
+	justify-content: center;
+}
+
+#buttons form {
+	margin: 20px 60px;
+}
+
+
