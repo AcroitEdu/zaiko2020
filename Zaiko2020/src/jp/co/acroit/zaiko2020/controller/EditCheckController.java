@@ -60,7 +60,7 @@ public class EditCheckController extends HttpServlet {
 			stock = request.getParameter("stock");
 
 			//文字チェック
-			if (!isbn.matches("^[0-9]*$") || !stock.matches("^[0-9]*$") || !isbn.matches("^[0-9]*$") || 13 == isbn.length()) {
+			if (!isbn.matches("^[0-9]*$") || !stock.matches("^[0-9]*$") || !isbn.matches("^[0-9]*$") || 13 != isbn.length()) {
 
 				session.setAttribute("error", "指定されている形式で入力してください。");
 				response.sendRedirect("/Zaiko2020/Add");
