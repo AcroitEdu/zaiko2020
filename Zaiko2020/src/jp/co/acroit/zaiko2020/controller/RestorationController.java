@@ -45,21 +45,22 @@ public class RestorationController extends HttpServlet {
 		String author = null;
 		String publisher = null;
 		String isbn = null;
-		String salsDate = sdf.format(date);
+//		String salsDate = sdf.format(date);
+		String salsDate = null;
 		String stock = "0";
 		String salsDateFlag = "after";	//～以降
 		String stockFlag = "gtoe";			//～以上
 		int page = 1;
-		int sort = 0;
-		int lift = 1;
+		int sort = 1;	//ISBNでソート
+		int lift = 1;	//昇順
 
 		SearchCondition sc = new SearchCondition();
 
-		sc.setName(bookName);
-		sc.setAuthor(author);
-		sc.setPublisher(publisher);
-		sc.setIsbn(isbn);
-		sc.setSalesDate(salsDate);
+//		sc.setName(bookName);
+//		sc.setAuthor(author);
+//		sc.setPublisher(publisher);
+//		sc.setIsbn(isbn);
+//		sc.setSalesDate(salsDate);
 		sc.setStock(stock);
 		sc.setSalesDateFlag(salsDateFlag);
 		sc.setStockFlag(stockFlag);
@@ -188,13 +189,14 @@ public class RestorationController extends HttpServlet {
 
 			//表ページ移動
 		case 1:
+			System.out.println("エラー判定");
 			//ページ番号の空白判定
 			String pageNumberCheck = null;
 			pageNumberCheck = request.getParameter("page");
 			if (pageNumberCheck == null || pageNumberCheck.isEmpty()) {
 
 				session.setAttribute("error", "ページ番号を入力してください。");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RestrationForm.jsp");
 				dispatcher.forward(request, response);
 				return;
 
@@ -214,7 +216,7 @@ public class RestorationController extends HttpServlet {
 			if (maxPage < page) {
 
 				session.setAttribute("error", "該当するページは見つかりませんでした。");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RestrationForm.jsp");
 				dispatcher.forward(request, response);
 				return;
 
@@ -270,7 +272,7 @@ public class RestorationController extends HttpServlet {
 			session.setAttribute("items", bookList);
 			session.setAttribute("page", page);
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RestrationForm.jsp");
 			dispatcher.forward(request, response);
 
 		} catch (SQLException e) {
