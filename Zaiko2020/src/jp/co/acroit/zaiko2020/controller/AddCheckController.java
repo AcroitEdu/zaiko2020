@@ -64,16 +64,18 @@ public class AddCheckController extends HttpServlet {
 			stock = request.getParameter("stock");
 
 			//文字チェック
-			if (!isbn.matches("^[0-9]*$") || !stock.matches("^[0-9]*$") || !isbn.matches("^[0-9]*$") || 13 == isbn.length()) {
+			if (!isbn.matches("^[0-9]*$") || !stock.matches("^[0-9]*$") || !isbn.matches("^[0-9]*$") || 13 != isbn.length()) {
 
 				session.setAttribute("error", "指定されている形式で入力してください。");
 				response.sendRedirect("/Zaiko2020/Add");
+				return;
 			}
 
 			//値の範囲チェック
 			if(Integer.parseInt(price) < 1 || 999999 < Integer.parseInt(price) || Integer.parseInt(stock) < 1 || 999999 < Integer.parseInt(stock) ) {
 				session.setAttribute("error", "指定されている形式で入力してください。");
 				response.sendRedirect("/Zaiko2020/Add");
+				return;
 			}
 
 
@@ -97,12 +99,7 @@ public class AddCheckController extends HttpServlet {
 			e.printStackTrace();
 			session.setAttribute("error", "指定されている形式で入力してください。");
 			response.sendRedirect("/Zaiko2020/Add");
-		} catch (IndexOutOfBoundsException e) {
-			//エラーを返し入荷画面にリダイレクト
-			session.setAttribute("error", "指定されている形式で入力してください。");
-			response.sendRedirect("/Zaiko2020/Add");
-
-		}  catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/Add");
