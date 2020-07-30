@@ -37,7 +37,7 @@ public class AddProcessController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		Book addbook = (Book)session.getAttribute("book");
+		Book addbook = (Book)session.getAttribute("addbook");
 		Book book;
 
 		BookDataAccess bda = new BookDataAccess();
@@ -45,6 +45,17 @@ public class AddProcessController extends HttpServlet {
 			bda.add(addbook);
 			book = bda.addSearch(addbook);
 			session.setAttribute("book", book);
+
+			//入力内容削除
+			Book resetbook = new Book(0, null, null, null, null, null, null, null, 0);
+			resetbook.setName(null);
+			resetbook.setPublisher(null);
+			resetbook.setAuthor(null);
+			resetbook.setIsbn(null);
+			resetbook.setSalesDate(null);
+			resetbook.setPrice(null);
+			resetbook.setStock(null);
+			session.setAttribute("addbook", resetbook);
 
 			response.sendRedirect("/Zaiko2020/resultForm");
 

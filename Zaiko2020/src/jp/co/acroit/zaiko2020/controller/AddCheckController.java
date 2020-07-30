@@ -90,7 +90,8 @@ public class AddCheckController extends HttpServlet {
 			addbook.setStock(stock);
 			addbook.setDeleteFlag(deleteFlg);
 
-			session.setAttribute("book", addbook);
+			//検索条件設定
+			session.setAttribute("addbook", addbook);
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/AddCheck.jsp");
 			dispatcher.forward(request, response);
