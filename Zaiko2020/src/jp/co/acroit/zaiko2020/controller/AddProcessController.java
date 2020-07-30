@@ -46,17 +46,6 @@ public class AddProcessController extends HttpServlet {
 			book = bda.addSearch(addbook);
 			session.setAttribute("book", book);
 
-			//入力内容削除
-			Book resetbook = new Book(0, null, null, null, null, null, null, null, 0);
-			resetbook.setName(null);
-			resetbook.setPublisher(null);
-			resetbook.setAuthor(null);
-			resetbook.setIsbn(null);
-			resetbook.setSalesDate(null);
-			resetbook.setPrice(null);
-			resetbook.setStock(null);
-			session.setAttribute("book", resetbook);
-
 			response.sendRedirect("/Zaiko2020/resultForm");
 
 		} catch (SQLException e) {
