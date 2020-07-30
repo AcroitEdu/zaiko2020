@@ -63,6 +63,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 						<li>
                             <label for="isbn">ISBN</label>
                             <input type="text" id="isbn" name="isbn" pattern="^[0-9]{13}$" maxlength="13" value="${addbook.isbn}" required>
+                            <span>※既存の番号を入力しないようお願いいたします。</span>
                         </li>
                         <li>
                             <label for="date">発売日</label>

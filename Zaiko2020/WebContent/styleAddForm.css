@@ -86,11 +86,16 @@ header .boxed-tabs{
 .add-options li textarea{
 	width: 1070px;
 	text-align; left;
+	resize: none;
 }
 .add-options li input{
 	width: 14em;
 	text-align; left
 }
+.add-options li span{
+	margin-left: 7px;
+}
+
 
 #stock, #price{
 	text-align: right;
