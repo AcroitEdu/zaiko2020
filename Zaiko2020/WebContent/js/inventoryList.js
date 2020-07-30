@@ -51,18 +51,6 @@ var sortDirection = $("#sortDirection").val();
 var sortableHeaders = $(`#listHeaders > .listHeaderSortable[data-sort-index='${sortIndex}'] > .sortArrows > .sortArrow[data-sort-direction='${sortDirection}']`);
 sortableHeaders.addClass("sortArrowActive");
 
-//追加ボタンを押したときの処理
-$("#addButton").click(function () {
-	$(`#addForm`).submit();
-});
-
-//ログアウトボタンを押したときの処理
-$("#logoutButton").click(function () {
-    if (window.confirm(`ログアウトしますか?`)) {
-        $(`#logoutForm`).submit();
-    }
-});
-
 //「入荷」をクリックしたときの処理
 $(".buttonArrive").click(linkSubmit);
 

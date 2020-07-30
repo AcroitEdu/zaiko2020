@@ -43,7 +43,11 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                         <span>追加</span>
                     </form>
                 </li>
-                <li class="tab-space tab"></li>
+                <li id="restorationButton" class="tab">
+                    <form id="restorationForm" action="/Zaiko2020/Restoration" method="get">
+						<span>復元</span>
+                    </form>
+                </li>
                 <li id="logoutButton" class="tab-logout tab">
                     <form id="logoutForm" action="/Zaiko2020/logout" method="post">
 						<span>ログアウト</span>
@@ -263,5 +267,5 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/inventoryList.js"></script>
-
+<script src="js/TabTransition.js"></script>
 </html>
