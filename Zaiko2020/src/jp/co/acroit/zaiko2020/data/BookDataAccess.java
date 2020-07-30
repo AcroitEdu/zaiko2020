@@ -37,6 +37,7 @@ public class BookDataAccess {
 		priceColumn = "price";
 		stockColumn = "stock";
 		deleteflgColumn = "deleteflg";
+		updateflgColumn = "updateflg";
 		libraryHoldingsColumn = "libraryHoldings";
 
 	}
@@ -55,6 +56,7 @@ public class BookDataAccess {
 	String priceColumn;
 	String stockColumn;
 	String deleteflgColumn;
+	String updateflgColumn;
 	String libraryHoldingsColumn;
 
 	//書籍検索（deleatflg=0）を行うメソッド
@@ -345,6 +347,7 @@ public class BookDataAccess {
 			query = "SELECT COUNT(*) AS libraryHoldings FROM books";
 			query = query + sqlWhere(sc) + " AND " + deleteflgColumn + " = 0 " + sqlOrderBy(sc) + ";";
 
+			System.out.println(query);
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 
@@ -409,8 +412,6 @@ public class BookDataAccess {
 			}
 		}
 
-	
-
 
 	//書籍の追加を行うメソッド
 	public void add(Book book) throws SQLException {
@@ -452,7 +453,6 @@ public class BookDataAccess {
 		}
 
 	}
-
 
 	//書籍の追加後に追加した書籍を取得するメソッド
 	public Book addSearch(Book book) throws SQLException {
@@ -571,6 +571,156 @@ public class BookDataAccess {
 		}
 	}
 
+	//選択した書籍が編集中かチェックを行うメソッド
+	public boolean flgCheck(int id) throws SQLException {
+		Connection con = null;
+
+		int updateFlg = 0;
+
+		try {
+
+			con = DriverManager.getConnection(url, username, password);
+
+			query = "SELECT " + updateflgColumn+ " FROM books WHERE " + idColumn + "=" + id + ";";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			updateFlg = rs.getInt(updateflgColumn);
+			rs.close();
+			con.close();
+			con = null;
+
+			return updateFlg == 1;
+
+		} catch (SQLException e) {
+
+			//エラー発生時にロールバックを行う。
+			e.printStackTrace();
+			throw e;
+
+		} finally {
+
+			if (con != null) {
+
+				try {
+
+					con.close();
+
+				} catch (Exception ignore) {
+
+				}
+			}
+		}
+
+	}
+
+	//編集中の書籍のflgを立てるメソッド
+			public void flg(int id) throws SQLException {
+				Connection con = null;
+				try {
+
+					con = DriverManager.getConnection(url, username, password);
+
+					//オートコミットOFFにする。
+					con.setAutoCommit(false);
+					//更新対象のレコードをロック
+					query = "SELECT " + updateflgColumn+ " FROM books WHERE " + idColumn + "=" + id + " for update;";
+					PreparedStatement ps1 = con.prepareStatement(query);
+					ps1.executeQuery();
+					ResultSet rs1 = ps1.executeQuery();
+					rs1.next();
+
+					//更新flgクエリ
+					query = "UPDATE books SET " + updateflgColumn + " = 1 WHERE " + idColumn + " = " + id
+							+ ";";
+					PreparedStatement ps2 = con.prepareStatement(query);
+					ps2.executeUpdate();
+
+					rs1.close();
+
+					//問題がなければコミットを行う。
+					con.commit();
+					con.close();
+					con = null;
+
+				} catch (SQLException e) {
+
+					//エラー発生時にロールバックを行う。
+					if(con != null) {
+						con.rollback();
+					}
+					e.printStackTrace();
+					throw e;
+
+				} finally {
+
+					if (con != null) {
+
+						try {
+
+							con.close();
+
+						} catch (Exception ignore) {
+
+						}
+					}
+				}
+			}
+
+			//編集中の書籍のflgを立てるメソッド
+			public void flgReturn(int id) throws SQLException {
+				Connection con = null;
+				try {
+
+					con = DriverManager.getConnection(url, username, password);
+
+					//オートコミットOFFにする。
+					con.setAutoCommit(false);
+					//更新対象のレコードをロック
+					query = "SELECT " + updateflgColumn+ " FROM books WHERE " + idColumn + "=" + id + " for update;";
+					PreparedStatement ps1 = con.prepareStatement(query);
+					ps1.executeQuery();
+					ResultSet rs1 = ps1.executeQuery();
+					rs1.next();
+
+					//更新flgクエリ
+					query = "UPDATE books SET " + updateflgColumn + " = 1 WHERE " + idColumn + " = " + id
+							+ ";";
+					PreparedStatement ps2 = con.prepareStatement(query);
+					ps2.executeUpdate();
+
+					rs1.close();
+
+					//問題がなければコミットを行う。
+					con.commit();
+					con.close();
+					con = null;
+
+				} catch (SQLException e) {
+
+					//エラー発生時にロールバックを行う。
+					if(con != null) {
+						con.rollback();
+					}
+					e.printStackTrace();
+					throw e;
+
+				} finally {
+
+					if (con != null) {
+
+						try {
+
+							con.close();
+
+						} catch (Exception ignore) {
+
+						}
+					}
+				}
+			}
+
 	//書籍の編集を行うメソッド
 	public void edit(Book book,int id) throws SQLException {
 		Connection con = null;
@@ -659,7 +809,7 @@ public class BookDataAccess {
 			ps1.executeQuery();
 			ResultSet rs1 = ps1.executeQuery();
 			rs1.next();
-			
+
 			//復元クエリの作成と実行
 			query = "UPDATE books SET " + deleteflgColumn + " = 0 WHERE " + where + ";";
 			PreparedStatement ps2 = con.prepareStatement(query);
