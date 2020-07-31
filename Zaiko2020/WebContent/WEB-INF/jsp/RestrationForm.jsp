@@ -41,7 +41,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 		<header>
 			<ul class="boxed-tabs">
 				<li id="inventoryListButton" class="tab">
-					<form id="inventoryListForm" action="/Zaiko2020/inventoryList" method="post">
+					<form id="inventoryListForm" action="/Zaiko2020/inventoryList" method="get">
 						<input type="hidden" name="form" value="4">
 						<span>在庫一覧</span>
 					</form>
@@ -100,7 +100,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 								</select>
 							</div></li>
 					</ul>
-					<input type="hidden" name="form" value="0"> <input
+					<input type="hidden" name="form" value="検索"> <input
 						type="submit" id="searchButton" class="button" value="検索">
 				</form>
 			</div>
@@ -116,7 +116,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 						<input type="hidden" id="sortIndex" name="index"
 							value="${conditions.sort}"> <input type="hidden"
 							id="sortDirection" name="direction" value="${conditions.lift}">
-						<input type="hidden" name="form" value="2">
+						<input type="hidden" name="form" value="ソート">
 					</form>
 					<button type="button" form="check" onclick="submit()">選択した書籍の復元</button>
 					<table id="listTable">

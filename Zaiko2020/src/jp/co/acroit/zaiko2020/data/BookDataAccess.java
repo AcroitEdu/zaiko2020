@@ -119,7 +119,8 @@ public class BookDataAccess {
 	}
 
 	//書籍検索（deleatflg=1）を行うメソッド
-		public List<Book> findDeleat(SearchCondition sc) throws SQLException {
+//		public List<Book> findDeleat(SearchConditions searchCon,SortConditions sortCon,PageConditions pageCon) throws SQLException {
+	public List<Book> findDeleat(SearchCondition sc) throws SQLException {
 			Connection con = null;
 			try {
 				con = DriverManager.getConnection(url, username, password);
@@ -127,6 +128,7 @@ public class BookDataAccess {
 				//クエリの生成・実行を行う。
 				query = "SELECT * FROM books";
 				//検索条件＋deleatflg = 0
+//				query = query + " WHERE " + dsqlWhere(searchCon) + " " + deleteflgColumn + " = 1 " + dsqlOrderBy(sortCon) + dsqlLimit(pageCon) + ";";
 				query = query + " WHERE " + sqlWhere(sc) + " " + deleteflgColumn + " = 1 " + sqlOrderBy(sc) + sqlLimit(sc) + ";";
 				System.out.println(query);
 				PreparedStatement ps = con.prepareStatement(query);
@@ -376,13 +378,15 @@ public class BookDataAccess {
 	}
 
 	//総件数(deleatflg=1)の取得を行うメソッド
-		public int countAllDeleat(SearchCondition sc) throws SQLException {
+//		public int countAllDeleat(SearchConditions searchCon,SortConditions sortCon,PageConditions pageCon) throws SQLException {
+	public int countAllDeleat(SearchCondition sc) throws SQLException {
 			Connection con = null;
 
 			try {
 				con = DriverManager.getConnection(url, username, password);
 				//クエリの生成・実行を行う。
 				query = "SELECT COUNT(*) AS libraryHoldings FROM books";
+//				query = query + " WHERE " + dsqlWhere(searchCon) + " " + deleteflgColumn + " = 1 " + dsqlOrderBy(sortCon) + ";";
 				query = query + " WHERE " + sqlWhere(sc) + " " + deleteflgColumn + " = 1 " + sqlOrderBy(sc) + ";";
 
 				PreparedStatement ps = con.prepareStatement(query);
@@ -845,6 +849,165 @@ public class BookDataAccess {
 			}
 		}
 	}
+
+
+
+	//WHERE句の生成を行うメソッド
+	public String dsqlWhere(SearchConditions searchCon) {
+		//生成した文字列の一時保存を行う。
+		String query = "";
+
+		//各検索条件の取得
+		String bookName = searchCon.getName();
+		String publisher = searchCon.getPublisher();
+		String author = searchCon.getAuthor();
+		String isbn = searchCon.getIsbn();
+		String salsDate = searchCon.getSalesDate();
+		String stock = searchCon.getStock();
+		String salsDateFlag = searchCon.getSalesDateFlag();
+		String stockFlag = searchCon.getStockFlag();
+
+		//queryに継ぎ足す部分の一時保存場所
+		String AddSql = null;
+
+		//WHERE句で用いるカラム名
+		String[] whereDataName = { titleColumn, publisherColumn, authorColumn,
+				isbnColumn, salesDateColumn, stockColumn };
+		//WHERE句で用いるフィールド
+		String[] whereData = { bookName, publisher, author, isbn, salsDate, stock };
+
+		//WHERE句を一度でも加えたか否か
+		boolean isAddWhere = false;
+
+		for (int i = 0; i < whereData.length; i++) {
+
+			//条件が空白でない場合
+			if (whereData[i] != null && !whereData[i].isEmpty()) {
+
+				//比較演算子の付与
+				switch (whereDataName[i]) {
+				case "salesDate": //発売日の場合
+					switch (salsDateFlag) {
+					case "equals": //～に一致
+						AddSql = "=";
+						break;
+					case "before": //～以前
+						AddSql = "<=";
+						break;
+					case "after": //～以降
+						AddSql = ">=";
+						break;
+					}
+					break;
+				case "stock": //在庫数の場合
+					switch (stockFlag) {
+					case "lt": //～未満
+						AddSql = "<";
+						break;
+					case "ltoe": //～以下
+						AddSql = "<=";
+						break;
+					case "equals": //～に等しい
+						AddSql = "=";
+						break;
+					case "gtoe": //～以上
+						AddSql = ">=";
+						break;
+					case "gt": //～より多い
+						AddSql = ">";
+						break;
+					}
+					break;
+				default: //上記以外(あいまい検索)の場合
+					AddSql = "LIKE";
+				}
+
+				//検索条件が指定なしでない場合にSQLへの加筆を行う
+				if (AddSql != null && !AddSql.isEmpty()) {
+
+					//フィールドの付与
+					if (AddSql.equals("LIKE")) { //文字列の検索の場合
+						AddSql = AddSql + " '%" + whereData[i] + "%'";
+					} else if (whereDataName[i].equals(salesDateColumn)) { //発売日の検索の場合
+						AddSql = AddSql + " '" + whereData[i] + "'";
+					} else { //数値の検索の場合
+						AddSql = AddSql + " " + whereData[i];
+					}
+
+					//カラム名の付与
+					AddSql = " " + whereDataName[i] + " " + AddSql;
+
+					if (isAddWhere) { //WHERE句２つ目以降の条件には先頭にANDを付与
+						AddSql = " AND" + AddSql;
+					} else { //WHERE句最初の条件には先頭にWHEREを付与
+//						AddSql = " WHERE" + AddSql;
+						isAddWhere = true;
+					}
+
+					//SQLへの加筆
+					query = query + AddSql;
+				}
+			}
+			AddSql = null;
+		}
+
+		if(!query.isEmpty()) {
+			query = query + " AND ";
+		}
+		return query;
+	}
+
+	//ORDER BY句の生成
+	public String dsqlOrderBy(SortConditions sortCon) {
+		//生成した文字列の一時保存
+		String query = " ORDER BY ";
+
+		int sort = sortCon.getSort(); //ソート条件の取得
+		int lift = sortCon.getLift(); //昇順・降順の取得
+
+		System.out.println("DB" + lift);
+		//生成
+		switch (sort) {
+		case 0: //発売日でソート
+			query = query + salesDateColumn;
+			break;
+		case 1: //ISBNでソート
+			query = query + "isbn";
+			break;
+		case 2: //在庫数のソート
+			query = query + "stock";
+			break;
+		}
+		if (lift == 1) { //昇順の場合
+			query = query + " ASC";
+		} else { //降順の場合
+			query = query + " DESC";
+		}
+		return query;
+	}
+
+	//LIMIT句の生成
+	public String dsqlLimit(PageConditions pageCon) {
+		//生成した文字列の一時保存
+		String query = null;
+
+		//表ページ数の取得
+		int page = pageCon.getPage();
+		System.out.println(page);
+
+		//生成
+		query = " LIMIT " + String.valueOf((page - 1) * 200) + ", 200";
+		System.out.println(query);
+		return query;
+	}
+
+
+
+
+
+
+
+
 
 
 	//WHERE句の生成を行うメソッド

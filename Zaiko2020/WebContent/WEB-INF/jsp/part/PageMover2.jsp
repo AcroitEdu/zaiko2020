@@ -8,14 +8,14 @@
     <li class="pagesSpace"></li>
     <li class="pagesPrevNext">
         <form name="prevPage" action="/Zaiko2020/RestorationProcess" method="post">
-            <input type="hidden" name="form" value="1">
+            <input type="hidden" name="form" value="ページ">
             <input type="hidden" class="inputPage" name="page" value="${conditions.page - 1}" data-max="${maxPage}">
             <span class="link prevButton">前へ</span>
         </form>
     </li>
     <li class="pagesJump">
         <form name="jumpPage" action="/Zaiko2020/Restoration" method="post">
-            <input type="hidden" name="form" value="1">
+            <input type="hidden" name="form" value="ページ">
             <span>
 				<input type="text" class="inutPageNumber" name="page" required pattern="^[0-9]+$" value="${conditions.page}">
                 <span class="pageDelimiter">/</span>
@@ -26,7 +26,7 @@
     </li>
     <li class="pagesPrevNext">
         <form name="nextPage" action="/Zaiko2020/RestorationProcess" method="post">
-            <input type="hidden" name="form" value="1">
+            <input type="hidden" name="form" value="ページ">
             <input type="hidden" class="inputPage" name="page" value="${conditions.page + 1}" data-max="${maxPage}">
             <span class="link nextButton">次へ</span>
         </form>

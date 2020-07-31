@@ -2,9 +2,7 @@ package jp.co.acroit.zaiko2020.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -34,77 +32,88 @@ public class RestorationController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		HttpSession session = request.getSession();
-		session.setAttribute("flg", false);
 
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-		//初期表示の検索条件設定
 		String bookName = null;
 		String author = null;
 		String publisher = null;
 		String isbn = null;
-//		String salsDate = sdf.format(date);
-		String salsDate = null;
+		String salesDate = null;
 		String stock = null;
-		String salsDateFlag = "after";	//～以降
-		String stockFlag = "gtoe";			//～以上
-		int page = 1;
-		int sort = 1;	//ISBNでソート
+		String salesDateFlag = null;
+		String stockFlag = null;
+		int page = 1;	//1ページ目
+		int sort = 0;	//発売日
 		int lift = 1;	//昇順
 
-		SearchCondition sc = new SearchCondition();
+		int count = 0;
+		int pageCount = 0;
 
-//		sc.setName(bookName);
-//		sc.setAuthor(author);
-//		sc.setPublisher(publisher);
-//		sc.setIsbn(isbn);
-//		sc.setSalesDate(salsDate);
-		sc.setStock(stock);
-		sc.setSalesDateFlag(salsDateFlag);
-		sc.setStockFlag(stockFlag);
-		sc.setPage(page);
-		sc.setSort(sort);
-		sc.setLift(lift);
+		HttpSession session = request.getSession();
+
+		SearchCondition sc = (SearchCondition)session.getAttribute("conditions");
+		if(sc == null) {
+			sc = new SearchCondition();
+		}
+
+//		SearchConditions searchCon = (SearchConditions)session.getAttribute("searchCon");
+//		SortConditions sortCon = (SortConditions)session.getAttribute("sortCon");
+//		PageConditions pageCon = (PageConditions)session.getAttribute("pageCon");
+//
+//		if(searchCon == null) {
+//			searchCon = new SearchConditions();
+//			searchCon.setName(bookName);
+//			searchCon.setAuthor(author);
+//			searchCon.setPublisher(publisher);
+//			searchCon.setIsbn(isbn);
+//			searchCon.setStock(stock);
+//			searchCon.setSalesDate(salesDate);
+//			searchCon.setSalesDateFlag(salesDateFlag);
+//			searchCon.setStockFlag(stockFlag);
+//		}
+//		if(pageCon == null) {
+//			pageCon = new PageConditions();
+//			pageCon.setPage(page);
+//		}
+//		if(sortCon == null) {
+//			sortCon = new SortConditions();
+//			sortCon.setLift(lift);
+//			sortCon.setSort(sort);
+//		}
 
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
 		List<Book> bookList = new ArrayList<Book>();
 
 		try {
-			int count = 0;
-			int pageCount = 0;
+			//総件数の取得
 
-			//総件数（deleatflg=1）の取得
 			count = bda.countAllDeleat(sc);
-
-			//総ページ数
+//			count = bda.countAllDeleat(searchCon, sortCon, pageCon);
 			pageCount = (count + 199) / 200;
 
-			//総件数・現ページ・最大ページ数をセッションに設定する
+			//総件数・最大ページ数をセッションに設定
 			session.setAttribute("count", count);
-			session.setAttribute("page", page);
 			session.setAttribute("maxPage", pageCount);
 
-			//書籍（deleatflg=0）を検索する
+			//検索
+//			bookList = bda.findDeleat(searchCon, sortCon, pageCon);
 			bookList = bda.findDeleat(sc);
 
-			//検索結果・検索条件をセッションに設定する
-			session.setAttribute("items", bookList);
-			session.setAttribute("conditions", sc);
-
-			//該当書籍なし
+			//該当なし
 			if (bookList.isEmpty()) {
-
 				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
-
 			}
+
+			//書籍情報・現ページをセッションに設定
+			session.setAttribute("items", bookList);
+			session.setAttribute("page", page);
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RestrationForm.jsp");
 			dispatcher.forward(request, response);
+
 		} catch (SQLException e) {
 
+			e.printStackTrace();
 			//セッションの破棄
 			request.getSession().invalidate();
 			//セッションの再生成
@@ -114,12 +123,13 @@ public class RestorationController extends HttpServlet {
 
 		} catch (Exception e) {
 
+			e.printStackTrace();
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RestrationForm.jsp");
 			dispatcher.forward(request, response);
-			e.printStackTrace();
 
 		}
+
 
 	}
 
@@ -130,43 +140,93 @@ public class RestorationController extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-		String bookName = null;
-		String author = null;
-		String publisher = null;
-		String isbn = null;
-		String salsDate = null;
-		String stock = null;
-		String salsDateFlag = null;
-		String stockFlag = null;
+		HttpSession session = request.getSession();
+
+		session.setAttribute("error", "");
+
+		String branch = null;
+
+		if(!request.getParameter("form").isEmpty()) {
+			branch = request.getParameter("form");
+		}
+
+		String bookName = null;		//書籍名
+		String author = null;			//著者
+		String publisher = null;		//出版社
+		String isbn = null;			//ISBN
+		String salesDate = null;		//発売日
+		String stock = null;			//在庫数
+		String salesDateFlag = null;	//発売日プルダウンフラグ
+		String stockFlag = null;		//在庫数プルダウンフラグ
 		int page = 1;	//1ページ目
 		int sort = 0;	//発売日
 		int lift = 1;	//昇順
-		int value = Integer.parseInt(request.getParameter("form"));
 
-		HttpSession session = request.getSession();
-		session.setAttribute("flg", false);
+		int count = 0;
+		int pageCount = 0;
+
 		SearchCondition sc = (SearchCondition)session.getAttribute("conditions");
-		session.setAttribute("error", "");
-
 		if(sc == null) {
-
 			sc = new SearchCondition();
-
 		}
+//		SearchConditions searchCon = (SearchConditions)session.getAttribute("searchCon");
+//		SortConditions sortCon = (SortConditions)session.getAttribute("sortCon");
+//		PageConditions pageCon = (PageConditions)session.getAttribute("pageCon");
+//
+//		if(searchCon == null) {
+//			searchCon = new SearchConditions();
+//		}
+//		if(sortCon == null) {
+//			sortCon = new SortConditions();
+//		}
+//		if(pageCon == null) {
+//			pageCon = new PageConditions();
+//		}
 
-		switch (value) {
-		//検索ボタン
-		case 0:
+		//入力フォームの初期値設定
+		switch (branch) {
+		case "復元":
+			//初期値の設定
+			sc.setName(bookName);
+			sc.setAuthor(author);
+			sc.setPublisher(publisher);
+			sc.setIsbn(isbn);
+			sc.setSalesDate(salesDate);
+			sc.setStock(stock);
+			sc.setSalesDateFlag(salesDateFlag);
+			sc.setStockFlag(stockFlag);
+			sc.setPage(page);
+//			searchCon.setName(bookName);
+//			searchCon.setAuthor(author);
+//			searchCon.setPublisher(publisher);
+//			searchCon.setIsbn(isbn);
+//			searchCon.setStock(stock);
+//			searchCon.setSalesDate(salesDate);
+//			searchCon.setSalesDateFlag(salesDateFlag);
+//			searchCon.setStockFlag(stockFlag);
+//
+//			pageCon.setPage(page);
+//
+//			sortCon.setLift(lift);
+//			sortCon.setSort(sort);
+
+			break;
+
+
+			//検索ボタン押下
+		case "検索":
+
 			//検索条件取得
 			bookName = request.getParameter("name");
 			author = request.getParameter("author");
 			publisher = request.getParameter("publisher");
 			isbn = request.getParameter("isbn");
-			salsDate = request.getParameter("date");
+			salesDate = request.getParameter("date");
 			stock = request.getParameter("stock");
-			salsDateFlag = request.getParameter("beforeAfter");
+			salesDateFlag = request.getParameter("beforeAfter");
 			stockFlag = request.getParameter("largeOrSmall");
 
+			System.out.println("検索" + lift);
 			//入力値チェック
 			if (!isbn.matches("^[0-9]*$") || 13 < isbn.length() || !stock.matches("^[0-9]*$")) {
 
@@ -179,17 +239,28 @@ public class RestorationController extends HttpServlet {
 			sc.setAuthor(author);
 			sc.setPublisher(publisher);
 			sc.setIsbn(isbn);
-			sc.setSalesDate(salsDate);
+			sc.setSalesDate(salesDate);
 			sc.setStock(stock);
-			sc.setSalesDateFlag(salsDateFlag);
+			sc.setSalesDateFlag(salesDateFlag);
 			sc.setStockFlag(stockFlag);
 			sc.setPage(page);
+//			searchCon.setName(bookName);
+//			searchCon.setAuthor(author);
+//			searchCon.setPublisher(publisher);
+//			searchCon.setIsbn(isbn);
+//			searchCon.setSalesDate(salesDate);
+//			searchCon.setStock(stock);
+//			searchCon.setSalesDateFlag(salesDateFlag);
+//			searchCon.setStockFlag(stockFlag);
+//			pageCon.setPage(page);
 
 			break;
 
-			//表ページ移動
-		case 1:
-			System.out.println("エラー判定");
+
+			//ページ移動
+
+
+		case "ページ":
 			//ページ番号の空白判定
 			String pageNumberCheck = null;
 			pageNumberCheck = request.getParameter("page");
@@ -211,7 +282,6 @@ public class RestorationController extends HttpServlet {
 				break;
 
 			}
-
 			int maxPage = (int) session.getAttribute("maxPage");
 			if (maxPage < page) {
 
@@ -222,22 +292,34 @@ public class RestorationController extends HttpServlet {
 
 			}
 
+//			pageCon.setPage(page);
 			sc.setPage(page);
+
 			break;
 
+
 			//ソート
-		case 2:
+		case "ソート":
 			sort = Integer.parseInt(request.getParameter("index"));
 			lift = Integer.parseInt(request.getParameter("direction"));
 			sc.setPage(1);
 			sc.setSort(sort);
 			sc.setLift(lift);
+//			pageCon.setPage(1);
+//			sortCon.setSort(sort);
+//			sortCon.setLift(lift);
+
 			break;
+
+
 
 		}
 
-		//検索をセッションに設定
+		//検索条件をセッションに設定
 		session.setAttribute("conditions", sc);
+//		session.setAttribute("searchCon", searchCon);
+//		session.setAttribute("pageCon", pageCon);
+//		session.setAttribute("sortCon", sortCon);
 
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
@@ -245,10 +327,10 @@ public class RestorationController extends HttpServlet {
 
 		try {
 			//総件数の取得
-			if (value == 0) {
+			if (branch == "検索" || branch == "復元") {
 
-				int count = 0;
-				int pageCount = 0;
+
+//				count = bda.countAllDeleat(searchCon, sortCon, pageCon);
 				count = bda.countAllDeleat(sc);
 				pageCount = (count + 199) / 200;
 
@@ -259,6 +341,7 @@ public class RestorationController extends HttpServlet {
 			}
 
 			//検索
+//			bookList = bda.findDeleat(searchCon, sortCon, pageCon);
 			bookList = bda.findDeleat(sc);
 
 			//該当なし
@@ -277,6 +360,7 @@ public class RestorationController extends HttpServlet {
 
 		} catch (SQLException e) {
 
+			e.printStackTrace();
 			//セッションの破棄
 			request.getSession().invalidate();
 			//セッションの再生成
@@ -286,6 +370,7 @@ public class RestorationController extends HttpServlet {
 
 		} catch (Exception e) {
 
+			e.printStackTrace();
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RestrationForm.jsp");
 			dispatcher.forward(request, response);

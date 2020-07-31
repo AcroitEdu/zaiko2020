@@ -57,6 +57,8 @@ public class RestorationProcessController extends HttpServlet {
 
 			request.getSession().setAttribute("msg", "書籍の復元を行いました。");	//「msg」はjsp側とすり合わせ
 			response.sendRedirect("/Zaiko2020/Restoration");
+//			RequestDispatcher dispatch = request.getRequestDispatcher("/Restoration");
+//		      dispatch.forward(request, response);
 
 		} catch (SQLException e) {
 

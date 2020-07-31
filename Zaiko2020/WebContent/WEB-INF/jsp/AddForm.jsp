@@ -29,7 +29,8 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 				</li>
 				<li class="tab-current tab">追加</li>
 				<li id="restorationButton" class="tab">
-                    <form id="restorationForm" action="/Zaiko2020/Restoration" method="get">
+                    <form id="restorationForm" action="/Zaiko2020/Restoration" method="post">
+                    <input type="hidden" name="form" value="復元">
 						<span>復元</span>
                     </form>
                 </li>
