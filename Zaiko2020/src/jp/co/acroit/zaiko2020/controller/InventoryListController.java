@@ -33,37 +33,44 @@ public class InventoryListController extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
+
 		session.setAttribute("flg", false);
 
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-		//初期表示の検索条件設定
-		String bookName = null;
-		String author = null;
-		String publisher = null;
-		String isbn = null;
-		String salsDate = sdf.format(date);
-		String stock = "0";
-		String salsDateFlag = "after";
-		String stockFlag = "gtoe";
-		int page = 1;
-		int sort = 0;
-		int lift = 1;
+			//初期表示の検索条件設定
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String bookName = null;
+			String author = null;
+			String publisher = null;
+			String isbn = null;
+			String salsDate = sdf.format(date);
+			String stock = "0";
+			String salsDateFlag = "after";
+			String stockFlag = "gtoe";
+			int page = 1;	//１ページ
+			int sort = 0;	//発売日
+			int lift = 1;	//昇順
 
-		SearchCondition sc = new SearchCondition();
 
-		sc.setName(bookName);
-		sc.setAuthor(author);
-		sc.setPublisher(publisher);
-		sc.setIsbn(isbn);
-		sc.setSalesDate(salsDate);
-		sc.setStock(stock);
-		sc.setSalesDateFlag(salsDateFlag);
-		sc.setStockFlag(stockFlag);
-		sc.setPage(page);
-		sc.setSort(sort);
-		sc.setLift(lift);
+		SearchCondition sc = (SearchCondition)session.getAttribute("conditions");
+		//検索条件がない
+		if(sc == null) {
+			sc = new SearchCondition();
+
+			//初期値設定
+			sc.setName(bookName);
+			sc.setAuthor(author);
+			sc.setPublisher(publisher);
+			sc.setIsbn(isbn);
+			sc.setSalesDate(salsDate);
+			sc.setStock(stock);
+			sc.setSalesDateFlag(salsDateFlag);
+			sc.setStockFlag(stockFlag);
+			sc.setPage(page);
+			sc.setSort(sort);
+			sc.setLift(lift);
+		}
 
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
@@ -100,6 +107,7 @@ public class InventoryListController extends HttpServlet {
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
+
 		} catch (SQLException e) {
 
 			//セッションの破棄
@@ -127,20 +135,26 @@ public class InventoryListController extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
+
+		HttpSession session = request.getSession();
+
+
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String bookName = null;
 		String author = null;
 		String publisher = null;
 		String isbn = null;
-		String salsDate = null;
-		String stock = null;
-		String salsDateFlag = null;
-		String stockFlag = null;
-		int page = 1;	//1ページ目
+		String salsDate = sdf.format(date);
+		String stock = "0";
+		String salsDateFlag = "after";
+		String stockFlag = "gtoe";
+		int page = 1;	//１ページ
 		int sort = 0;	//発売日
 		int lift = 1;	//昇順
 		int value = Integer.parseInt(request.getParameter("form"));
 
-		HttpSession session = request.getSession();
+
 		session.setAttribute("flg", false);
 		SearchCondition sc = (SearchCondition)session.getAttribute("conditions");
 		session.setAttribute("error", "");
@@ -149,6 +163,22 @@ public class InventoryListController extends HttpServlet {
 
 			sc = new SearchCondition();
 
+		}
+
+		if(value == 3) {
+
+			//初期値設定
+			sc.setName(bookName);
+			sc.setAuthor(author);
+			sc.setPublisher(publisher);
+			sc.setIsbn(isbn);
+			sc.setSalesDate(salsDate);
+			sc.setStock(stock);
+			sc.setSalesDateFlag(salsDateFlag);
+			sc.setStockFlag(stockFlag);
+			sc.setPage(page);
+			sc.setSort(sort);
+			sc.setLift(lift);
 		}
 
 		switch (value) {
@@ -240,6 +270,12 @@ public class InventoryListController extends HttpServlet {
 		List<Book> bookList = new ArrayList<Book>();
 
 		try {
+
+			if(session.getAttribute("id") != null) {
+				bda.flgReturn((int)session.getAttribute("id"));
+				session.setAttribute("id", "");
+			}
+
 			//総件数の取得
 			if (value == 0) {
 
