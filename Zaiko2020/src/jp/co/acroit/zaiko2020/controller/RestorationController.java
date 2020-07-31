@@ -39,8 +39,8 @@ public class RestorationController extends HttpServlet {
 		String isbn = null;
 		String salesDate = null;
 		String stock = null;
-		String salesDateFlag = null;
-		String stockFlag = null;
+		String salesDateFlag = "equals";
+		String stockFlag = "equals";
 		int page = 1;	//1ページ目
 		int sort = 0;	//発売日
 		int lift = 1;	//昇順
@@ -156,8 +156,8 @@ public class RestorationController extends HttpServlet {
 		String isbn = null;			//ISBN
 		String salesDate = null;		//発売日
 		String stock = null;			//在庫数
-		String salesDateFlag = null;	//発売日プルダウンフラグ
-		String stockFlag = null;		//在庫数プルダウンフラグ
+		String salesDateFlag = "equals";	//発売日プルダウンフラグ
+		String stockFlag = "equals";		//在庫数プルダウンフラグ
 		int page = 1;	//1ページ目
 		int sort = 0;	//発売日
 		int lift = 1;	//昇順
@@ -226,7 +226,6 @@ public class RestorationController extends HttpServlet {
 			salesDateFlag = request.getParameter("beforeAfter");
 			stockFlag = request.getParameter("largeOrSmall");
 
-			System.out.println("検索" + lift);
 			//入力値チェック
 			if (!isbn.matches("^[0-9]*$") || 13 < isbn.length() || !stock.matches("^[0-9]*$")) {
 
@@ -327,7 +326,7 @@ public class RestorationController extends HttpServlet {
 
 		try {
 			//総件数の取得
-			if (branch == "検索" || branch == "復元") {
+			if (branch.equals("検索") || branch.equals("復元")) {
 
 
 //				count = bda.countAllDeleat(searchCon, sortCon, pageCon);
