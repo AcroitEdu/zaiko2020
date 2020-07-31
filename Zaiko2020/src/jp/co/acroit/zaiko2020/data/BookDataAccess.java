@@ -13,7 +13,7 @@ import jp.co.acroit.zaiko2020.book.Book;
 
 /**
  * 書籍データベースアクセスクラス
- * @version 3.2
+ * @version 4.2
  * @author hiroki tajima
  */
 public class BookDataAccess {

@@ -37,13 +37,17 @@ public class AddProcessController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
+		//追加書籍情報の取得
 		Book addbook = (Book)session.getAttribute("book");
 		Book book;
 
 		BookDataAccess bda = new BookDataAccess();
 		try {
+			//書籍追加
 			bda.add(addbook);
+			//追加書籍の取得
 			book = bda.addSearch(addbook);
+			//取得した所s系情報をセッションに設定
 			session.setAttribute("book", book);
 
 			response.sendRedirect("/Zaiko2020/resultForm");

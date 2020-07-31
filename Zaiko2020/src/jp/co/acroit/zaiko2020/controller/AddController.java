@@ -43,14 +43,16 @@ public class AddController extends HttpServlet {
 		try {
 
 			if (request.getParameter("form") == null) {
+				//エラーで戻ってきた場合
 				branch = "エラー";
 			} else {
 				branch = request.getParameter("form");
 			}
 
 			switch(branch) {
+			//在庫一覧画面・復元画面から遷移してきた場合
 			case "追加":
-				System.out.println("スイッチ文");
+
 				Book resetbook = new Book(0, null, null, null, null, null, null, null, 0);
 
 				resetbook.setName(title);
