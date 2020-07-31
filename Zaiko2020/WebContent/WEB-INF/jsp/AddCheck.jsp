@@ -29,7 +29,7 @@
 		<div id="details">
 			<jsp:include page="part/BookDetails.jsp">
 				<jsp:param name="caption" value=" " />
-				<jsp:param name="book" value="${addbook}" />
+				<jsp:param name="book" value="${book}" />
 			</jsp:include>
 		</div>
 		<div id="buttons">
