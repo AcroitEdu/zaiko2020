@@ -38,6 +38,7 @@ public class AddController extends HttpServlet {
 		String stock = null;
 
 		HttpSession session = request.getSession();
+		session.setAttribute("error", "");
 
 		try {
 

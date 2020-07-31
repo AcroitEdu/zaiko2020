@@ -43,8 +43,7 @@ public class RestorationProcessController extends HttpServlet {
 
 			//チェックボックス未選択の判定
 			if(request.getParameterValues("checkbox") == null ) {
-				System.out.println("エラー");
-				session.setAttribute("error", "書籍を選択してください。");
+				session.setAttribute("msg", "書籍を選択してください。");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RestrationForm.jsp");
 				dispatcher.forward(request, response);
 				return;
@@ -55,10 +54,8 @@ public class RestorationProcessController extends HttpServlet {
 
 			bda.restoration(checkedId);
 
-			request.getSession().setAttribute("msg", "書籍の復元を行いました。");	//「msg」はjsp側とすり合わせ
+			session.setAttribute("msg", "書籍の復元を行いました。");
 			response.sendRedirect("/Zaiko2020/Restoration");
-//			RequestDispatcher dispatch = request.getRequestDispatcher("/Restoration");
-//		      dispatch.forward(request, response);
 
 		} catch (SQLException e) {
 

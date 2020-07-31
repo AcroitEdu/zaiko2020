@@ -50,7 +50,7 @@ public class RestorationController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		SearchCondition sc = (SearchCondition)session.getAttribute("conditions");
+		SearchCondition sc = (SearchCondition)session.getAttribute("RestorationForm");
 		if(sc == null) {
 			sc = new SearchCondition();
 		}
@@ -86,7 +86,6 @@ public class RestorationController extends HttpServlet {
 
 		try {
 			//総件数の取得
-
 			count = bda.countAllDeleat(sc);
 //			count = bda.countAllDeleat(searchCon, sortCon, pageCon);
 			pageCount = (count + 199) / 200;
@@ -101,7 +100,7 @@ public class RestorationController extends HttpServlet {
 
 			//該当なし
 			if (bookList.isEmpty()) {
-				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
+				session.setAttribute("msg", "該当する書籍は見つかりませんでした。");
 			}
 
 			//書籍情報・現ページをセッションに設定
@@ -142,7 +141,7 @@ public class RestorationController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		session.setAttribute("error", "");
+		session.setAttribute("msg", "");
 
 		String branch = null;
 
@@ -165,7 +164,7 @@ public class RestorationController extends HttpServlet {
 		int count = 0;
 		int pageCount = 0;
 
-		SearchCondition sc = (SearchCondition)session.getAttribute("conditions");
+		SearchCondition sc = (SearchCondition)session.getAttribute("RestorationForm");
 		if(sc == null) {
 			sc = new SearchCondition();
 		}
@@ -229,7 +228,7 @@ public class RestorationController extends HttpServlet {
 			//入力値チェック
 			if (!isbn.matches("^[0-9]*$") || 13 < isbn.length() || !stock.matches("^[0-9]*$")) {
 
-				session.setAttribute("error", "指定されている形式で入力してください。");
+				session.setAttribute("msg", "指定されている形式で入力してください。");
 				break;
 
 			}
@@ -257,15 +256,13 @@ public class RestorationController extends HttpServlet {
 
 
 			//ページ移動
-
-
 		case "ページ":
 			//ページ番号の空白判定
 			String pageNumberCheck = null;
 			pageNumberCheck = request.getParameter("page");
 			if (pageNumberCheck == null || pageNumberCheck.isEmpty()) {
 
-				session.setAttribute("error", "ページ番号を入力してください。");
+				session.setAttribute("msg", "ページ番号を入力してください。");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RestrationForm.jsp");
 				dispatcher.forward(request, response);
 				return;
@@ -277,14 +274,14 @@ public class RestorationController extends HttpServlet {
 			//入力値チェック
 			if (!pageNumberCheck.matches("^[0-9]*$") || page < 1) {
 
-				session.setAttribute("error", "指定されている形式で入力してください。");
+				session.setAttribute("msg", "指定されている形式で入力してください。");
 				break;
 
 			}
 			int maxPage = (int) session.getAttribute("maxPage");
 			if (maxPage < page) {
 
-				session.setAttribute("error", "該当するページは見つかりませんでした。");
+				session.setAttribute("msg", "該当するページは見つかりませんでした。");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RestrationForm.jsp");
 				dispatcher.forward(request, response);
 				return;
@@ -315,7 +312,7 @@ public class RestorationController extends HttpServlet {
 		}
 
 		//検索条件をセッションに設定
-		session.setAttribute("conditions", sc);
+		session.setAttribute("RestorationForm", sc);
 //		session.setAttribute("searchCon", searchCon);
 //		session.setAttribute("pageCon", pageCon);
 //		session.setAttribute("sortCon", sortCon);
@@ -346,7 +343,7 @@ public class RestorationController extends HttpServlet {
 			//該当なし
 			if (bookList.isEmpty()) {
 
-				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
+				session.setAttribute("msg", "該当する書籍は見つかりませんでした。");
 
 			}
 

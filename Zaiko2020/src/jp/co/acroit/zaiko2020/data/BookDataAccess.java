@@ -781,7 +781,6 @@ public class BookDataAccess {
 	public void restoration(String[] checkedId) throws SQLException {
 
 		String where = "";
-		int last = checkedId.length;
 
 		//WHERE条件の作成
 		for (int i = 0 ; i < checkedId.length ; i++) {

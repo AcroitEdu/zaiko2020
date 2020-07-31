@@ -23,7 +23,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 			<ul class="boxed-tabs">
 				<li id="inventoryListButton" class="tab">
 					<form id="inventoryListForm" action="/Zaiko2020/inventoryList" method="post">
-						<input type="hidden" name="form" value="4">
+						<input type="hidden" name="form" value="3">
 						<span>在庫一覧</span>
 					</form>
 				</li>
