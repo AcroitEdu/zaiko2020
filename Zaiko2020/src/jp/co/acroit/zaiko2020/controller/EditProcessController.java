@@ -55,8 +55,11 @@ public class EditProcessController extends HttpServlet {
 			bda.edit(editbook,id);
 			//編集後の書籍情報を取得
 			book = bda.findId(id);
+			//更新flgを0に戻す。
+			bda.flgReturn(id);
 			//取得した書籍の情報をセッションに設定する
 			session.setAttribute("book", book);
+			session.setAttribute("id", "");
 
 			response.sendRedirect("/Zaiko2020/resultForm");
 
