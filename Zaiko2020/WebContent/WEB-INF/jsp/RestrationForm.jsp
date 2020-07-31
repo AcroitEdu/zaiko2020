@@ -33,10 +33,20 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"
 	rel="stylesheet">
+<link href="js/dialog/dialog-polyfill.css" rel="stylesheet" type="text/css">
 <link href="styleInventoryList.css" rel="stylesheet">
+<link href="styleRestrationForm.css" rel="stylesheet">
+
 </head>
 
 <body>
+	<dialog id="dialogSubmit">
+		<div id="dialogContent">
+			<p>書籍の復元を行います。</p>
+			<button id="dialogExecute" class="restrationButton button-main">OK</button>
+			<button id="dialogCancel" class="restrationButton button-cancel">キャンセル</button>
+		</div>
+	</dialog>
 	<div id="main">
 		<header>
 			<ul class="boxed-tabs">
@@ -109,7 +119,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 			</div>
 			<div class="list">
 				<div class="pages">
-					<%@ include file="part/PageMover2.jsp"%>
+					<%@ include file="part/RestrationPageMover.jsp"%>
 				</div>
 				<div id="list">
 					<form id="sortForm" action="/Zaiko2020/Restoration" method="post">
@@ -118,7 +128,6 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 							id="sortDirection" name="direction" value="${conditions.lift}">
 						<input type="hidden" name="form" value="ソート">
 					</form>
-					<button type="button" form="check" onclick="submit()">選択した書籍の復元</button>
 					<table id="listTable">
 						<thead>
 							<tr id="listHeaders">
@@ -181,15 +190,16 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 					</table>
 				</div>
 				<div class="pages">
-					<%@ include file="part/PageMover2.jsp"%>
+					<%@ include file="part/RestrationPageMover.jsp"%>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="js/dialog/dialog-polyfill.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/inventoryList.js"></script>
 <script src="js/TabTransition.js"></script>
+<script src="js/RestrationForm.js"></script>
 
 </html>

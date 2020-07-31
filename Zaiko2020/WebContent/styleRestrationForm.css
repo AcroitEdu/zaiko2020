@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+.restrationButton{
+    border-radius: 6px;
+    width: 115px;
+    padding: 8px;
+    border: none;
+}
+
+.restrationButton.button-border{
+    border: 1.5px solid #00000080;
+}
+.execute, #dialogExecute{
+    background-color: #4a86e8ff;
+    color:white;
+    font-size: large;
+}
+
+.pagesBox > .pagesCounterWeight{
+	display: flex;
+	justify-content: flex-start;
+}
+.pagesBox > .pagesCounterWeight .execute{
+	width: 170px;
+	padding: 0;
+}
+
+#dialogCancel{
+    background-color: white;
+    color: #4a86e8;
+    border: 1px solid #00000060;
+    font-size: large;
+}
+#dialogCancel.button-border{
+    background-color: white;
+    color: black;
+}
+
+/* ダイアログ */
+dialog{
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    border: 1px solid black;
+}
+dialog::backdrop, dialog + .backdrop{
+    background-color: rgba(0,0,0,0.5);
+}
+#dialogContent{
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+#dialogContent > p{
+    width: 100%;
+    text-align: center;
+    padding: 2em 5px;
+}

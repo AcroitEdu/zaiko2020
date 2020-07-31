@@ -1,10 +1,12 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%
 //「次へ」や「前へ」、「移動」等の、ページ移動の機能を持つ。
-//InventoryList.jspからincludeして使う。
+//RestrationForm.jspからincludeして使う。
 %>
 <ul class="pagesBox">
-    <li class="pagesCounterWeight"></li>
+    <li class="pagesCounterWeight">
+    		<input type="button" class="restrationButton execute button-main button-border" type="button" form="check" value="選択項目の復元">
+    </li>
     <li class="pagesSpace"></li>
     <li class="pagesPrevNext">
         <form name="prevPage" action="/Zaiko2020/RestorationProcess" method="post">
