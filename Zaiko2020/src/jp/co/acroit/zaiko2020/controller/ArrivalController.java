@@ -55,6 +55,16 @@ public class ArrivalController extends HttpServlet {
 				id = Integer.parseInt(request.getParameter("id"));
 			}
 
+			//更新flgが立っているか確認
+			if(bda.flgCheck(id)) {
+				session.setAttribute("error", "選択した書籍は現在操作中です。");
+				response.sendRedirect("/Zaiko2020/inventoryList");
+				return;
+			}else {
+				//更新flgを立てる
+				bda.flg(id);
+			}
+
 			//IDをセッションに設定
 			session.setAttribute("id", id);
 

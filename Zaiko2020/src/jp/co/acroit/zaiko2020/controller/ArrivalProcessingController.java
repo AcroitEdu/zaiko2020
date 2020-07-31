@@ -73,8 +73,13 @@ public class ArrivalProcessingController extends HttpServlet {
 			//DBを操作し読み込む
 			foundBook = bda.update(id, count);
 
+			//更新flgを0に戻す。
+			bda.flgReturn(id);
+
 			//検索結果をセッションに設定
 			session.setAttribute("book", foundBook);
+
+			session.setAttribute("id", "");
 
 			session.setAttribute("flg", true);
 
@@ -97,8 +102,6 @@ public class ArrivalProcessingController extends HttpServlet {
 		} catch (Exception e) {
 
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
-//			dispatcher.forward(request, response);
 			response.sendRedirect("/Zaiko2020/arrivalForm");
 			e.printStackTrace();
 
