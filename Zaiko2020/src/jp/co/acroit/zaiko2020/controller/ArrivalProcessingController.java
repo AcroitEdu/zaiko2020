@@ -73,9 +73,6 @@ public class ArrivalProcessingController extends HttpServlet {
 			//DBを操作し読み込む
 			foundBook = bda.update(id, count);
 
-			//更新flgを0に戻す。
-			bda.flgReturn(id);
-
 			//検索結果をセッションに設定
 			session.setAttribute("book", foundBook);
 
