@@ -20,6 +20,8 @@ import jp.co.acroit.zaiko2020.book.Book;
  * 入力フォームの初期値をセッションに設定
  * @version 1.1
  * エラーでリダイレクトされた場合の処理追加
+ * @version 1.2
+ * salsDate→salesDateに修正
  * @author hiroki tajima
  */
 @WebServlet("/Add")
@@ -34,7 +36,7 @@ public class AddController extends HttpServlet {
 		String publisher = null;
 		String author = null;
 		String isbn = null;
-		LocalDate salsDate = null;
+		LocalDate salesDate = null;
 		String price = null;
 		String stock = null;
 
@@ -57,7 +59,7 @@ public class AddController extends HttpServlet {
 				resetbook.setPublisher(publisher);
 				resetbook.setAuthor(author);
 				resetbook.setIsbn(isbn);
-				resetbook.setSalesDate(salsDate);
+				resetbook.setSalesDate(salesDate);
 				resetbook.setPrice(price);
 				resetbook.setStock(stock);
 
