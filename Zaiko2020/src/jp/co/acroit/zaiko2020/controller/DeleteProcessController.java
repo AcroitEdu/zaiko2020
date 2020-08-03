@@ -14,7 +14,7 @@ import jp.co.acroit.zaiko2020.book.Book;
 import jp.co.acroit.zaiko2020.data.BookDataAccess;
 
 /**
- * 書籍削除処理
+ * 削除処理サーブレット
  * @version 1.0
  * @author hiroki tajima
  */
@@ -22,19 +22,11 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
 public class DeleteProcessController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 
 		int id = 0;
@@ -57,7 +49,6 @@ public class DeleteProcessController extends HttpServlet {
 			response.sendRedirect("/Zaiko2020/resultForm");
 
 		} catch (SQLException e) {
-
 			//セッションの破棄
 			request.getSession().invalidate();
 			//セッションの再生成
@@ -72,6 +63,7 @@ public class DeleteProcessController extends HttpServlet {
 			e.printStackTrace();
 
 		}
+
 	}
 
 }
