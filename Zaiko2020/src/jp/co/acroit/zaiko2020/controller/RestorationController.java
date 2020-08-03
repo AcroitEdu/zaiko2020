@@ -26,12 +26,8 @@ import jp.co.acroit.zaiko2020.data.SearchCondition;
 public class RestorationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 
 		String bookName = null;
 		String author = null;
@@ -55,31 +51,6 @@ public class RestorationController extends HttpServlet {
 			sc = new SearchCondition();
 		}
 
-//		SearchConditions searchCon = (SearchConditions)session.getAttribute("searchCon");
-//		SortConditions sortCon = (SortConditions)session.getAttribute("sortCon");
-//		PageConditions pageCon = (PageConditions)session.getAttribute("pageCon");
-//
-//		if(searchCon == null) {
-//			searchCon = new SearchConditions();
-//			searchCon.setName(bookName);
-//			searchCon.setAuthor(author);
-//			searchCon.setPublisher(publisher);
-//			searchCon.setIsbn(isbn);
-//			searchCon.setStock(stock);
-//			searchCon.setSalesDate(salesDate);
-//			searchCon.setSalesDateFlag(salesDateFlag);
-//			searchCon.setStockFlag(stockFlag);
-//		}
-//		if(pageCon == null) {
-//			pageCon = new PageConditions();
-//			pageCon.setPage(page);
-//		}
-//		if(sortCon == null) {
-//			sortCon = new SortConditions();
-//			sortCon.setLift(lift);
-//			sortCon.setSort(sort);
-//		}
-
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
 		List<Book> bookList = new ArrayList<Book>();
@@ -87,7 +58,6 @@ public class RestorationController extends HttpServlet {
 		try {
 			//総件数の取得
 			count = bda.countAllDeleat(sc);
-//			count = bda.countAllDeleat(searchCon, sortCon, pageCon);
 			pageCount = (count + 199) / 200;
 
 			//総件数・最大ページ数をセッションに設定
@@ -95,7 +65,6 @@ public class RestorationController extends HttpServlet {
 			session.setAttribute("maxPage", pageCount);
 
 			//検索
-//			bookList = bda.findDeleat(searchCon, sortCon, pageCon);
 			bookList = bda.findDeleat(sc);
 
 			//該当なし
@@ -132,9 +101,6 @@ public class RestorationController extends HttpServlet {
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -168,19 +134,6 @@ public class RestorationController extends HttpServlet {
 		if(sc == null) {
 			sc = new SearchCondition();
 		}
-//		SearchConditions searchCon = (SearchConditions)session.getAttribute("searchCon");
-//		SortConditions sortCon = (SortConditions)session.getAttribute("sortCon");
-//		PageConditions pageCon = (PageConditions)session.getAttribute("pageCon");
-//
-//		if(searchCon == null) {
-//			searchCon = new SearchConditions();
-//		}
-//		if(sortCon == null) {
-//			sortCon = new SortConditions();
-//		}
-//		if(pageCon == null) {
-//			pageCon = new PageConditions();
-//		}
 
 		//入力フォームの初期値設定
 		switch (branch) {
@@ -195,22 +148,8 @@ public class RestorationController extends HttpServlet {
 			sc.setSalesDateFlag(salesDateFlag);
 			sc.setStockFlag(stockFlag);
 			sc.setPage(page);
-//			searchCon.setName(bookName);
-//			searchCon.setAuthor(author);
-//			searchCon.setPublisher(publisher);
-//			searchCon.setIsbn(isbn);
-//			searchCon.setStock(stock);
-//			searchCon.setSalesDate(salesDate);
-//			searchCon.setSalesDateFlag(salesDateFlag);
-//			searchCon.setStockFlag(stockFlag);
-//
-//			pageCon.setPage(page);
-//
-//			sortCon.setLift(lift);
-//			sortCon.setSort(sort);
 
 			break;
-
 
 			//検索ボタン押下
 		case "検索":
@@ -242,18 +181,8 @@ public class RestorationController extends HttpServlet {
 			sc.setSalesDateFlag(salesDateFlag);
 			sc.setStockFlag(stockFlag);
 			sc.setPage(page);
-//			searchCon.setName(bookName);
-//			searchCon.setAuthor(author);
-//			searchCon.setPublisher(publisher);
-//			searchCon.setIsbn(isbn);
-//			searchCon.setSalesDate(salesDate);
-//			searchCon.setStock(stock);
-//			searchCon.setSalesDateFlag(salesDateFlag);
-//			searchCon.setStockFlag(stockFlag);
-//			pageCon.setPage(page);
 
 			break;
-
 
 			//ページ移動
 		case "ページ":
@@ -288,7 +217,6 @@ public class RestorationController extends HttpServlet {
 
 			}
 
-//			pageCon.setPage(page);
 			sc.setPage(page);
 
 			break;
@@ -301,21 +229,13 @@ public class RestorationController extends HttpServlet {
 			sc.setPage(1);
 			sc.setSort(sort);
 			sc.setLift(lift);
-//			pageCon.setPage(1);
-//			sortCon.setSort(sort);
-//			sortCon.setLift(lift);
 
 			break;
-
-
 
 		}
 
 		//検索条件をセッションに設定
 		session.setAttribute("RestorationForm", sc);
-//		session.setAttribute("searchCon", searchCon);
-//		session.setAttribute("pageCon", pageCon);
-//		session.setAttribute("sortCon", sortCon);
 
 		//書籍検索
 		BookDataAccess bda = new BookDataAccess();
@@ -325,8 +245,6 @@ public class RestorationController extends HttpServlet {
 			//総件数の取得
 			if (branch.equals("検索") || branch.equals("復元")) {
 
-
-//				count = bda.countAllDeleat(searchCon, sortCon, pageCon);
 				count = bda.countAllDeleat(sc);
 				pageCount = (count + 199) / 200;
 
@@ -337,7 +255,6 @@ public class RestorationController extends HttpServlet {
 			}
 
 			//検索
-//			bookList = bda.findDeleat(searchCon, sortCon, pageCon);
 			bookList = bda.findDeleat(sc);
 
 			//該当なし

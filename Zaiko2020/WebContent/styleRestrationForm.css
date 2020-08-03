@@ -10,6 +10,7 @@
 .restrationButton.button-border{
     border: 1.5px solid #00000080;
 }
+
 .execute, #dialogExecute{
     background-color: #4a86e8ff;
     color:white;
@@ -20,6 +21,7 @@
 	display: flex;
 	justify-content: flex-start;
 }
+
 .pagesBox > .pagesCounterWeight .execute{
 	width: 170px;
 	padding: 0;
@@ -31,6 +33,7 @@
     border: 1px solid #00000060;
     font-size: large;
 }
+
 #dialogCancel.button-border{
     background-color: white;
     color: black;
@@ -43,9 +46,11 @@ dialog{
     margin: auto;
     border: 1px solid black;
 }
+
 dialog::backdrop, dialog + .backdrop{
     background-color: rgba(0,0,0,0.5);
 }
+
 #dialogContent{
     width: fit-content;
     height: fit-content;
@@ -54,6 +59,7 @@ dialog::backdrop, dialog + .backdrop{
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
 #dialogContent > p{
     width: 100%;
     text-align: center;

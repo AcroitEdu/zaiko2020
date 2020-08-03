@@ -36,7 +36,6 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 <link href="js/dialog/dialog-polyfill.css" rel="stylesheet" type="text/css">
 <link href="styleInventoryList.css" rel="stylesheet">
 <link href="styleRestrationForm.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -201,5 +200,4 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 <script src="js/inventoryList.js"></script>
 <script src="js/TabTransition.js"></script>
 <script src="js/RestrationForm.js"></script>
-
 </html>
