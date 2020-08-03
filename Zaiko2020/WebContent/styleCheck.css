@@ -1,7 +1,4 @@
 @charset "UTF-8";
-/*
-    追加、編集、削除確認画面のスタイルを定義する。
-*/
 
 .button-warning {
 	background-color: red;
@@ -19,5 +16,3 @@
 #buttons form {
 	margin: 20px 60px;
 }
-
-

@@ -19,28 +19,15 @@ import javax.servlet.http.HttpSession;
 public class UpdateResultController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public UpdateResultController() {
 		super();
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.setAttribute("error", "");
-//		boolean flg = (boolean) session.getAttribute("flg");
-//		if (!flg) {
-//
-//			session.setAttribute("error", "処理が行われていません。");
-//			response.sendRedirect("/Zaiko2020/inventoryList");
-//			return;
-//
-//		}
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ResultForm.jsp");
 		dispatcher.forward(request, response);
 	}
