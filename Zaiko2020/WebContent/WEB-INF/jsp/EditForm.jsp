@@ -70,7 +70,6 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 				<div id="buttons">
 						<input type="submit" name="button" id="edit" class="button button-main button-border" value="実行" form="editForm">
 						<input type="submit" name="button" id="cancel" class="button button-cancel button-border" value="キャンセル" form="cancelForm">
-
 				</div>
 			</div>
 		</div>

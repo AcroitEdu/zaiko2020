@@ -17,15 +17,14 @@ import javax.servlet.http.HttpSession;
 import jp.co.acroit.zaiko2020.book.Book;
 
 /**
- * Servlet implementation class EditChekController
+ * 編集確認サーブレット
+ * @version 1.0
+ * @author hiroki tajima
  */
 @WebServlet("/EditCheck")
 public class EditCheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -39,7 +38,6 @@ public class EditCheckController extends HttpServlet {
 		String price = null;
 		String stock = null;
 		int deleteFlg = 0;
-
 
 		HttpSession session = request.getSession();
 
@@ -74,7 +72,6 @@ public class EditCheckController extends HttpServlet {
 				return;
 			}
 
-
 			Book addbook = new Book(0, null, null, null, null, null, null, null, 0);
 
 			addbook.setId((int)session.getAttribute("id"));
@@ -101,15 +98,9 @@ public class EditCheckController extends HttpServlet {
 			response.sendRedirect("/Zaiko2020/Edit");
 		}
 
-
-
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

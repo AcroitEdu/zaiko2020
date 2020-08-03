@@ -14,26 +14,18 @@ import jp.co.acroit.zaiko2020.book.Book;
 import jp.co.acroit.zaiko2020.data.BookDataAccess;
 
 /**
- * Servlet implementation class EditProcessController
+ * 編集処理サーブレット
+ * @version 1.0
+ * @author hiroki tajima
  */
 @WebServlet("/EditProcess")
 public class EditProcessController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//		doGet(request, response);
-
 		//idを取得する
 		int id = 0;
 
@@ -80,6 +72,7 @@ public class EditProcessController extends HttpServlet {
 			e.printStackTrace();
 
 		}
+
 	}
 
 }

@@ -15,25 +15,22 @@ import jp.co.acroit.zaiko2020.book.Book;
 import jp.co.acroit.zaiko2020.data.BookDataAccess;
 
 /**
- * Servlet implementation class EditController
+ * 編集サーブレット
+ * @version 1.0
+ * @author hiroki tajima
  */
 @WebServlet("/Edit")
 public class EditController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String branch = null;
 		int id = 0;
 
-
 		branch = request.getParameter("button");
 		System.out.println(branch);
-
-
 
 		//書籍の検索用
 		BookDataAccess bda = new BookDataAccess();
@@ -41,7 +38,6 @@ public class EditController extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("error", "");
 		Book foundBook;
-
 
 		try {
 
@@ -74,7 +70,6 @@ public class EditController extends HttpServlet {
 				session.setAttribute("book", foundBook);
 			}
 
-
 			//編集画面へフォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/EditForm.jsp");
 			dispatcher.forward(request, response);
@@ -96,19 +91,10 @@ public class EditController extends HttpServlet {
 
 		}
 
-
-
-
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
-
-
 	}
 
 }
