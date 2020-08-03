@@ -1,14 +1,14 @@
 @charset "UTF-8";
 
 .button-warning {
-	background-color: red;
-    color: white;
+	background-color: #FF0000;
+    color: #FFFFFF;
     border: 1px solid #00000060;
     font-size: large;
 }
 
 #buttons{
-	width:100%;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 }

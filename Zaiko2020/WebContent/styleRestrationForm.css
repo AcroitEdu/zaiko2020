@@ -13,7 +13,7 @@
 
 .execute, #dialogExecute{
     background-color: #4a86e8ff;
-    color:white;
+    color: #FFFFFF;
     font-size: large;
 }
 
@@ -28,15 +28,15 @@
 }
 
 #dialogCancel{
-    background-color: white;
+    background-color: #FFFFFF;
     color: #4a86e8;
     border: 1px solid #00000060;
     font-size: large;
 }
 
 #dialogCancel.button-border{
-    background-color: white;
-    color: black;
+    background-color: #FFFFFF;
+    color: #000000;
 }
 
 /* ダイアログ */
@@ -44,7 +44,7 @@ dialog{
     width: fit-content;
     height: fit-content;
     margin: auto;
-    border: 1px solid black;
+    border: 1px solid #000000;
 }
 
 dialog::backdrop, dialog + .backdrop{

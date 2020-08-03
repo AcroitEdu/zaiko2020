@@ -17,7 +17,6 @@ body{
     width: 100%;
     min-height: 100%;
     margin: auto;
-
 }
 
 ul{
@@ -52,11 +51,11 @@ header .boxed-tabs{
     flex-grow: 0;
     width: 25%;
     background-color: transparent;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #000000;
 }
 
 .boxed-tabs .tab + .tab{
-    border-left: 1px solid black;
+    border-left: 1px solid #000000;
 }
 
 .boxed-tabs li.tab-current{
@@ -80,13 +79,13 @@ header .boxed-tabs{
 	width: 80%;
 	max-width: 1200px;
 	margin: 0 auto;
-	text-align:center;
+	text-align: center;
 }
 
 .add-options li {
 	display: flex;
 	align-items: center;
-	margin-bottom:10px;
+	margin-bottom: 10px;
 }
 
 .add-options li label {
@@ -97,13 +96,13 @@ header .boxed-tabs{
 
 .add-options li textarea{
 	width: 1070px;
-	text-align; left;
+	text-align: left;
 	resize: none;
 }
 
 .add-options li input{
 	width: 14em;
-	text-align; left
+	text-align: left
 }
 
 .add-options li span{
@@ -120,13 +119,12 @@ header .boxed-tabs{
     padding: 8px;
     border: 1.5px solid #00000080;
     background-color: #4a86e8ff;
-    color:white;
+    color: #FFFFFF;
     font-size: large;
 }
 
-/* 書籍一覧*/
 #error{
-    color: red;
+    color: #FF0000;
     text-align: center;
     margin: 10px auto;
 }
