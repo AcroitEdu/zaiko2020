@@ -13,7 +13,19 @@ import jp.co.acroit.zaiko2020.book.Book;
 
 /**
  * 書籍データベースアクセスクラス
+ * @version 4.0
+ * Phase4追記
+ * 追加・編集・削除処理追記
+ * @version 4.1
+ * 書籍検索deleteflg=0をWHEREに追加・deleteflg=1の書籍検索メソッド追加
+ * 総件数取得deleteflg=0をWHEREに追加・deleteflg=1の総件数取得メソッド追加
  * @version 4.2
+ * 更新フラグの判定・更新フラグを立てる・更新フラグを戻すメソッド追加
+ * @version 4.3
+ * dbsalsDate→dbsalesDateに修正
+ * dbDeleteflg→dbDeleteFlagに修正
+ * salsDate→salesDateに修正
+ * deleteflg→deleteFlagに修正
  * @author hiroki tajima
  */
 public class BookDataAccess {
@@ -79,10 +91,10 @@ public class BookDataAccess {
 			String dbPublisher = null;
 			String dbAuthor = null;
 			String dbIsbn = null;
-			LocalDate dbSalsDate;
+			LocalDate dbSalesDate;
 			String dbPrice = null;
 			String dbStock = null;
-			int dbDeleteflg = 0;
+			int dbDeleteFlag = 0;
 
 			List<Book> bookList = new ArrayList<Book>();
 
@@ -92,12 +104,12 @@ public class BookDataAccess {
 				dbPublisher = rs.getString(publisherColumn);
 				dbAuthor = rs.getString(authorColumn);
 				dbIsbn = rs.getString(isbnColumn);
-				dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
+				dbSalesDate = rs.getDate(salesDateColumn).toLocalDate();
 				dbPrice = rs.getString(priceColumn);
 				dbStock = rs.getString(stockColumn);
-				dbDeleteflg = rs.getInt(deleteflgColumn);
-				Book aBook = new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
-						dbDeleteflg);
+				dbDeleteFlag = rs.getInt(deleteflgColumn);
+				Book aBook = new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalesDate, dbPrice, dbStock,
+						dbDeleteFlag);
 				bookList.add(aBook);
 			}
 			rs.close();
@@ -138,10 +150,10 @@ public class BookDataAccess {
 			String dbPublisher = null;
 			String dbAuthor = null;
 			String dbIsbn = null;
-			LocalDate dbSalsDate;
+			LocalDate dbSalesDate;
 			String dbPrice = null;
 			String dbStock = null;
-			int dbDeleteflg = 0;
+			int dbDeleteFlag = 0;
 
 			List<Book> bookList = new ArrayList<Book>();
 
@@ -151,12 +163,12 @@ public class BookDataAccess {
 				dbPublisher = rs.getString(publisherColumn);
 				dbAuthor = rs.getString(authorColumn);
 				dbIsbn = rs.getString(isbnColumn);
-				dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
+				dbSalesDate = rs.getDate(salesDateColumn).toLocalDate();
 				dbPrice = rs.getString(priceColumn);
 				dbStock = rs.getString(stockColumn);
-				dbDeleteflg = rs.getInt(deleteflgColumn);
-				Book aBook = new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
-						dbDeleteflg);
+				dbDeleteFlag = rs.getInt(deleteflgColumn);
+				Book aBook = new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalesDate, dbPrice, dbStock,
+						dbDeleteFlag);
 				bookList.add(aBook);
 			}
 			rs.close();
@@ -196,10 +208,10 @@ public class BookDataAccess {
 			String dbPublisher = null;
 			String dbAuthor = null;
 			String dbIsbn = null;
-			LocalDate dbSalsDate = null;
+			LocalDate dbSalesDate = null;
 			String dbPrice = null;
 			String dbStock = null;
-			int dbDeleteflg = 0;
+			int dbDeleteFlag = 0;
 
 			while (rs.next()) {
 
@@ -208,18 +220,18 @@ public class BookDataAccess {
 				dbPublisher = rs.getString(publisherColumn);
 				dbAuthor = rs.getString(authorColumn);
 				dbIsbn = rs.getString(isbnColumn);
-				dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
+				dbSalesDate = rs.getDate(salesDateColumn).toLocalDate();
 				dbPrice = rs.getString(priceColumn);
 				dbStock = rs.getString(stockColumn);
-				dbDeleteflg = rs.getInt(deleteflgColumn);
+				dbDeleteFlag = rs.getInt(deleteflgColumn);
 
 			}
 			rs.close();
 			con.close();
 			con = null;
 
-			return new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
-					dbDeleteflg);
+			return new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalesDate, dbPrice, dbStock,
+					dbDeleteFlag);
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -281,10 +293,10 @@ public class BookDataAccess {
 			String dbPublisher = null;
 			String dbAuthor = null;
 			String dbIsbn = null;
-			LocalDate dbSalsDate = null;
+			LocalDate dbSalesDate = null;
 			String dbPrice = null;
 			String dbStock = null;
-			int dbDeleteflg = 0;
+			int dbDeleteFlag = 0;
 
 			while (rs2.next()) {
 
@@ -293,10 +305,10 @@ public class BookDataAccess {
 				dbPublisher = rs2.getString(publisherColumn);
 				dbAuthor = rs2.getString(authorColumn);
 				dbIsbn = rs2.getString(isbnColumn);
-				dbSalsDate = rs2.getDate(salesDateColumn).toLocalDate();
+				dbSalesDate = rs2.getDate(salesDateColumn).toLocalDate();
 				dbPrice = rs2.getString(priceColumn);
 				dbStock = rs2.getString(stockColumn);
-				dbDeleteflg = rs2.getInt(deleteflgColumn);
+				dbDeleteFlag = rs2.getInt(deleteflgColumn);
 
 			}
 
@@ -308,8 +320,8 @@ public class BookDataAccess {
 			con.close();
 			con = null;
 
-			Book book = new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
-					dbDeleteflg);
+			Book book = new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalesDate, dbPrice, dbStock,
+					dbDeleteFlag);
 
 			return book;
 
@@ -471,10 +483,10 @@ public class BookDataAccess {
 			String dbPublisher = null;
 			String dbAuthor = null;
 			String dbIsbn = null;
-			LocalDate dbSalsDate = null;
+			LocalDate dbSalesDate = null;
 			String dbPrice = null;
 			String dbStock = null;
-			int dbDeleteflg = 0;
+			int dbDeleteFlag = 0;
 
 			while (rs.next()) {
 
@@ -483,18 +495,18 @@ public class BookDataAccess {
 				dbPublisher = rs.getString(publisherColumn);
 				dbAuthor = rs.getString(authorColumn);
 				dbIsbn = rs.getString(isbnColumn);
-				dbSalsDate = rs.getDate(salesDateColumn).toLocalDate();
+				dbSalesDate = rs.getDate(salesDateColumn).toLocalDate();
 				dbPrice = rs.getString(priceColumn);
 				dbStock = rs.getString(stockColumn);
-				dbDeleteflg = rs.getInt(deleteflgColumn);
+				dbDeleteFlag = rs.getInt(deleteflgColumn);
 
 			}
 			rs.close();
 			con.close();
 			con = null;
 
-			return new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalsDate, dbPrice, dbStock,
-					dbDeleteflg);
+			return new Book(dbId, dbBookName, dbPublisher, dbAuthor, dbIsbn, dbSalesDate, dbPrice, dbStock,
+					dbDeleteFlag);
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -849,9 +861,9 @@ public class BookDataAccess {
 		String publisher = sc.getPublisher();
 		String author = sc.getAuthor();
 		String isbn = sc.getIsbn();
-		String salsDate = sc.getSalesDate();
+		String salesDate = sc.getSalesDate();
 		String stock = sc.getStock();
-		String salsDateFlag = sc.getSalesDateFlag();
+		String salesDateFlag = sc.getSalesDateFlag();
 		String stockFlag = sc.getStockFlag();
 
 		//queryに継ぎ足す部分の一時保存場所
@@ -861,7 +873,7 @@ public class BookDataAccess {
 		String[] whereDataName = { titleColumn, publisherColumn, authorColumn,
 				isbnColumn, salesDateColumn, stockColumn };
 		//WHERE句で用いるフィールド
-		String[] whereData = { bookName, publisher, author, isbn, salsDate, stock };
+		String[] whereData = { bookName, publisher, author, isbn, salesDate, stock };
 
 		//WHERE句を一度でも加えたか否か
 		boolean isAddWhere = false;
@@ -874,7 +886,7 @@ public class BookDataAccess {
 				//比較演算子の付与
 				switch (whereDataName[i]) {
 				case "salesDate": //発売日の場合
-					switch (salsDateFlag) {
+					switch (salesDateFlag) {
 					case "equals": //～に一致
 						AddSql = "=";
 						break;
