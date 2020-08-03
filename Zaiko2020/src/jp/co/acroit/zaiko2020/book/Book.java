@@ -6,6 +6,11 @@ import java.time.LocalDate;
 /**
  * 書籍クラス
  * @version 1.0
+ * 書籍クラス新規作成
+ * @version 1.1
+ * isbn・price・stockの型をStringに変更
+ * @version 1.1
+ * 変数名の脱字修正
  * @author hiroki tajima
  */
 public class Book implements Serializable {
@@ -20,7 +25,7 @@ public class Book implements Serializable {
 	private int deleteFlag;
 
 	//書籍情報の初期化
-	public Book(int id, String name, String publisher, String author, String isbn, LocalDate dbSalsDate, String price,
+	public Book(int id, String name, String publisher, String author, String isbn, LocalDate dbSalesDate, String price,
 			String stock,
 			int deleteFlag) {
 		this.id = id;
@@ -28,7 +33,7 @@ public class Book implements Serializable {
 		this.publisher = publisher;
 		this.author = author;
 		this.isbn = isbn;
-		this.salesDate = dbSalsDate;
+		this.salesDate = dbSalesDate;
 		this.price = price;
 		this.stock = stock;
 		this.deleteFlag = deleteFlag;
