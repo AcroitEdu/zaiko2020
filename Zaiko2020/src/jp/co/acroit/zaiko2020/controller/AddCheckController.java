@@ -25,9 +25,6 @@ import jp.co.acroit.zaiko2020.book.Book;
 public class AddCheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -41,8 +38,6 @@ public class AddCheckController extends HttpServlet {
 		String price = null;
 		String stock = null;
 		int deleteFlg = 0;
-
-
 
 		HttpSession session = request.getSession();
 
@@ -77,7 +72,6 @@ public class AddCheckController extends HttpServlet {
 				return;
 			}
 
-
 			Book addbook = new Book(0, null, null, null, null, null, null, null, 0);
 
 			addbook.setName(title);
@@ -99,21 +93,15 @@ public class AddCheckController extends HttpServlet {
 			e.printStackTrace();
 			session.setAttribute("error", "指定されている形式で入力してください。");
 			response.sendRedirect("/Zaiko2020/Add");
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/Add");
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
-
-
 	}
 
 }

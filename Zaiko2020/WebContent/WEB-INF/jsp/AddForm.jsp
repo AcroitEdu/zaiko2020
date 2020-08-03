@@ -59,7 +59,6 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 						<li>
 							<label for="publisher">出版社</label>
 							<textarea id="publisher" rows ="3" name="publisher" required>${book.publisher}</textarea>
-
 						</li>
 						<li>
                             <label for="isbn">ISBN</label>
@@ -89,6 +88,4 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/TabTransition.js"></script>
-
-
 </html>

@@ -22,9 +22,6 @@ import jp.co.acroit.zaiko2020.book.Book;
 public class AddController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String branch = null;
@@ -41,18 +38,15 @@ public class AddController extends HttpServlet {
 		session.setAttribute("error", "");
 
 		try {
-
 			if (request.getParameter("form") == null) {
 				//エラーで戻ってきた場合
 				branch = "エラー";
 			} else {
 				branch = request.getParameter("form");
 			}
-
 			switch(branch) {
 			//在庫一覧画面・復元画面から遷移してきた場合
 			case "追加":
-
 				Book resetbook = new Book(0, null, null, null, null, null, null, null, 0);
 
 				resetbook.setName(title);
@@ -65,28 +59,17 @@ public class AddController extends HttpServlet {
 
 				session.setAttribute("book", resetbook);
 			}
-
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/AddForm.jsp");
 			dispatcher.forward(request, response);
-
 		} catch (Exception e) {
-
 			e.printStackTrace();
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/inventoryList");
-
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
-
-
-
 	}
 
 }

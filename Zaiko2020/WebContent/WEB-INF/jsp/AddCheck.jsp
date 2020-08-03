@@ -15,10 +15,8 @@
     <link rel="stylesheet" type="text/css" href="js/dialog/dialog-polyfill.css" />
     <link href="styleBookInOut.css" rel="stylesheet">
     <link href="styleCheck.css" rel="stylesheet">
-
 </head>
 <body>
-
 	<div id="main">
 		<header>
 			<span id="complete">以下の内容で書籍の追加を行います。</span>
@@ -44,5 +42,4 @@
 </body>
 <script src="js/dialog/dialog-polyfill.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 </html>
