@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 削除確認サーブレット
  * @version 1.0
+ * 削除確認画面サーブレット新規作成
  * @author hiroki tajima
  */
 @WebServlet("/DeleteCheck")

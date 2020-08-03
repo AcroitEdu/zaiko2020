@@ -19,6 +19,10 @@ import jp.co.acroit.zaiko2020.book.Book;
 /**
  * 編集確認サーブレット
  * @version 1.0
+ * 編集確認画面サーブレット新規作成
+ * 入力値の取得・セッションに設定
+ * @version 1.1
+ * 入力値のチェック追加
  * @author hiroki tajima
  */
 @WebServlet("/EditCheck")

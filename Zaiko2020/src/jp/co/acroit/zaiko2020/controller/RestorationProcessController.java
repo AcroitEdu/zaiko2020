@@ -16,6 +16,11 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
 /**
  * 復元処理サーブレット
  * @version 1.0
+ * 復元処理サーブレット新規作成
+ * 選択された書籍のid取得
+ * 書籍の復元処理
+ * @version 1.1
+ * 書籍が選択されていない場合の判定
  * @author hiroki tajima
  */
 @WebServlet("/RestorationProcess")

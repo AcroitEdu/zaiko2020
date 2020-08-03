@@ -15,7 +15,11 @@ import jp.co.acroit.zaiko2020.book.Book;
 
 /**
  * 追加サーブレット
+ * @version 1.0
+ * 追加画面表示サーブレット新規作成
+ * 入力フォームの初期値をセッションに設定
  * @version 1.1
+ * エラーでリダイレクトされた場合の処理追加
  * @author hiroki tajima
  */
 @WebServlet("/Add")

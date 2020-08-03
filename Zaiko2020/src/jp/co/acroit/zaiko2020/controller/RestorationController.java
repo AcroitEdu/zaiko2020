@@ -19,7 +19,14 @@ import jp.co.acroit.zaiko2020.data.SearchCondition;
 
 /**
  * 復元画面サーブレット
- * @version 1.0
+ * @version 1.1
+ * 復元画面サーブレット新規作成
+ * 総件数の取得しページ数を計算・セッションに総研数とページ数を保存
+ * 該当書籍が存在するか判定
+ * @version 1.2
+ *入力値の表示
+ * @version 1.3
+ * 入力値の初期値リセットを抑制
  * @author hiroki tajima
  */
 @WebServlet("/Restoration")

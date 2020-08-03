@@ -16,6 +16,12 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
 /**
  * 編集処理サーブレット
  * @version 1.0
+ * 編集処理サーブレット新規作成
+ * セッションから入力内容を取得
+ * 書籍情報を編集
+ * 編集後の書籍情報取得・セッションに設定
+ * @version 1.1
+ * 更新フラグを戻す
  * @author hiroki tajima
  */
 @WebServlet("/EditProcess")

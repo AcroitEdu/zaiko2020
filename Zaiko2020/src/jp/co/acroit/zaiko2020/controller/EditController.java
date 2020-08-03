@@ -17,6 +17,13 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
 /**
  * 編集サーブレット
  * @version 1.0
+ * 編集画面サーブレット新規作成
+ * idによる書籍検索
+ * セッションにに書籍情報（入力フォームの初期値）設定
+ * @version 1.1
+ * エラーでリダイレクトされた場合の処理
+ * @version 1.2
+ * 更新flgの判定処理追加
  * @author hiroki tajima
  */
 @WebServlet("/Edit")

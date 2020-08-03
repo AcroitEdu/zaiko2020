@@ -16,6 +16,9 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
 /**
  * 削除処理サーブレット
  * @version 1.0
+ * セッションからidを取得
+ * 書籍の作瀬尾
+ * 削除した書籍情報取得・セッションに設定
  * @author hiroki tajima
  */
 @WebServlet("/DeleteProcess")

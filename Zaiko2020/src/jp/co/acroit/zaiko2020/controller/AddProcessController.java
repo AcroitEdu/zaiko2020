@@ -16,6 +16,10 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
 /**
  * 追加処理サーブレット
  * @version 1.0
+ * 書籍追追加処理サーブレット新規作成
+ * 入力内容の取得
+ * 書籍の追加
+ * 追加した書籍の取得
  * @author hiroki tajima
  */
 @WebServlet("/AddProcess")
@@ -38,7 +42,7 @@ public class AddProcessController extends HttpServlet {
 			bda.add(addbook);
 			//追加書籍の取得
 			book = bda.addSearch(addbook);
-			//取得した所s系情報をセッションに設定
+			//取得した書籍情報をセッションに設定
 			session.setAttribute("book", book);
 
 			response.sendRedirect("/Zaiko2020/resultForm");
