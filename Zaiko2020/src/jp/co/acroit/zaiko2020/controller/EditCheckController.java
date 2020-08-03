@@ -23,6 +23,9 @@ import jp.co.acroit.zaiko2020.book.Book;
  * 入力値の取得・セッションに設定
  * @version 1.1
  * 入力値のチェック追加
+ * @version 1.2
+ * salsDate→salesDateに修正
+ * deleteFlg→deleteFlagに修正
  * @author hiroki tajima
  */
 @WebServlet("/EditCheck")
@@ -38,10 +41,10 @@ public class EditCheckController extends HttpServlet {
 		String author = null;
 		String isbn = null;
 		Date day = null;
-		LocalDate salsDate = null;
+		LocalDate salesDate = null;
 		String price = null;
 		String stock = null;
-		int deleteFlg = 0;
+		int deleteFlag = 0;
 
 		HttpSession session = request.getSession();
 
@@ -57,7 +60,7 @@ public class EditCheckController extends HttpServlet {
 			author = request.getParameter("author");
 			isbn = request.getParameter("isbn");
 			day = sdf.parse(request.getParameter("date"));
-			salsDate = day.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			salesDate = day.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 			price = request.getParameter("price");
 			stock = request.getParameter("stock");
 
@@ -83,10 +86,10 @@ public class EditCheckController extends HttpServlet {
 			addbook.setPublisher(publisher);
 			addbook.setAuthor(author);
 			addbook.setIsbn(isbn);
-			addbook.setSalesDate(salsDate);
+			addbook.setSalesDate(salesDate);
 			addbook.setPrice(price);
 			addbook.setStock(stock);
-			addbook.setDeleteFlag(deleteFlg);
+			addbook.setDeleteFlag(deleteFlag);
 
 			session.setAttribute("book", addbook);
 
