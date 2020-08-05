@@ -18,6 +18,11 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
  * 入荷画面サーブレット
  * @version 1.1
  * @author hiroe ishioka
+ * @version 1.2
+ * 更新flgの判定処理追加
+ * @version 1.3
+ * 更新flgのエラーメッセージ変更
+ * @author hiroki tajima
  */
 @WebServlet("/arrivalForm")
 public class ArrivalController extends HttpServlet {

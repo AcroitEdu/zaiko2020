@@ -24,6 +24,8 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
  * エラーでリダイレクトされた場合の処理
  * @version 1.2
  * 更新flgの判定処理追加
+ *  @version 1.3
+ * 更新flgのエラーメッセージ変更
  * @author hiroki tajima
  */
 @WebServlet("/Edit")
