@@ -110,6 +110,7 @@ public class InventoryListController extends HttpServlet {
 
 		} catch (SQLException e) {
 
+			e.printStackTrace();
 			//セッションの破棄
 			request.getSession().invalidate();
 			//セッションの再生成
@@ -119,10 +120,10 @@ public class InventoryListController extends HttpServlet {
 
 		} catch (Exception e) {
 
+			e.printStackTrace();
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
-			e.printStackTrace();
 
 		}
 
@@ -271,10 +272,7 @@ public class InventoryListController extends HttpServlet {
 
 		try {
 
-			if(session.getAttribute("id") != null) {
-				bda.flgReturn((int)session.getAttribute("id"));
-				session.setAttribute("id", "");
-			}
+
 
 			//総件数の取得
 			if (value == 0) {
@@ -309,6 +307,7 @@ public class InventoryListController extends HttpServlet {
 
 		} catch (SQLException e) {
 
+			e.printStackTrace();
 			//セッションの破棄
 			request.getSession().invalidate();
 			//セッションの再生成
@@ -318,6 +317,7 @@ public class InventoryListController extends HttpServlet {
 
 		} catch (Exception e) {
 
+			e.printStackTrace();
 			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);

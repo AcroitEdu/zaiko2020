@@ -55,7 +55,7 @@ public class ShippingController extends HttpServlet {
 
 			//更新flgが立っているか確認
 			if(bda.flgCheck(id)) {
-				session.setAttribute("error", "選択した書籍は現在操作中です。");
+				session.setAttribute("error", "選択した書籍は現在編集中です。");
 				response.sendRedirect("/Zaiko2020/inventoryList");
 				return;
 			}
