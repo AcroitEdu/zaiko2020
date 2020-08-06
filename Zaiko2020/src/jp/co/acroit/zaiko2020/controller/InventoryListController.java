@@ -37,20 +37,20 @@ public class InventoryListController extends HttpServlet {
 		session.setAttribute("flg", false);
 
 
-			//初期表示の検索条件設定
-			Date date = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String bookName = null;
-			String author = null;
-			String publisher = null;
-			String isbn = null;
-			String salsDate = sdf.format(date);
-			String stock = "0";
-			String salsDateFlag = "after";
-			String stockFlag = "gtoe";
-			int page = 1;	//１ページ
-			int sort = 0;	//発売日
-			int lift = 1;	//昇順
+		//初期表示の検索条件設定
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String bookName = null;
+		String author = null;
+		String publisher = null;
+		String isbn = null;
+		String salsDate = sdf.format(date);
+		String stock = "0";
+		String salsDateFlag = "after";
+		String stockFlag = "gtoe";
+		int page = 1;	//１ページ
+		int sort = 0;	//発売日
+		int lift = 1;	//昇順
 
 
 		SearchCondition sc = (SearchCondition)session.getAttribute("conditions");
@@ -272,7 +272,10 @@ public class InventoryListController extends HttpServlet {
 
 		try {
 
-
+			if(session.getAttribute("id") != null) {
+				bda.flgReturn((int)session.getAttribute("id"));
+				session.setAttribute("id", "");
+			}
 
 			//総件数の取得
 			if (value == 0) {

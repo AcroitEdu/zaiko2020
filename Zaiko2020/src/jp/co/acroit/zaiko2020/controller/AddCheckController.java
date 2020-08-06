@@ -26,6 +26,8 @@ import jp.co.acroit.zaiko2020.book.Book;
  * @version 1.2
  * salsDate→salesDateに修正
  * deleteFlg→deleteFlagに修正
+ * @version 1.3
+ * エラーメッセージの初期化位置変更
  * @author hiroki tajima
  */
 @WebServlet("/AddCheck")
@@ -108,6 +110,9 @@ public class AddCheckController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+
+		session.setAttribute("error", "");
 		doGet(request, response);
 	}
 

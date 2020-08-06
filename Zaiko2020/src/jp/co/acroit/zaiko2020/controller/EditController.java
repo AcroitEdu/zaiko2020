@@ -26,6 +26,8 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
  * 更新flgの判定処理追加
  *  @version 1.3
  * 更新flgのエラーメッセージ変更
+ *  @version 1.4
+ * エラーメッセージ初期化位置変更
  * @author hiroki tajima
  */
 @WebServlet("/Edit")
@@ -45,7 +47,6 @@ public class EditController extends HttpServlet {
 		BookDataAccess bda = new BookDataAccess();
 
 		HttpSession session = request.getSession();
-		session.setAttribute("error", "");
 		Book foundBook;
 
 		try {
@@ -103,6 +104,9 @@ public class EditController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.setAttribute("error", "");
+
 		doGet(request, response);
 	}
 

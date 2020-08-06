@@ -22,6 +22,8 @@ import jp.co.acroit.zaiko2020.book.Book;
  * エラーでリダイレクトされた場合の処理追加
  * @version 1.2
  * salsDate→salesDateに修正
+ *  @version 1.3
+ * エラーメッセージ初期化位置変更
  * @author hiroki tajima
  */
 @WebServlet("/Add")
@@ -41,13 +43,14 @@ public class AddController extends HttpServlet {
 		String stock = null;
 
 		HttpSession session = request.getSession();
-		session.setAttribute("error", "");
 
 		try {
 			if (request.getParameter("form") == null) {
+
 				//エラーで戻ってきた場合
 				branch = "エラー";
 			} else {
+
 				branch = request.getParameter("form");
 			}
 			switch(branch) {
@@ -75,6 +78,10 @@ public class AddController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		session.setAttribute("error", "");
+
 		doGet(request, response);
 	}
 

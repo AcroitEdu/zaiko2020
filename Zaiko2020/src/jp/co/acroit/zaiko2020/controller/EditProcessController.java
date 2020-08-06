@@ -22,6 +22,9 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
  * 編集後の書籍情報取得・セッションに設定
  * @version 1.1
  * 更新フラグを戻す
+ * @version 1.2
+ * セッションに格納したidの上書き方法変更
+ * 空文字からnullに変更
  * @author hiroki tajima
  */
 @WebServlet("/EditProcess")
@@ -57,7 +60,7 @@ public class EditProcessController extends HttpServlet {
 			bda.flgReturn(id);
 			//取得した書籍の情報をセッションに設定する
 			session.setAttribute("book", book);
-			session.setAttribute("id", "");
+			session.setAttribute("id", null);
 
 			response.sendRedirect("/Zaiko2020/resultForm");
 
