@@ -68,14 +68,14 @@ public class EditCheckController extends HttpServlet {
 			if (!isbn.matches("^[0-9]*$") || !stock.matches("^[0-9]*$") || !isbn.matches("^[0-9]*$") || 13 != isbn.length()) {
 
 				session.setAttribute("error", "指定されている形式で入力してください。");
-				response.sendRedirect("/Zaiko2020/Add");
+				response.sendRedirect("/Zaiko2020/Edit");
 				return;
 			}
 
 			//値の範囲チェック
-			if(Integer.parseInt(price) < 1 || 999999 < Integer.parseInt(price) || Integer.parseInt(stock) < 1 || 999999 < Integer.parseInt(stock) ) {
+			if(Integer.parseInt(price) < 0 || 999999 < Integer.parseInt(price) || Integer.parseInt(stock) < 0 || 999999 < Integer.parseInt(stock) ) {
 				session.setAttribute("error", "指定されている形式で入力してください。");
-				response.sendRedirect("/Zaiko2020/Add");
+				response.sendRedirect("/Zaiko2020/Edit");
 				return;
 			}
 

@@ -75,7 +75,7 @@ public class AddCheckController extends HttpServlet {
 			}
 
 			//値の範囲チェック
-			if(Integer.parseInt(price) < 1 || 999999 < Integer.parseInt(price) || Integer.parseInt(stock) < 1 || 999999 < Integer.parseInt(stock) ) {
+			if(Integer.parseInt(price) < 0 || 999999 < Integer.parseInt(price) || Integer.parseInt(stock) < 0 || 999999 < Integer.parseInt(stock) ) {
 				session.setAttribute("error", "指定されている形式で入力してください。");
 				response.sendRedirect("/Zaiko2020/Add");
 				return;
