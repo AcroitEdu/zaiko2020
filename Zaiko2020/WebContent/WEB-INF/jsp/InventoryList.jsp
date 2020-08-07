@@ -84,7 +84,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                         <li>
                             <label for="beforeAfter">発売日</label>
                             <div class="flexFormItem">
-                                <input type="date" id="date" name="date" value="${conditions.salesDate}">
+                                <input type="date" id="date" name="date" value="${conditions.salesDate}" max="9999-12-31">
                                 <select id="beforeAfter" name="beforeAfter" data-value="${conditions.salesDateFlag}">
                                     <option value="equals">に一致</option>
                                     <option value="before">以前</option>
