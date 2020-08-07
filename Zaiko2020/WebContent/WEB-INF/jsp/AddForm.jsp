@@ -67,7 +67,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                         </li>
                         <li>
                             <label for="date">発売日</label>
-                            <input type="date" id="date" name="date" value="${book.salesDate}" required>
+                            <input type="date" id="date" name="date" value="${book.salesDate}" max="9999-12-31" required>
                         </li>
                         <li>
                             <label for="price">価格</label>
