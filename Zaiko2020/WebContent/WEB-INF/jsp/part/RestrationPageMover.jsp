@@ -9,7 +9,7 @@
     </li>
     <li class="pagesSpace"></li>
     <li class="pagesPrevNext">
-        <form name="prevPage" action="/Zaiko2020/RestorationProcess" method="post">
+        <form name="prevPage" action="/Zaiko2020/Restoration" method="post">
             <input type="hidden" name="form" value="ページ">
             <input type="hidden" class="inputPage" name="page" value="${RestorationForm.page - 1}" data-max="${maxPage}">
             <span class="link prevButton">前へ</span>
@@ -27,7 +27,7 @@
         </form>
     </li>
     <li class="pagesPrevNext">
-        <form name="nextPage" action="/Zaiko2020/RestorationProcess" method="post">
+        <form name="nextPage" action="/Zaiko2020/Restoration" method="post">
             <input type="hidden" name="form" value="ページ">
             <input type="hidden" class="inputPage" name="page" value="${RestorationForm.page + 1}" data-max="${maxPage}">
             <span class="link nextButton">次へ</span>
