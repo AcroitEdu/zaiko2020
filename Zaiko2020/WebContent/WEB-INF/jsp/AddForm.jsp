@@ -70,13 +70,13 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                             <input type="date" id="date" name="date" value="${book.salesDate}" required>
                         </li>
                         <li>
-                            <label for="stock">在庫数</label>
-                                <input type="text" id="stock" name="stock" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.stock}" required>
-                                <span>冊</span>
-                        </li>
-                        <li>
                             <label for="price">価格</label>
                                 <input type="text" id="price" name="price" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.price}" required>
+                                <span>円</span>
+                        </li>
+                        <li>
+                            <label for="stock">在庫数</label>
+                                <input type="text" id="stock" name="stock" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.stock}" required>
                                 <span>冊</span>
                         </li>
 					</ul>
