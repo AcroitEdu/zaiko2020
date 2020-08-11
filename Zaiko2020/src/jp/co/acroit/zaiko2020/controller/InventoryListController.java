@@ -22,6 +22,8 @@ import jp.co.acroit.zaiko2020.data.SearchCondition;
 /**
  * 在庫一覧サーブレット
  * @version 1.1
+ * @version 1.2
+ * 追加画面・復元画面から在庫一覧画面に遷移した場合に在庫数と最大ページ数を取得し直すように修正
  * @author hiroki tajima
  */
 @WebServlet("/inventoryList")
@@ -278,7 +280,7 @@ public class InventoryListController extends HttpServlet {
 			}
 
 			//総件数の取得
-			if (value == 0) {
+			if (value == 0 || value == 3) {
 
 				int count = 0;
 				int pageCount = 0;

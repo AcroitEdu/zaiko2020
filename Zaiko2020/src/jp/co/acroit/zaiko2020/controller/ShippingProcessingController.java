@@ -16,6 +16,8 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
 /**
  * 出荷処理サーブレット
  * @version 1.3
+ *  @version 1.4
+ *  idの上書きを""からnullに変更
  * @author hiroe ishioka
  */
 @WebServlet("/ship")
@@ -75,7 +77,7 @@ public class ShippingProcessingController extends HttpServlet {
 			//検索結果をセッションに設定
 			session.setAttribute("book", foundBook);
 
-			session.setAttribute("id", "");
+			session.setAttribute("id", null);
 
 			session.setAttribute("flg", true);
 
