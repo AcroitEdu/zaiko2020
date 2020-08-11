@@ -28,6 +28,8 @@ import jp.co.acroit.zaiko2020.book.Book;
  * deleteFlg→deleteFlagに修正
  * @version 1.3
  * エラーメッセージの初期化位置変更
+ * @version 1.4
+ * 価格の入力値チェックの漏れ修正
  * @author hiroki tajima
  */
 @WebServlet("/AddCheck")
@@ -67,7 +69,7 @@ public class AddCheckController extends HttpServlet {
 			stock = request.getParameter("stock");
 
 			//文字チェック
-			if (!isbn.matches("^[0-9]*$") || !stock.matches("^[0-9]*$") || !isbn.matches("^[0-9]*$") || 13 != isbn.length()) {
+			if (!isbn.matches("^[0-9]*$") || !stock.matches("^[0-9]*$") || !price.matches("^[0-9]*$") || !isbn.matches("^[0-9]*$") || 13 != isbn.length()) {
 
 				session.setAttribute("error", "指定されている形式で入力してください。");
 				response.sendRedirect("/Zaiko2020/Add");
