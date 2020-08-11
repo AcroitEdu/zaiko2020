@@ -276,7 +276,7 @@ public class InventoryListController extends HttpServlet {
 
 			if(session.getAttribute("id") != null) {
 				bda.flgReturn((int)session.getAttribute("id"));
-				session.setAttribute("id", "");
+				session.setAttribute("id", null);
 			}
 
 			//総件数の取得

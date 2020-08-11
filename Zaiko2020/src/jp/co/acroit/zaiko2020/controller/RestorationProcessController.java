@@ -20,7 +20,9 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
  * 選択された書籍のid取得
  * 書籍の復元処理
  * @version 1.1
- * 書籍が選択されていない場合の判定
+ * 書籍が選択されていない場合の判セッション「id」をnullで上書き
+ * @version 1.2
+ * 復元処理実行後に
  * @author hiroki tajima
  */
 @WebServlet("/RestorationProcess")
@@ -52,6 +54,8 @@ public class RestorationProcessController extends HttpServlet {
 			checkedId = request.getParameterValues("checkbox");
 
 			bda.restoration(checkedId);
+
+			session.setAttribute("id",null);
 
 			session.setAttribute("msg", "書籍の復元を行いました。");
 			response.sendRedirect("/Zaiko2020/Restoration");
