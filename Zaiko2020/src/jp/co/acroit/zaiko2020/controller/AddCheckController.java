@@ -29,7 +29,7 @@ import jp.co.acroit.zaiko2020.book.Book;
  * @version 1.3
  * エラーメッセージの初期化位置変更
  * @version 1.4
- * 価格の入力値チェックの漏れ修正
+ * 価格の文字チェックの漏れ修正
  * @author hiroki tajima
  */
 @WebServlet("/AddCheck")
