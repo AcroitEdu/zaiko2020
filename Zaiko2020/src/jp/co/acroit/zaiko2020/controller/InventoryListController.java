@@ -24,6 +24,8 @@ import jp.co.acroit.zaiko2020.data.SearchCondition;
  * @version 1.1
  * @version 1.2
  * 追加画面・復元画面から在庫一覧画面に遷移した場合に在庫数と最大ページ数を取得し直すように修正
+ * @version 1.3
+ * ページ数の入力値チェック（９桁）を追記
  * @author hiroki tajima
  */
 @WebServlet("/inventoryList")
@@ -231,8 +233,6 @@ public class InventoryListController extends HttpServlet {
 
 			}
 
-			page = Integer.parseInt(request.getParameter("page"));
-
 			//入力値チェック
 			if (!pageNumberCheck.matches("^[0-9]*$") || page < 1) {
 
@@ -240,6 +240,19 @@ public class InventoryListController extends HttpServlet {
 				break;
 
 			}
+
+			if(area(pageNumberCheck)) {
+				page = Integer.parseInt(request.getParameter("page"));
+			}else {
+				session.setAttribute("error", "指定されている形式で入力してください。");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+
+
+
+
 
 			int maxPage = (int) session.getAttribute("maxPage");
 			if (maxPage < page) {
@@ -327,6 +340,16 @@ public class InventoryListController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);
 
+		}
+
+	}
+
+	public boolean area(String pageNumberCheck) {
+		try {
+			int area = Integer.parseInt(pageNumberCheck);
+			return true;
+		}catch (NumberFormatException  e) {
+			return false;
 		}
 
 	}
