@@ -28,6 +28,8 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
  * 更新flgのエラーメッセージ変更
  *  @version 1.4
  * エラーメッセージ初期化位置変更
+ *  @version 1.5
+ *  削除確認画面用書籍情報をセッション(deketeBook)に設定
  * @author hiroki tajima
  */
 @WebServlet("/Edit")
@@ -78,6 +80,7 @@ public class EditController extends HttpServlet {
 				//特定書籍の検索し、結果をセッションに設定
 				foundBook = bda.findId(id);
 				session.setAttribute("book", foundBook);
+				session.setAttribute("deleteBook", foundBook);
 			}
 
 			//編集画面へフォワード
