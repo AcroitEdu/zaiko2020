@@ -100,7 +100,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 						<li><label for="largeOrSmall">在庫数</label>
 							<div class="flexFormItem">
 								<input type="text" id="stock" name="stock" pattern="^[0-9]+$"
-									value="${RestorationForm.stock}"> <span>冊</span> <select
+									maxlength="6" value="${RestorationForm.stock}"> <span>冊</span> <select
 									id="largeOrSmall" name="largeOrSmall"
 									data-value="${RestorationForm.stockFlag}">
 									<option value="equals">に等しい</option>
