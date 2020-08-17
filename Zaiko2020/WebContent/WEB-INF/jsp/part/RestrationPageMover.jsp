@@ -19,7 +19,7 @@
         <form name="jumpPage" action="/Zaiko2020/Restoration" method="post">
             <input type="hidden" name="form" value="ページ">
             <span>
-				<input type="text" class="inutPageNumber" name="page" required pattern="^[1-9][0-9]*$" value="${RestorationForm.page}">
+				<input type="text" class="inutPageNumber" name="page" required pattern="^[1-9][0-9]*$" maxlength="9" value="${RestorationForm.page}">
                 <span class="pageDelimiter">/</span>
                 <span class="maxPage">${maxPage}</span>
             </span>

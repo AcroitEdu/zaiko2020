@@ -27,6 +27,8 @@ import jp.co.acroit.zaiko2020.data.SearchCondition;
  *入力値の表示
  * @version 1.3
  * 入力値の初期値リセットを抑制
+ * @version 1.4
+ * ページ数の入力値チェック（９桁）を追記
  * @author hiroki tajima
  */
 @WebServlet("/Restoration")
@@ -205,15 +207,27 @@ public class RestorationController extends HttpServlet {
 
 			}
 
-			page = Integer.parseInt(request.getParameter("page"));
-
 			//入力値チェック
 			if (!pageNumberCheck.matches("^[0-9]*$") || page < 1) {
 
-				session.setAttribute("msg", "指定されている形式で入力してください。");
+				session.setAttribute("error", "指定されている形式で入力してください。");
 				break;
 
 			}
+
+			if(area(pageNumberCheck)) {
+				page = Integer.parseInt(request.getParameter("page"));
+			}else {
+				session.setAttribute("msg", "指定されている形式で入力してください。");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RestrationForm.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+
+
+
+
+
 			int maxPage = (int) session.getAttribute("maxPage");
 			if (maxPage < page) {
 
@@ -295,6 +309,16 @@ public class RestorationController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RestrationForm.jsp");
 			dispatcher.forward(request, response);
 
+		}
+
+	}
+
+	public boolean area(String pageNumberCheck) {
+		try {
+			int area = Integer.parseInt(pageNumberCheck);
+			return true;
+		}catch (NumberFormatException  e) {
+			return false;
 		}
 
 	}
