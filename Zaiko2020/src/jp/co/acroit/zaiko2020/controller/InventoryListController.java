@@ -200,7 +200,7 @@ public class InventoryListController extends HttpServlet {
 			stockFlag = request.getParameter("largeOrSmall");
 
 			//入力値チェック
-			if (!isbn.matches("^[0-9]*$") || 13 < isbn.length() || !stock.matches("^[0-9]*$")) {
+			if (!isbn.matches("^[0-9]*$") || 13 < isbn.length() || !stock.matches("^[0-9]*$") || 6 < stock.length()) {
 
 				session.setAttribute("error", "指定されている形式で入力してください。");
 				break;
