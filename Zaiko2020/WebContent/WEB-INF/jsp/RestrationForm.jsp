@@ -33,40 +33,41 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"
 	rel="stylesheet">
-<link href="js/dialog/dialog-polyfill.css" rel="stylesheet" type="text/css">
+<link href="js/dialog/dialog-polyfill.css" rel="stylesheet"
+	type="text/css">
 <link href="styleInventoryList.css" rel="stylesheet">
 <link href="styleRestrationForm.css" rel="stylesheet">
 </head>
 
 <body>
 	<dialog id="dialogSubmit">
-		<div id="dialogContent">
-			<p>書籍の復元を行います。</p>
-			<button id="dialogExecute" class="restrationButton button-main">OK</button>
-			<button id="dialogCancel" class="restrationButton button-cancel">キャンセル</button>
-		</div>
+	<div id="dialogContent">
+		<p>書籍の復元を行います。</p>
+		<button id="dialogExecute" class="restrationButton button-main">OK</button>
+		<button id="dialogCancel" class="restrationButton button-cancel">キャンセル</button>
+	</div>
 	</dialog>
 	<div id="main">
 		<header>
 			<ul class="boxed-tabs">
 				<li id="inventoryListButton" class="tab">
-					<form id="inventoryListForm" action="/Zaiko2020/inventoryList" method="post">
-						<input type="hidden" name="form" value="3">
-						<span>在庫一覧</span>
+					<form id="inventoryListForm" action="/Zaiko2020/inventoryList"
+						method="post">
+						<input type="hidden" name="form" value="3"> <span>在庫一覧</span>
 					</form>
 				</li>
-                <li id="addButton" class="tab">
-                	<form id="addForm" class="button" name="button" action="/Zaiko2020/Add" method="post">
-                		<input type="hidden" name="form" value="追加">
-                        <span>追加</span>
-                    </form>
-                </li>
+				<li id="addButton" class="tab">
+					<form id="addForm" class="button" name="button"
+						action="/Zaiko2020/Add" method="post">
+						<input type="hidden" name="form" value="追加"> <span>追加</span>
+					</form>
+				</li>
 				<li class="tab-current tab">復元</li>
-                <li id="logoutButton" class="tab-logout tab">
-                    <form id="logoutForm" action="/Zaiko2020/logout" method="post">
+				<li id="logoutButton" class="tab-logout tab">
+					<form id="logoutForm" action="/Zaiko2020/logout" method="post">
 						<span>ログアウト</span>
-                    </form>
-                </li>
+					</form>
+				</li>
 			</ul>
 		</header>
 		<div class="content">
@@ -89,8 +90,8 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 						<li><label for="beforeAfter">発売日</label>
 							<div class="flexFormItem">
 								<input type="date" id="date" name="date"
-									value="${RestorationForm.salesDate}" max="9999-12-31"> <select
-									id="beforeAfter" name="beforeAfter"
+									value="${RestorationForm.salesDate}" max="9999-12-31">
+								<select id="beforeAfter" name="beforeAfter"
 									data-value="${RestorationForm.salesDateFlag}">
 									<option value="equals">に一致</option>
 									<option value="before">以前</option>
@@ -100,8 +101,8 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 						<li><label for="largeOrSmall">在庫数</label>
 							<div class="flexFormItem">
 								<input type="text" id="stock" name="stock" pattern="^[0-9]+$"
-									maxlength="6" value="${RestorationForm.stock}"> <span>冊</span> <select
-									id="largeOrSmall" name="largeOrSmall"
+									maxlength="6" value="${RestorationForm.stock}"> <span>冊</span>
+								<select id="largeOrSmall" name="largeOrSmall"
 									data-value="${RestorationForm.stockFlag}">
 									<option value="equals">に等しい</option>
 									<option value="ltoe">以下</option>
@@ -124,8 +125,9 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 					<form id="sortForm" action="/Zaiko2020/Restoration" method="post">
 						<input type="hidden" id="sortIndex" name="index"
 							value="${RestorationForm.sort}"> <input type="hidden"
-							id="sortDirection" name="direction" value="${RestorationForm.lift}">
-						<input type="hidden" name="form" value="ソート">
+							id="sortDirection" name="direction"
+							value="${RestorationForm.lift}"> <input type="hidden"
+							name="form" value="ソート">
 					</form>
 					<table id="listTable">
 						<thead>
@@ -166,20 +168,19 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 									for (Book item : items) {
 								%>
 
-							<tr>
-								<td class="dataControl dataCenter"><input type="checkbox"
-									name="checkbox" value="<%=item.getId()%>">
-									<p><%=item.getId()%></p></td>
-								<td class="dataName"><%=item.getName()%></td>
-								<td class="dataAuthor"><%=item.getAuthor()%></td>
-								<td class="dataPublisher"><%=item.getPublisher()%></td>
-								<td class="dataSalesDate dataCenter"><%=item.getSalesDate().format(dateFormat)%></td>
-								<td class="dataIsbn dataCenter"><%=item.getIsbn()%></td>
-								<td class="dataPrice dataRight"><%=item.getPrice()%> 円</td>
-								<!--数字をダブルクリックしたときの利便性を考慮しスペースを挿入-->
-								<td class="dataStock dataRight"><%=item.getStock()%> 冊</td>
-							</tr>
-							<%
+								<tr>
+									<td class="dataControl dataCenter"><input type="checkbox"
+										name="checkbox" value="<%=item.getId()%>"></td>
+									<td class="dataName"><%=item.getName()%></td>
+									<td class="dataAuthor"><%=item.getAuthor()%></td>
+									<td class="dataPublisher"><%=item.getPublisher()%></td>
+									<td class="dataSalesDate dataCenter"><%=item.getSalesDate().format(dateFormat)%></td>
+									<td class="dataIsbn dataCenter"><%=item.getIsbn()%></td>
+									<td class="dataPrice dataRight"><%=item.getPrice()%> 円</td>
+									<!--数字をダブルクリックしたときの利便性を考慮しスペースを挿入-->
+									<td class="dataStock dataRight"><%=item.getStock()%> 冊</td>
+								</tr>
+								<%
 								}
 							}
 							%>
@@ -196,7 +197,8 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 	</div>
 </body>
 <script src="js/dialog/dialog-polyfill.js"></script>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/inventoryList.js"></script>
 <script src="js/TabTransition.js"></script>
 <script src="js/RestrationForm.js"></script>
