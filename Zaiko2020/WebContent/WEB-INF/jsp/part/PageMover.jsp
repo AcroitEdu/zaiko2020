@@ -19,7 +19,8 @@
             <span>
 <%--                 <input type="number" class="inutPageNumber" name="page" required min="1" max="${maxPage}" --%>
 <%--                     value="${conditions.page}"> --%>
-				<input type="text" class="inutPageNumber" name="page" required pattern="^[1-9][0-9]*$" maxlength="9" value="${conditions.page}">
+<%-- 				<input type="text" class="inutPageNumber" name="page" required pattern="^[1-9][0-9]*$" maxlength="9" value="${conditions.page}"> --%>
+				<input type="tel" class="inutPageNumber" name="page" required pattern="^[1-9][0-9]*$" maxlength="9" value="${conditions.page}">
                 <span class="pageDelimiter">/</span>
                 <span class="maxPage">${maxPage}</span>
             </span>

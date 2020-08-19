@@ -84,9 +84,11 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 						<li><label for="publisher">出版社</label> <input type="text"
 							id="publisher" class="flexFormItem" name="publisher"
 							value="${RestorationForm.publisher}"></li>
-						<li><label for="isbn">ISBN</label> <input type="text"
-							id="isbn" class="flexFormItem" name="isbn" pattern="^[0-9]+$"
-							maxlength="13" value="${RestorationForm.isbn}"></li>
+						<li>
+							<label for="isbn">ISBN</label>
+<%-- 							<input type="text"id="isbn" class="flexFormItem" name="isbn" pattern="^[0-9]+$"maxlength="13" value="${RestorationForm.isbn}"> --%>
+							<input type="tel"id="isbn" class="flexFormItem" name="isbn" pattern="^[0-9]+$"maxlength="13" value="${RestorationForm.isbn}">
+						</li>
 						<li><label for="beforeAfter">発売日</label>
 							<div class="flexFormItem">
 								<input type="date" id="date" name="date"
@@ -100,8 +102,8 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 							</div></li>
 						<li><label for="largeOrSmall">在庫数</label>
 							<div class="flexFormItem">
-								<input type="text" id="stock" name="stock" pattern="^[0-9]+$"
-									maxlength="6" value="${RestorationForm.stock}"> <span>冊</span>
+<%-- 								<input type="text" id="stock" name="stock" pattern="^[0-9]+$"maxlength="6" value="${RestorationForm.stock}"> <span>冊</span> --%>
+								<input type="tel" id="stock" name="stock" pattern="^[0-9]+$"maxlength="6" value="${RestorationForm.stock}"> <span>冊</span>
 								<select id="largeOrSmall" name="largeOrSmall"
 									data-value="${RestorationForm.stockFlag}">
 									<option value="equals">に等しい</option>

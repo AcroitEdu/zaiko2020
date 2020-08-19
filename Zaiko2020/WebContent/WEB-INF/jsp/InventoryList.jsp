@@ -78,8 +78,9 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                         </li>
                         <li>
                             <label for="isbn">ISBN</label>
-                            <input type="text" id="isbn" class="flexFormItem" name="isbn" pattern="^[0-9]+$" maxlength="13"
-                                value="${conditions.isbn}">
+<%--                             <input type="text" id="isbn" class="flexFormItem" name="isbn" pattern="^[0-9]+$" maxlength="13"value="${conditions.isbn}"> --%>
+                            <input type="tel" id="isbn" class="flexFormItem" name="isbn" pattern="^[0-9]+$" maxlength="13"value="${conditions.isbn}">
+
                         </li>
                         <li>
                             <label for="beforeAfter">発売日</label>
@@ -95,7 +96,8 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                         <li>
                             <label for="largeOrSmall">在庫数</label>
                             <div class="flexFormItem">
-                                <input type="text" id="stock" name="stock" pattern="^[0-9]+$" maxlength="6" value="${conditions.stock}">
+<%--                                 <input type="text" id="stock" name="stock" pattern="^[0-9]+$" maxlength="6" value="${conditions.stock}"> --%>
+                                <input type="tel" id="stock" name="stock" pattern="^[0-9]+$" maxlength="6" value="${conditions.stock}">
                                 <span>冊</span>
                                 <select id="largeOrSmall" name="largeOrSmall" data-value="${conditions.stockFlag}">
                                     <option value="equals">に等しい</option>
@@ -105,51 +107,6 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                             </div>
                         </li>
                     </ul>
-<!--                     <ul id="flexFormWrappable"> -->
-<!--                         <li> -->
-<!--                             <label for="bookName">書籍名</label> -->
-<!--                             <input type="text" id="bookName" class="flexFormItem" name="name" -->
-<%--                                 value="${conditions.name}"> --%>
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <label for="author">著者</label> -->
-<!--                             <input type="text" id="author" class="flexFormItem" name="author" -->
-<%--                                 value="${conditions.author}"> --%>
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <label for="publisher">出版社</label> -->
-<!--                             <input type="text" id="publisher" class="flexFormItem" name="publisher" -->
-<%--                                 value="${conditions.publisher}"> --%>
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <label for="isbn">ISBN</label> -->
-<!--                             <input type="number" id="isbn" class="flexFormItem" name="isbn" min="0" max="9999999999999" -->
-<%--                                 value="${conditions.isbn}"> --%>
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <label for="beforeAfter">発売日</label> -->
-<!--                             <div class="flexFormItem"> -->
-<%--                                 <input type="date" id="date" name="date" value="${conditions.salesDate}"> --%>
-<%--                                 <select id="beforeAfter" name="beforeAfter" data-value="${conditions.salesDateFlag}"> --%>
-<!--                                     <option value="equals">に一致</option> -->
-<!--                                     <option value="before">以前</option> -->
-<!--                                     <option value="after">以降</option> -->
-<!--                                 </select> -->
-<!--                             </div> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <label for="largeOrSmall">在庫数</label> -->
-<!--                             <div class="flexFormItem"> -->
-<%--                                 <input type="number" id="stock" name="stock" min="0" value="${conditions.stock}"> --%>
-<!--                                 <span>冊</span> -->
-<%--                                 <select id="largeOrSmall" name="largeOrSmall" data-value="${conditions.stockFlag}"> --%>
-<!--                                     <option value="equals">に等しい</option> -->
-<!--                                     <option value="ltoe">以下</option> -->
-<!--                                     <option value="gtoe">以上</option> -->
-<!--                                 </select> -->
-<!--                             </div> -->
-<!--                         </li> -->
-<!--                     </ul> -->
                     <input type="hidden" name="form" value="0">
                     <input type="submit" id="searchButton" class="button" value="検索">
                 </form>
