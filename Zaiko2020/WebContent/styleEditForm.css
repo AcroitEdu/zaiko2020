@@ -126,10 +126,6 @@ header form{
 	justify-content: center;
 }
 
-#buttons input{
-	margin: 20px 60px;
-}
-
 #error{
     color: #FF0000;
     text-align: center;
