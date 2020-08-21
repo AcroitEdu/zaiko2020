@@ -28,14 +28,12 @@
 			</jsp:include>
 		</div>
 		<div id="buttons">
-			<form id="editForm" action="/Zaiko2020/EditProcess" method="post">
-				<input type="hidden" name="id" value="${book.id}">
-				<input type="submit" name="button" id="edit" class="button button-main button-border" value="実行">
-			</form>
-			<form id="cancelForm" action="/Zaiko2020//Edit" method="post">
-				<input type="submit" name="button" id="cancel" class="button button-cancel button-border" value="キャンセル">
-			</form>
+			<input type="hidden" name="id" value="${book.id}" form="editForm">
+			<input type="submit" name="button" id="edit" class="button button-main button-border" value="実行" form="editForm">
+			<input type="submit" name="button" id="cancel" class="button button-cancel button-border" value="キャンセル" form="cancelForm">
 		</div>
+		<form id="editForm" action="/Zaiko2020/EditProcess" method="post"></form>
+		<form id="cancelForm" action="/Zaiko2020//Edit" method="post"></form>
     </div>
 </body>
 <script src="js/dialog/dialog-polyfill.js"></script>

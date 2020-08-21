@@ -31,13 +31,11 @@
 			</jsp:include>
 		</div>
 		<div id="buttons">
-			<form id="addForm" action="/Zaiko2020/AddProcess" method="post">
-				<input type="submit" name="button" id="add" class="button button-main button-border" value="実行">
-			</form>
-			<form id="cancelForm" action="/Zaiko2020//Add" method="post">
-				<input type="submit" name="button" id="cancel" class="button button-cancel button-border" value="キャンセル">
-			</form>
+			<input type="submit" name="button" id="add" class="button button-main button-border" value="実行" form="addForm">
+			<input type="submit" name="button" id="cancel" class="button button-cancel button-border" value="キャンセル" form="cancelForm">
 		</div>
+		<form id="addForm" action="/Zaiko2020/AddProcess" method="post"></form>
+		<form id="cancelForm" action="/Zaiko2020//Add" method="post"></form>
     </div>
 </body>
 <script src="js/dialog/dialog-polyfill.js"></script>

@@ -76,14 +76,12 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
 <%-- 			</jsp:include> --%>
 		</div>
 		<div id="buttons">
-			<form id="deleteForm" action="/Zaiko2020/DeleteProcess" method="post">
-				<input type="hidden" name="id" value="${book.id}">
-				<input type="submit" name="button" id="delete" class="button button-warning button-border" value="実行">
-			</form>
-			<form id="cancelForm" action="/Zaiko2020//Edit" method="post">
-				<input type="submit" name="button" id="cancel" class="button button-cancel button-border" value="キャンセル">
-			</form>
+			<input type="hidden" name="id" value="${book.id}" form="deleteForm">
+			<input type="submit" name="button" id="delete" class="button button-warning button-border" value="実行" form="deleteForm">
+			<input type="submit" name="button" id="cancel" class="button button-cancel button-border" value="キャンセル" form="cancelForm">
 		</div>
+		<form id="deleteForm" action="/Zaiko2020/DeleteProcess" method="post"></form>
+		<form id="cancelForm" action="/Zaiko2020//Edit" method="post"></form>
     </div>
 </body>
 <script src="js/dialog/dialog-polyfill.js"></script>
