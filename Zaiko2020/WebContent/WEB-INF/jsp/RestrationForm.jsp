@@ -50,11 +50,11 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 
 
 <div id="modal">
-<!-- <div id="modalContent"> -->
-    <p><span id="countConfirm" class="align-text"></span> 冊の<%=request.getParameter("mode")%>処理を行います。</p>
-    <button id="dialogExecute" class="button button-main">OK</button>
-    <button id="dialogCancel" class="button button-cancel">キャンセル</button>
-<!-- </div> -->
+<div id="modalContent">
+    <p>書籍の復元を行います。</p>
+    <button id="dialogExecute" class="restrationButton button-main">OK</button>
+    <button id="dialogCancel" class="restrationButton button-cancel">キャンセル</button>
+</div>
 </div>
 <div id="overlay"></div>
 
