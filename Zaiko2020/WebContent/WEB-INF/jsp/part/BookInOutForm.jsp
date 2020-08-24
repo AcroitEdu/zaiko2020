@@ -4,13 +4,25 @@
 //ArrivalForm.jspやShippingForm.jspからincludeして使う。
 //入荷・出荷の表示切り替えは変数modeにより行う。
 %>
-<dialog id="dialogSubmit">
-    <div id="dialogContent">
-        <p><span id="countConfirm" class="align-text"></span> 冊の<%=request.getParameter("mode")%>処理を行います。</p>
-        <button id="dialogExecute" class="button button-main">OK</button>
-        <button id="dialogCancel" class="button button-cancel">キャンセル</button>
-    </div>
-</dialog>
+<!-- <dialog id="dialogSubmit"> -->
+<!--     <div id="dialogContent"> -->
+<%--         <p><span id="countConfirm" class="align-text"></span> 冊の<%=request.getParameter("mode")%>処理を行います。</p> --%>
+<!--         <button id="dialogExecute" class="button button-main">OK</button> -->
+<!--         <button id="dialogCancel" class="button button-cancel">キャンセル</button> -->
+<!--     </div> -->
+<!-- </dialog> -->
+
+
+<div id="modal">
+<!-- <div id="modalContent"> -->
+    <p><span id="countConfirm" class="align-text"></span> 冊の<%=request.getParameter("mode")%>処理を行います。</p>
+    <button id="dialogExecute" class="button button-main">OK</button>
+    <button id="dialogCancel" class="button button-cancel">キャンセル</button>
+<!-- </div> -->
+</div>
+<div id="overlay"></div>
+
+
 <div id="main">
     <header>
         <span id="mode"><%=request.getParameter("mode")%></span>
