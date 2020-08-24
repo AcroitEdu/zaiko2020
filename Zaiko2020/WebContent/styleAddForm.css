@@ -128,3 +128,42 @@ header .boxed-tabs{
     text-align: center;
     margin: 10px auto;
 }
+
+@media screen and (max-width: 850px) {
+	.add-options{
+		width: 95%;
+	}
+	.add-options li {
+		flex-direction: column;
+	}
+	.add-options li label {
+		width: 100%;
+		padding-right: 0;
+		text-align: left;
+	}
+	.add-options li label[for="isbn"]{
+		font-size: 0;
+	}
+	.add-options li label[for="isbn"]:before {
+		font-size: 16px;
+		content: "ISBN ※既存の番号を入力しないようお願いいたします。";
+	}
+	#caution {
+		display: none;
+	}
+	.add-options li textarea {
+		width: 100%;
+		height: 48px;
+	}
+	.add-options li input{
+		width: 14em;
+		height: 36px;
+		margin-right: auto;
+	}
+	.add-options li .units{
+		margin-right: auto;
+	}
+	.add-options li .units input{
+		margin-right: 0;
+	}
+}

@@ -131,3 +131,32 @@ header form{
     text-align: center;
     margin: 10px auto;
 }
+
+@media screen and (max-width: 850px) {
+	.edit-options{
+		width: 95%;
+	}
+	.edit-options li {
+		flex-direction: column;
+	}
+	.edit-options li label {
+		width: 100%;
+		padding-right: 0;
+		text-align: left;
+	}
+	.edit-options li textarea {
+		width: 100%;
+		height: 48px;
+	}
+	.edit-options li input{
+		width: 14em;
+		height: 36px;
+		margin-right: auto;
+	}
+	.edit-options li .units{
+		margin-right: auto;
+	}
+	.edit-options li .units input{
+		margin-right: 0;
+	}
+}

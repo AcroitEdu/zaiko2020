@@ -58,15 +58,19 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 							<label for="price">価格</label>
 <%-- 							<input type="text"id="price" name="price" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.price}" required> --%>
 <!-- 							<span>円</span> -->
-							<input type="tel"id="price" name="price" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.price}" required>
-							<span>円</span>
+							<div class="units">
+								<input type="tel"id="price" name="price" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.price}" required>
+								<span>円</span>
+							</div>
 						</li>
 						<li>
 							<label for="stock">在庫数</label>
 <%-- 							<input type="text" id="stock" name="stock" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.stock}" required> --%>
 <!-- 							<span>冊</span> -->
-							<input type="tel" id="stock" name="stock" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.stock}" required>
-							<span>冊</span>
+							<div class="units">
+								<input type="tel" id="stock" name="stock" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.stock}" required>
+								<span>冊</span>
+							</div>
 						</li>
 
 					</ul>

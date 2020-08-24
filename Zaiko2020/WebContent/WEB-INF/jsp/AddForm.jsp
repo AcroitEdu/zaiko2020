@@ -66,7 +66,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 <%--                             <input type="text" id="isbn" name="isbn" pattern="^[0-9]{13}$" maxlength="13" value="${book.isbn}" required> --%>
 <!--                             <span>※既存の番号を入力しないようお願いいたします。</span> -->
                             <input type="tel" id="isbn" name="isbn" pattern="^[0-9]{13}$" maxlength="13" value="${book.isbn}" required>
-                            <span>※既存の番号を入力しないようお願いいたします。</span>
+                            <span id="caution">※既存の番号を入力しないようお願いいたします。</span>
                         </li>
                         <li>
                             <label for="date">発売日</label>
@@ -76,15 +76,20 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                             <label for="price">価格</label>
 <%--                                 <input type="text" id="price" name="price" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.price}" required> --%>
 <!--                                 <span>円</span> -->
-							<input type="tel" id="price" name="price" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.price}" required>
-                            <span>円</span>
+							<div class="units">
+								<input type="tel" id="price" name="price" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.price}" required>
+                            	<span>円</span>
+							</div>
                         </li>
                         <li>
                             <label for="stock">在庫数</label>
 <%--                                 <input type="text" id="stock" name="stock" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.stock}" required> --%>
 <!--                                 <span>冊</span> -->
-							<input type="tel" id="stock" name="stock" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.stock}" required>
-                            <span>冊</span>
+							<div class="units">
+								<input type="tel" id="stock" name="stock" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.stock}" required>
+                            	<span>冊</span>
+							</div>
+
                         </li>
 					</ul>
 				</form>
