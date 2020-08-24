@@ -48,6 +48,7 @@ $("#dialogCancel").click(function () {
 //ダイアログ内「実行」押下時
 $("#dialogExecute").click(function () {
     $("#inoutForm")[0].submit();
+    $("#inoutForm").submit();
 });
 
 //エンターキー無効化

@@ -14,11 +14,11 @@
 
 
 <div id="modal">
-<!-- <div id="modalContent"> -->
+<div id="modalContent">
     <p><span id="countConfirm" class="align-text"></span> 冊の<%=request.getParameter("mode")%>処理を行います。</p>
     <button id="dialogExecute" class="button button-main">OK</button>
     <button id="dialogCancel" class="button button-cancel">キャンセル</button>
-<!-- </div> -->
+</div>
 </div>
 <div id="overlay"></div>
 

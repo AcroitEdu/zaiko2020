@@ -231,9 +231,16 @@ dialog::backdrop, dialog + .backdrop{
     right: 0;
     bottom: 0;
     z-index: 9;
-    background-color: rgba(0, 0, 0, .65);
+    background-color: rgba(0, 0, 0, .5);
 }
+
+
+/* モーダルウィンドウ外枠 */
 #modal {
+	margin: auto;
+    border: 1px solid black;
+
+
     display: none;
     position: fixed;
     left: 50%;
@@ -244,12 +251,23 @@ dialog::backdrop, dialog + .backdrop{
     max-height: 70vh;
     box-sizing: border-box;
     padding: 32px;
-    border-radius: 8px;
     background-color: #fff;
 }
 
+/* モーダルウィンドウ・コンテンツ */
 #modalContent {
+	width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
 
+#modalContent > p{
+    width: 100%;
+    text-align: center;
+    padding: 2em 5px;
 }
 
 .active {
