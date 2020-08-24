@@ -59,3 +59,4 @@ $(".buttonShip").click(linkSubmit);
 
 //「編集」をクリックしたときの処理
 $(".buttonEdit").click(linkSubmit);
+

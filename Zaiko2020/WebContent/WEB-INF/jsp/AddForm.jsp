@@ -12,6 +12,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <title>書籍の追加</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/sanitize.css" rel="stylesheet">

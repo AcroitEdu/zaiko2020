@@ -12,5 +12,5 @@ $("#dialogCancel").click(function () {
 
 //ダイアログ内「実行」押下時
 $("#dialogExecute").click(function () {
-    $("#check")[0].submit();
+    $("#check").submit();
 });

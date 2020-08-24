@@ -20,6 +20,7 @@ if (session.getAttribute("count") != null) {
 List<Book> items = (List<Book>) session.getAttribute("items");
 //日付フォーマットの作成
 DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月'dd'日'");
+DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'日'");
 %>
 <!DOCTYPE html>
 <html lang='ja'>
@@ -37,6 +38,8 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 	type="text/css">
 <link href="styleInventoryList.css" rel="stylesheet">
 <link href="styleRestrationForm.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+
 </head>
 
 <body>
@@ -83,6 +86,12 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 			</ul>
 		</header>
 		<div class="content">
+
+
+		<input type="button" id="searchDisplay" value="検索条件　▼" onclick="document.getElementById('searchHidden').style.display = 'block'; document.getElementById('searchDisplay').style.display = 'none'; document.getElementById('a').style.display = 'block';">
+        <input type="button" id="searchHidden" value="検索条件　▲" onclick="document.getElementById('searchHidden').style.display = 'none'; document.getElementById('searchDisplay').style.display = 'block'; document.getElementById('a').style.display = 'none';">
+
+
 			<div class="search-options">
 				<form name="searchOptions" action="/Zaiko2020/Restoration"
 					method="post">
@@ -128,6 +137,44 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 						type="submit" id="searchButton" class="button" value="検索">
 				</form>
 			</div>
+
+			<input type="button" id="sorthDisplay" value="ソート条件　▼" onclick="document.getElementById('sortHidden').style.display = 'block'; document.getElementById('sorthDisplay').style.display = 'none';  document.getElementById('b').style.display = 'block';">
+        	<input type="button" id="sortHidden" value="ソート条件　▲"   onclick="document.getElementById('sortHidden').style.display = 'none';  document.getElementById('sorthDisplay').style.display = 'block'; document.getElementById('b').style.display = 'none';">
+
+
+
+
+            <div id="b" class="sort-options">
+                <form name="sortOptions" action="/Zaiko2020/Restoration" method="post">
+                <ul id="flexFormWrappable">
+                        <li>
+                            <label for="">条件</label>
+                            <select id="" name="" data-value="">
+                                    <option value="">発売日</option>
+                                    <option value="">ISBN</option>
+                                    <option value="">在庫数</option>
+                                </select>
+                        </li>
+                        <li>
+                             <select id="" name="" data-value="">
+                                    <option value="">昇順</option>
+                                    <option value="">降順</option>
+                                </select>
+                        </li>
+                    </ul>
+                    <input type="hidden" name="form" value="2">
+                    <input type="submit" id="sirtButton" class="button" value="ソート">
+                </form>
+            </div>
+
+
+
+
+
+
+
+
+
 			<div id="error">
 				<span>${sessionScope.msg}</span>
 			</div>
@@ -202,6 +249,64 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 							</form>
 						</tbody>
 					</table>
+
+
+
+
+<!--                     	<!-- 						 スマホ画面書籍表 -->
+					<%
+                            if(items != null)
+                            {
+                                for(Book item : items){
+                                %>
+                                <table id="listTable">
+							<tbody id="sumaho">
+								<tr>
+								<th id="s">書籍名</th>
+								<td class="dataName" colspan="3"><%=item.getName() %></td>
+								</tr>
+								<tr>
+								<th id="s">著者</th>
+								<td class="dataAuthor" colspan="3"><%=item.getAuthor() %></td>
+								</tr>
+								<tr>
+								<th id="s">出版社</th>
+								<td class="dataPublisher" colspan="3"><%=item.getPublisher() %></td></tr>
+								<tr>
+								<th id="s">ISBN</th>
+								<td class="dataSalesDate dataCenter" colspan="3"><%=item.getSalesDate().format(dateFormatSumaho) %></td></tr>
+								<tr>
+								<th id="s">発売日</th>
+								<td class="dataIsbn dataCenter" colspan="3"><%=item.getIsbn() %></td></tr>
+								<tr>
+								<th id="sprice">価格</th>
+								<td class="dataPrice dataRight" style="width: 30%;"><%=item.getPrice() %> 円</td>
+								<th id="sstock">在庫数</th>
+								<td class="dataStock dataRight" style="width: 30%"><%=item.getStock() %> 冊</td>
+								</tr>
+								<tr>
+								<th>操作</th><td class="dataControl dataCenter" colspan="3">
+                                    <form action="/Zaiko2020/RestorationProcess" method="post" class="">
+                                        <input type="submit" >
+                                    </form>
+                                </td>
+                                </tr>
+                                </tbody>
+
+<!--                         項目行　終わり -->
+                    </table>
+
+                    <br>
+								<%
+                                }
+                            }
+                            %>
+
+
+
+
+
+
 				</div>
 				<div class="pages">
 					<%@ include file="part/RestrationPageMover.jsp"%>
@@ -209,6 +314,13 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 			</div>
 		</div>
 	</div>
+
+<!-- ページトップへ戻るボタン -->
+<p class="pagetop" style="display: block;">
+<a href="#">
+<i class="fas fa-chevron-up"></i>
+</a>
+</p>
 </body>
 <!-- <script src="js/dialog/dialog-polyfill.js"></script> -->
 <script
@@ -216,4 +328,15 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 <script src="js/inventoryList.js"></script>
 <script src="js/TabTransition.js"></script>
 <script src="js/RestrationForm.js"></script>
+<script type="text/javascript">
+
+$(window).scroll(function () {
+  var now = $(window).scrollTop();
+  if (now > 200) {
+    $('.pagetop').fadeIn("slow");
+  } else {
+    $('.pagetop').fadeOut('slow');
+  }
+});
+</script>
 </html>

@@ -59,7 +59,15 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
             </ul>
         </header>
         <div class="content">
-            <div class="search-options">
+
+
+        <input type="button" id="searchDisplay" value="検索条件　▼" onclick="document.getElementById('searchHidden').style.display = 'block'; document.getElementById('searchDisplay').style.display = 'none'; document.getElementById('a').style.display = 'block';">
+        <input type="button" id="searchHidden" value="検索条件　▲" onclick="document.getElementById('searchHidden').style.display = 'none'; document.getElementById('searchDisplay').style.display = 'block'; document.getElementById('a').style.display = 'none';">
+
+
+
+
+            <div id="a" class="search-options">
                 <form name="searchOptions" action="/Zaiko2020/inventoryList" method="post">
                 <ul id="flexFormWrappable">
                         <li>
@@ -112,6 +120,42 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
                     <input type="submit" id="searchButton" class="button" value="検索">
                 </form>
             </div>
+
+
+
+
+            <input type="button" id="sorthDisplay" value="ソート条件　▼" onclick="document.getElementById('sortHidden').style.display = 'block'; document.getElementById('sorthDisplay').style.display = 'none';  document.getElementById('b').style.display = 'block';">
+        	<input type="button" id="sortHidden" value="ソート条件　▲"   onclick="document.getElementById('sortHidden').style.display = 'none';  document.getElementById('sorthDisplay').style.display = 'block'; document.getElementById('b').style.display = 'none';">
+
+
+
+
+            <div id="b" class="sort-options">
+                <form name="sortOptions" action="/Zaiko2020/inventoryList" method="post">
+                <ul id="flexFormWrappable">
+                        <li>
+                            <label for="">条件</label>
+                            <select id="" name="" data-value="">
+                                    <option value="">発売日</option>
+                                    <option value="">ISBN</option>
+                                    <option value="">在庫数</option>
+                                </select>
+                        </li>
+                        <li>
+                             <select id="" name="" data-value="">
+                                    <option value="">昇順</option>
+                                    <option value="">降順</option>
+                                </select>
+                        </li>
+                    </ul>
+                    <input type="hidden" name="form" value="2">
+                    <input type="submit" id="sirtButton" class="button" value="ソート">
+                </form>
+            </div>
+
+
+
+
             <div id="error">
                 <span>${sessionScope.error}</span>
             </div>
@@ -228,13 +272,20 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
                         </tbody>
 
 
-                            <!-- 						 スマホ画面書籍表 -->
-							<tbody id="sumaho">
+
+<!--                         項目行　終わり -->
+                    </table>
+
+
+
 							<%
                             if(items != null)
                             {
                                 for(Book item : items){
                                 %>
+                                <table id="listTable">
+<!--                     	<!-- 						 スマホ画面書籍表 -->
+							<tbody id="sumaho">
 								<tr>
 								<th id="s">書籍名</th>
 								<td class="dataName" colspan="3"><%=item.getName() %></td>
@@ -277,14 +328,21 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
                                     </form>
                                 </td>
                                 </tr>
+                                </tbody>
+
+<!--                         項目行　終わり -->
+                    </table>
+
+                    <br>
 								<%
                                 }
                             }
                             %>
 
-							</tbody>
-<!--                         項目行　終わり -->
-                    </table>
+
+
+
+
 
 
 
