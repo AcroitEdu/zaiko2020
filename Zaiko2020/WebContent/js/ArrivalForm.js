@@ -34,18 +34,21 @@ const checkValid = () => {
 $("#execute").click(function () {
     if (checkValid()) {
         $("#countConfirm").text(parseInt($("#count").val()));
-        $("#dialogSubmit")[0].showModal();
+//        $("#dialogSubmit")[0].showModal();
+        $("#overlay, #modal").addClass("active");
     }
 });
 
 //ダイアログ内「キャンセル」押下時
 $("#dialogCancel").click(function () {
-    $("#dialogSubmit")[0].close();
+//    $("#dialogSubmit")[0].close();
+    $("#overlay, #modal").removeClass("active");
 });
 
 //ダイアログ内「実行」押下時
 $("#dialogExecute").click(function () {
     $("#inoutForm")[0].submit();
+    $("#inoutForm").submit();
 });
 
 //エンターキー無効化
