@@ -16,6 +16,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="styleAddForm.css">
+<link href="styleCheck.css" rel="stylesheet">
 </head>
 <body>
 	<div id="main">
@@ -86,8 +87,10 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                             <span>冊</span>
                         </li>
 					</ul>
-					<input type="submit" id="addButton" class="button" name="button" value="実行">
 				</form>
+			</div>
+			<div id="buttons">
+				<input type="submit" id="addButton" class="button button-main button-border" name="button" value="実行">
 			</div>
 		</div>
 	</div>

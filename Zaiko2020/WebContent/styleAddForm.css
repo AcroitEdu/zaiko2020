@@ -113,7 +113,7 @@ header .boxed-tabs{
 	text-align: right;
 }
 
-.add-options input[type="submit"]{
+.button{
 	border-radius: 6px;
     width: 115px;
     padding: 8px;
