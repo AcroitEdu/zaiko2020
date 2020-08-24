@@ -19,6 +19,7 @@ if(session.getAttribute("count") != null){
 List<Book> items = (List<Book>)session.getAttribute("items");
 //日付フォーマットの作成
 DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月'dd'日'");
+DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'日'");
 %>
 <!DOCTYPE html>
 <html lang='ja'>
@@ -115,7 +116,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                 <span>${sessionScope.error}</span>
             </div>
             <div class="list">
-                <div class="pages">
+                <div class="pages" id="none">
                     <%@ include file="part/PageMover.jsp" %>
                 </div>
                 <div id="list">
@@ -124,8 +125,12 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                         <input type="hidden" id="sortDirection" name="direction" value="${conditions.lift}">
                         <input type="hidden" name="form" value="2">
                     </form>
+
+
+<!--                     在庫一覧テーブル　始め -->
                     <table id="listTable">
-                        <thead>
+<!--                     	項目行　始め -->
+                        <thead id="none">
                             <tr id="listHeaders">
                                 <th id="headerControl" class="headerFixed">
                                     操作
@@ -177,13 +182,18 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
+<!--                         項目行　終わり -->
+
+
+
+<!--                         書籍情報行　始め -->
+                        <tbody id="none">
                             <%
                             if(items != null)
                             {
                                 for(Book item : items){
                                 %>
-                            <tr>
+                            <tr style="width: 100%;">
                                 <td class="dataControl dataCenter">
                                     <form action="/Zaiko2020/arrivalForm" method="post" class="formEditLink inline">
                                         <input type="hidden" name="id" value="<%=item.getId() %>">
@@ -214,10 +224,76 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
                                 }
                             }
                             %>
+
                         </tbody>
+
+
+                            <!-- 						 スマホ画面書籍表 -->
+							<tbody id="sumaho">
+							<%
+                            if(items != null)
+                            {
+                                for(Book item : items){
+                                %>
+								<tr>
+								<th id="s">書籍名</th>
+								<td class="dataName" colspan="3"><%=item.getName() %></td>
+								</tr>
+								<tr>
+								<th id="s">著者</th>
+								<td class="dataAuthor" colspan="3"><%=item.getAuthor() %></td>
+								</tr>
+								<tr>
+								<th id="s">出版社</th>
+								<td class="dataPublisher" colspan="3"><%=item.getPublisher() %></td></tr>
+								<tr>
+								<th id="s">ISBN</th>
+								<td class="dataSalesDate dataCenter" colspan="3"><%=item.getSalesDate().format(dateFormatSumaho) %></td></tr>
+								<tr>
+								<th id="s">発売日</th>
+								<td class="dataIsbn dataCenter" colspan="3"><%=item.getIsbn() %></td></tr>
+								<tr>
+								<th id="sprice">価格</th>
+								<td class="dataPrice dataRight" style="width: 30%;"><%=item.getPrice() %> 円</td>
+								<th id="sstock">在庫数</th>
+								<td class="dataStock dataRight" style="width: 30%"><%=item.getStock() %> 冊</td>
+								</tr>
+								<tr>
+								<th>操作</th><td class="dataControl dataCenter" colspan="3">
+                                    <form action="/Zaiko2020/arrivalForm" method="post" class="formEditLink inline">
+                                        <input type="hidden" name="id" value="<%=item.getId() %>">
+                                        <span class="link buttonArrive">入荷</span>
+                                    </form>
+                                    <span>　/　</span>
+                                    <form action="/Zaiko2020/shippingForm" method="post" class="formEditLink inline">
+                                        <input type="hidden" name="id" value="<%=item.getId() %>">
+                                        <span class="link buttonShip">出荷</span>
+                                    </form>
+                                    <span>　/　</span>
+                                    <form action="/Zaiko2020/Edit" method="post" class="formEditLink inline">
+                                        <input type="hidden" name="id" value="<%=item.getId() %>">
+                                        <input type="hidden" name="button" value="編集">
+                                        <span class="link buttonEdit">編集</span>
+                                    </form>
+                                </td>
+                                </tr>
+								<%
+                                }
+                            }
+                            %>
+
+							</tbody>
+<!--                         項目行　終わり -->
                     </table>
+
+
+
+<!--                     在庫一覧テーブル　最後 -->
+
+
+
                 </div>
-                <div class="pages">
+                <div class="pages" id="none">
                     <%@ include file="part/PageMover.jsp" %>
                 </div>
             </div>

@@ -292,3 +292,53 @@ header .boxed-tabs{
 .inline{
     display: inline;
 }
+
+
+
+
+#sumaho {
+	display: none;
+}
+
+/* メディアクエリ */
+@media screen and (max-width : 850px) {
+
+/*PC書籍表項目行非表示*/
+#none {
+	display: none;
+}
+
+#sumaho {
+	display: inherit;
+}
+
+#sumaho th {
+	min-width: 55px;
+	max-width: 70px;
+	width: 20%;
+}
+
+#list {
+	width: 95%;
+}
+
+body {
+	width: 100%;
+}
+
+.dataCenter  {
+	text-align: left;
+}
+
+
+.dataRight {
+	text-align: left;
+}
+
+.dataControl {
+	text-align: center;
+}
+
+
+
+}
