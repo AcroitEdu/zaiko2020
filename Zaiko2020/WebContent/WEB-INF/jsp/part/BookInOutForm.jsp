@@ -37,13 +37,13 @@
                 </span>
                 <br>
             </form>
-            <span>
-                <button id="execute" class="button button-main button-border">実行</button>
-                <form id="cancelForm" action="/Zaiko2020/inventoryList" method="post">
-                    <input type="hidden" name="form" value="4">
-                    <input type="submit" id="cancel" class="button button-cancel button-border" value="キャンセル">
-                </form>
-            </span>
         </div>
+        <span id="buttons">
+        	<button id="execute" class="button button-main button-border">実行</button>
+            <input type="submit" id="cancel" class="button button-cancel button-border" value="キャンセル" form="cancelForm">
+        </span>
+        <form id="cancelForm" action="/Zaiko2020/inventoryList" method="post">
+			<input type="hidden" name="form" value="4">
+        </form>
     </footer>
 </div>

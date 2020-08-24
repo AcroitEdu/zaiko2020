@@ -20,6 +20,7 @@ String caption = "";
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
     <link href="js/dialog/dialog-polyfill.css" rel="stylesheet" type="text/css">
     <link href="styleBookInOut.css" rel="stylesheet">
+    <link href="styleCheck.css" rel="stylesheet">
 </head>
 
 <body>

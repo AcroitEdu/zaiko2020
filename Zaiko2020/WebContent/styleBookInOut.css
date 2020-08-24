@@ -120,12 +120,12 @@ header{
 #inout > *{
     margin: 5px auto;
 }
-#inout > span{
+#buttons{
     display: flex;
-    width: 370px;
-    justify-content: space-between;
+    width: 100%;
+    justify-content: center;
 }
-#inout > span > *{
+#buttons > *{
     margin: 5px;
 }
 #inoutForm{

@@ -47,7 +47,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
             	<span>${sessionScope.error}</span>
             </div>
 			<div class="add-options">
-				<form name="addOptions" action="/Zaiko2020/AddCheck" method="post">
+				<form id="addOptions" name="addOptions" action="/Zaiko2020/AddCheck" method="post">
 					<ul>
 						<li>
 							<label for="bookName">書籍名</label>
@@ -90,7 +90,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 				</form>
 			</div>
 			<div id="buttons">
-				<input type="submit" id="addButton" class="button button-main button-border" name="button" value="実行">
+				<input type="submit" id="addButton" class="button button-main button-border" name="button" value="実行" form="addOptions">
 			</div>
 		</div>
 	</div>

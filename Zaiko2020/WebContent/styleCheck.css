@@ -4,6 +4,7 @@
 	background-color: #FF0000;
     color: #FFFFFF;
     border: 1px solid #00000060;
+    margin: 20px 60px;
     font-size: large;
 }
 
@@ -14,7 +15,7 @@
 }
 
 
-.button{
+#buttons .button{
 	margin: 20px 60px;
 }
 
