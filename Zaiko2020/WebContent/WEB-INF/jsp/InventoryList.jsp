@@ -93,7 +93,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
                         </li>
                         <li>
                             <label for="beforeAfter">発売日</label>
-                            <div class="flexFormItem">
+                            <div class="flexFormItem select">
                                 <input type="date" id="date" name="date" value="${conditions.salesDate}" max="9999-12-31">
                                 <select id="beforeAfter" name="beforeAfter" data-value="${conditions.salesDateFlag}">
                                     <option value="equals">に一致</option>
@@ -104,7 +104,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
                         </li>
                         <li>
                             <label for="largeOrSmall">在庫数</label>
-                            <div class="flexFormItem">
+                            <div class="flexFormItem select">
 <%--                                 <input type="text" id="stock" name="stock" pattern="^[0-9]+$" maxlength="6" value="${conditions.stock}"> --%>
                                 <input type="tel" id="stock" name="stock" pattern="^[0-9]+$" maxlength="6" value="${conditions.stock}">
                                 <span>冊</span>
@@ -142,6 +142,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
                                 </select>
                         </li>
                         <li>
+                        	<label for="">　　</label>
                              <select id="" name="" data-value="">
                                     <option value="">昇順</option>
                                     <option value="">降順</option>
