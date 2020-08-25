@@ -192,6 +192,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 							value="${RestorationForm.lift}"> <input type="hidden"
 							name="form" value="ソート">
 					</form>
+					<div id="pcList">
 					<table id="listTable">
 						<thead>
 							<tr id="listHeaders">
@@ -251,18 +252,19 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 							</form>
 						</tbody>
 					</table>
-
+</div>
 
 
 
 <!--                     	<!-- 						 スマホ画面書籍表 -->
+<div id="sumahoList">
 					<%
                             if(items != null)
                             {
                                 for(Book item : items){
                                 %>
                                 <table id="listTable">
-							<tbody id="sumaho">
+							<tbody>
 								<tr>
 								<th id="s">書籍名</th>
 								<td class="dataName" colspan="3"><%=item.getName() %></td>
@@ -287,18 +289,16 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 								<td class="dataStock dataRight" style="width: 30%"><%=item.getStock() %> 冊</td>
 								</tr>
 								<tr>
-								<th>操作</th><td class="dataControl dataCenter" colspan="3">
+								<th>操作</th>
+								<td class="dataControl dataCenter" colspan="3">
                                     <form action="/Zaiko2020/RestorationProcess" method="post" class="">
                                         <input type="submit" >
                                     </form>
                                 </td>
                                 </tr>
                                 </tbody>
-
-<!--                         項目行　終わり -->
                     </table>
-
-                    <br>
+</div>
 								<%
                                 }
                             }

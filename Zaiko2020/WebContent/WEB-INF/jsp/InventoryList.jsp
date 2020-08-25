@@ -281,27 +281,27 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
                                 <table id="listTable">
 							<tbody>
 								<tr>
-								<th id="s">書籍名</th>
+								<th>書籍名</th>
 								<td class="dataName" colspan="3"><%=item.getName() %></td>
 								</tr>
 								<tr>
-								<th id="s">著者</th>
+								<th>著者</th>
 								<td class="dataAuthor" colspan="3"><%=item.getAuthor() %></td>
 								</tr>
 								<tr>
-								<th id="s">出版社</th>
+								<th>出版社</th>
 								<td class="dataPublisher" colspan="3"><%=item.getPublisher() %></td></tr>
 								<tr>
-								<th id="s">ISBN</th>
+								<th>ISBN</th>
 								<td class="dataSalesDate dataCenter" colspan="3"><%=item.getSalesDate().format(dateFormatSumaho) %></td></tr>
 								<tr>
-								<th id="s">発売日</th>
+								<th>発売日</th>
 								<td class="dataIsbn dataCenter" colspan="3"><%=item.getIsbn() %></td></tr>
 								<tr>
-								<th id="sprice">価格</th>
-								<td class="dataPrice dataRight" style="width: 30%;"><%=item.getPrice() %> 円</td>
-								<th id="sstock">在庫数</th>
-								<td class="dataStock dataRight" style="width: 30%"><%=item.getStock() %> 冊</td>
+								<th>価格</th>
+								<td class="dataPrice dataRight"><%=item.getPrice() %> 円</td>
+								<th>在庫数</th>
+								<td class="dataStock dataRight"><%=item.getStock() %> 冊</td>
 								</tr>
 								<tr>
 								<th>操作</th><td class="dataControl dataCenter" colspan="3">

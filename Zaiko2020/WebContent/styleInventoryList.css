@@ -468,6 +468,22 @@ header .boxed-tabs{
 	margin-bottom: 8px;
 }
 
+.dataPrice, .dataStock {
+	 width: 30%
+}
+
+.dataCenter  {
+	text-align: left;
+}
+
+.dataRight {
+	text-align: left;
+}
+
+.dataControl {
+	text-align: center;
+}
+
 /* 	#none { */
 /* 		display: none; */
 /* 	} */

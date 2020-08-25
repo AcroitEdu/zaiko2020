@@ -122,30 +122,6 @@ dialog::backdrop, dialog + .backdrop{
     display: block !important;
 }
 
-
-/* ページトップボタン */
-.pagetop{
-    display: none;
-    position: fixed;
-    right: 15px;
-    bottom: 60px;
-}
-.pagetop a{
-    display: block;
-    font-size: 0;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    background: #7db4e6;
-    border-radius: 50%;
-    line-height: 50px;
-}
-.pagetop a i{
-    font-size: 20px;
-    color:#fff;
-    line-height: 50px;
-}
-
 /* ソート条件*/
 .sort-options form{
     width: 80%;
@@ -281,40 +257,40 @@ dialog::backdrop, dialog + .backdrop{
 
 
 
-	#none {
-		display: none;
-	}
+/* 	#none { */
+/* 		display: none; */
+/* 	} */
 
-	#sumaho {
-		display: inherit;
-	}
+/* 	#sumaho { */
+/* 		display: inherit; */
+/* 	} */
 
-	#sumaho th {
-		min-width: 55px;
-		max-width: 70px;
-		width: 20%;
-	}
+/* 	#sumaho th { */
+/* 		min-width: 55px; */
+/* 		max-width: 70px; */
+/* 		width: 20%; */
+/* 	} */
 
-	#list {
-		width: 95%;
-	}
+/* 	#list { */
+/* 		width: 95%; */
+/* 	} */
 
-	body {
-		width: 100%;
-	}
+/* 	body { */
+/* 		width: 100%; */
+/* 	} */
 
-	.dataCenter  {
-		text-align: left;
-	}
+/* 	.dataCenter  { */
+/* 		text-align: left; */
+/* 	} */
 
 
-	.dataRight {
-		text-align: left;
-	}
+/* 	.dataRight { */
+/* 		text-align: left; */
+/* 	} */
 
-	.dataControl {
-		text-align: center;
-	}
+/* 	.dataControl { */
+/* 		text-align: center; */
+/* 	} */
 
 }
 
