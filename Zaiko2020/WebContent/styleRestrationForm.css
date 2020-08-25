@@ -11,7 +11,7 @@
     border: 1.5px solid #00000080;
 }
 
-.execute, #dialogExecute{
+.execute, #dialogExecute, #dialogExecute2 {
     background-color: #4a86e8ff;
     color: #FFFFFF;
     font-size: large;
@@ -84,7 +84,7 @@ dialog::backdrop, dialog + .backdrop{
 }
 
 /* モーダルウィンドウ外枠 */
-#modal {
+#modal, #modal2 {
 	margin: auto;
     border: 1px solid black;
 
@@ -101,6 +101,7 @@ dialog::backdrop, dialog + .backdrop{
     padding: 32px;
     background-color: #fff;
 }
+
 
 /* モーダルウィンドウ・コンテンツ */
 #modalContent {
