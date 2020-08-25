@@ -29,4 +29,16 @@
 	#buttons .button {
 		margin: 20px 20px;
 	}
+	#inout {
+		display: block;
+		width: 100%;
+	}
+	#inoutform {
+		width: 100%;
+	}
+	#inoutform #execute{
+		width: 30%;
+		min-width: 110px;
+		height: 48px;
+	}
 }
