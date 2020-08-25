@@ -88,11 +88,11 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 		<div class="content">
 
 
-		<input type="button" id="searchDisplay" value="検索条件　▼" onclick="document.getElementById('searchHidden').style.display = 'block'; document.getElementById('searchDisplay').style.display = 'none'; document.getElementById('a').style.display = 'block';">
-        <input type="button" id="searchHidden" value="検索条件　▲" onclick="document.getElementById('searchHidden').style.display = 'none'; document.getElementById('searchDisplay').style.display = 'block'; document.getElementById('a').style.display = 'none';">
+		<input type="button" id="searchDisplay" class="displayButton" value="検索条件　▼" onclick="document.getElementById('searchHidden').style.display = 'block'; document.getElementById('searchDisplay').style.display = 'none'; document.getElementById('search').style.display = 'block';">
+        <input type="button" id="searchHidden"  class="displayButton" value="検索条件　▲" onclick="document.getElementById('searchHidden').style.display = 'none'; document.getElementById('searchDisplay').style.display = 'block'; document.getElementById('search').style.display = 'none';">
 
 
-			<div class="search-options">
+			<div id="search" class="search-options">
 				<form name="searchOptions" action="/Zaiko2020/Restoration"
 					method="post">
 					<ul id="flexFormWrappable">
@@ -111,7 +111,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 							<input type="tel"id="isbn" class="flexFormItem" name="isbn" pattern="^[0-9]+$"maxlength="13" value="${RestorationForm.isbn}">
 						</li>
 						<li><label for="beforeAfter">発売日</label>
-							<div class="flexFormItem">
+							<div class="flexFormItem select">
 								<input type="date" id="date" name="date"
 									value="${RestorationForm.salesDate}" max="9999-12-31">
 								<select id="beforeAfter" name="beforeAfter"
@@ -122,9 +122,11 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 								</select>
 							</div></li>
 						<li><label for="largeOrSmall">在庫数</label>
-							<div class="flexFormItem">
+							<div class="flexFormItem select">
+								<div class="units">
 <%-- 								<input type="text" id="stock" name="stock" pattern="^[0-9]+$"maxlength="6" value="${RestorationForm.stock}"> <span>冊</span> --%>
-								<input type="tel" id="stock" name="stock" pattern="^[0-9]+$"maxlength="6" value="${RestorationForm.stock}"> <span>冊</span>
+									<input type="tel" id="stock" name="stock" pattern="^[0-9]+$"maxlength="6" value="${RestorationForm.stock}"> <span>冊</span>
+								</div>
 								<select id="largeOrSmall" name="largeOrSmall"
 									data-value="${RestorationForm.stockFlag}">
 									<option value="equals">に等しい</option>
@@ -138,32 +140,32 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 				</form>
 			</div>
 
-			<input type="button" id="sorthDisplay" value="ソート条件　▼" onclick="document.getElementById('sortHidden').style.display = 'block'; document.getElementById('sorthDisplay').style.display = 'none';  document.getElementById('b').style.display = 'block';">
-        	<input type="button" id="sortHidden" value="ソート条件　▲"   onclick="document.getElementById('sortHidden').style.display = 'none';  document.getElementById('sorthDisplay').style.display = 'block'; document.getElementById('b').style.display = 'none';">
+			<input type="button" id="sortDisplay" class="displayButton" value="ソート条件　▼" onclick="document.getElementById('sortHidden').style.display = 'block'; document.getElementById('sortDisplay').style.display = 'none';  document.getElementById('sort').style.display = 'block';">
+        	<input type="button" id="sortHidden" class="displayButton" value="ソート条件　▲"   onclick="document.getElementById('sortHidden').style.display = 'none';  document.getElementById('sortDisplay').style.display = 'block'; document.getElementById('sort').style.display = 'none';">
 
 
 
 
-            <div id="b" class="sort-options">
+            <div id="sort" class="sort-options">
                 <form name="sortOptions" action="/Zaiko2020/Restoration" method="post">
                 <ul id="flexFormWrappable">
                         <li>
-                            <label for="">条件</label>
-                            <select id="" name="" data-value="">
-                                    <option value="">発売日</option>
-                                    <option value="">ISBN</option>
-                                    <option value="">在庫数</option>
-                                </select>
-                        </li>
-                        <li>
-                             <select id="" name="" data-value="">
-                                    <option value="">昇順</option>
-                                    <option value="">降順</option>
-                                </select>
+                        	<label>条件</label>
+                        	<div class="flexFormItem select">
+                            	<select id="sortItem" name="" data-value="">
+                            		<option value="">発売日</option>
+                            		<option value="">ISBN</option>
+                            		<option value="">在庫数</option>
+                            	</select>
+                            	<select id="sortOrder" name="" data-value="">
+                            		<option value="">昇順</option>
+                            		<option value="">降順</option>
+                            	</select>
+                        	</div>
                         </li>
                     </ul>
                     <input type="hidden" name="form" value="2">
-                    <input type="submit" id="sirtButton" class="button" value="ソート">
+                    <input type="submit" id="sortButton" class="button" value="ソート">
                 </form>
             </div>
 

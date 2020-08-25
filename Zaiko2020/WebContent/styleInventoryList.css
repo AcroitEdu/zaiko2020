@@ -419,6 +419,7 @@ header .boxed-tabs{
 
 	#searchButton, #sortButton {
 		width: 60%;
+		height: 48px;
     	background-color: #4a86e8ff;
    		color: #FFFFFF;
     	font-size: large;
