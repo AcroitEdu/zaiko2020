@@ -341,9 +341,6 @@ header .boxed-tabs{
 /* 追加分（未完） */
 
 
-#sumaho {
-	display: none;
-}
 
 
 
@@ -358,13 +355,24 @@ header .boxed-tabs{
 
 }
 
+
+#sumahoList {
+	display: none;
+}
+
+#sumahoPage {
+	display: none;
+}
+
+
+
 /* メディアクエリ(PC表示)*/
 @media screen and (min-width : 851px) {
 	#search {
-		display: block;
+		display: block !important;
 	}
 	#sort, #searchHidden, #sortHidden, #searchDisplay, #sortDisplay {
-		display: none;
+		display: none !important;
 	}
 }
 
@@ -380,7 +388,7 @@ header .boxed-tabs{
 	}
 
 	#searchHidden, #sortHidden {
-		display: none
+		display: none;
 	}
 
 	.search-options form, .sort-options form{
@@ -425,48 +433,77 @@ header .boxed-tabs{
     	font-size: large;
 	}
 
+#sumahoList {
+	display: table;
+}
 
+#sumahoPage {
+	display: block;
+}
 
+#pcList {
+	display: none;
+}
 
+#pcPage {
+	display: none;
+}
 
-	#none {
-		display: none;
-	}
+.pagesBox > .pagesJump{
+	width: 40%;
+	padding: 0;
+}
 
-	#sumaho {
-		display: inherit;
-	}
+.pagesBox > .pagesCounterWeight, .pagesBox > .pagesItemCount {
+	width: 10%;
+}
 
-	#sumaho th {
-		min-width: 55px;
-		max-width: 70px;
-		width: 20%;
-	}
-
-	#list {
-		width: 95%;
-	}
-
-	body {
-		width: 100%;
-	}
-
-	.dataCenter  {
-		text-align: left;
-	}
-
-
-	.dataRight {
-		text-align: left;
-	}
-
-	.dataControl {
-		text-align: center;
-	}
-
+.pagesBox > .pagesPrevNext {
+	width: 2em;
 }
 
 
+#sumahoList > table {
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+/* 	#none { */
+/* 		display: none; */
+/* 	} */
+
+/* 	#sumaho { */
+/* 		display: table; */
+/* 	} */
+
+/* 	#sumaho th { */
+/* 		min-width: 55px; */
+/* 		max-width: 70px; */
+/* 		width: 20%; */
+/* 	} */
+
+/* 	#list { */
+/* 		width: 95%; */
+/* 	} */
+
+/* 	body { */
+/* 		width: 100%; */
+/* 	} */
+
+/* 	.dataCenter  { */
+/* 		text-align: left; */
+/* 	} */
+
+
+/* 	.dataRight { */
+/* 		text-align: left; */
+/* 	} */
+
+/* 	.dataControl { */
+/* 		text-align: center; */
+/* 	} */
+
+}
 
 
 
