@@ -11,7 +11,7 @@
 //日付フォーマットの作成
 DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'日'");
 %>
-<table>
+<table id="pcDisplay">
     <caption><%=request.getParameter("caption")%></caption>
     <colgroup>
         <col class="table-header">
@@ -45,6 +45,44 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
     </tr>
     <tr>
         <th scope="row">在庫数</th>
+        <td>${book.stock} 冊</td>
+    </tr>
+</table>
+
+<table id="sumahoDisplay">
+    <caption><%=request.getParameter("caption")%></caption>
+    <colgroup>
+        <col class="table-header">
+        <col class="table-content">
+        <col class="table-header">
+        <col class="table-content">
+    </colgroup>
+    <tr>
+        <th>書籍名</th>
+        <td colspan="3">${book.name}</td>
+    </tr>
+    <tr>
+        <th>著者</th>
+        <td colspan="3">${book.author}</td>
+    </tr>
+    <tr>
+        <th>出版社</th>
+        <td colspan="3">${book.publisher}</td>
+    </tr>
+    <tr>
+        <th>ISBN</th>
+        <td colspan="3">${book.isbn}</td>
+    </tr>
+    <tr>
+        <th>発売日</th>
+        <td colspan="3">
+            <%=((Book)session.getAttribute("book")).getSalesDate().format(dateFormat)%>
+        </td>
+    </tr>
+    <tr>
+        <th>価格</th>
+        <td>${book.price} 円</td>
+        <th>在庫数</th>
         <td>${book.stock} 冊</td>
     </tr>
 </table>
