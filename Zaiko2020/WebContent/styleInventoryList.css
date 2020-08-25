@@ -306,7 +306,16 @@ header .boxed-tabs{
 
 
 
+.displayButton {
+	width: 95%;
+	height: 48px;
+	border-radius: 0;
+	margin: 10px auto;
+	background-color: #FFFFFF;
+	text-align: center;
+	font-size: 20px;
 
+}
 
 /* メディアクエリ(PC表示)*/
 @media screen and (min-width : 851px) {

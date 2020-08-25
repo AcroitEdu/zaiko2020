@@ -124,8 +124,8 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 
 
 
-            <input type="button" id="sorthDisplay" class="displayButton" value="ソート条件　▼" onclick="document.getElementById('sortHidden').style.display = 'block'; document.getElementById('sorthDisplay').style.display = 'none';  document.getElementById('sort').style.display = 'block';">
-        	<input type="button" id="sortHidden" class="displayButton" value="ソート条件　▲"   onclick="document.getElementById('sortHidden').style.display = 'none';  document.getElementById('sorthDisplay').style.display = 'block'; document.getElementById('sort').style.display = 'none';">
+            <input type="button" id="sortDisplay" class="displayButton" value="ソート条件　▼" onclick="document.getElementById('sortHidden').style.display = 'block'; document.getElementById('sortDisplay').style.display = 'none';  document.getElementById('sort').style.display = 'block';">
+        	<input type="button" id="sortHidden" class="displayButton" value="ソート条件　▲"   onclick="document.getElementById('sortHidden').style.display = 'none';  document.getElementById('sortDisplay').style.display = 'block'; document.getElementById('sort').style.display = 'none';">
 
 
 
