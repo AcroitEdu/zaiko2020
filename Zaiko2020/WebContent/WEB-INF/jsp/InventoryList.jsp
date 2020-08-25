@@ -61,13 +61,13 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
         <div class="content">
 
 
-        <input type="button" id="searchDisplay" value="検索条件　▼" onclick="document.getElementById('searchHidden').style.display = 'block'; document.getElementById('searchDisplay').style.display = 'none'; document.getElementById('a').style.display = 'block';">
-        <input type="button" id="searchHidden" value="検索条件　▲" onclick="document.getElementById('searchHidden').style.display = 'none'; document.getElementById('searchDisplay').style.display = 'block'; document.getElementById('a').style.display = 'none';">
+        <input type="button" id="searchDisplay" class="displayButton" value="検索条件　▼" onclick="document.getElementById('searchHidden').style.display = 'block'; document.getElementById('searchDisplay').style.display = 'none'; document.getElementById('search').style.display = 'block';">
+        <input type="button" id="searchHidden" class="displayButton" value="検索条件　▲" onclick="document.getElementById('searchHidden').style.display = 'none'; document.getElementById('searchDisplay').style.display = 'block'; document.getElementById('search').style.display = 'none';">
 
 
 
 
-            <div id="a" class="search-options">
+            <div id="search" class="search-options">
                 <form name="searchOptions" action="/Zaiko2020/inventoryList" method="post">
                 <ul id="flexFormWrappable">
                         <li>
@@ -124,13 +124,13 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 
 
 
-            <input type="button" id="sorthDisplay" value="ソート条件　▼" onclick="document.getElementById('sortHidden').style.display = 'block'; document.getElementById('sorthDisplay').style.display = 'none';  document.getElementById('b').style.display = 'block';">
-        	<input type="button" id="sortHidden" value="ソート条件　▲"   onclick="document.getElementById('sortHidden').style.display = 'none';  document.getElementById('sorthDisplay').style.display = 'block'; document.getElementById('b').style.display = 'none';">
+            <input type="button" id="sorthDisplay" class="displayButton" value="ソート条件　▼" onclick="document.getElementById('sortHidden').style.display = 'block'; document.getElementById('sorthDisplay').style.display = 'none';  document.getElementById('sort').style.display = 'block';">
+        	<input type="button" id="sortHidden" class="displayButton" value="ソート条件　▲"   onclick="document.getElementById('sortHidden').style.display = 'none';  document.getElementById('sorthDisplay').style.display = 'block'; document.getElementById('sort').style.display = 'none';">
 
 
 
 
-            <div id="b" class="sort-options">
+            <div id="sort" class="sort-options">
                 <form name="sortOptions" action="/Zaiko2020/inventoryList" method="post">
                 <ul id="flexFormWrappable">
                         <li>

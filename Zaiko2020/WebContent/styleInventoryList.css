@@ -304,45 +304,70 @@ header .boxed-tabs{
 	display: none;
 }
 
-/* メディアクエリ */
+
+
+
+
+/* メディアクエリ(PC表示)*/
+@media screen and (min-width : 851px) {
+	#search {
+		display: block;
+	}
+	#sort, #searchHidden, #sortHidden, #searchDisplay, #sortDisplay {
+		display: none;
+	}
+}
+
+
+/* メディアクエリ(スマホ表示)*/
 @media screen and (max-width : 850px) {
 
-/*PC書籍表項目行非表示*/
-#none {
-	display: none;
-}
+	#search, #sort {
+		display: none;
+	}
 
-#sumaho {
-	display: inherit;
-}
+	#searchDisplay, #sortDisplay {
+		display: block;
+	}
 
-#sumaho th {
-	min-width: 55px;
-	max-width: 70px;
-	width: 20%;
-}
-
-#list {
-	width: 95%;
-}
-
-body {
-	width: 100%;
-}
-
-.dataCenter  {
-	text-align: left;
-}
+	#searchHidden, #sortHidden {
+		display: none
+	}
 
 
-.dataRight {
-	text-align: left;
-}
+	#none {
+		display: none;
+	}
 
-.dataControl {
-	text-align: center;
-}
+	#sumaho {
+		display: inherit;
+	}
+
+	#sumaho th {
+		min-width: 55px;
+		max-width: 70px;
+		width: 20%;
+	}
+
+	#list {
+		width: 95%;
+	}
+
+	body {
+		width: 100%;
+	}
+
+	.dataCenter  {
+		text-align: left;
+	}
 
 
+	.dataRight {
+		text-align: left;
+	}
+
+	.dataControl {
+		text-align: center;
+	}
 
 }
