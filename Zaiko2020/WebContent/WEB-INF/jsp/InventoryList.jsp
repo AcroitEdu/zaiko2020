@@ -32,6 +32,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
     <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
     <link href="styleInventoryList.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
 </head>
 
 <body>
@@ -359,6 +360,13 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
             </div>
         </div>
     </div>
+
+    <!-- ページトップへ戻るボタン -->
+<p class="pagetop" style="display: block;">
+<a href="#">
+<i class="fas fa-chevron-up"></i>
+</a>
+
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/inventoryList.js"></script>

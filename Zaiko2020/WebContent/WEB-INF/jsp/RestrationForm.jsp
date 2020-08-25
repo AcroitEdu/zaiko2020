@@ -332,13 +332,5 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'å¹´'MM'æœ
 <script src="js/RestrationForm.js"></script>
 <script type="text/javascript">
 
-$(window).scroll(function () {
-  var now = $(window).scrollTop();
-  if (now > 200) {
-    $('.pagetop').fadeIn("slow");
-  } else {
-    $('.pagetop').fadeOut('slow');
-  }
-});
 </script>
 </html>

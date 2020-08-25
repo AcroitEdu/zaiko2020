@@ -60,3 +60,13 @@ $(".buttonShip").click(linkSubmit);
 //「編集」をクリックしたときの処理
 $(".buttonEdit").click(linkSubmit);
 
+
+
+$(window).scroll(function () {
+  var now = $(window).scrollTop();
+  if (now > 200) {
+    $('.pagetop').fadeIn("slow");
+  } else {
+    $('.pagetop').fadeOut('slow');
+  }
+});
