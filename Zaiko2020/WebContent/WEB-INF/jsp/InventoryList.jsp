@@ -105,9 +105,11 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
                         <li>
                             <label for="largeOrSmall">在庫数</label>
                             <div class="flexFormItem select">
-<%--                                 <input type="text" id="stock" name="stock" pattern="^[0-9]+$" maxlength="6" value="${conditions.stock}"> --%>
-                                <input type="tel" id="stock" name="stock" pattern="^[0-9]+$" maxlength="6" value="${conditions.stock}">
-                                <span>冊</span>
+                            	<div class="units">
+<%--                                <input type="text" id="stock" name="stock" pattern="^[0-9]+$" maxlength="6" value="${conditions.stock}"> --%>
+                                	<input type="tel" id="stock" name="stock" pattern="^[0-9]+$" maxlength="6" value="${conditions.stock}">
+                                	<span>冊</span>
+                                </div>
                                 <select id="largeOrSmall" name="largeOrSmall" data-value="${conditions.stockFlag}">
                                     <option value="equals">に等しい</option>
                                     <option value="ltoe">以下</option>
@@ -132,25 +134,24 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 
             <div id="sort" class="sort-options">
                 <form name="sortOptions" action="/Zaiko2020/inventoryList" method="post">
-                <ul id="flexFormWrappable">
+                	<ul id="flexFormWrappable">
                         <li>
-                            <label for="">条件</label>
-                            <select id="" name="" data-value="">
-                                    <option value="">発売日</option>
-                                    <option value="">ISBN</option>
-                                    <option value="">在庫数</option>
-                                </select>
+                        	<label>条件</label>
+                        	<div class="flexFormItem select">
+                            	<select id="sortItem" name="" data-value="">
+                            		<option value="">発売日</option>
+                            		<option value="">ISBN</option>
+                            		<option value="">在庫数</option>
+                            	</select>
+                            	<select id="sortOrder" name="" data-value="">
+                            		<option value="">昇順</option>
+                            		<option value="">降順</option>
+                            	</select>
+                        	</div>
                         </li>
-                        <li>
-                        	<label for="">　　</label>
-                             <select id="" name="" data-value="">
-                                    <option value="">昇順</option>
-                                    <option value="">降順</option>
-                                </select>
-                        </li>
-                    </ul>
-                    <input type="hidden" name="form" value="2">
-                    <input type="submit" id="sirtButton" class="button" value="ソート">
+                	</ul>
+                	<input type="hidden" name="form" value="2">
+                	<input type="submit" id="sortButton" class="button" value="ソート">
                 </form>
             </div>
 
