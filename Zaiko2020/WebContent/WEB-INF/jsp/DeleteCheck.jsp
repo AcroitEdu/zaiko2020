@@ -33,43 +33,80 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
 			<span>${sessionScope.error}</span>
 		</div>
 		<div id="details">
-		<table>
-<%--     <caption><%=request.getParameter("caption")%></caption> --%>
+		<table id="pcDisplay">
     <colgroup>
         <col class="table-header">
         <col class="table-content">
     </colgroup>
     <tr>
         <th scope="row">書籍名</th>
-        <td>${deleteBook.name}</td>
+        <td>${book.name}</td>
     </tr>
     <tr>
         <th scope="row">著者</th>
-        <td>${deleteBook.author}</td>
+        <td>${book.author}</td>
     </tr>
     <tr>
         <th scope="row">出版社</th>
-        <td>${deleteBook.publisher}</td>
+        <td>${book.publisher}</td>
     </tr>
     <tr>
         <th scope="row">ISBN</th>
-        <td>${deleteBook.isbn}</td>
+        <td>${book.isbn}</td>
     </tr>
     <tr>
         <th scope="row">発売日</th>
         <td>
-            <%=((Book)session.getAttribute("deleteBook")).getSalesDate().format(dateFormat)%>
+            <%=((Book)session.getAttribute("book")).getSalesDate().format(dateFormat)%>
         </td>
     </tr>
     <tr>
         <th scope="row">価格</th>
-        <td>${deleteBook.price} 円</td>
+        <td>${book.price} 円</td>
     </tr>
     <tr>
         <th scope="row">在庫数</th>
-        <td>${deleteBook.stock} 冊</td>
+        <td>${book.stock} 冊</td>
     </tr>
 </table>
+
+<table id="sumahoDisplay">
+    <colgroup>
+        <col class="table-header">
+        <col class="table-content">
+        <col class="table-header">
+        <col class="table-content">
+    </colgroup>
+    <tr>
+        <th>書籍名</th>
+        <td colspan="3">${book.name}</td>
+    </tr>
+    <tr>
+        <th>著者</th>
+        <td colspan="3">${book.author}</td>
+    </tr>
+    <tr>
+        <th>出版社</th>
+        <td colspan="3">${book.publisher}</td>
+    </tr>
+    <tr>
+        <th>ISBN</th>
+        <td colspan="3">${book.isbn}</td>
+    </tr>
+    <tr>
+        <th>発売日</th>
+        <td colspan="3">
+            <%=((Book)session.getAttribute("book")).getSalesDate().format(dateFormat)%>
+        </td>
+    </tr>
+    <tr>
+        <th>価格</th>
+        <td>${book.price} 円</td>
+        <th>在庫数</th>
+        <td>${book.stock} 冊</td>
+    </tr>
+</table>
+
 <%-- 			<jsp:include page="part/BookDetails.jsp"> --%>
 <%-- 				<jsp:param name="caption" value=" " /> --%>
 <%-- 				<jsp:param name="book" value="${book}" /> --%>
