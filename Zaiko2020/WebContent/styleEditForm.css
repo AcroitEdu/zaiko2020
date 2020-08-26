@@ -1,33 +1,33 @@
 @charset "UTF-8";
 
 /* 共通 */
-*{
-    font-family: 'Noto Sans JP', sans-serif;
-    box-sizing: border-box;
+* {
+	font-family: 'Noto Sans JP', sans-serif;
+	box-sizing: border-box;
 }
 
-body{
-    width: 100%;
-    max-width: 1920px;
-    min-height: 100%;
-    background-color: #f0f0f0;
+body {
+	width: 100%;
+	max-width: 1920px;
+	min-height: 100%;
+	background-color: #f0f0f0;
 }
 
-#main{
-    width: 100%;
-    min-height: 100%;
-    margin: auto;
+#main {
+	width: 100%;
+	min-height: 100%;
+	margin: auto;
 }
 
-ul{
-    list-style-type: none;
-    padding-inline-start: 0;
+ul {
+	list-style-type: none;
+	padding-inline-start: 0;
 }
 
-input{
-    border-radius: 5px;
-    border: 1.5px solid #00000080;
-    font-size: 16px;
+input {
+	border-radius: 5px;
+	border: 1.5px solid #00000080;
+	font-size: 16px;
 }
 
 select {
@@ -39,139 +39,148 @@ textarea {
 }
 
 /* ヘッダー */
-header{
+header {
 	display: flex;
-    width: 100%;
-    justify-content: space-between;
+	width: 100%;
+	justify-content: space-between;
 }
 
-header h1{
+header h1 {
 	margin-left: 20px;
 }
 
-header form{
+header form {
 	margin-right: 20px;
 	margin-top: 30px;
 }
 
 /* 入力フォーム */
-.edit-options{
+.edit-options {
 	width: 80%;
 	max-width: 1200px;
 	margin: 0 auto;
 	text-align: center;
 }
 
-.edit-options li{
+.edit-options li {
 	display: flex;
 	align-items: center;
 	margin-bottom: 10px;
 }
 
-.edit-options li label{
+.edit-options li label {
 	width: 120px;
 	padding-right: 10px;
 	text-align: right;
 }
 
-.edit-options li textarea{
+.edit-options li textarea {
 	width: 1070px;
 	text-align: left;
 	resize: none;
 }
 
-.edit-options li input{
+.edit-options li input {
 	width: 14em;
 	text-align: left;
 }
 
-.edit-options li span{
+.edit-options li span {
 	margin-left: 7px;
 }
 
-#stock, #price{
+#stock, #price {
 	text-align: right;
 }
 
-.button{
-    border-radius: 6px;
-    width: 115px;
-    padding: 8px;
-    border: none;
+.button {
+	border-radius: 6px;
+	width: 115px;
+	padding: 8px;
+	border: none;
 }
 
-.button.button-border{
-    border: 1.5px solid #00000080;
+.button.button-border {
+	border: 1.5px solid #00000080;
 }
 
-.button-main{
-    background-color: #4a86e8ff;
-    color: #FFFFFF;
-    font-size: large;
+.button-main {
+	background-color: #4a86e8ff;
+	color: #FFFFFF;
+	font-size: large;
 }
 
-.button-cancel{
-    background-color: #FFFFFF;
-    color: #4a86e8;
-    border: 1px solid #00000060;
-    font-size: large;
+.button-cancel {
+	background-color: #FFFFFF;
+	color: #4a86e8;
+	border: 1px solid #00000060;
+	font-size: large;
 }
 
-.button-cancel.button-border{
-    background-color: #FFFFFF;
-    color: #000000;
+.button-cancel.button-border {
+	background-color: #FFFFFF;
+	color: #000000;
 }
 
 .button-warning {
 	background-color: #FF0000;
-    color: #FFFFFF;
-    border: 1px solid #00000060;
-    font-size: large;
+	color: #FFFFFF;
+	border: 1px solid #00000060;
+	font-size: large;
 }
 
-#buttons{
+#buttons {
 	width: 100%;
 	display: flex;
 	justify-content: center;
 }
 
-#error{
-    color: #FF0000;
-    text-align: center;
-    margin: 10px auto;
+#error {
+	color: #FF0000;
+	text-align: center;
+	margin: 10px auto;
 }
 
+/* メディアクエリ */
 @media screen and (max-width: 850px) {
-	.edit-options{
+
+	/* 	入力フォーム */
+	.edit-options {
 		width: 95%;
 	}
+
 	.edit-options li {
 		flex-direction: column;
 	}
+
 	.edit-options li label {
 		width: 100%;
 		padding-right: 0;
 		text-align: left;
 	}
+
 	.edit-options li textarea {
 		width: 100%;
 		height: 48px;
 	}
-	.edit-options li input{
+
+	.edit-options li input {
 		width: 14em;
 		height: 36px;
 		margin-right: auto;
 	}
-	.edit-options li .units{
+
+	.edit-options li .units {
 		margin-right: auto;
 	}
-	.edit-options li .units input{
+
+	.edit-options li .units input {
 		margin-right: 0;
 	}
 
-/* 	エラーメッセージ */
-	#error{
-    	text-align: left;
-    	width: 95%;
+	/* 	エラーメッセージ */
+	#error {
+		text-align: left;
+		width: 95%;
 	}
 }

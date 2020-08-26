@@ -1,11 +1,12 @@
 @charset "UTF-8";
 
+/* ボタン */
 .button-warning {
 	background-color: #FF0000;
-    color: #FFFFFF;
-    border: 1px solid #00000060;
-    margin: 20px 60px;
-    font-size: large;
+	color: #FFFFFF;
+	border: 1px solid #00000060;
+	margin: 20px 60px;
+	font-size: large;
 }
 
 #buttons {
@@ -14,33 +15,39 @@
 	justify-content: center;
 }
 
-
 #buttons .button {
 	margin: 20px 60px;
 }
 
+/* メディアクエリ */
 @media screen and (max-width: 850px) {
+	/* ボタン */
 	.button {
 		margin: 20px 20px;
 		width: 30%;
 		min-width: 110px;
 		height: 48px;
 	}
+
 	#buttons .button {
 		margin: 20px 20px;
 	}
+
 	#inout {
 		display: block;
 		width: 100%;
 	}
+
 	#inoutform {
 		width: 100%;
 	}
-	#inoutform #execute{
+
+	#inoutform #execute {
 		width: 30%;
 		min-width: 110px;
 		height: 48px;
 	}
+
 	#modalContent .button {
 		margin: 0;
 		width: 115px;

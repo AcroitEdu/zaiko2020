@@ -87,7 +87,8 @@ input.btn {
 	}
 
 	ul li {
-		width: 100%; display : flex;
+		width: 100%;
+		display: flex;
 		flex-direction: column;
 		text-align: center;
 		display: flex;
