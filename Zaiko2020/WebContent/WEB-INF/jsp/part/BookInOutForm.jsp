@@ -31,22 +31,20 @@
 	</div>
 	<footer>
 		<div id="inout">
-			<form id="inoutForm"
-				action="/Zaiko2020/<%=request.getParameter("action")%>"
-				method="post">
-				<span> <label for="count"><%=request.getParameter("mode")%>数</label>
-					<input type="tel" id="count" name="count" required
-					pattern="^[0-9]+$" maxlength="6"> <input type="hidden"
-					id="formId" name="id" value="${book.id }"> <span
-					class="unit">冊</span>
-				</span> <br>
+			<form id="inoutForm" action="/Zaiko2020/<%=request.getParameter("action")%>" method="post">
+				<span>
+					<label for="count"><%=request.getParameter("mode")%>数
+				</label>
+				<input type="tel" id="count" name="count" required pattern="^[0-9]+$" maxlength="6">
+				<input type="hidden" id="formId" name="id" value="${book.id }">
+				<span class="unit">冊</span>
+				</span>
+				<br>
 			</form>
 		</div>
 		<span id="buttons">
 			<button id="execute" class="button button-main button-border">実行</button>
-			<input type="submit" id="cancel"
-			class="button button-cancel button-border" value="キャンセル"
-			form="cancelForm">
+			<input type="submit" id="cancel" class="button button-cancel button-border" value="キャンセル" form="cancelForm">
 		</span>
 		<form id="cancelForm" action="/Zaiko2020/inventoryList" method="post">
 			<input type="hidden" name="form" value="4">
