@@ -105,7 +105,7 @@ dialog::backdrop, dialog + .backdrop{
     z-index: 99;
     transform: translate(-50%, -50%);
     box-sizing: border-box;
-    padding: 32px;
+    padding: 20px;
     background-color: #fff;
 }
 
@@ -265,11 +265,16 @@ dialog::backdrop, dialog + .backdrop{
 /* モーダルウィンドウ・レスポンシブ */
 #modal2 {
 	width: 95%;
+	max-width: 500px;
 	border-radius: 8px;
 }
 
 #modalContent {
 	width: 100%;
+}
+
+.restrationButton {
+	height: 48px;
 }
 
 /* 	#none { */
