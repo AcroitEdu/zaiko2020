@@ -1,33 +1,33 @@
 @charset "UTF-8";
 
 /* 共通 */
-*{
-    font-family: 'Noto Sans JP', sans-serif;
-    box-sizing: border-box;
+* {
+	font-family: 'Noto Sans JP', sans-serif;
+	box-sizing: border-box;
 }
 
-body{
-    width: 100%;
-    max-width: 1920px;
-    min-height: 100%;
-    background-color: #f0f0f0;
+body {
+	width: 100%;
+	max-width: 1920px;
+	min-height: 100%;
+	background-color: #f0f0f0;
 }
 
-#main{
-    width: 100%;
-    min-height: 100%;
-    margin: auto;
+#main {
+	width: 100%;
+	min-height: 100%;
+	margin: auto;
 }
 
-ul{
-    list-style-type: none;
-    padding-inline-start: 0;
+ul {
+	list-style-type: none;
+	padding-inline-start: 0;
 }
 
-input{
-    border-radius: 5px;
-    border: 1.5px solid #00000080;
-    font-size: 16px;
+input {
+	border-radius: 5px;
+	border: 1.5px solid #00000080;
+	font-size: 16px;
 }
 
 select {
@@ -39,48 +39,48 @@ textarea {
 }
 
 /* ヘッダー */
-header{
-    width: 100%;
-    margin: 0;
+header {
+	width: 100%;
+	margin: 0;
 }
 
-header .boxed-tabs{
-    background-color: #d0d0d0;
-    padding: 0;
-    width: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: row;
+header .boxed-tabs {
+	background-color: #d0d0d0;
+	padding: 0;
+	width: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: row;
 }
 
-.boxed-tabs .tab{
-    margin: 0 0 -1px 0;
-    padding: 5px;
-    min-width: fit-content;
-    flex-grow: 0;
-    width: 25%;
-    background-color: transparent;
-    border-bottom: 1px solid #000000;
+.boxed-tabs .tab {
+	margin: 0 0 -1px 0;
+	padding: 5px;
+	min-width: fit-content;
+	flex-grow: 0;
+	width: 25%;
+	background-color: transparent;
+	border-bottom: 1px solid #000000;
 }
 
-.boxed-tabs .tab + .tab{
-    border-left: 1px solid #000000;
+.boxed-tabs .tab+.tab {
+	border-left: 1px solid #000000;
 }
 
-.boxed-tabs li.tab-current{
-    background-color: #f0f0f0;
-    border-bottom: 0 !important;
+.boxed-tabs li.tab-current {
+	background-color: #f0f0f0;
+	border-bottom: 0 !important;
 }
 
-.boxed-tabs li.tab-space{
-    flex-grow: 0;
-    flex-shrink: 1;
-    padding: 0;
+.boxed-tabs li.tab-space {
+	flex-grow: 0;
+	flex-shrink: 1;
+	padding: 0;
 }
 
-.boxed-tabs li.tab-logout{
-    background-color: #f0a0a0;
-    border-right: 0 !important;
+.boxed-tabs li.tab-logout {
+	background-color: #f0a0a0;
+	border-right: 0 !important;
 }
 
 /* 入力フォーム */
@@ -103,83 +103,93 @@ header .boxed-tabs{
 	text-align: right;
 }
 
-.add-options li textarea{
+.add-options li textarea {
 	width: 1070px;
 	text-align: left;
 	resize: none;
 }
 
-.add-options li input{
+.add-options li input {
 	width: 14em;
 	text-align: left
 }
 
-.add-options li span{
+.add-options li span {
 	margin-left: 7px;
 }
 
-#stock, #price{
+#stock, #price {
 	text-align: right;
 }
 
-.button{
+.button {
 	border-radius: 6px;
-    width: 115px;
-    padding: 8px;
-    border: 1.5px solid #00000080;
-    background-color: #4a86e8ff;
-    color: #FFFFFF;
-    font-size: large;
+	width: 115px;
+	padding: 8px;
+	border: 1.5px solid #00000080;
+	background-color: #4a86e8ff;
+	color: #FFFFFF;
+	font-size: large;
 }
 
-#error{
-    color: #FF0000;
-    text-align: center;
-    margin: 10px auto;
+#error {
+	color: #FF0000;
+	text-align: center;
+	margin: 10px auto;
 }
 
+/* メディアクエリ */
 @media screen and (max-width: 850px) {
-	.add-options{
+	/* 	入力フォーム */
+	.add-options {
 		width: 95%;
 	}
+
 	.add-options li {
 		flex-direction: column;
 	}
+
 	.add-options li label {
 		width: 100%;
 		padding-right: 0;
 		text-align: left;
 	}
-	.add-options li label[for="isbn"]{
+
+	.add-options li label[for="isbn"] {
 		font-size: 0;
 	}
+
 	.add-options li label[for="isbn"]:before {
 		font-size: 16px;
 		content: "ISBN ※既存の番号を入力しないようお願いいたします。";
 	}
+
 	#caution {
 		display: none;
 	}
+
 	.add-options li textarea {
 		width: 100%;
 		height: 48px;
 	}
-	.add-options li input{
+
+	.add-options li input {
 		width: 14em;
 		height: 36px;
 		margin-right: auto;
 	}
-	.add-options li .units{
+
+	.add-options li .units {
 		margin-right: auto;
 	}
-	.add-options li .units input{
+
+	.add-options li .units input {
 		margin-right: 0;
 	}
 
-
-/* 	エラーメッセージ */
-	#error{
-    	text-align: left;
-    	width: 95%;
+	/* 	エラーメッセージ */
+	#error {
+		text-align: left;
+		width: 95%;
 	}
 }
