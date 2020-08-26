@@ -20,11 +20,8 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
 <meta http-equiv='X-UA-Compatible' content='ie=edge'>
 <title>書籍削除確認</title>
 <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="js/dialog/dialog-polyfill.css" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="js/dialog/dialog-polyfill.css" />
 <link href="styleBookInOut.css" rel="stylesheet">
 <link href="styleCheck.css" rel="stylesheet">
 </head>
@@ -60,8 +57,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
 				</tr>
 				<tr>
 					<th scope="row">発売日</th>
-					<td><%=((Book) session.getAttribute("book")).getSalesDate().format(dateFormat)%>
-					</td>
+					<td><%=((Book) session.getAttribute("book")).getSalesDate().format(dateFormat)%></td>
 				</tr>
 				<tr>
 					<th scope="row">価格</th>
@@ -98,8 +94,7 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
 				</tr>
 				<tr>
 					<th>発売日</th>
-					<td colspan="3"><%=((Book) session.getAttribute("book")).getSalesDate().format(dateFormat)%>
-					</td>
+					<td colspan="3"><%=((Book) session.getAttribute("book")).getSalesDate().format(dateFormat)%></td>
 				</tr>
 				<tr>
 					<th>価格</th>
@@ -122,6 +117,5 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
 	</div>
 </body>
 <script src="js/dialog/dialog-polyfill.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </html>

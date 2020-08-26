@@ -45,15 +45,15 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 			<ul class="boxed-tabs">
 				<li class="tab-current tab">在庫一覧</li>
 				<li id="addButton" class="tab">
-					<form id="addForm" class="button" name="button"
-						action="/Zaiko2020/Add" method="post">
-						<input type="hidden" name="form" value="追加"> <span>追加</span>
+					<form id="addForm" class="button" name="button" action="/Zaiko2020/Add" method="post">
+						<input type="hidden" name="form" value="追加">
+						<span>追加</span>
 					</form>
 				</li>
 				<li id="restorationButton" class="tab">
-					<form id="restorationForm" action="/Zaiko2020/Restoration"
-						method="post">
-						<input type="hidden" name="form" value="復元"> <span>復元</span>
+					<form id="restorationForm" action="/Zaiko2020/Restoration" method="post">
+						<input type="hidden" name="form" value="復元">
+						<span>復元</span>
 					</form>
 				</li>
 				<li id="logoutButton" class="tab-logout tab">
@@ -65,84 +65,82 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 		</header>
 
 		<div class="content">
-			<input type="button" id="searchDisplay" class="displayButton"
-				value="検索条件　▼"
+			<input type="button" id="searchDisplay" class="displayButton" value="検索条件　▼"
 				onclick="document.getElementById('searchHidden').style.display = 'block'; document.getElementById('searchDisplay').style.display = 'none'; document.getElementById('search').style.display = 'block';">
-			<input type="button" id="searchHidden" class="displayButton"
-				value="検索条件　▲"
+			<input type="button" id="searchHidden" class="displayButton" value="検索条件　▲"
 				onclick="document.getElementById('searchHidden').style.display = 'none'; document.getElementById('searchDisplay').style.display = 'block'; document.getElementById('search').style.display = 'none';">
 			<div id="search" class="search-options">
-				<form name="searchOptions" action="/Zaiko2020/inventoryList"
-					method="post">
+				<form name="searchOptions" action="/Zaiko2020/inventoryList" method="post">
 					<ul id="flexFormWrappable">
-						<li><label for="bookName">書籍名</label> <input type="text"
-							id="bookName" class="flexFormItem" name="name"
-							value="${conditions.name}"></li>
-						<li><label for="author">著者</label> <input type="text"
-							id="author" class="flexFormItem" name="author"
-							value="${conditions.author}"></li>
-						<li><label for="publisher">出版社</label> <input type="text"
-							id="publisher" class="flexFormItem" name="publisher"
-							value="${conditions.publisher}"></li>
-						<li><label for="isbn">ISBN</label> <%--                             <input type="text" id="isbn" class="flexFormItem" name="isbn" pattern="^[0-9]+$" maxlength="13"value="${conditions.isbn}"> --%>
-							<input type="tel" id="isbn" class="flexFormItem" name="isbn"
-							pattern="^[0-9]+$" maxlength="13" value="${conditions.isbn}">
+						<li>
+							<label for="bookName">書籍名</label>
+							<input type="text" id="bookName" class="flexFormItem" name="name" value="${conditions.name}">
+						</li>
+						<li>
+							<label for="author">著者</label> <input type="text" id="author" class="flexFormItem" name="author" value="${conditions.author}">
+						</li>
+						<li>
+							<label for="publisher">出版社</label>
+							<input type="text" id="publisher" class="flexFormItem" name="publisher" value="${conditions.publisher}">
+						</li>
+						<li>
+							<label for="isbn">ISBN</label>
+							<input type="tel" id="isbn" class="flexFormItem" name="isbn" pattern="^[0-9]+$" maxlength="13" value="${conditions.isbn}">
 						</li>
 						<li><label for="beforeAfter">発売日</label>
 							<div class="flexFormItem select">
-								<input type="date" id="date" name="date"
-									value="${conditions.salesDate}" max="9999-12-31"> <select
-									id="beforeAfter" name="beforeAfter"
-									data-value="${conditions.salesDateFlag}">
+								<input type="date" id="date" name="date" value="${conditions.salesDate}" max="9999-12-31">
+								<select id="beforeAfter" name="beforeAfter" data-value="${conditions.salesDateFlag}">
 									<option value="equals">に一致</option>
 									<option value="before">以前</option>
 									<option value="after">以降</option>
 								</select>
-							</div></li>
-						<li><label for="largeOrSmall">在庫数</label>
+							</div>
+						</li>
+						<li>
+						<label for="largeOrSmall">在庫数</label>
 							<div class="flexFormItem select">
 								<div class="units">
-									<%--                                <input type="text" id="stock" name="stock" pattern="^[0-9]+$" maxlength="6" value="${conditions.stock}"> --%>
-									<input type="tel" id="stock" name="stock" pattern="^[0-9]+$"
-										maxlength="6" value="${conditions.stock}"> <span>冊</span>
+									<input type="tel" id="stock" name="stock" pattern="^[0-9]+$" maxlength="6" value="${conditions.stock}">
+									<span>冊</span>
 								</div>
-								<select id="largeOrSmall" name="largeOrSmall"
-									data-value="${conditions.stockFlag}">
+								<select id="largeOrSmall" name="largeOrSmall" data-value="${conditions.stockFlag}">
 									<option value="equals">に等しい</option>
 									<option value="ltoe">以下</option>
 									<option value="gtoe">以上</option>
 								</select>
-							</div></li>
+							</div>
+						</li>
 					</ul>
-					<input type="hidden" name="form" value="0"> <input
-						type="submit" id="searchButton" class="button" value="検索">
+					<input type="hidden" name="form" value="0">
+					<input type="submit" id="searchButton" class="button" value="検索">
 				</form>
 			</div>
 
-			<input type="button" id="sortDisplay" class="displayButton"
-				value="ソート条件　▼"
+			<input type="button" id="sortDisplay" class="displayButton" value="ソート条件　▼"
 				onclick="document.getElementById('sortHidden').style.display = 'block'; document.getElementById('sortDisplay').style.display = 'none';  document.getElementById('sort').style.display = 'block';">
-			<input type="button" id="sortHidden" class="displayButton"
-				value="ソート条件　▲"
+			<input type="button" id="sortHidden" class="displayButton" value="ソート条件　▲"
 				onclick="document.getElementById('sortHidden').style.display = 'none';  document.getElementById('sortDisplay').style.display = 'block'; document.getElementById('sort').style.display = 'none';">
 			<div id="sort" class="sort-options">
-				<form name="sortOptions" action="/Zaiko2020/inventoryList"
-					method="post">
+				<form name="sortOptions" action="/Zaiko2020/inventoryList" method="post">
 					<ul id="flexFormWrappable">
-						<li><label>条件</label>
+						<li>
+							<label>条件</label>
 							<div class="flexFormItem select">
 								<select id="sortItem" name="index">
 									<option value="0">発売日</option>
 									<option value="1">ISBN</option>
 									<option value="2">在庫数</option>
-								</select> <select id="sortOrder" name="direction">
+								</select>
+								<select id="sortOrder" name="direction">
 									<option value="1">昇順</option>
 									<option value="-1">降順</option>
 								</select>
-							</div></li>
+							</div>
+						</li>
 					</ul>
-					<input type="hidden" name="form" value="2"> <input
-						type="submit" id="sortButton" class="button" value="ソート">
+					<input type="hidden" name="form" value="2">
+					<input type="submit" id="sortButton" class="button" value="ソート">
 				</form>
 			</div>
 
@@ -155,9 +153,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 				</div>
 				<div id="list">
 					<form id="sortForm" action="/Zaiko2020/inventoryList" method="post">
-						<input type="hidden" id="sortIndex" name="index"
-							value="${conditions.sort}"> <input type="hidden"
-							id="sortDirection" name="direction" value="${conditions.lift}">
+						<input type="hidden" id="sortIndex" name="index" value="${conditions.sort}"> <input type="hidden" id="sortDirection" name="direction" value="${conditions.lift}">
 						<input type="hidden" name="form" value="2">
 					</form>
 					<div id="pcList">
@@ -168,26 +164,22 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 									<th id="headerName" class="headerGrow2">書籍名</th>
 									<th id="headerAuthor" class="headerGrow2">著者</th>
 									<th id="headerPublisher" class="headerGrow2">出版社</th>
-									<th id="headerSalesDate" class="listHeaderSortable headerFixed"
-										data-sort-index="0">発売日 <span class="sortArrows">
-											<span class="sortArrow" title="発売日 昇順でソートします"
-											data-sort-direction="1"> ↑ </span> <span class="sortArrow"
-											title="発売日 降順でソートします" data-sort-direction="-1"> ↓ </span>
+									<th id="headerSalesDate" class="listHeaderSortable headerFixed" data-sort-index="0">発売日
+										<span class="sortArrows">
+										<span class="sortArrow" title="発売日 昇順でソートします" data-sort-direction="1"> ↑ </span>
+										<span class="sortArrow" title="発売日 降順でソートします" data-sort-direction="-1"> ↓ </span>
 									</span>
 									</th>
-									<th id="headerIsbn" class="listHeaderSortable headerFixed"
-										data-sort-index="1">ISBN <span class="sortArrows">
-											<span class="sortArrow" title="ISBN 昇順でソートします"
-											data-sort-direction="1"> ↑ </span> <span class="sortArrow"
-											title="ISBN 降順でソートします" data-sort-direction="-1"> ↓ </span>
+									<th id="headerIsbn" class="listHeaderSortable headerFixed" data-sort-index="1">ISBN <span class="sortArrows">
+										<span class="sortArrow" title="ISBN 昇順でソートします" data-sort-direction="1"> ↑ </span>
+										<span class="sortArrow" title="ISBN 降順でソートします" data-sort-direction="-1"> ↓ </span>
 									</span>
 									</th>
 									<th id="headerPrice" class="headerGrow1">価格</th>
-									<th id="headerStock" class="listHeaderSortable headerGrow1"
-										data-sort-index="2">在庫数 <span class="sortArrows">
-											<span class="sortArrow" title="在庫数 昇順でソートします"
-											data-sort-direction="1"> ↑ </span> <span class="sortArrow"
-											title="在庫数 降順でソートします" data-sort-direction="-1"> ↓ </span>
+									<th id="headerStock" class="listHeaderSortable headerGrow1" data-sort-index="2">在庫数
+										<span class="sortArrows">
+										<span class="sortArrow" title="在庫数 昇順でソートします" data-sort-direction="1"> ↑ </span>
+										<span class="sortArrow" title="在庫数 降順でソートします" data-sort-direction="-1"> ↓ </span>
 									</span>
 									</th>
 								</tr>
@@ -199,21 +191,18 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 								%>
 								<tr style="width: 100%;">
 									<td class="dataControl dataCenter">
-										<form action="/Zaiko2020/arrivalForm" method="post"
-											class="formEditLink inline">
+										<form action="/Zaiko2020/arrivalForm" method="post" class="formEditLink inline">
 											<input type="hidden" name="id" value="<%=item.getId()%>">
 											<span class="link buttonArrive">入荷</span>
 										</form> <span>/</span>
-										<form action="/Zaiko2020/shippingForm" method="post"
-											class="formEditLink inline">
+										<form action="/Zaiko2020/shippingForm" method="post" class="formEditLink inline">
 											<input type="hidden" name="id" value="<%=item.getId()%>">
 											<span class="link buttonShip">出荷</span>
 										</form> <br>
-										<form action="/Zaiko2020/Edit" method="post"
-											class="formEditLink inline">
+										<form action="/Zaiko2020/Edit" method="post" class="formEditLink inline">
 											<input type="hidden" name="id" value="<%=item.getId()%>">
-											<input type="hidden" name="button" value="編集"> <span
-												class="link buttonEdit">編集</span>
+											<input type="hidden" name="button" value="編集">
+											<span class="link buttonEdit">編集</span>
 										</form>
 									</td>
 									<td class="dataName"><%=item.getName()%></td>
@@ -269,21 +258,20 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 								<tr>
 									<th>操作</th>
 									<td class="dataControl dataCenter" colspan="3">
-										<form action="/Zaiko2020/arrivalForm" method="post"
-											class="formEditLink inline">
+										<form action="/Zaiko2020/arrivalForm" method="post" class="formEditLink inline">
 											<input type="hidden" name="id" value="<%=item.getId()%>">
 											<span class="link buttonArrive">入荷</span>
-										</form> <span> / </span>
-										<form action="/Zaiko2020/shippingForm" method="post"
-											class="formEditLink inline">
+										</form>
+										<span> / </span>
+										<form action="/Zaiko2020/shippingForm" method="post" class="formEditLink inline">
 											<input type="hidden" name="id" value="<%=item.getId()%>">
 											<span class="link buttonShip">出荷</span>
-										</form> <span> / </span>
-										<form action="/Zaiko2020/Edit" method="post"
-											class="formEditLink inline">
+										</form>
+										<span> / </span>
+										<form action="/Zaiko2020/Edit" method="post" class="formEditLink inline">
 											<input type="hidden" name="id" value="<%=item.getId()%>">
-											<input type="hidden" name="button" value="編集"> <span
-												class="link buttonEdit">編集</span>
+											<input type="hidden" name="button" value="編集">
+											<span class="link buttonEdit">編集</span>
 										</form>
 									</td>
 								</tr>

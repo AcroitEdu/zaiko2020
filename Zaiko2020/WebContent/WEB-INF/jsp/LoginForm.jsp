@@ -19,10 +19,12 @@
 	<form action="/Zaiko2020/login" method="post">
 		<div class="form">
 			<ul>
-				<li><label>ID</label> <input type="text" name="id" required
-					pattern="^[0-9A-Za-z]+$"></li>
-				<li><label>PASSWORD</label> <input type="password"
-					name="password" required pattern="^[0-9A-Za-z]+$"></li>
+				<li>
+					<label>ID</label>
+					<input type="text" name="id" required pattern="^[0-9A-Za-z]+$"></li>
+				<li>
+					<label>PASSWORD</label>
+					<input type="password" name="password" required pattern="^[0-9A-Za-z]+$"></li>
 			</ul>
 		</div>
 		<p>

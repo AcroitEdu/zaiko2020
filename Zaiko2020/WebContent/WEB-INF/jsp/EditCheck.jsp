@@ -8,11 +8,8 @@
 <meta http-equiv='X-UA-Compatible' content='ie=edge'>
 <title>書籍情報変更の確認</title>
 <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="js/dialog/dialog-polyfill.css" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="js/dialog/dialog-polyfill.css" />
 <link href="styleBookInOut.css" rel="stylesheet">
 <link href="styleCheck.css" rel="stylesheet">
 </head>
@@ -32,17 +29,13 @@
 		</div>
 		<div id="buttons">
 			<input type="hidden" name="id" value="${book.id}" form="editForm">
-			<input type="submit" name="button" id="edit"
-				class="button button-main button-border" value="実行" form="editForm">
-			<input type="submit" name="button" id="cancel"
-				class="button button-cancel button-border" value="キャンセル"
-				form="cancelForm">
+			<input type="submit" name="button" id="edit" class="button button-main button-border" value="実行" form="editForm">
+			<input type="submit" name="button" id="cancel" class="button button-cancel button-border" value="キャンセル" form="cancelForm">
 		</div>
 		<form id="editForm" action="/Zaiko2020/EditProcess" method="post"></form>
 		<form id="cancelForm" action="/Zaiko2020//Edit" method="post"></form>
 	</div>
 </body>
 <script src="js/dialog/dialog-polyfill.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </html>
