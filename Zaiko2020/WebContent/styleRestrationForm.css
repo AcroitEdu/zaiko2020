@@ -195,6 +195,10 @@ dialog::backdrop, dialog + .backdrop{
 
 }
 
+.units {
+	display:flex;
+}
+
 /* メディアクエリ(PC表示)*/
 @media screen and (min-width : 851px) {
 	#search {
@@ -248,10 +252,6 @@ dialog::backdrop, dialog + .backdrop{
 
 	#stock {
 		padding-right: 5px;
-	}
-
-	.units {
-		display:flex;
 	}
 
 	#searchButton, #sortButton {

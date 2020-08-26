@@ -144,6 +144,10 @@ header .boxed-tabs{
     padding: 0.25em 2.5em;
 }
 
+.units {
+	display: flex;
+}
+
 /* ページ遷移 */
 .pagesBox{
     display: flex;
@@ -437,10 +441,6 @@ header .boxed-tabs{
 
 	#stock {
 		padding-right: 5px;
-	}
-
-	.units {
-		display:flex;
 	}
 
 	#searchButton, #sortButton {
