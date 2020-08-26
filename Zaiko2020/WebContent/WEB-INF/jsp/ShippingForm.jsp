@@ -18,11 +18,8 @@ String caption = "";
 <meta http-equiv='X-UA-Compatible' content='ie=edge'>
 <title><%=mode%></title>
 <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"
-	rel="stylesheet">
-<link href="js/dialog/dialog-polyfill.css" rel="stylesheet"
-	type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+<link href="js/dialog/dialog-polyfill.css" rel="stylesheet" type="text/css">
 <link href="styleBookInOut.css" rel="stylesheet">
 <link href="styleCheck.css" rel="stylesheet">
 </head>
@@ -35,8 +32,7 @@ String caption = "";
 	</jsp:include>
 </body>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/ArrivalForm.js"></script>
 
 </html>
