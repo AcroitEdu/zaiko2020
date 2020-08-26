@@ -271,6 +271,8 @@ public class InventoryListController extends HttpServlet {
 		case 2:
 			sort = Integer.parseInt(request.getParameter("index"));
 			lift = Integer.parseInt(request.getParameter("direction"));
+			System.out.println(sort);
+			System.out.println(lift);
 			sc.setPage(1);
 			sc.setSort(sort);
 			sc.setLift(lift);

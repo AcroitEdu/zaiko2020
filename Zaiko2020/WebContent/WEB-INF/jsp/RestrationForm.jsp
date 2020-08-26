@@ -169,13 +169,13 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 					<ul id="flexFormWrappable">
 						<li><label>条件</label>
 							<div class="flexFormItem select">
-								<select id="sortItem" name="" data-value="">
-									<option value="">発売日</option>
-									<option value="">ISBN</option>
-									<option value="">在庫数</option>
-								</select> <select id="sortOrder" name="" data-value="">
-									<option value="">昇順</option>
-									<option value="">降順</option>
+								<select id="sortItem" name="index">
+									<option value="0">発売日</option>
+									<option value="1">ISBN</option>
+									<option value="2">在庫数</option>
+								</select> <select id="sortOrder" name="direction">
+									<option value="1">昇順</option>
+									<option value="-1">降順</option>
 								</select>
 							</div></li>
 					</ul>
