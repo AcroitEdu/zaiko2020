@@ -15,11 +15,8 @@
 <meta http-equiv='X-UA-Compatible' content='ie=edge'>
 <title>処理完了</title>
 <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="js/dialog/dialog-polyfill.css" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="js/dialog/dialog-polyfill.css" />
 <link href="styleBookInOut.css" rel="stylesheet">
 <link href="styleCheck.css" rel="stylesheet">
 </head>
@@ -40,16 +37,14 @@
 		</div>
 		<div id="inout">
 			<form id="inoutForm" action="/Zaiko2020/inventoryList" method="post">
-				<input type="hidden" name="form" value="4"> <input
-					type="submit" id="execute" class="button button-main button-border"
-					value="OK">
+				<input type="hidden" name="form" value="4">
+				<input type="submit" id="execute" class="button button-main button-border" value="OK">
 			</form>
 		</div>
 	</div>
 </body>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/ResultForm.js"></script>
 
 </html>
