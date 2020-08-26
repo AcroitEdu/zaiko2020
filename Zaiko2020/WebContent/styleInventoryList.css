@@ -10,6 +10,17 @@ body{
     max-width: 1920px;
     min-height: 100%;
 }
+
+input {
+  font-size: 16px;
+}
+
+select {
+	font-size: 16px;
+}
+
+
+
 #main{
     width: 100%;
     min-height: 100%;
@@ -341,9 +352,6 @@ header .boxed-tabs{
 /* 追加分（未完） */
 
 
-#sumaho {
-	display: none;
-}
 
 
 
@@ -358,19 +366,37 @@ header .boxed-tabs{
 
 }
 
+
+#sumahoList {
+	display: none;
+}
+
+#sumahoPage {
+	display: none;
+}
+
+
+
 /* メディアクエリ(PC表示)*/
 @media screen and (min-width : 851px) {
 	#search {
-		display: block;
+		display: block !important;
 	}
 	#sort, #searchHidden, #sortHidden, #searchDisplay, #sortDisplay {
-		display: none;
+		display: none !important;
 	}
 }
 
 
 /* メディアクエリ(スマホ表示)*/
 @media screen and (max-width : 850px) {
+/* 	エラーメッセージ */
+	#error{
+    	text-align: left;
+    	width: 95%;
+	}
+
+/* 	入力フォーム */
 	#search, #sort {
 		display: none;
 	}
@@ -380,7 +406,7 @@ header .boxed-tabs{
 	}
 
 	#searchHidden, #sortHidden {
-		display: none
+		display: none;
 	}
 
 	.search-options form, .sort-options form{
@@ -425,48 +451,107 @@ header .boxed-tabs{
     	font-size: large;
 	}
 
+	.search-options li{
+    	min-width: unset;
+    	width: 100%;
+    	padding: 0.5em;
+	}
+
+	.search-options li > label{
+    	width: 20%;
+    	text-align: left;
+    	padding-right: 5px;
+	}
 
 
+	/* 書籍表 */
+	#sumahoList {
+		display: table;
+	}
 
+	#sumahoPage {
+		display: block;
+	}
 
-	#none {
+	#pcList {
 		display: none;
 	}
 
-	#sumaho {
-		display: inherit;
+	#pcPage {
+		display: none;
 	}
 
-	#sumaho th {
-		min-width: 55px;
-		max-width: 70px;
-		width: 20%;
-	}
+.pagesBox > .pagesJump{
+	width: 40%;
+	padding: 0;
+}
 
-	#list {
-		width: 95%;
-	}
+.pagesBox > .pagesCounterWeight, .pagesBox > .pagesItemCount {
+	width: 10%;
+}
 
-	body {
-		width: 100%;
-	}
-
-	.dataCenter  {
-		text-align: left;
-	}
-
-
-	.dataRight {
-		text-align: left;
-	}
-
-	.dataControl {
-		text-align: center;
-	}
-
+.pagesBox > .pagesPrevNext {
+	width: 2em;
 }
 
 
+#sumahoList > table {
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.dataPrice, .dataStock {
+	 width: 30%
+}
+
+.dataCenter  {
+	text-align: left;
+}
+
+.dataRight {
+	text-align: left;
+}
+
+.dataControl {
+	text-align: center;
+}
+
+/* 	#none { */
+/* 		display: none; */
+/* 	} */
+
+/* 	#sumaho { */
+/* 		display: table; */
+/* 	} */
+
+/* 	#sumaho th { */
+/* 		min-width: 55px; */
+/* 		max-width: 70px; */
+/* 		width: 20%; */
+/* 	} */
+
+/* 	#list { */
+/* 		width: 95%; */
+/* 	} */
+
+/* 	body { */
+/* 		width: 100%; */
+/* 	} */
+
+/* 	.dataCenter  { */
+/* 		text-align: left; */
+/* 	} */
+
+
+/* 	.dataRight { */
+/* 		text-align: left; */
+/* 	} */
+
+/* 	.dataControl { */
+/* 		text-align: center; */
+/* 	} */
+
+}
 
 
 

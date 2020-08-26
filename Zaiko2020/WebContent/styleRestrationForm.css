@@ -7,11 +7,22 @@
     border: none;
 }
 
+.singleBookButton {
+	border-radius: 6px;
+    width: 70%;
+    padding: 8px;
+    border: none;
+}
+
 .restrationButton.button-border{
     border: 1.5px solid #00000080;
 }
 
-.execute, #dialogExecute{
+.singleBookButton.button-border{
+    border: 1.5px solid #00000080;
+}
+
+.execute, .singleBookEcxecute, #dialogExecute, #dialogExecute2 {
     background-color: #4a86e8ff;
     color: #FFFFFF;
     font-size: large;
@@ -27,7 +38,7 @@
 	padding: 0;
 }
 
-#dialogCancel{
+#dialogCancel, #dialogCancel2 {
     background-color: #FFFFFF;
     color: #4a86e8;
     border: 1px solid #00000060;
@@ -84,23 +95,20 @@ dialog::backdrop, dialog + .backdrop{
 }
 
 /* モーダルウィンドウ外枠 */
-#modal {
+#modal, #modal2 {
 	margin: auto;
     border: 1px solid black;
-
-
     display: none;
     position: fixed;
     left: 50%;
     top: 50%;
     z-index: 99;
     transform: translate(-50%, -50%);
-    max-width: 70vw;
-    max-height: 70vh;
     box-sizing: border-box;
     padding: 32px;
     background-color: #fff;
 }
+
 
 /* モーダルウィンドウ・コンテンツ */
 #modalContent {
@@ -121,30 +129,7 @@ dialog::backdrop, dialog + .backdrop{
 .active {
     display: block !important;
 }
-
-
-/* ページトップボタン */
-.pagetop{
-    display: none;
-    position: fixed;
-    right: 15px;
-    bottom: 60px;
-}
-.pagetop a{
-    display: block;
-    font-size: 0;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    background: #7db4e6;
-    border-radius: 50%;
-    line-height: 50px;
-}
-.pagetop a i{
-    font-size: 20px;
-    color:#fff;
-    line-height: 50px;
-}
+/* ------------------------------------ */
 
 /* ソート条件*/
 .sort-options form{
@@ -277,44 +262,50 @@ dialog::backdrop, dialog + .backdrop{
     	font-size: large;
 	}
 
+/* モーダルウィンドウ・レスポンシブ */
+#modal2 {
+	width: 95%;
+	border-radius: 8px;
+}
+
+#modalContent {
+	width: 100%;
+}
+
+/* 	#none { */
+/* 		display: none; */
+/* 	} */
+
+/* 	#sumaho { */
+/* 		display: inherit; */
+/* 	} */
+
+/* 	#sumaho th { */
+/* 		min-width: 55px; */
+/* 		max-width: 70px; */
+/* 		width: 20%; */
+/* 	} */
+
+/* 	#list { */
+/* 		width: 95%; */
+/* 	} */
+
+/* 	body { */
+/* 		width: 100%; */
+/* 	} */
+
+/* 	.dataCenter  { */
+/* 		text-align: left; */
+/* 	} */
 
 
+/* 	.dataRight { */
+/* 		text-align: left; */
+/* 	} */
 
-
-	#none {
-		display: none;
-	}
-
-	#sumaho {
-		display: inherit;
-	}
-
-	#sumaho th {
-		min-width: 55px;
-		max-width: 70px;
-		width: 20%;
-	}
-
-	#list {
-		width: 95%;
-	}
-
-	body {
-		width: 100%;
-	}
-
-	.dataCenter  {
-		text-align: left;
-	}
-
-
-	.dataRight {
-		text-align: left;
-	}
-
-	.dataControl {
-		text-align: center;
-	}
+/* 	.dataControl { */
+/* 		text-align: center; */
+/* 	} */
 
 }
 

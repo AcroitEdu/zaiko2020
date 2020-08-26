@@ -166,4 +166,11 @@ header .boxed-tabs{
 	.add-options li .units input{
 		margin-right: 0;
 	}
+
+
+/* 	エラーメッセージ */
+	#error{
+    	text-align: left;
+    	width: 95%;
+	}
 }

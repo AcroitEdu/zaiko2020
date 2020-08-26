@@ -4,10 +4,10 @@
 //RestrationForm.jspからincludeして使う。
 %>
 <ul class="pagesBox">
-    <li class="pagesCounterWeight">
+    <li id="pcPage" class="pagesCounterWeight">
     		<input type="button" class="restrationButton execute button-main button-border" type="button" form="check" value="選択項目の復元">
     </li>
-    <li class="pagesSpace"></li>
+    <li id="pcPage" class="pagesSpace"></li>
     <li class="pagesPrevNext">
         <form name="prevPage" action="/Zaiko2020/Restoration" method="post">
             <input type="hidden" name="form" value="ページ">
@@ -15,7 +15,7 @@
             <span class="link prevButton">前へ</span>
         </form>
     </li>
-    <li class="pagesJump">
+    <li id="pcPage" class="pagesJump">
         <form name="jumpPage" action="/Zaiko2020/Restoration" method="post">
             <input type="hidden" name="form" value="ページ">
             <span>
@@ -27,6 +27,13 @@
             <input type="submit" class="button" value="移動">
         </form>
     </li>
+
+    <li id="sumahoPage" class="pagesJump">
+        <span>${conditions.page}</span>
+        <span>　/　</span>
+        <span>${maxPage}</span>
+    </li>
+
     <li class="pagesPrevNext">
         <form name="nextPage" action="/Zaiko2020/Restoration" method="post">
             <input type="hidden" name="form" value="ページ">
@@ -34,6 +41,6 @@
             <span class="link nextButton">次へ</span>
         </form>
     </li>
-    <li class="pagesSpace"></li>
-    <li class="pagesItemCount">${count} 件</li>
+    <li id="pcPage" class="pagesSpace"></li>
+    <li id="pcPage" class="pagesItemCount">${count} 件</li>
 </ul>
