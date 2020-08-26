@@ -27,6 +27,15 @@ ul{
 input{
     border-radius: 5px;
     border: 1.5px solid #00000080;
+    font-size: 16px;
+}
+
+select {
+	font-size: 16px;
+}
+
+textarea {
+	font-size: 16px;
 }
 
 /* ヘッダー */
