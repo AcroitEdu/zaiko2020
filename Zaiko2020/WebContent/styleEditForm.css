@@ -159,4 +159,10 @@ header form{
 	.edit-options li .units input{
 		margin-right: 0;
 	}
+
+/* 	エラーメッセージ */
+	#error{
+    	text-align: left;
+    	width: 95%;
+	}
 }

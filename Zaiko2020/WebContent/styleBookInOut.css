@@ -304,5 +304,11 @@ dialog::backdrop, dialog + .backdrop{
 	width: 20%;
 	min-width: 60px;
 	}
+
+
+/* 	エラーメッセージ */
+	#error{
+    	text-align: left;
+    	width: 95%;
+	}
 }
-/* -------------- */

@@ -390,6 +390,12 @@ header .boxed-tabs{
 
 /* メディアクエリ(スマホ表示)*/
 @media screen and (max-width : 850px) {
+/* 	エラーメッセージ */
+	#error{
+    	text-align: left;
+    	width: 95%;
+	}
+
 /* 	入力フォーム */
 	#search, #sort {
 		display: none;
