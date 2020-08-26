@@ -17,7 +17,7 @@ $("#dialogExecute").click(function () {
 
 
 //「選択した書籍の復元」押下時
-$(".execute2").click(function () {
+$(".singleBookEcxecute").click(function () {
 //        $("#dialogSubmit")[0].showModal();
         $("#overlay, #modal2").addClass("active");
 });

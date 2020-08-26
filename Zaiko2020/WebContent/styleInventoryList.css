@@ -10,6 +10,17 @@ body{
     max-width: 1920px;
     min-height: 100%;
 }
+
+input {
+  font-size: 16px;
+}
+
+select {
+	font-size: 16px;
+}
+
+
+
 #main{
     width: 100%;
     min-height: 100%;
@@ -379,6 +390,7 @@ header .boxed-tabs{
 
 /* メディアクエリ(スマホ表示)*/
 @media screen and (max-width : 850px) {
+/* 	入力フォーム */
 	#search, #sort {
 		display: none;
 	}
@@ -433,21 +445,35 @@ header .boxed-tabs{
     	font-size: large;
 	}
 
-#sumahoList {
-	display: table;
-}
+	.search-options li{
+    	min-width: unset;
+    	width: 100%;
+    	padding: 0.5em;
+	}
 
-#sumahoPage {
-	display: block;
-}
+	.search-options li > label{
+    	width: 20%;
+    	text-align: left;
+    	padding-right: 5px;
+	}
 
-#pcList {
-	display: none;
-}
 
-#pcPage {
-	display: none;
-}
+	/* 書籍表 */
+	#sumahoList {
+		display: table;
+	}
+
+	#sumahoPage {
+		display: block;
+	}
+
+	#pcList {
+		display: none;
+	}
+
+	#pcPage {
+		display: none;
+	}
 
 .pagesBox > .pagesJump{
 	width: 40%;

@@ -311,7 +311,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 											class="">
 											<input type="hidden" name="checkbox" value="<%=item.getId()%>">
 										</form>
-										<input type="button" class="restrationButton execute2 button-main button-border" type="button" form="Restoration" value="選択項目の復元">
+										<input type="button" class="singleBookButton singleBookEcxecute button-main button-border" type="button" form="Restoration" value="この書籍を復元">
 									</td>
 								</tr>
 							</tbody>
