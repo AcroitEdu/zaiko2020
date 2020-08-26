@@ -221,7 +221,7 @@ dialog::backdrop, dialog+.backdrop {
 
 	.search-options form, .sort-options form {
 		width: 95%;
-		text-align: center;;
+		text-align: center;
 	}
 
 	.search-options input, .search-options select, .sort-options select {
