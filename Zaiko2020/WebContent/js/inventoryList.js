@@ -45,6 +45,13 @@ selects.each(function (index, element) {
     elem.find(`option[value='${value}']`).prop("selected", true);
 });
 
+var selects = $("#sortItem, #sortOrder");
+selects.each(function (index, element) {
+    var elem = $(element);
+    var value = elem.attr("data-value");
+    elem.find(`option[value='${value}']`).prop("selected", true);
+});
+
 //ソート矢印をソート設定に基づきハイライトする処理
 var sortIndex = $("#sortIndex").val();
 var sortDirection = $("#sortDirection").val();
