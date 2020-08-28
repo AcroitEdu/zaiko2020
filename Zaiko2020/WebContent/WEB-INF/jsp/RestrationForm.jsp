@@ -151,7 +151,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 						</div>
 					</li>
 				</ul>
-				<input type="hidden" name="form" value="2">
+				<input type="hidden" name="form" value="ソート">
 				<input type="submit" id="sortButton" class="button" value="ソート">
 			</form>
 		</div>
