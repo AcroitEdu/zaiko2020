@@ -30,9 +30,10 @@
 	</li>
 
 	<li id="sumahoPage" class="pagesJump">
-		<span>${conditions.page}</span>
+		<span>${RestorationForm.page}</span>
 		<span> / </span>
-		<span>${maxPage}</span></li>
+		<span>${maxPage}</span>
+	</li>
 
 	<li class="pagesPrevNext">
 		<form name="nextPage" action="/Zaiko2020/Restoration" method="post">
