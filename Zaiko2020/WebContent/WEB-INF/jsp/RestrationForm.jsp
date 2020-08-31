@@ -79,7 +79,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 	<div class="content">
 		<input type="button" id="searchDisplay" class="displayButton" value="検索条件　▼"
 			onclick="document.getElementById('searchHidden').style.display = 'block'; document.getElementById('searchDisplay').style.display = 'none'; document.getElementById('search').style.display = 'block';">
-		<input type="button" id="searchHidden" class="displayButton value="検索条件　▲"
+		<input type="button" id="searchHidden" class="displayButton" value="検索条件　▲"
 			onclick="document.getElementById('searchHidden').style.display = 'none'; document.getElementById('searchDisplay').style.display = 'block'; document.getElementById('search').style.display = 'none';">
 		<div id="search" class="search-options">
 			<form name="searchOptions" action="/Zaiko2020/Restoration" method="post">
