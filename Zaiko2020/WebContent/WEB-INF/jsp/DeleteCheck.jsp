@@ -61,11 +61,11 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
 				</tr>
 				<tr>
 					<th scope="row">価格</th>
-					<td>${book.price}円</td>
+					<td>${book.price} 円</td>
 				</tr>
 				<tr>
 					<th scope="row">在庫数</th>
-					<td>${book.stock}冊</td>
+					<td>${book.stock} 冊</td>
 				</tr>
 			</table>
 
@@ -98,9 +98,9 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
 				</tr>
 				<tr>
 					<th>価格</th>
-					<td>${book.price}円</td>
+					<td>${book.price} 円</td>
 					<th>在庫数</th>
-					<td>${book.stock}冊</td>
+					<td>${book.stock} 冊</td>
 				</tr>
 			</table>
 		</div>
