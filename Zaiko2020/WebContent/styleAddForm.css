@@ -187,6 +187,10 @@ header .boxed-tabs {
 		margin-right: 0;
 	}
 
+	#price, #stock {
+		text-align: left;
+	}
+
 	/* 	エラーメッセージ */
 	#error {
 		text-align: left;

@@ -313,7 +313,7 @@ dialog::backdrop, dialog+.backdrop {
 
 /* メディアクエリ */
 @media screen and (max-width : 850px) {
-/* 	入力フォーム */
+	/* 	入力フォーム */
 	#pcDisplay {
 		display: none;
 	}
@@ -326,6 +326,9 @@ dialog::backdrop, dialog+.backdrop {
 	#details #sumahoDisplay th {
 		width: 20%;
 		min-width: 60px;
+	}
+	#count {
+		text-align: left;
 	}
 
 	/* 	エラーメッセージ */
