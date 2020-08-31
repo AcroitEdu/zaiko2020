@@ -281,7 +281,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'å¹´'MM'æœ
 		</div>
 	</div>
 </div>
-<p class="pagetop" style="display: block;">
+<p class="pagetop">
 	<a href="#"> <i class="fas fa-chevron-up"></i>
 	</a>
 </p>
