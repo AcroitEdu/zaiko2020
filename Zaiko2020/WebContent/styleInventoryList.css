@@ -502,6 +502,9 @@ header .boxed-tabs {
 	#sort, #searchHidden, #sortHidden, #searchDisplay, #sortDisplay {
 		display: none !important;
 	}
+	.pagetop {
+		display: none !important;
+	}
 }
 
 /* メディアクエリ(スマホ表示)*/
