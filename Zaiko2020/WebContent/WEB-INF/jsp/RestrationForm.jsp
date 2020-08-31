@@ -245,11 +245,11 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 								<td class="dataPublisher" colspan="3"><%=item.getPublisher()%></td>
 							</tr>
 							<tr>
-								<th>ISBN</th>
+								<th>発売日</th>
 								<td class="dataSalesDate dataCenter" colspan="3"><%=item.getSalesDate().format(dateFormatSumaho)%></td>
 							</tr>
 							<tr>
-								<th>発売日</th>
+								<th>ISBN</th>
 								<td class="dataIsbn dataCenter" colspan="3"><%=item.getIsbn()%></td>
 							</tr>
 							<tr>
