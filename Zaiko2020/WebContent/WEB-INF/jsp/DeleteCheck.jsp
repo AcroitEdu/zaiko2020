@@ -52,12 +52,12 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
 					<td>${book.publisher}</td>
 				</tr>
 				<tr>
-					<th scope="row">ISBN</th>
-					<td>${book.isbn}</td>
-				</tr>
-				<tr>
 					<th scope="row">発売日</th>
 					<td><%=((Book) session.getAttribute("book")).getSalesDate().format(dateFormat)%></td>
+				</tr>
+				<tr>
+					<th scope="row">ISBN</th>
+					<td>${book.isbn}</td>
 				</tr>
 				<tr>
 					<th scope="row">価格</th>
@@ -89,12 +89,12 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
 					<td colspan="3">${book.publisher}</td>
 				</tr>
 				<tr>
-					<th>ISBN</th>
-					<td colspan="3">${book.isbn}</td>
-				</tr>
-				<tr>
 					<th>発売日</th>
 					<td colspan="3"><%=((Book) session.getAttribute("book")).getSalesDate().format(dateFormat)%></td>
+				</tr>
+				<tr>
+					<th>ISBN</th>
+					<td colspan="3">${book.isbn}</td>
 				</tr>
 				<tr>
 					<th>価格</th>
