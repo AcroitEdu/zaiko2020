@@ -290,9 +290,11 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'å¹´'MM'æœ
 		</div>
 	</div>
 
-	<p class="pagetop" style="display: block;">
+	<p class="pagetop">
 		<a href="#"> <i class="fas fa-chevron-up"></i>
 		</a>
+<!-- <p id="pageTop"><a href="#"></a></p> -->
+
 </body>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
