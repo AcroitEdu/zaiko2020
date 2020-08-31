@@ -33,7 +33,7 @@
 		<div id="inout">
 			<form id="inoutForm" action="/Zaiko2020/<%=request.getParameter("action")%>" method="post">
 				<span>
-					<label for="count"><%=request.getParameter("mode")%>数
+					<label><%=request.getParameter("mode")%>数
 				</label>
 				<input type="tel" id="count" name="count" required pattern="^[0-9]+$" maxlength="6">
 				<input type="hidden" id="formId" name="id" value="${book.id }">

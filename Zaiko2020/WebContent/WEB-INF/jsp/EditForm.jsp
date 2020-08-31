@@ -35,34 +35,34 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 				<form id="editForm" name="editOptions" action="/Zaiko2020/EditCheck" method="post">
 					<ul>
 						<li>
-							<label for="bookName">書籍名</label>
+							<label>書籍名</label>
 							<textarea id="bookName" rows="3" name="bookName" required>${book.name}</textarea>
 						</li>
 						<li>
-							<label for="author">著者</label>
+							<label>著者</label>
 							<textarea id="author" rows="3" name="author" required>${book.author}</textarea>
 						</li>
 						<li>
-							<label for="publisher">出版社</label>
+							<label>出版社</label>
 							<textarea id="publisher" rows="3" name="publisher" required>${book.publisher}</textarea>
 						</li>
 						<li>
-							<label for="isbn">ISBN</label>
+							<label>ISBN</label>
 							<input type="tel" id="isbn" name="isbn" pattern="^[0-9]{13}$" maxlength="13" value="${book.isbn}" required>
 						</li>
 						<li>
-							<label for="date">発売日</label>
+							<label>発売日</label>
 							<input type="date" id="date" name="date" value="${book.salesDate}" max="9999-12-31" required>
 						</li>
 						<li>
-							<label for="price">価格</label>
+							<label>価格</label>
 							<div class="units">
 								<input type="tel" id="price" name="price" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.price}" required>
 								<span>円</span>
 							</div>
 						</li>
 						<li>
-							<label for="stock">在庫数</label>
+							<label>在庫数</label>
 							<div class="units">
 								<input type="tel" id="stock" name="stock" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.stock}" required>
 								<span>冊</span>

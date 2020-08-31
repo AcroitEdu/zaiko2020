@@ -73,21 +73,21 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 				<form name="searchOptions" action="/Zaiko2020/inventoryList" method="post">
 					<ul id="flexFormWrappable">
 						<li>
-							<label for="bookName">書籍名</label>
+							<label>書籍名</label>
 							<input type="text" id="bookName" class="flexFormItem" name="name" value="${conditions.name}">
 						</li>
 						<li>
-							<label for="author">著者</label> <input type="text" id="author" class="flexFormItem" name="author" value="${conditions.author}">
+							<label>著者</label> <input type="text" id="author" class="flexFormItem" name="author" value="${conditions.author}">
 						</li>
 						<li>
-							<label for="publisher">出版社</label>
+							<label>出版社</label>
 							<input type="text" id="publisher" class="flexFormItem" name="publisher" value="${conditions.publisher}">
 						</li>
 						<li>
-							<label for="isbn">ISBN</label>
+							<label>ISBN</label>
 							<input type="tel" id="isbn" class="flexFormItem" name="isbn" pattern="^[0-9]+$" maxlength="13" value="${conditions.isbn}">
 						</li>
-						<li><label for="beforeAfter">発売日</label>
+						<li><label>発売日</label>
 							<div class="flexFormItem select">
 								<input type="date" id="date" name="date" value="${conditions.salesDate}" max="9999-12-31">
 								<select id="beforeAfter" name="beforeAfter" data-value="${conditions.salesDateFlag}">
@@ -98,7 +98,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 							</div>
 						</li>
 						<li>
-						<label for="largeOrSmall">在庫数</label>
+						<label>在庫数</label>
 							<div class="flexFormItem select">
 								<div class="units">
 									<input type="tel" id="stock" name="stock" pattern="^[0-9]+$" maxlength="6" value="${conditions.stock}">
