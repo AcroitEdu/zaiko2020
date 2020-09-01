@@ -199,7 +199,7 @@ public class BookDataAccess {
 			con = DriverManager.getConnection(url, username, password);
 
 			//クエリの生成・実行を行う。
-			query = "SELECT * FROM books WHERE " + idColumn + "=" + id + " AND " + deleteflgColumn + " = 0 " + ";";
+			query = "SELECT * FROM books WHERE " + idColumn + "=" + id + ";";
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 
@@ -261,7 +261,7 @@ public class BookDataAccess {
 
 			//オートコミットOFFにする。
 			con.setAutoCommit(false);
-			query = "SELECT " + stockColumn + " FROM books WHERE " + idColumn + "=" + id + " for update;";
+			query = "SELECT " + stockColumn + " FROM books WHERE " + idColumn + "=" + id + " AND " + deleteflgColumn + " = 0 for update;";
 			PreparedStatement ps1 = con.prepareStatement(query);
 			ps1.executeQuery();
 			ResultSet rs1 = ps1.executeQuery();
@@ -279,12 +279,12 @@ public class BookDataAccess {
 			}
 
 			//更新クエリ
-			query = "UPDATE books SET " + stockColumn + " = " + updateStock + " WHERE " + idColumn + " = " + id + ";";
+			query = "UPDATE books SET " + stockColumn + " = " + updateStock + " WHERE " + idColumn + " = " + id + " AND " + deleteflgColumn + " = 0;";
 			PreparedStatement ps2 = con.prepareStatement(query);
 			ps2.executeUpdate();
 
 			//更新後の書籍情報を取得取得する。
-			query = "SELECT id,title,author,publisher,salesDate,isbn,price,stock,deleteflg FROM books WHERE " + idColumn + "=" + id + ";";
+			query = "SELECT id,title,author,publisher,salesDate,isbn,price,stock,deleteflg FROM books WHERE " + idColumn + "=" + id + " AND " + deleteflgColumn + " = 0;";
 			PreparedStatement ps3 = con.prepareStatement(query);
 			ResultSet rs2 = ps3.executeQuery();
 
@@ -473,7 +473,7 @@ public class BookDataAccess {
 			con = DriverManager.getConnection(url, username, password);
 
 			//追加した書籍の取得
-			query = "SELECT * FROM books WHERE " + titleColumn  + " = '" + book.getName() + "' AND " + authorColumn   + " = '" + book.getAuthor() + "' AND " + publisherColumn  + " = '" + book.getPublisher() + "' AND " + salesDateColumn   + " = '" + book.getSalesDate() + "' AND " + isbnColumn   + " = " + book.getIsbn() + " AND " + priceColumn   + " = " + book.getPrice() + " AND " + stockColumn   + " = " + book.getStock() + ";";
+			query = "SELECT * FROM books WHERE " + titleColumn  + " = '" + book.getName() + "' AND " + authorColumn   + " = '" + book.getAuthor() + "' AND " + publisherColumn  + " = '" + book.getPublisher() + "' AND " + salesDateColumn   + " = '" + book.getSalesDate() + "' AND " + isbnColumn   + " = " + book.getIsbn() + " AND " + priceColumn   + " = " + book.getPrice() + " AND " + stockColumn   + " = " + book.getStock() + " AND " + deleteflgColumn + " = 0;";
 
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
@@ -541,14 +541,14 @@ public class BookDataAccess {
 			con.setAutoCommit(false);
 
 			//削除対象のレコードのカラムをロック
-			query = "SELECT " + deleteflgColumn + " FROM books WHERE " + idColumn + "=" + id + " for update;";
+			query = "SELECT " + deleteflgColumn + " FROM books WHERE " + idColumn + "=" + id +  " AND " + deleteflgColumn + " = 0 for update;";
 			PreparedStatement ps1 = con.prepareStatement(query);
 			ps1.executeQuery();
 			ResultSet rs1 = ps1.executeQuery();
 			rs1.next();
 
 			//削除クエリ
-			query = "UPDATE books SET " + deleteflgColumn + " = 1 WHERE " + idColumn + " = " + id + ";";
+			query = "UPDATE books SET " + deleteflgColumn + " = 1 WHERE " + idColumn + " = " + id + " AND " + deleteflgColumn + " = 0;";
 			PreparedStatement ps2 = con.prepareStatement(query);
 			ps2.executeUpdate();
 
@@ -594,7 +594,7 @@ public class BookDataAccess {
 			con = DriverManager.getConnection(url, username, password);
 
 			//選択された書籍の更新flgを取得するクエリ
-			query = "SELECT " + updateflgColumn+ " FROM books WHERE " + idColumn + "=" + id + ";";
+			query = "SELECT " + updateflgColumn+ " FROM books WHERE " + idColumn + "=" + id + " AND " + deleteflgColumn + " = 0;";
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.executeQuery();
 			ResultSet rs = ps.executeQuery();
@@ -638,15 +638,15 @@ public class BookDataAccess {
 			//オートコミットOFFにする。
 			con.setAutoCommit(false);
 			//更新対象のレコードをロック
-			query = "SELECT " + updateflgColumn+ " FROM books WHERE " + idColumn + "=" + id + " for update;";
+			query = "SELECT " + updateflgColumn+ " FROM books WHERE " + idColumn + "=" + id + " AND " + deleteflgColumn + " = 0 for update;";
 			PreparedStatement ps1 = con.prepareStatement(query);
 			ps1.executeQuery();
 			ResultSet rs1 = ps1.executeQuery();
 			rs1.next();
 
 			//更新flgを立てるクエリ
-			query = "UPDATE books SET " + updateflgColumn + " = 1 WHERE " + idColumn + " = " + id
-					+ ";";
+			query = "UPDATE books SET " + updateflgColumn + " = 1 WHERE " + idColumn + " = " + id + " AND " + deleteflgColumn + " = 0;";
+
 			PreparedStatement ps2 = con.prepareStatement(query);
 			ps2.executeUpdate();
 
@@ -691,14 +691,14 @@ public class BookDataAccess {
 			//オートコミットOFFにする。
 			con.setAutoCommit(false);
 			//更新対象のレコードのカラムをロック
-			query = "SELECT " + updateflgColumn+ " FROM books WHERE " + idColumn + "=" + id + " for update;";
+			query = "SELECT " + updateflgColumn+ " FROM books WHERE " + idColumn + "=" + id + " AND " + deleteflgColumn + " = 0 for update;";
 			PreparedStatement ps1 = con.prepareStatement(query);
 			ps1.executeQuery();
 			ResultSet rs1 = ps1.executeQuery();
 			rs1.next();
 
 			//更新flgを戻すクエリ
-			query = "UPDATE books SET " + updateflgColumn + " = 0 WHERE " + idColumn + " = " + id + ";";
+			query = "UPDATE books SET " + updateflgColumn + " = 0 WHERE " + idColumn + " = " + id + " AND " + deleteflgColumn + " = 0;";
 			PreparedStatement ps2 = con.prepareStatement(query);
 			ps2.executeUpdate();
 
@@ -743,7 +743,7 @@ public class BookDataAccess {
 			//オートコミットOFFにする。
 			con.setAutoCommit(false);
 			//更新対象のレコードのカラムをロック
-			query = "SELECT " + titleColumn + "," + publisherColumn + "," + authorColumn + "," + salesDateColumn + "," + isbnColumn + "," + priceColumn + "," + stockColumn + " FROM books WHERE " + idColumn + " = " + id + " for update;";
+			query = "SELECT " + titleColumn + "," + publisherColumn + "," + authorColumn + "," + salesDateColumn + "," + isbnColumn + "," + priceColumn + "," + stockColumn + " FROM books WHERE " + idColumn + " = " + id + " AND " + deleteflgColumn + " = 0 for update;";
 
 			PreparedStatement ps1 = con.prepareStatement(query);
 			ps1.executeQuery();
@@ -751,7 +751,7 @@ public class BookDataAccess {
 			rs1.next();
 
 			//更新クエリの作成と実行
-			query = "UPDATE books SET " + titleColumn + " = '" + book.getName() + "'," + publisherColumn + " = '" + book.getPublisher() + "'," + authorColumn + " = '" + book.getAuthor() + "'," + salesDateColumn + " = '" + book.getSalesDate() + "'," + isbnColumn + " = '" + book.getIsbn() + "'," + priceColumn + " = " + book.getPrice() + "," + stockColumn + " = " + book.getStock() + " WHERE " + idColumn + " = " + id + ";";
+			query = "UPDATE books SET " + titleColumn + " = '" + book.getName() + "'," + publisherColumn + " = '" + book.getPublisher() + "'," + authorColumn + " = '" + book.getAuthor() + "'," + salesDateColumn + " = '" + book.getSalesDate() + "'," + isbnColumn + " = '" + book.getIsbn() + "'," + priceColumn + " = " + book.getPrice() + "," + stockColumn + " = " + book.getStock() + " WHERE " + idColumn + " = " + id + " AND " + deleteflgColumn + " = 0;";
 			PreparedStatement ps2 = con.prepareStatement(query);
 			ps2.executeUpdate();
 
@@ -809,14 +809,14 @@ public class BookDataAccess {
 			con.setAutoCommit(false);
 
 			//更新対象のレコードのカラムをロック
-			query = "SELECT " + deleteflgColumn + " FROM books WHERE " + where + " for update;";
+			query = "SELECT " + deleteflgColumn + " FROM books WHERE " + where + " AND " + deleteflgColumn + " = 1 for update;";
 			PreparedStatement ps1 = con.prepareStatement(query);
 			ps1.executeQuery();
 			ResultSet rs1 = ps1.executeQuery();
 			rs1.next();
 
 			//復元クエリの作成と実行
-			query = "UPDATE books SET " + deleteflgColumn + " = 0 WHERE " + where + ";";
+			query = "UPDATE books SET " + deleteflgColumn + " = 0 WHERE " + where + " AND " + deleteflgColumn + " = 1;";
 			PreparedStatement ps2 = con.prepareStatement(query);
 			ps2.executeUpdate();
 
