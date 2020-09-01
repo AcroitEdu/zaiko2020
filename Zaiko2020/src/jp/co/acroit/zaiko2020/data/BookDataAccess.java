@@ -199,7 +199,7 @@ public class BookDataAccess {
 			con = DriverManager.getConnection(url, username, password);
 
 			//クエリの生成・実行を行う。
-			query = "SELECT * FROM books WHERE " + idColumn + "=" + id + ";";
+			query = "SELECT * FROM books WHERE " + idColumn + "=" + id + " AND " + deleteflgColumn + " = 0 " + ";";
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 
