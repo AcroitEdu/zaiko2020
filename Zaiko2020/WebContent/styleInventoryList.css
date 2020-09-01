@@ -327,6 +327,10 @@ header .boxed-tabs {
 	min-width: 120px;
 }
 
+.data {
+	padding: 0 5px;
+}
+
 .dataCenter {
 	text-align: center;
 }

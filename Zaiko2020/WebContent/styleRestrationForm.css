@@ -191,6 +191,10 @@ dialog::backdrop, dialog+.backdrop {
 	display: flex;
 }
 
+.data {
+	padding: 0 5px;
+}
+
 /* メディアクエリ(PC表示)*/
 @media screen and (min-width : 851px) {
 	#search {
