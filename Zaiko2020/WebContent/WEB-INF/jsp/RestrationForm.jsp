@@ -41,6 +41,9 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 <div id="modal">
 	<div id="modalContent">
 		<p>書籍の復元を行います。</p>
+		<p>
+			※ボタンを複数回押さないように<br>注意してください。
+		</p>
 		<button id="dialogExecute" class="restrationButton button-main">OK</button>
 		<button id="dialogCancel" class="restrationButton button-cancel">キャンセル</button>
 	</div>
@@ -49,6 +52,9 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 <div id="modal2">
 	<div id="modalContent">
 		<p>書籍の復元を行います。</p>
+		<p>
+			※ボタンを複数回押さないように<br>注意してください。
+		</p>
 		<button id="dialogExecute2" class="restrationButton button-main">OK</button>
 		<button id="dialogCancel2" class="restrationButton button-cancel">キャンセル</button>
 	</div>
