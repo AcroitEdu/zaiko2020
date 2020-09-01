@@ -101,6 +101,7 @@ dialog::backdrop, dialog+.backdrop {
 	box-sizing: border-box;
 	padding: 20px;
 	background-color: #fff;
+	width: 485px;
 }
 
 #modalContent {
