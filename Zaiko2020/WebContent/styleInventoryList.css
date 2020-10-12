@@ -12,14 +12,6 @@ body {
 	min-height: 100%;
 }
 
-input {
-	font-size: 16px;
-}
-
-select {
-	font-size: 16px;
-}
-
 #main {
 	width: 100%;
 	min-height: 100%;
@@ -147,8 +139,7 @@ header .boxed-tabs {
 }
 
 .flexFormItem > #stock {
-	width: 50%;
-	flex-grow: 1;
+	width: 62.5%;
 	text-align: end;
 }
 
@@ -513,6 +504,15 @@ header .boxed-tabs {
 
 /* メディアクエリ(スマホ表示)*/
 @media screen and (max-width : 850px) {
+
+	input {
+		font-size: 16px;
+	}
+
+	select {
+		font-size: 16px;
+	}
+
 	/* 	エラーメッセージ */
 	#error {
 		text-align: left;
