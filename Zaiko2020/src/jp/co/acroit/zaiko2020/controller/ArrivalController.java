@@ -50,7 +50,6 @@ public class ArrivalController extends HttpServlet {
 				if (session.getAttribute("id") != null) {
 					id = (int) session.getAttribute("id");
 				} else {
-					System.out.println("エラー");
 					session.setAttribute("error", "書籍を選択してください。");
 					response.sendRedirect("/Zaiko2020/inventoryList");
 					return;

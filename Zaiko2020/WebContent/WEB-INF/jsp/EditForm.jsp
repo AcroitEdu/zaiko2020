@@ -24,13 +24,18 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 	<div id="main">
 		<header>
 			<h1>編集</h1>
+			<!-- 削除画面遷移ボタン -->
 			<input type="submit" id="delete" class="button button-warning button-border" value="書籍の削除" form="deleteForm">
+			<!-- 削除画面遷移ボタンここまで -->
 		</header>
 		<form id="deleteForm" action="/Zaiko2020/DeleteCheck" method="post"></form>
 		<div class="content">
+			<!-- エラーメッセージ表示 -->
 			<div id="error">
 				<span>${sessionScope.error}</span>
 			</div>
+			<!-- エラーメッセージ表示ここまで -->
+			<!-- 編集内容入力フォーム -->
 			<div class="edit-options">
 				<form id="editForm" name="editOptions" action="/Zaiko2020/EditCheck" method="post">
 					<ul>
@@ -70,9 +75,12 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 						</li>
 					</ul>
 				</form>
+				<!-- 編集内容入力フォームここまで -->
+				<!-- 確認画面遷移ボタン -->
 				<form id="cancelForm" action="/Zaiko2020/inventoryList" method="post">
 					<input type="hidden" name="form" value="4">
 				</form>
+				<!-- 確認画面遷移ボタン -->
 			</div>
 			<div id="buttons">
 				<input type="submit" name="button" id="edit" class="button button-main button-border" value="実行" form="editForm">

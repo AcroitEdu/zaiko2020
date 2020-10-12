@@ -24,11 +24,13 @@ String caption = "";
 <link href="styleCheck.css" rel="stylesheet">
 </head>
 <body>
+	<!-- 書籍情報表 -->
 	<jsp:include page="part/BookInOutForm.jsp">
 		<jsp:param name="mode" value="<%=mode%>" />
 		<jsp:param name="book" value="${book }" />
 		<jsp:param name="action" value="arrive" />
 	</jsp:include>
+	<!-- 書籍情報表ここまで -->
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

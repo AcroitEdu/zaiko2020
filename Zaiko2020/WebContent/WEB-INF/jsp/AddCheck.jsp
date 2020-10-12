@@ -25,22 +25,35 @@
 		<header>
 			<span id="complete">以下の内容で書籍の追加を行います。</span>
 		</header>
+
+		<!--エラーメッセージ表示 -->
 		<div id="error">
 			<span>${sessionScope.error}</span>
 		</div>
+		<!--エラーメッセージここまで-->
+
+		<!--書籍情報表示-->
 		<div id="details">
 			<jsp:include page="part/BookDetails.jsp">
 				<jsp:param name="caption" value=" " />
 				<jsp:param name="book" value="${book}" />
 			</jsp:include>
 		</div>
+		<!--書籍情報表示ここまで-->
+
+		<!--ボタン表示エリア-->
 		<div id="buttons">
+
+			<!--実行ボタン-->
 			<input type="submit" name="button" id="add"
 				class="button button-main button-border" value="実行" form="addForm">
+
+			<!--キャンセルボタン-->
 			<input type="submit" name="button" id="cancel"
 				class="button button-cancel button-border" value="キャンセル"
 				form="cancelForm">
 		</div>
+		<!--ボタン表示エリアここまで-->
 		<form id="addForm" action="/Zaiko2020/AddProcess" method="post"></form>
 		<form id="cancelForm" action="/Zaiko2020//Add" method="post"></form>
 	</div>

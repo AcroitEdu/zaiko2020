@@ -76,17 +76,7 @@ dialog::backdrop, dialog+.backdrop {
 	text-align: center;
 	padding: 2em 5px;
 }
-
-#overlay {
-	display: none;
-	position: fixed;
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 9;
-	background-color: rgba(0, 0, 0, .65);
-}
+/* ダイアログここまで */
 
 /* モーダルウィンドウ */
 #modal, #modal2 {
@@ -119,9 +109,21 @@ dialog::backdrop, dialog+.backdrop {
 	padding: 3px 5px;
 }
 
+#overlay {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9;
+	background-color: rgba(0, 0, 0, .65);
+}
+
 .active {
 	display: block !important;
 }
+/* モーダルウィンドウここまで */
 
 /* ソート条件*/
 .sort-options form {
@@ -172,6 +174,7 @@ dialog::backdrop, dialog+.backdrop {
 	width: 10%;
 	padding-right: 1em;
 }
+/* ソート条件 */
 
 /* 入力フォーム */
 #sumaho {
@@ -205,8 +208,8 @@ dialog::backdrop, dialog+.backdrop {
 	#sort, #searchHidden, #sortHidden, #searchDisplay, #sortDisplay {
 		display: none;
 	}
-
 }
+/* メディアクエリ(PC表示)ここまで */
 
 /* メディアクエリ(スマホ表示)*/
 @media screen and (max-width : 850px) {
@@ -253,7 +256,9 @@ dialog::backdrop, dialog+.backdrop {
 	#stock {
 		padding-right: 5px;
 	}
+	/* 入力フォームここまで */
 
+	/* ボタン */
 	#searchButton, #sortButton {
 		width: 60%;
 		height: 48px;
@@ -261,6 +266,7 @@ dialog::backdrop, dialog+.backdrop {
 		color: #FFFFFF;
 		font-size: large;
 	}
+	/* ボタンここまで */
 
 	/* モーダルウィンドウ */
 	#modal2 {
@@ -276,5 +282,6 @@ dialog::backdrop, dialog+.backdrop {
 	.restrationButton {
 		height: 48px;
 	}
-
+	/* モーダルウィンドウここまで */
 }
+/* メディアクエリ(スマホ表示)ここまで */

@@ -18,20 +18,27 @@
 		<header>
 			<span id="complete">以下の内容で書籍情報の変更を行います。</span>
 		</header>
+
+		<!-- エラーメッセージ表示 -->
 		<div id="error">
 			<span>${sessionScope.error}</span>
 		</div>
+		<!-- エラーメッセージ表示ここまで -->
+		<!-- 書籍情報表 -->
 		<div id="details">
 			<jsp:include page="part/BookDetails.jsp">
 				<jsp:param name="caption" value=" " />
 				<jsp:param name="book" value="${book}" />
 			</jsp:include>
 		</div>
+		<!-- 書籍情報表ここまで -->
+		<!-- ボタン表示 -->
 		<div id="buttons">
 			<input type="hidden" name="id" value="${book.id}" form="editForm">
 			<input type="submit" name="button" id="edit" class="button button-main button-border" value="実行" form="editForm">
 			<input type="submit" name="button" id="cancel" class="button button-cancel button-border" value="キャンセル" form="cancelForm">
 		</div>
+		<!-- ボタン表示ここまで -->
 		<form id="editForm" action="/Zaiko2020/EditProcess" method="post"></form>
 		<form id="cancelForm" action="/Zaiko2020//Edit" method="post"></form>
 	</div>

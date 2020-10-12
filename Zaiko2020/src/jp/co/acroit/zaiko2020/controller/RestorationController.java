@@ -225,9 +225,6 @@ public class RestorationController extends HttpServlet {
 			}
 
 
-
-
-
 			int maxPage = (int) session.getAttribute("maxPage");
 			if (maxPage < page) {
 

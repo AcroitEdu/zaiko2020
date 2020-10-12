@@ -52,6 +52,7 @@ public class EditCheckController extends HttpServlet {
 
 		try {
 
+			/* 入力値チェック */
 			//入力値のnull判定
 			if(request.getParameter("bookName").isEmpty() || request.getParameter("publisher").isEmpty() || request.getParameter("author").isEmpty() || request.getParameter("isbn").isEmpty() || request.getParameter("date").isEmpty() || request.getParameter("price").isEmpty() || request.getParameter("stock").isEmpty()) {
 				throw new NullPointerException();
@@ -80,6 +81,7 @@ public class EditCheckController extends HttpServlet {
 				response.sendRedirect("/Zaiko2020/Edit");
 				return;
 			}
+			/* 入力値チェックここまで */
 
 			Book addbook = new Book(0, null, null, null, null, null, null, null, 0);
 

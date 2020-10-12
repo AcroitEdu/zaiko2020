@@ -29,7 +29,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <meta http-equiv='X-UA-Compatible' content='ie=edge'>
-<title>在庫一覧</title>
+<title>書籍の復元</title>
 <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 <link href="js/dialog/dialog-polyfill.css" rel="stylesheet" type="text/css">
@@ -37,7 +37,8 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 <link href="styleRestrationForm.css" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
 </head>
-
+<!-- モーダルウィンドウ -->
+<!-- PC用 -->
 <div id="modal">
 	<div id="modalContent">
 		<p>書籍の復元を行います。</p>
@@ -48,7 +49,8 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 		<button id="dialogCancel" class="restrationButton button-cancel">キャンセル</button>
 	</div>
 </div>
-
+<!-- PC用ここまで -->
+<!-- スマホ用 -->
 <div id="modal2">
 	<div id="modalContent">
 		<p>書籍の復元を行います。</p>
@@ -59,6 +61,8 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 		<button id="dialogCancel2" class="restrationButton button-cancel">キャンセル</button>
 	</div>
 </div>
+<!-- スマホ用ここまで -->
+<!-- モーダルウィンドウここまで -->
 <div id="overlay"></div>
 
 <div id="main">
@@ -83,10 +87,13 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 		</ul>
 	</header>
 	<div class="content">
+		<!-- 検索フォーム -->
+		<!-- スマホ画面プルダウン -->
 		<input type="button" id="searchDisplay" class="displayButton" value="検索条件　▼"
 			onclick="document.getElementById('searchHidden').style.display = 'block'; document.getElementById('searchDisplay').style.display = 'none'; document.getElementById('search').style.display = 'block';">
 		<input type="button" id="searchHidden" class="displayButton" value="検索条件　▲"
 			onclick="document.getElementById('searchHidden').style.display = 'none'; document.getElementById('searchDisplay').style.display = 'block'; document.getElementById('search').style.display = 'none';">
+		<!-- スマホ画面プルダウンここまで -->
 		<div id="search" class="search-options">
 			<form name="searchOptions" action="/Zaiko2020/Restoration" method="post">
 				<ul id="flexFormWrappable">
@@ -135,7 +142,9 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 				<input type="submit" id="searchButton" class="button" value="検索">
 			</form>
 		</div>
+		<!-- 検索フォーム -->
 
+		<!-- スマホ画面ソート -->
 		<input type="button" id="sortDisplay" class="displayButton" value="ソート条件　▼"
 			onclick="document.getElementById('sortHidden').style.display = 'block'; document.getElementById('sortDisplay').style.display = 'none';  document.getElementById('sort').style.display = 'block';">
 		<input type="button" id="sortHidden" class="displayButton" value="ソート条件　▲"
@@ -161,10 +170,15 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 				<input type="submit" id="sortButton" class="button" value="ソート">
 			</form>
 		</div>
+		<!-- スマホ画面ソートここまで -->
 
+		<!-- エラーメッセージ表示 -->
 		<div id="error">
 			<span>${sessionScope.msg}</span>
 		</div>
+		<!-- エラーメッセージ表示ここまで -->
+
+		<!-- 書籍一覧表 -->
 		<div class="list">
 			<div class="pages">
 				<%@ include file="part/RestrationPageMover.jsp"%>
@@ -175,6 +189,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 					<input type="hidden" id="sortDirection" name="direction" value="${RestorationForm.lift}">
 					<input type="hidden" name="form" value="ソート">
 				</form>
+				<!-- PC表示 -->
 				<div id="pcList">
 					<table id="listTable">
 						<thead>
@@ -230,7 +245,9 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 						</tbody>
 					</table>
 				</div>
+				<!-- PC表示ここまで -->
 
+				<!-- スマホ表示 -->
 				<div id="sumahoList">
 					<%
 						if (items != null) {
@@ -280,11 +297,14 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 					}
 					%>
 				</div>
-				<div class="pages">
-					<%@ include file="part/RestrationPageMover.jsp"%>
-				</div>
+				<!-- スマホ表示ここまで -->
+			</div>
+			<div class="pages">
+				<%@ include file="part/RestrationPageMover.jsp"%>
 			</div>
 		</div>
+		<!-- 書籍一覧表ここまで -->
+
 	</div>
 </div>
 <p class="pagetop">

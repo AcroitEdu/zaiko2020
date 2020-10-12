@@ -10,6 +10,7 @@
 
 	<li id="pcPage" class="pagesSpace"></li>
 
+	<!-- 1ページ戻る -->
 	<li class="pagesPrevNext">
 		<form name="prevPage" action="/Zaiko2020/Restoration" method="post">
 			<input type="hidden" name="form" value="ページ">
@@ -17,6 +18,9 @@
 			<span class="link prevButton">前へ</span>
 		</form>
 	</li>
+	<!-- 1ページ戻るここまで -->
+
+	<!-- 移動ページ指定 -->
 	<li id="pcPage" class="pagesJump">
 		<form name="jumpPage" action="/Zaiko2020/Restoration" method="post">
 			<input type="hidden" name="form" value="ページ">
@@ -28,13 +32,17 @@
 			<input type="submit" class="button" value="移動">
 		</form>
 	</li>
+	<!-- 移動ページ指定 -->
 
+	<!-- 現在のページ/総ページ数 -->
 	<li id="sumahoPage" class="pagesJump">
 		<span>${RestorationForm.page}</span>
 		<span> / </span>
 		<span>${maxPage}</span>
 	</li>
+	<!-- 現在のページ/総ページ数ここまで -->
 
+	<!-- 1ページ進む -->
 	<li class="pagesPrevNext">
 		<form name="nextPage" action="/Zaiko2020/Restoration" method="post">
 			<input type="hidden" name="form" value="ページ">
@@ -42,7 +50,10 @@
 			<span class="link nextButton">次へ</span>
 		</form>
 	</li>
+	<!-- 1ページ進むここまで -->
 
 	<li id="pcPage" class="pagesSpace"></li>
+	<!-- 総件数 -->
 	<li id="pcPage" class="pagesItemCount">${count}件</li>
+	<!-- 総件数ここまで -->
 </ul>

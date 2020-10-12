@@ -15,7 +15,6 @@ $("#dialogExecute").click(function () {
     $("#check").submit();
 });
 
-
 //「選択した書籍の復元」押下時
 $(".singleBookEcxecute").click(function () {
 //        $("#dialogSubmit")[0].showModal();
