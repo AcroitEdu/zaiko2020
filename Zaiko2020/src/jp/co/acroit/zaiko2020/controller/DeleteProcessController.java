@@ -42,6 +42,8 @@ public class DeleteProcessController extends HttpServlet {
 
 			id = Integer.parseInt(request.getParameter("id"));
 
+			//更新flgをもとに戻す
+			bda.flgReturn(id);
 			//選択された書籍の削除
 			bda.delete(id);
 			//編集後の書籍情報を取得
