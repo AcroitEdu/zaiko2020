@@ -37,6 +37,7 @@ select {
 textarea {
 	font-size: 16px;
 }
+/* 共通ここまで */
 
 /* ヘッダー */
 header {
@@ -53,6 +54,7 @@ header form {
 	margin-right: 20px;
 	margin-top: 30px;
 }
+/* ヘッダーここまで */
 
 /* 入力フォーム */
 .edit-options {
@@ -92,7 +94,9 @@ header form {
 #stock, #price {
 	text-align: right;
 }
+/* 入力フォームここまで */
 
+/* ボタン */
 .button {
 	border-radius: 6px;
 	width: 115px;
@@ -134,12 +138,15 @@ header form {
 	display: flex;
 	justify-content: center;
 }
+/* ボタンここまで */
 
+/* エラーメッセージ */
 #error {
 	color: #FF0000;
 	text-align: center;
 	margin: 10px auto;
 }
+/* エラーメッセージここまで */
 
 /* メディアクエリ */
 @media screen and (max-width: 850px) {

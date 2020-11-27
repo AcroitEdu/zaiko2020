@@ -47,6 +47,7 @@ body {
 input {
 	font-size: 16px;
 }
+/* 共通ここまで */
 
 /* ヘッダー */
 header {
@@ -73,13 +74,16 @@ header {
 	flex-shrink: 0;
 	padding: 30px 10px 10px 10px;
 }
+/* ヘッダーここまで */
 
+/* エラーメッセージここまで */
 #error {
 	color: red;
 	text-align: center;
 	margin: auto;
 	margin: 10px auto;
 }
+/* エラーンメッセージここまで */
 
 /* 書籍情報 */
 #details {
@@ -117,6 +121,7 @@ header {
 	padding: 5px;
 	border: 1px solid #00000080;
 }
+/* 書籍情報ここまで */
 
 /* 入力フォーム */
 #footer {
@@ -192,7 +197,9 @@ header {
 .unit {
 	padding: 5px;
 }
+/* 入力フォームここまで */
 
+/* ボタン */
 #inoutForm .button {
 	margin: 15px 5px;
 }
@@ -230,8 +237,9 @@ header {
 	background-color: white;
 	color: black;
 }
+/* ボタンここまで */
 
-/* po非表示 */
+/* po非表示設定 */
 #pcDisplay {
 	display: table;
 }
@@ -239,6 +247,7 @@ header {
 #sumahoDisplay {
 	display: none;
 }
+/* PC非表示設定ここまで */
 
 /* ダイアログ */
 dialog {
@@ -266,17 +275,8 @@ dialog::backdrop, dialog+.backdrop {
 	text-align: center;
 	padding: 2em 5px;
 }
+/* ダイアログここまで */
 
-#overlay {
-	display: none;
-	position: fixed;
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 9;
-	background-color: rgba(0, 0, 0, .5);
-}
 /* モーダルウィンドウ */
 #modal {
 	margin: auto;
@@ -308,6 +308,18 @@ dialog::backdrop, dialog+.backdrop {
 	padding: 3px 5px;
 }
 
+#overlay {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9;
+	background-color: rgba(0, 0, 0, .5);
+}
+/* モーダルウィンドウここまで */
+
 .active {
 	display: block !important;
 }
@@ -331,12 +343,14 @@ dialog::backdrop, dialog+.backdrop {
 	#count {
 		text-align: left;
 	}
+	/* 	入力フォームここまで */
 
 	/* 	エラーメッセージ */
 	#error {
 		text-align: left;
 		width: 95%;
 	}
+	/* 	エラーメッセージここまで */
 
 	/* モーダルウィンドウ */
 	#modal {
@@ -347,4 +361,5 @@ dialog::backdrop, dialog+.backdrop {
 	#modalContent {
 		width: 100%;
 	}
+	/* モーダルウィンドウここまで */
 }
