@@ -65,10 +65,13 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 		</header>
 
 		<div class="content">
+			<!-- 検索フォーム -->
+			<!-- スマホ画面表示プルダウンメニュー -->
 			<input type="button" id="searchDisplay" class="displayButton" value="検索条件　▼"
 				onclick="document.getElementById('searchHidden').style.display = 'block'; document.getElementById('searchDisplay').style.display = 'none'; document.getElementById('search').style.display = 'block';">
 			<input type="button" id="searchHidden" class="displayButton" value="検索条件　▲"
 				onclick="document.getElementById('searchHidden').style.display = 'none'; document.getElementById('searchDisplay').style.display = 'block'; document.getElementById('search').style.display = 'none';">
+			<!-- スマホ画面表示プルダウンメニュー -->
 			<div id="search" class="search-options">
 				<form name="searchOptions" action="/Zaiko2020/inventoryList" method="post">
 					<ul id="flexFormWrappable">
@@ -116,7 +119,9 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 					<input type="submit" id="searchButton" class="button" value="検索">
 				</form>
 			</div>
+			<!-- 検索フォームここまで -->
 
+			<!-- スマホ画面ソート -->
 			<input type="button" id="sortDisplay" class="displayButton" value="ソート条件　▼"
 				onclick="document.getElementById('sortHidden').style.display = 'block'; document.getElementById('sortDisplay').style.display = 'none';  document.getElementById('sort').style.display = 'block';">
 			<input type="button" id="sortHidden" class="displayButton" value="ソート条件　▲"
@@ -143,10 +148,15 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 					<input type="submit" id="sortButton" class="button" value="ソート">
 				</form>
 			</div>
+			<!-- スマホ画面ソートここまで -->
 
+			<!-- エラーメッセージ表示 -->
 			<div id="error">
 				<span>${sessionScope.error}</span>
 			</div>
+			<!-- エラーメッセージ表示ここまで -->
+
+			<!-- 書籍一覧表 -->
 			<div class="list">
 				<div class="pages">
 					<%@ include file="part/PageMover.jsp"%>
@@ -156,6 +166,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 						<input type="hidden" id="sortIndex" name="index" value="${conditions.sort}"> <input type="hidden" id="sortDirection" name="direction" value="${conditions.lift}">
 						<input type="hidden" name="form" value="2">
 					</form>
+					<!-- PC表示 -->
 					<div id="pcList">
 						<table id="listTable">
 							<thead>
@@ -221,7 +232,9 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 							</tbody>
 						</table>
 					</div>
+					<!-- PC表示ここまで -->
 
+					<!-- スマホ表示 -->
 					<div id="sumahoList">
 						<%
 							if (items != null) {
@@ -282,18 +295,20 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 						}
 						%>
 					</div>
+					<!-- スマホ表示ここまで -->
 				</div>
 				<div class="pages">
 					<%@ include file="part/PageMover.jsp"%>
 				</div>
 			</div>
+			<!-- 書籍一覧表ここまで -->
 		</div>
 	</div>
 
 	<p class="pagetop">
 		<a href="#"> <i class="fas fa-chevron-up"></i>
 		</a>
-<!-- <p id="pageTop"><a href="#"></a></p> -->
+	</p>
 
 </body>
 <script

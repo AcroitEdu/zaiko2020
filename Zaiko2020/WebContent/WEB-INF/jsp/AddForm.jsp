@@ -46,11 +46,15 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 				</li>
 			</ul>
 		</header>
+
 		<div class="content">
+			<!-- エラーメッセージ表示 -->
 			<div id="error">
 				<span>${sessionScope.error}</span>
 			</div>
+			<!-- エラーメッセージ表示ここまで -->
 			<div class="add-options">
+				<!-- 書籍情報入力フォーム -->
 				<form id="addOptions" name="addOptions" action="/Zaiko2020/AddCheck"
 					method="post">
 					<ul>
@@ -85,10 +89,13 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 						</li>
 					</ul>
 				</form>
+				<!-- 書籍情報入力フォーム -->
 			</div>
+			<!-- 実行ボタン表示 -->
 			<div id="buttons">
 				<input type="submit" id="addButton" class="button button-main button-border" name="button" value="実行" form="addOptions">
 			</div>
+			<!-- 実行ボタン表示ここまで -->
 		</div>
 	</div>
 </body>

@@ -26,21 +26,27 @@
 		<header>
 			<span id="complete">処理を実行しました。</span>
 		</header>
+		<!-- エラーメッセージ表示 -->
 		<div id="error">
 			<span>${sessionScope.error}</span>
 		</div>
+		<!-- エラーメッセージ表示ここまで -->
+		<!-- 書籍情報表 -->
 		<div id="details">
 			<jsp:include page="part/BookDetails.jsp">
 				<jsp:param name="caption" value="更新後の書籍情報" />
 				<jsp:param name="book" value="${book }" />
 			</jsp:include>
 		</div>
+		<!-- 書籍情報表ここまで -->
+		<!-- ボタン表示 -->
 		<div id="inout">
 			<form id="inoutForm" action="/Zaiko2020/inventoryList" method="post">
 				<input type="hidden" name="form" value="4">
 				<input type="submit" id="execute" class="button button-main button-border" value="OK">
 			</form>
 		</div>
+		<!-- ボタン表示ここまで -->
 	</div>
 </body>
 

@@ -30,10 +30,15 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
 		<header>
 			<span id="complete">以下の書籍を削除いたします。本当によろしいですか？</span>
 		</header>
+		<!-- エラーメッセージ表示 -->
 		<div id="error">
 			<span>${sessionScope.error}</span>
 		</div>
+		<!-- エラーメッセージ表示ここまで -->
+
+		<!-- 書籍情報表 -->
 		<div id="details">
+			<!-- PC表示 -->
 			<table id="pcDisplay">
 				<colgroup>
 					<col class="table-header">
@@ -68,7 +73,9 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
 					<td>${book.stock} 冊</td>
 				</tr>
 			</table>
+			<!-- PC表示ここまで -->
 
+			<!-- スマホ表示 -->
 			<table id="sumahoDisplay">
 				<colgroup>
 					<col class="table-header">
@@ -103,7 +110,9 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
 					<td>${book.stock} 冊</td>
 				</tr>
 			</table>
+			<!-- スマホ表示ここまで -->
 		</div>
+		<!-- 書籍情報表示ここまで -->
 		<div id="buttons">
 			<input type="hidden" name="id" value="${book.id}" form="deleteForm">
 			<input type="submit" name="button" id="delete"
