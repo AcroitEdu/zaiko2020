@@ -33,7 +33,6 @@ public class AddController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String branch = null;
-
 		String title = null;
 		String publisher = null;
 		String author = null;

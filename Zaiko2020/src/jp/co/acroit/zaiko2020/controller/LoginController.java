@@ -46,12 +46,13 @@ public class LoginController extends HttpServlet {
 		id = request.getParameter("id");
 		password = request.getParameter("password");
 
-		//idとpasswordのnull判定
+		//idのnull判定
 		if(id == null || id.isBlank()) {
 
 			isIdBlank = true;
 		}
 
+		//passwordのnull判定
 		if(password == null || password.isBlank()) {
 
 			isPasswordBlank = true;

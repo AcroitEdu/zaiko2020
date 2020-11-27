@@ -5,12 +5,16 @@
 <%@ page import="java.time.format.DateTimeFormatter"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-	//書籍名や在庫数等の、本の情報を表示する。
-//ArrivalForm.jspやShippingForm.jsp、Result.jspからincludeして使う。
-//caption変数の値をcaption要素として表示する。
+//書籍の情報を表形式で表示
+//ArrivalForm.jsp・ShippingForm.jsp・Result.jsp・AddCheck.jsp・EditCheck.jsp・DeleteChek.jsp
+//上記ファイルがincludeして使用
+//caption変数の値をcaption要素として表示
+
 //日付フォーマットの作成
 DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'日'");
 %>
+
+<!--PC画面表示-->
 <table id="pcDisplay">
 	<caption><%=request.getParameter("caption")%></caption>
 	<colgroup>
@@ -47,7 +51,11 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
 		<td>${book.stock} 冊</td>
 	</tr>
 </table>
+<!--PC画面表示ここまで-->
 
+
+<!--スマホ画面表示-->
+<!---->
 <table id="sumahoDisplay">
 	<caption><%=request.getParameter("caption")%></caption>
 	<colgroup>
@@ -84,3 +92,4 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'�
 		<td>${book.stock} 冊</td>
 	</tr>
 </table>
+<!--スマホ画面表示ここまで-->
