@@ -14,7 +14,7 @@ import jp.co.acroit.zaiko2020.user.User;
  * @version 1.1
  * 二重ログイン対策用'is_logged_in'関連の追加
  * ログイン状況更新用のメソット'updateLoginStatus()'追加
- * @author yohei nishida
+ * @author yohei.nishida
  */
 public class UserDataAccess {
 

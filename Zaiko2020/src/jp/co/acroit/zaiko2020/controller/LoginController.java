@@ -104,12 +104,10 @@ public class LoginController extends HttpServlet {
 						uda.updateLoginStatus(id, valueWhenLoggingIn);
 
 						//セッションにユーザーを登録する
-
 						HttpSession session = request.getSession();
 						session.setAttribute("user", user);
 						session.setAttribute("error", "");
 						response.sendRedirect("/Zaiko2020/inventoryList");
-						System.out.println("session-user:" + session.getAttribute("user").toString());
 						return;
 
 					}

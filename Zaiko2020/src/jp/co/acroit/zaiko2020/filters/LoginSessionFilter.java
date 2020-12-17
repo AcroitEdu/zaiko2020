@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  * @version 1.0
  * @version 1.1
  * favicon.icoのパスをアクセス許可に追加
- * @author Yohei.Nishida
+ * @author yohei.nishida
  */
 @WebFilter(dispatcherTypes = {
         DispatcherType.REQUEST,

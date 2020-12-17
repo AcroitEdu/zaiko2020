@@ -17,7 +17,6 @@ public class LoginStatusVerification {
 	 */
 	public boolean verify(int loginStatus) {
 		int statusOfNoLogin = 0;
-		System.out.println(loginStatus == statusOfNoLogin);
 		return loginStatus == statusOfNoLogin;
 	}
 
