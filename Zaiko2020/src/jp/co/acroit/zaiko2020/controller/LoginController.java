@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import jp.co.acroit.zaiko2020.auth.LoginStatusVerification;
 import jp.co.acroit.zaiko2020.auth.PasswordComparator;
 import jp.co.acroit.zaiko2020.data.UserDataAccess;
 import jp.co.acroit.zaiko2020.user.User;
@@ -43,6 +44,7 @@ public class LoginController extends HttpServlet {
 		String password = null;
 		boolean isIdBlank = false;
 		boolean isPasswordBlank = false;
+		int valueWhenLoggingIn = 1;
 
 		//IDとPasswordの取得
 		id = request.getParameter("id");
@@ -87,18 +89,34 @@ public class LoginController extends HttpServlet {
 
 
 			if (user != null) {
-				System.out.println(user.getId() + user.getLoginStatus());
+				System.out.println(user.getId() + user.getLoginStatus()); // checkComment
 
 				PasswordComparator comparator = new PasswordComparator();
 
-				//sessionにユーザー情報設定
+				//パスワード比較
 				if (comparator.compare(password, user.getPassword())) {
-					//パスワードの比較
 
-					request.getSession().setAttribute("error", "");
-					HttpSession session = request.getSession();
-					session.setAttribute("user", user);
-					response.sendRedirect("/Zaiko2020/inventoryList");
+					LoginStatusVerification verification = new LoginStatusVerification();
+
+					//二重ログイン確認
+					if(verification.verify(user.getLoginStatus())) {
+						System.out.println("id:" + id);
+						//ログイン状況を更新する
+						uda.updateLoginStatus(id, valueWhenLoggingIn);
+
+						//セッションにユーザーを登録する
+
+						HttpSession session = request.getSession();
+						session.setAttribute("user", user);
+						session.setAttribute("error", "");
+						response.sendRedirect("/Zaiko2020/inventoryList");
+						System.out.println("session-user:" + session.getAttribute("user").toString());
+						return;
+
+					}
+					System.out.println("");
+					request.getSession().setAttribute("error", "多重ログインの疑いにより、ログインできません。");
+					response.sendRedirect("/Zaiko2020/loginForm");
 					return;
 
 				}

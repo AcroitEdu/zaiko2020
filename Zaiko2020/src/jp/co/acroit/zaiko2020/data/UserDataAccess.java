@@ -13,6 +13,7 @@ import jp.co.acroit.zaiko2020.user.User;
  * @version 1.0
  * @version 1.1
  * 二重ログイン対策用'is_logged_in'関連の追加
+ * ログイン状況更新用のメソット'updateLoginStatus()'追加
  * @author yohei nishida
  */
 public class UserDataAccess {
@@ -79,6 +80,33 @@ public class UserDataAccess {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception ignore) {
+				}
+			}
+		}
+	}
+
+	//ログイン状況を更新する
+	public void updateLoginStatus(String id, int valueWhenLoggingInOrOut) throws SQLException, ClassNotFoundException {
+		Connection con = null;
+		query = "UPDATE user SET is_logged_in = ? WHERE name = ?";
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection(url,username,password);
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, valueWhenLoggingInOrOut);
+			ps.setString(2, id);
+			ps.executeUpdate();
+			System.out.println(query);
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} finally {
 			if (con != null) {
 				try {

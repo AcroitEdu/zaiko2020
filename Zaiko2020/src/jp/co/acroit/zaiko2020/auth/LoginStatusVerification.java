@@ -7,7 +7,7 @@ package jp.co.acroit.zaiko2020.auth;
  *
  */
 
-public class LoginStatusComparator {
+public class LoginStatusVerification {
 
 	/**
 	 * ログインを試みたユーザーが二重ログインの有無を確認するメソッド
@@ -17,6 +17,9 @@ public class LoginStatusComparator {
 	 */
 	public boolean verify(int loginStatus) {
 		int statusOfNoLogin = 0;
+		System.out.print("verify");
+		System.out.println(loginStatus == statusOfNoLogin);
 		return loginStatus == statusOfNoLogin;
 	}
+
 }
