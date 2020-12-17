@@ -102,8 +102,6 @@ public class UserDataAccess {
 			ps.setInt(1, valueWhenLoggingInOrOut);
 			ps.setString(2, id);
 			ps.executeUpdate();
-			System.out.println(query);
-
 
 		} catch (SQLException e) {
 			e.printStackTrace();

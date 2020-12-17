@@ -89,7 +89,6 @@ public class LoginController extends HttpServlet {
 
 
 			if (user != null) {
-				System.out.println(user.getId() + user.getLoginStatus()); // checkComment
 
 				PasswordComparator comparator = new PasswordComparator();
 
@@ -100,7 +99,7 @@ public class LoginController extends HttpServlet {
 
 					//二重ログイン確認
 					if(verification.verify(user.getLoginStatus())) {
-						System.out.println("id:" + id);
+
 						//ログイン状況を更新する
 						uda.updateLoginStatus(id, valueWhenLoggingIn);
 
@@ -114,7 +113,7 @@ public class LoginController extends HttpServlet {
 						return;
 
 					}
-					System.out.println("");
+
 					request.getSession().setAttribute("error", "多重ログインの疑いにより、ログインできません。");
 					response.sendRedirect("/Zaiko2020/loginForm");
 					return;
@@ -127,7 +126,7 @@ public class LoginController extends HttpServlet {
 
 		}catch (SQLException e) {
 
-			request.getSession().setAttribute("error", "データベースに異常が発生しています。システム管理者に連絡してください。");
+			request.getSession().setAttribute("error", "データベースに異常が発生しています。<br>システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/loginForm");
 
 		}catch (Exception e) {
