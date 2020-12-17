@@ -17,7 +17,9 @@ import jp.co.acroit.zaiko2020.user.User;
 /**
  * ログインサーブレット
  * @version 1.1
- * @author hiroki tajima
+ * @version 1.2
+ * 二重ログイン対策処理を追加
+ * @author yohei.nishida
  */
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
@@ -85,11 +87,13 @@ public class LoginController extends HttpServlet {
 
 
 			if (user != null) {
+				System.out.println(user.getId() + user.getLoginStatus());
 
 				PasswordComparator comparator = new PasswordComparator();
 
 				//sessionにユーザー情報設定
 				if (comparator.compare(password, user.getPassword())) {
+					//パスワードの比較
 
 					request.getSession().setAttribute("error", "");
 					HttpSession session = request.getSession();

@@ -20,7 +20,9 @@ import javax.servlet.http.HttpSession;
 /**
  * 未ログインのユーザーを弾くフィルタ
  * @version 1.0
- * @author Koki OISHI
+ * @version 1.1
+ * favicon.icoのパスをアクセス許可に追加
+ * @author Yohei.Nishida
  */
 @WebFilter(dispatcherTypes = {
         DispatcherType.REQUEST,
@@ -32,7 +34,7 @@ public class LoginSessionFilter implements Filter {
 
     // アクセスを許可されたパスの一覧
     private static final Set<String> ALLOWED_PATHS = Collections.unmodifiableSet(new HashSet<>(
-            Arrays.asList("", "/login", "/loginForm", "/WEB-INF/jsp/LoginForm.jsp", "/style.css")));
+            Arrays.asList("", "/login", "/loginForm", "/WEB-INF/jsp/LoginForm.jsp", "/style.css", "/favicon.ico")));
     // ログインフォームのURL
     private static final String LOGIN_URL = "/Zaiko2020/loginForm";
     // セッションスコープに格納されたユーザー情報を取得するためのキー
