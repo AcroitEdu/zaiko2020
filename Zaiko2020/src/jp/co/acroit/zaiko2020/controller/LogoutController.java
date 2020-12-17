@@ -58,7 +58,7 @@ public class LogoutController extends HttpServlet {
 			return ;
 		} catch (Exception e) {
 			request.getSession().setAttribute("error", "システムに異常が発生しています。<br> "
-					+ "正常のログアウトに失敗しました。<brシステム管理者に連絡してください。");
+					+ "正常のログアウトに失敗しました。<br>システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/loginForm");
 			return;
 		}
