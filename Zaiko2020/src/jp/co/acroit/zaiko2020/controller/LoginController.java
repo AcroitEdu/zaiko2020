@@ -44,7 +44,7 @@ public class LoginController extends HttpServlet {
 		String password = null;
 		boolean isIdBlank = false;
 		boolean isPasswordBlank = false;
-		int valueWhenLoggingIn = 1;
+		int valueWhenLoggingIn = １;
 
 		//IDとPasswordの取得
 		id = request.getParameter("id");
@@ -97,7 +97,7 @@ public class LoginController extends HttpServlet {
 
 					LoginStatusVerification verification = new LoginStatusVerification();
 
-					//二重ログイン確認
+					//既にログインしていないかを確認
 					if(verification.verify(user.getLoginStatus())) {
 
 						//ログイン状況を更新する
@@ -124,7 +124,7 @@ public class LoginController extends HttpServlet {
 
 		}catch (SQLException e) {
 
-			request.getSession().setAttribute("error", "データベースに異常が発生しています。<br>システム管理者に連絡してください。");
+			request.getSession().setAttribute("error", "データベースに異常が発生しています。システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/loginForm");
 
 		}catch (Exception e) {

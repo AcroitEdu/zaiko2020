@@ -23,9 +23,9 @@ public class UserDataAccess {
 		driver = "com.mysql.cj.jdbc.Driver";
 		username = "root";
 		password = "";
+		query = "";
 //		username = "tomcat";
 //		password = "RC2-Z%b9e85PWqR";
-		query = "SELECT * FROM user WHERE name = ?";
 		numberColumn = "id";
 		idColumn = "name";
 		passwordColumn = "pass";
@@ -46,6 +46,7 @@ public class UserDataAccess {
 	//id検索
 	public User findById(String id) throws SQLException, ClassNotFoundException {
 		Connection con = null;
+		query = "SELECT * FROM user WHERE name = ?";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -55,14 +56,14 @@ public class UserDataAccess {
 			ResultSet rs = ps.executeQuery();
 
 			long number = -1;
-			String digest = null;
+			String loginPassword = null;
 			String idFound = null;
-			int isLoggedIn = 0;
+			int isLoggedIn = -1;
 
 			while (rs.next()) {
 				number = rs.getLong(numberColumn);
 				idFound = rs.getString(idColumn);
-				digest = rs.getString(passwordColumn);
+				loginPassword = rs.getString(passwordColumn);
 				isLoggedIn = rs.getInt(isLoggedInColumn);
 
 				//idの一致するユーザーを返す
@@ -70,7 +71,7 @@ public class UserDataAccess {
 					rs.close();
 					con.close();
 					con = null;
-					return new User(number, idFound, digest,isLoggedIn);
+					return new User(number, idFound, loginPassword,isLoggedIn);
 				}
 			}
 			rs.close();
@@ -105,6 +106,7 @@ public class UserDataAccess {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw e;
 		} finally {
 			if (con != null) {
 				try {

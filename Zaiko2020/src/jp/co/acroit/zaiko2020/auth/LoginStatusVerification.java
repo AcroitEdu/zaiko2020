@@ -11,7 +11,7 @@ public class LoginStatusVerification {
 
 	/**
 	 * ログインを試みたユーザーが二重ログインの有無を確認するメソッド
-	 * @param loginStatus DBから取得したログイン状況フラグ
+	 * @param loginStatus DBから取得した現在のログイン状況フラグ
 	 * @param statusOfNoLogin 未ログイン時のフラグ
 	 * @return 未ログインならtrue, ログイン済みならfalse
 	 */

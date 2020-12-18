@@ -5,7 +5,7 @@ package jp.co.acroit.zaiko2020.user;
  * @version 1.0
  * @version 1.1
  * プロパティ：ログイン状況'loginStatus'とゲッターを追加
- * @author Yohei.Nishida
+ * @author yohei.nishida
  */
 public class User {
 

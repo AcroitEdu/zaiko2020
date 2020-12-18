@@ -52,13 +52,15 @@ public class LogoutController extends HttpServlet {
 		try {
 			uda.updateLoginStatus(user.getId(), valueWhenLoggingOut);
 		} catch (SQLException e) {
-			request.getSession().setAttribute("error", "データベースに異常が発生しています。<br> "
-					+ "正常のログアウトに失敗しました。<br>システム管理者に連絡してください。");
+			request.getSession().setAttribute("error", "データベースに異常が発生しています。"
+					+ System.getProperty("line.separator") + "正常のログアウトに失敗しました。"
+					+ System.getProperty("line.separator") + "システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/loginForm");
 			return ;
 		} catch (Exception e) {
-			request.getSession().setAttribute("error", "システムに異常が発生しています。<br> "
-					+ "正常のログアウトに失敗しました。<br>システム管理者に連絡してください。");
+			request.getSession().setAttribute("error", "システムに異常が発生しています。"
+					+ System.getProperty("line.separator") + "正常のログアウトに失敗しました。"
+					+ System.getProperty("line.separator") + "システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/loginForm");
 			return;
 		}
