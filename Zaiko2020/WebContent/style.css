@@ -28,6 +28,11 @@ h1 {
 	color: #ff0000;
 }
 
+span {
+	width: 70%;
+	margin: 0 auto;
+}
+
 .form {
 	width: 60%;
 	margin: 0 auto;
