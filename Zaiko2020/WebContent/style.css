@@ -67,17 +67,17 @@ p {
  */
 h1 {
 	/* 32px~48px 可変 */
-	font-size: calc(32px + (( 1vw - 8.51px)* (16/10.86)));
+	font-size: calc(32px + (( 1vw - 8.51px)* (16/10.69)));
 }
 
 p, input, span {
 	/* 16px ~ 20px 可変*/
-	font-size: calc(16px + (( 1vw - 8.51px)* (4/10.86)));
+	font-size: calc(16px + (( 1vw - 8.51px)* (4/10.69)));
 }
 
 label {
 	/* 20px ~ 24px 可変 */
-	font-size: calc(20px + (( 1vw - 8.51px)* (4/10.86)));
+	font-size: calc(20px + (( 1vw - 8.51px)* (4/10.69)));
 }
 
 input {
