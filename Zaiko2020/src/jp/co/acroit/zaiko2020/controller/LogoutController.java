@@ -36,7 +36,7 @@ public class LogoutController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		System.getProperty("line.separator");
 		//userデータを確保
 		User user = (User)request.getSession().getAttribute("user");
 
@@ -53,14 +53,14 @@ public class LogoutController extends HttpServlet {
 			uda.updateLoginStatus(user.getId(), valueWhenLoggingOut);
 		} catch (SQLException e) {
 			request.getSession().setAttribute("error", "データベースに異常が発生しています。"
-					+ System.getProperty("line.separator") + "正常のログアウトに失敗しました。"
-					+ System.getProperty("line.separator") + "システム管理者に連絡してください。");
+					+ "<br>" + "正常のログアウトに失敗しました。"
+					+ "<br>" + "システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/loginForm");
 			return ;
 		} catch (Exception e) {
 			request.getSession().setAttribute("error", "システムに異常が発生しています。"
-					+ System.getProperty("line.separator") + "正常のログアウトに失敗しました。"
-					+ System.getProperty("line.separator") + "システム管理者に連絡してください。");
+					+ "<br>" + "正常のログアウトに失敗しました。"
+					+ "<br>" + "システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/loginForm");
 			return;
 		}

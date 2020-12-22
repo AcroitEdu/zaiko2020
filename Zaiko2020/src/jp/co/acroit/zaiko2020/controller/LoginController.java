@@ -112,7 +112,7 @@ public class LoginController extends HttpServlet {
 
 					}
 
-					request.getSession().setAttribute("error", "多重ログインの疑いにより、ログインできません。");
+					request.getSession().setAttribute("error", "多重ログインの可能性があります。");
 					response.sendRedirect("/Zaiko2020/loginForm");
 					return;
 
@@ -124,7 +124,7 @@ public class LoginController extends HttpServlet {
 
 		}catch (SQLException e) {
 
-			request.getSession().setAttribute("error", "データベースに異常が発生しています。システム管理者に連絡してください。");
+			request.getSession().setAttribute("error", "データベースに異常が発生しています。<br>システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/loginForm");
 
 		}catch (Exception e) {
