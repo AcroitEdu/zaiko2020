@@ -89,7 +89,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 						</li>
 						<li>
 							<label>ISBN</label>
-							<input type="tel" id="isbn" class="flexFormItem" name="isbn" pattern="^[0-9]+$" maxlength="13" value="${conditions.isbn}">
+							<input type="tel" id="isbn" class="flexFormItem numberCheck" name="isbn" pattern="^[0-9]+$" maxlength="13" value="${conditions.isbn}">
 						</li>
 						<li><label>発売日</label>
 							<div class="flexFormItem select">
@@ -153,7 +153,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 
 			<!-- エラーメッセージ表示 -->
 			<div id="error">
-				<span>${sessionScope.error}</span>
+				<span class="errorTest">${sessionScope.error}</span>
 			</div>
 			<!-- エラーメッセージ表示ここまで -->
 
@@ -316,4 +316,5 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/inventoryList.js"></script>
 <script src="js/TabTransition.js"></script>
+
 </html>
