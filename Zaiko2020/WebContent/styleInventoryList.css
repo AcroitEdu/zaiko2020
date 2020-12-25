@@ -263,7 +263,7 @@ header .boxed-tabs {
 
 /* 書籍一覧*/
 #error {
-	color: red;
+	color: #ff0000;
 	text-align: center;
 	margin: 10px auto;
 }
@@ -279,7 +279,7 @@ header .boxed-tabs {
 	max-height: 95%;
 	overflow: auto;
 	width: 100%;
-	background-color: white;
+	background-color: #ffffff;
 	table-layout: fixed;
 }
 
