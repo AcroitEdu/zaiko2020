@@ -37,6 +37,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'å¹´'MM'æœ
 <link href="styleInventoryList.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
