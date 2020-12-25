@@ -117,6 +117,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 						</li>
 					</ul>
 					<input type="hidden" name="form" value="0">
+					<input type="submit" id="searchButton" class="button" value="在庫一覧を初期化する">
 					<input type="submit" id="searchButton" class="button" value="検索">
 				</form>
 			</div>
