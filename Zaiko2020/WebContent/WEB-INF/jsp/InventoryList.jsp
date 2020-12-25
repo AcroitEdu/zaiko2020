@@ -316,5 +316,5 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'å¹´'MM'æœ
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/inventoryList.js"></script>
 <script src="js/TabTransition.js"></script>
-
+<script src="js/checkNumberType.js"></script>
 </html>
