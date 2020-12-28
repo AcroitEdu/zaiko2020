@@ -31,13 +31,12 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 <meta http-equiv='X-UA-Compatible' content='ie=edge'>
 <title>在庫一覧</title>
 <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"
+	  rel="stylesheet">
 <link href="styleInventoryList.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -89,7 +88,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 						</li>
 						<li>
 							<label>ISBN</label>
-							<input type="tel" id="isbn" class="flexFormItem numberCheck" name="isbn" pattern="^[0-9]+$" maxlength="13" value="${conditions.isbn}">
+							<input type="tel" id="isbn" class="flexFormItem" name="isbn" pattern="^[0-9]+$" maxlength="13" value="${conditions.isbn}">
 						</li>
 						<li><label>発売日</label>
 							<div class="flexFormItem select">
@@ -117,7 +116,6 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 						</li>
 					</ul>
 					<input type="hidden" name="form" value="0">
-					<input type="submit" id="searchButton" class="button" value="在庫一覧を初期化する">
 					<input type="submit" id="searchButton" class="button" value="検索">
 				</form>
 			</div>
@@ -154,7 +152,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 
 			<!-- エラーメッセージ表示 -->
 			<div id="error">
-				<span class="errorTest">${sessionScope.error}</span>
+				<span>${sessionScope.error}</span>
 			</div>
 			<!-- エラーメッセージ表示ここまで -->
 
@@ -317,5 +315,4 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/inventoryList.js"></script>
 <script src="js/TabTransition.js"></script>
-<script src="js/checkNumberType.js"></script>
 </html>
