@@ -117,6 +117,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 						</li>
 					</ul>
 					<input type="hidden" name="form" value="0">
+					<input type="submit" id="searchButton" class="button" value="表示初期化">
 					<input type="submit" id="searchButton" class="button" value="検索">
 				</form>
 			</div>
@@ -153,7 +154,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 
 			<!-- エラーメッセージ表示 -->
 			<div id="error">
-				<span>${sessionScope.error}</span>
+				<span id="errorTest">${sessionScope.error}</span>
 			</div>
 			<!-- エラーメッセージ表示ここまで -->
 
@@ -314,6 +315,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 </body>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="js/inventoryList.js"></script>
+<script src="js/InventoryList.js"></script>
 <script src="js/TabTransition.js"></script>
+<script src="js/CheckNumberType.js"></script>
 </html>

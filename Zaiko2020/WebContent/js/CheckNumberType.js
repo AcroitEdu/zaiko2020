@@ -1,3 +1,6 @@
+/**
+ *
+ */
 $(function(){
   $('input[name="isbn"]').on('input', function(){
        check_numtype($(this));
@@ -16,7 +19,7 @@ function check_numtype(obj){
   // ３．入力した文字が半角数字かどうかチェック
   if(txt_obj.match(/^[0-9]+$/)){
        // ３．１．文字数チェック
-       if(text_length > 9){
+       if(text_length > 13){
             $('input[name="isbn"]').val(_chknum_value);
        }else{
             _chknum_value = txt_obj;
@@ -27,7 +30,7 @@ function check_numtype(obj){
             _chknum_value = "";
        }else{
             $('input[name="isbn"]').val(_chknum_value);
-            $('.errorTest').innerHTML = "outputTest";
+            $('#errorTest').val("outputTest");
        }
   }
 }
