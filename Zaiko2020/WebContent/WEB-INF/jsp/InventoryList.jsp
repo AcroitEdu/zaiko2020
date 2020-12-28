@@ -154,7 +154,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 
 			<!-- エラーメッセージ表示 -->
 			<div id="error">
-				<span id="errorTest">${sessionScope.error}</span>
+				<span id="errorMessage">${sessionScope.error}</span>
 			</div>
 			<!-- エラーメッセージ表示ここまで -->
 
@@ -315,7 +315,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 </body>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="js/InventoryList.js"></script>
+<script src="js/InventoryLists.js"></script>
 <script src="js/TabTransition.js"></script>
-<script src="js/CheckNumberType.js"></script>
+<script src="js/CheckInputNumbers.js" charset="utf-8"></script>
 </html>
