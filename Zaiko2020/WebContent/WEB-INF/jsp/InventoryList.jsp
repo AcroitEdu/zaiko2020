@@ -74,7 +74,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 				onclick="document.getElementById('searchHidden').style.display = 'none'; document.getElementById('searchDisplay').style.display = 'block'; document.getElementById('search').style.display = 'none';">
 			<!-- スマホ画面表示プルダウンメニュー -->
 			<div id="search" class="search-options">
-				<form name="searchOptions" action="/Zaiko2020/inventoryList" method="post">
+				<form name="searchOptions" action="/Zaiko2020/inventoryList" method="post" id="searchOptions">
 					<ul id="flexFormWrappable">
 						<li>
 							<label>書籍名</label>
@@ -117,7 +117,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 						</li>
 					</ul>
 					<input type="hidden" name="form" value="0">
-					<input type="submit" id="searchButton" class="button" value="表示初期化">
+					<button id="initialize" value="表示初期化" >表示初期化</button>
 					<input type="submit" id="searchButton" class="button" value="検索">
 				</form>
 			</div>

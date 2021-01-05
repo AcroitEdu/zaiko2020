@@ -27,10 +27,40 @@ ul {
 	list-style-type: none;
 }
 
-input, select {
+input, select, #initialize {
 	border-radius: 5px;
 	border: 1.5px solid #00000080;
 }
+
+/**
+ *文字関連の調整
+ * aPX ~ bPX での文字サイズ可変式 *式詳細はstyle.cssを参照
+ */
+h1 {
+	/* 32px~48px 可変 */
+	font-size: calc(32px + (( 1vw - 8.51px)* (16/10.69)));
+}
+
+p, input, span, button {
+	/* 16px ~ 20px 可変*/
+	font-size: calc(16px + (( 1vw - 8.51px)* (4/10.69)));
+}
+
+label {
+	/* 20px ~ 24px 可変 */
+	font-size: calc(20px + (( 1vw - 8.51px)* (4/10.69)));
+}
+
+input {
+	line-height: 2;
+	letter-spacing: 0.05em;
+	text-align: center;
+}
+
+input [type="password"] {
+	line-height: 1.5;
+}
+/* 文字関連の調整 ここまで */
 /* 共通ここまで */
 
 /* ヘッダー */
@@ -158,10 +188,12 @@ header .boxed-tabs {
 .units {
 	display: flex;
 }
+
+
 /* 検索条件ここまで */
 
 /* ボタン */
-#searchButton, #sortButton {
+#searchButton, #sortButton, #initialize {
 	margin: auto 0.75em auto auto;
 	background-color: white;
 	font-size: 1em;
@@ -316,11 +348,11 @@ header .boxed-tabs {
 }
 
 #headerPublisher{
-	width: 16%;
+	width: 15.5%;
 }
 
-#headerSalesDatel {
-	width: 7.5%;
+#headerSalesDate {
+	width: 9%;
 }
 
 #headerIsbn {
@@ -328,10 +360,10 @@ header .boxed-tabs {
 }
 
 #headerPrice {
-	width: 10%;
+	width: 8.5%;
 }
 #headerStock {
- 	width: 8.5%;
+ 	width: 9%;
 }
 
 .data {
