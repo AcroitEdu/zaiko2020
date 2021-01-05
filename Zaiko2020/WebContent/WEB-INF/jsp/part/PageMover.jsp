@@ -42,7 +42,7 @@
 	<li class="pagesPrevNext">
 		<form name="nextPage" action="/Zaiko2020/inventoryList" method="post">
 			<input type="hidden" name="form" value="1">
-		<input type="hidden" class="inputPage" name="page" value="${conditions.page + 1}" data-max="${maxPage}">
+			<input type="hidden" class="inputPage" name="page" value="${conditions.page + 1}" data-max="${maxPage}">
 		<span class="link nextButton">次へ</span>
 		</form>
 	</li>

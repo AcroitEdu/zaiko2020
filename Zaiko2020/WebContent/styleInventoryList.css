@@ -273,8 +273,10 @@ header .boxed-tabs {
 }
 
 #list {
-	margin: auto;
-	width: 90%;
+	/* */
+	margin: 0;
+	padding: 0 10px;
+	width: 100%;
 }
 
 #listTable {
@@ -306,27 +308,30 @@ header .boxed-tabs {
 }
 
 #headerControl {
-	width: 100px;
-	min-width: 100px;
+	width: 8.5%;
 }
 
-#headerName, #headerAuthor, #headerPublisher {
-	width: 370px;
+#headerName, #headerAuthor {
+	width: 18%;
 }
 
-#headerSalesDate {
-	width: 100px;
-	min-width: 100px;
+#headerPublisher{
+	width: 16%;
+}
+
+#headerSalesDatel {
+	width: 7.5%;
 }
 
 #headerIsbn {
-	width: 130px;
-	min-width: 130px;
+	width: 13.5%;
 }
 
-#headerPrice, #headerStock {
-	width: 120px;
-	min-width: 120px;
+#headerPrice {
+	width: 10%;
+}
+#headerStock {
+ 	width: 8.5%;
 }
 
 .data {
