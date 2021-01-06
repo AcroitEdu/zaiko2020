@@ -85,6 +85,11 @@ var now = new Date();
 	var date = now.getDate();
 	if(date < 10){date = '0' + date;}
 	var nowDate = year + '-' + month + '-' + date;
+	$('input[name="date"]').val(nowDate);
+	$('#beforeAfter').val('after');
+	$('input[name="stock"]').val(0);
+	$('#largeOrSmall').val('gtoe');
+	$('#sortIndex').val(1);
 	console.log(nowDate);
 
 });
