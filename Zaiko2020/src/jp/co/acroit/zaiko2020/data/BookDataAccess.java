@@ -88,6 +88,8 @@ public class BookDataAccess {
 			query = query + " WHERE " + sqlWhere(sc) + " " + deleteflgColumn + " = 0 " + sqlOrderBy(sc) + sqlLimit(sc) + ";";
 
 			PreparedStatement ps = con.prepareStatement(query);
+			System.out.println(query);
+			long intervalTime = System.currentTimeMillis(); //forCalc
 			ResultSet rs = ps.executeQuery();
 
 			int dbId = 0;
@@ -124,7 +126,9 @@ public class BookDataAccess {
 			con = null;
 
 			long endTime = System.currentTimeMillis();
-			System.out.println("BookDAO:処理時間：" + (endTime - startTime) + " ms"); //forCalc
+			System.out.println("処理時間(途中)：" + (intervalTime - startTime) + " ms");
+			System.out.println("処理時間(途中以降)：" + (endTime - intervalTime) + " ms");
+			System.out.println("BookDAO:処理時間：" + (endTime - startTime) + " ms" + System.getProperty("line.separator")); //forCalc
 
 			return bookList;
 
@@ -135,8 +139,6 @@ public class BookDataAccess {
 			throw e;
 
 		} finally {
-
-			System.out.println("処理時間(s)");
 
 			if (con != null) {
 
