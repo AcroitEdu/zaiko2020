@@ -140,7 +140,7 @@ public class InventoryListController extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-
+		long startTime = System.currentTimeMillis(); //forCalc
 		HttpSession session = request.getSession();
 
 
@@ -321,6 +321,9 @@ public class InventoryListController extends HttpServlet {
 			//書籍情報・現ページをセッションに設定
 			session.setAttribute("items", bookList);
 			session.setAttribute("page", page);
+
+			long endTime = System.currentTimeMillis(); //forCalc
+			 System.out.println("一覧C:処理時間：" + (endTime - startTime) + " ms" + System.getProperty("line.separator"));
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
 			dispatcher.forward(request, response);

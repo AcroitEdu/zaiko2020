@@ -74,6 +74,8 @@ public class BookDataAccess {
 	//一覧画面に表示する書籍の取得
 	public List<Book> find(SearchCondition sc) throws SQLException {
 
+		long startTime = System.currentTimeMillis(); //forCalc
+
 		Connection con = null;
 
 		try {
@@ -121,6 +123,9 @@ public class BookDataAccess {
 			con.close();
 			con = null;
 
+			long endTime = System.currentTimeMillis();
+			System.out.println("BookDAO:処理時間：" + (endTime - startTime) + " ms"); //forCalc
+
 			return bookList;
 
 		} catch (SQLException e) {
@@ -130,6 +135,8 @@ public class BookDataAccess {
 			throw e;
 
 		} finally {
+
+			System.out.println("処理時間(s)");
 
 			if (con != null) {
 
