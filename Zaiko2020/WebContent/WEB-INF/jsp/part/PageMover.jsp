@@ -30,13 +30,13 @@
 	</li>
 	<!-- 移動ページ指定ここまで -->
 
-	<!-- 現在のページ/総ページ数 -->
+	<!-- 現在のページ/総ページ数 (スマホのみ) -->
 	<li id="sumahoPage" class="pagesJump">
 		<span>${conditions.page}</span>
 		<span> / </span>
 		<span>${maxPage}</span>
 	</li>
-	<!-- 現在のページ/総ページ数ここまで -->
+	<!-- 現在のページ/総ページ数ここまで (スマホのみ)-->
 
 	<!-- 1ページ進む -->
 	<li class="pagesPrevNext">

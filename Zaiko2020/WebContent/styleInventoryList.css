@@ -211,34 +211,42 @@ header .boxed-tabs {
 	margin: auto;
 }
 
-.pagesBox > .pagesCounterWeight, .pagesBox > .pagesItemCount {
+.pagesBox > .pagesCounterWeight {
 	flex-grow: 2;
 	flex-shrink: 0;
-	width: 20%;
+	/* max-width: 20%; */
+	text-align: end;
+}
+
+.pagesBox > .pagesItemCount {
+  flex-grow: 4;
+	flex-shrink: 0;
+	/* max-width: 20%; */
 	text-align: end;
 }
 
 .pagesBox > .pagesSpace {
-	flex-shrink: 10;
-	flex-grow: 10;
+	flex-shrink: 2;
+	/* flex-grow: 10; */
 }
 
 .pagesBox > .pagesPrevNext {
-	width: 4em;
-	flex-grow: 0;
+	/* width: 4em; */
+	flex-grow: 1;
 	flex-shrink: 0;
 }
 
 .pagesBox > .pagesJump {
-	width: 20%;
+	/* width: 20%; */
 	padding: 0 2em;
-	flex-grow: 0;
+	flex-grow: 10;
 	flex-shrink: 0;
 }
 
 .pagesJump > form {
 	display: flex;
 	flex-wrap: nowrap;
+	max-width: 50%;
 }
 
 .pagesBox > li {
@@ -248,24 +256,26 @@ header .boxed-tabs {
 
 .pagesJump > form > span {
 	display: inline-flex;
-	flex-grow: 1;
+	flex-grow: 3;
 	flex-shrink: 0;
 	margin: 5px;
 }
 
 .pagesJump > form > span > input.inutPageNumber {
 	width: 50%;
-	margin: 5px;
+  margin: 5px;
+  flex-grow: 6;
 	text-align: end;
 }
 
 .pagesJump > form > span > span.pageDelimiter {
-	margin: 5px;
+  margin: 5px;
+  flex-grow: 0;
 	text-align: center
 }
 
 .pagesJump > form > span > span.maxPage {
-	flex-grow: 1;
+	flex-grow: 3;
 	flex-shrink: 0;
 	margin: 5px;
 	text-align: end;
@@ -275,9 +285,10 @@ header .boxed-tabs {
 	width: fit-content;
 	background-color: white;
 	font-size: 0.95em;
-	flex-grow: 0;
+	flex-grow: 1;
 	flex-shrink: 0;
 	margin: 5px;
+	max-width: 70px;
 }
 
 .link {
@@ -293,7 +304,7 @@ header .boxed-tabs {
 }
 
 .pagesJump > form > input#page {
-	flex-grow: 1;
+  flex-grow: 4;
 }
 /* ページ移動ここまで */
 
