@@ -1,3 +1,6 @@
+/**
+ * eclipse-create'.js'
+ */
 //postリクエストを送信するリンク(「次へ」等)の処理
 function linkSubmit() {
     if ($(this).hasClass("disabled")) return;
