@@ -89,11 +89,16 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 						</li>
 						<li>
 							<label>ISBN</label>
-							<input type="tel" id="isbn" class="flexFormItem" name="isbn" pattern="^[0-9]+$" maxlength="13" value="${conditions.isbn}">
+							<input
+								type="tel" id="isbn" class="flexFormItem" name="isbn"
+								pattern="^[0-9]+$" oncopy="return false" onpaste="return false"
+								maxlength="13" value="${conditions.isbn}" onblur="resetTotalInputData()">
 						</li>
 						<li><label>発売日</label>
 							<div class="flexFormItem select">
-								<input type="date" id="date" name="date" value="${conditions.salesDate}" max="9999-12-31" min="1582-10-15">
+								<input
+									type="date" id="date" name="date" value="${conditions.salesDate}"
+									max="9999-12-31" min="1582-10-15">
 								<select id="beforeAfter" name="beforeAfter" data-value="${conditions.salesDateFlag}">
 									<option value="equals">に一致</option>
 									<option value="before">以前</option>
@@ -103,22 +108,38 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 						</li>
 						<li>
 						<label>在庫数</label>
-							<div class="flexFormItem select">
-								<div class="units">
-									<input type="tel" id="stock" name="stock" pattern="^[0-9]+$" maxlength="6" value="${conditions.stock}">
-									<span>冊</span>
+							<div class="flexFormItem select flexStock">
+									<input
+										type="tel" id="stock" name="stock" pattern="^[0-9]+$"
+										oncopy="return false" onpaste="return false" maxlength="6"
+										value="${conditions.stock}" onblur="resetTotalInputData()">
+										<span id="stockText">冊</span>
+										<select id="largeOrSmall" name="largeOrSmall" data-value="${conditions.stockFlag}">
+											<option value="equals">に等しい</option>
+											<option value="ltoe">以下</option>
+											<option value="gtoe">以上</option>
+										</select>
+
 								</div>
-								<select id="largeOrSmall" name="largeOrSmall" data-value="${conditions.stockFlag}">
-									<option value="equals">に等しい</option>
-									<option value="ltoe">以下</option>
-									<option value="gtoe">以上</option>
-								</select>
+
+
+
 							</div>
 						</li>
 					</ul>
 					<input type="hidden" name="form" value="0">
-					<button id="initialize" value="表示初期化" >表示初期化</button>
-					<input type="submit" id="searchButton" class="button" value="検索">
+				</form>
+				<div id="submitArea">
+					<div id="pcSpace"></div>
+					<div id="buttons">
+						<input type="submit" id="initializeButton" class="button" form="inventoryListForm" value="初期化表示">
+						<input type="submit" id="searchButton" class="button" form="searchOptions" value="検索">
+					</div>
+
+				</div>
+				<form id="inventoryListForm" action="/Zaiko2020/inventoryList"
+						method="post">
+					<input type="hidden" name="form" value="3">
 				</form>
 			</div>
 			<!-- 検索フォームここまで -->
@@ -207,7 +228,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 										<form action="/Zaiko2020/arrivalForm" method="post" class="formEditLink inline">
 											<input type="hidden" name="id" value="<%=item.getId()%>">
 											<span class="link buttonArrive">入荷</span>
-										</form> <span>/</span>
+										</form> <br>
 										<form action="/Zaiko2020/shippingForm" method="post" class="formEditLink inline">
 											<input type="hidden" name="id" value="<%=item.getId()%>">
 											<span class="link buttonShip">出荷</span>
@@ -317,5 +338,5 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/InventoryLists.js"></script>
 <script src="js/TabTransition.js"></script>
-<script src="js/CheckInputNumbers.js" charset="utf-8"></script>
+<script src="js/InputDataValidation.js" charset="utf-8"></script>
 </html>

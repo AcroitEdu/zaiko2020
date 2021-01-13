@@ -55,8 +55,8 @@ function checkNumberTypeLimit(obj){
 
   // ２．変数の定義
   var inputValue = $(obj).val();
-  console.log(inputValue);
-console.log(totalValue);
+  console.log("inputValue:" + inputValue);
+  console.log("totalValue:" + totalValue);
   var valueLength = inputValue.length;
 
   // ３．入力した文字が半角数字かどうかチェック
@@ -78,6 +78,8 @@ console.log(totalValue);
        }
   }
   previousInputName = currentInputName;
+  console.log("previousInputValue:" + previousInputName);
+  console.log("currentInputValue:" + currentInputName);
 }
 
 

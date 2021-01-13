@@ -36,10 +36,6 @@ input, select, #initialize {
  *文字関連の調整
  * aPX ~ bPX での文字サイズ可変式 *式詳細はstyle.cssを参照
  */
-h1 {
-	/* 32px~48px 可変 */
-	font-size: calc(32px + (( 1vw - 8.51px)* (16/10.69)));
-}
 
 p, input, span, button {
 	/* 16px ~ 20px 可変*/
@@ -112,7 +108,7 @@ header .boxed-tabs {
 /* 検索条件 */
 .search-options form {
 	width: 80%;
-	max-width: 1000px;
+	/* max-width: 1000px; */
 	text-align: end;
 	margin: auto;
 }
@@ -138,7 +134,7 @@ header .boxed-tabs {
 .search-options li > label {
 	width: 20%;
 	text-align: end;
-	padding-right: 1em;
+	padding-right: 0.5em;
 }
 
 .search-options li > .flexFormItem {
@@ -175,25 +171,51 @@ header .boxed-tabs {
 	width: 62.5%;
 }
 
+.flexStock {
+	dispaly: flex;
+	justify-content: space-between;
+}
+
 .flexFormItem > #stock {
 	width: 62.5%;
 	text-align: end;
 }
 
+#stockText {
+	padding: 2px;
+}
+
 .flexFormItem > #largeOrSmall {
 	border-radius: 0;
-	width: 32.5%;
+	padding-left: 1em;
+	/* width: 37.5%; */
 }
 
 .units {
+	/* display: flex; */
+	 width: 62.5% ;
+}
+
+.set{
+	width: 32.5%;
+}
+
+#submitArea{
+	width: 80%;
+	margin: auto;
 	display: flex;
+	justify-content: flex-end;
+}
+#buttons{
+	display: flex;
+	justify-content: flex-end;
 }
 
 
 /* 検索条件ここまで */
 
 /* ボタン */
-#searchButton, #sortButton, #initialize {
+#searchButton, #sortButton, #initializeButton {
 	margin: auto 0.75em auto auto;
 	background-color: white;
 	font-size: 1em;
@@ -205,22 +227,22 @@ header .boxed-tabs {
 .pagesBox {
 	display: flex;
 	flex-wrap: nowrap;
-	width: 90%;
+	width: 80%;
 	padding: 0;
 	vertical-align: middle;
 	margin: auto;
 }
 
 .pagesBox > .pagesCounterWeight {
-	flex-grow: 2;
-	flex-shrink: 0;
+	flex-grow: 0.5;
+	flex-shrink: 10;
 	/* max-width: 20%; */
 	text-align: end;
 }
 
 .pagesBox > .pagesItemCount {
   flex-grow: 4;
-	flex-shrink: 0;
+	flex-shrink: 10;
 	/* max-width: 20%; */
 	text-align: end;
 }
@@ -263,14 +285,14 @@ header .boxed-tabs {
 
 .pagesJump > form > span > input.inutPageNumber {
 	width: 50%;
-  margin: 5px;
-  flex-grow: 6;
+	margin: 5px;
+	flex-grow: 6;
 	text-align: end;
 }
 
 .pagesJump > form > span > span.pageDelimiter {
-  margin: 5px;
-  flex-grow: 0;
+	margin: 5px;
+	flex-grow: 0;
 	text-align: center
 }
 
@@ -351,30 +373,30 @@ header .boxed-tabs {
 }
 
 #headerControl {
-	width: 8.5%;
+	width: 8%;
 }
 
 #headerName, #headerAuthor {
-	width: 18%;
+	width: 17%;
 }
 
 #headerPublisher{
-	width: 15.5%;
+	width: 15%;
 }
 
 #headerSalesDate {
-	width: 9%;
+	width: 10%;
 }
 
 #headerIsbn {
-	width: 13.5%;
+	width: 14.5%;
 }
 
 #headerPrice {
 	width: 8.5%;
 }
 #headerStock {
- 	width: 9%;
+ 	width: 10%;
 }
 
 .data {
