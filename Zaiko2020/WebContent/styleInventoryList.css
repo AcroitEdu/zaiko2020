@@ -234,41 +234,51 @@ header .boxed-tabs {
 }
 
 .pagesBox > .pagesCounterWeight {
-	flex-grow: 0.5;
-	flex-shrink: 10;
+	flex-grow: 1;
+	flex-shrink: 1;
 	/* max-width: 20%; */
 	text-align: end;
 }
 
 .pagesBox > .pagesItemCount {
-  flex-grow: 4;
-	flex-shrink: 10;
+    flex-grow: 1;
+	flex-shrink: 1;
 	/* max-width: 20%; */
 	text-align: end;
 }
 
+.flexPageJump {
+	flex-grow: 16;
+	flex-shrink: 16;
+	display: flex;
+	justify-content: center;
+}
+
+
 .pagesBox > .pagesSpace {
-	flex-shrink: 2;
+	flex-grow: 1;
+	flex-shrink: 1;
 	/* flex-grow: 10; */
 }
 
 .pagesBox > .pagesPrevNext {
 	/* width: 4em; */
 	flex-grow: 1;
-	flex-shrink: 0;
+	flex-shrink: 1;
 }
 
 .pagesBox > .pagesJump {
 	/* width: 20%; */
 	padding: 0 2em;
-	flex-grow: 10;
-	flex-shrink: 0;
+	flex-grow: 8;
+	flex-shrink: 8;
 }
 
 .pagesJump > form {
 	display: flex;
 	flex-wrap: nowrap;
 	max-width: 50%;
+	margin: 0 auto;
 }
 
 .pagesBox > li {
@@ -278,8 +288,8 @@ header .boxed-tabs {
 
 .pagesJump > form > span {
 	display: inline-flex;
-	flex-grow: 3;
-	flex-shrink: 0;
+	flex-grow: 5;
+	flex-shrink: 5;
 	margin: 5px;
 }
 
@@ -297,7 +307,7 @@ header .boxed-tabs {
 }
 
 .pagesJump > form > span > span.maxPage {
-	flex-grow: 3;
+	flex-grow: 4;
 	flex-shrink: 0;
 	margin: 5px;
 	text-align: end;
