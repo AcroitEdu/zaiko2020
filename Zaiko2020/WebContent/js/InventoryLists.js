@@ -79,20 +79,3 @@ $(window).scroll(function () {
     $('.pagetop').fadeOut('slow');
   }
 });
-//「表示初期化」をクリックした時の処理
-$('#initialize').click(function() {
-var now = new Date();
-	var year = now.getFullYear();
-	var month = now.getMonth() + 1;
-	if(month < 10){month = '0' + month;}
-	var date = now.getDate();
-	if(date < 10){date = '0' + date;}
-	var nowDate = year + '-' + month + '-' + date;
-	$('input[name="date"]').val(nowDate);
-	$('#beforeAfter').val('after');
-	$('input[name="stock"]').val(0);
-	$('#largeOrSmall').val('gtoe');
-	$('#sortIndex').val(1);
-	console.log(nowDate);
-
-});

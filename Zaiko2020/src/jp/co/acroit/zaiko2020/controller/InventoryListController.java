@@ -55,6 +55,7 @@ public class InventoryListController extends HttpServlet {
 		int page = 1;	//１ページ
 		int sort = 0;	//発売日
 		int lift = 1;	//昇順
+		int totalLimitedCount = 50000;
 
 
 		SearchCondition sc = (SearchCondition)session.getAttribute("conditions");
@@ -83,9 +84,17 @@ public class InventoryListController extends HttpServlet {
 		try {
 			int count = 0;
 			int pageCount = 0;
+			boolean limitedFlag = false;
 
 			//総件数の取得
 			count = bda.countAll(sc);
+
+			if (count > totalLimitedCount) {
+
+				limitedFlag = true;
+				count = totalLimitedCount;
+
+			}
 
 			//総ページ数
 			pageCount = (count + 199) / 200;
@@ -107,6 +116,9 @@ public class InventoryListController extends HttpServlet {
 
 				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
 
+			}else if (limitedFlag) {
+
+				session.setAttribute("error", "5万件以上ヒットしています。検索条件で絞り込んで下さい。");
 			}
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
@@ -157,6 +169,7 @@ public class InventoryListController extends HttpServlet {
 		int sort = 0;	//発売日
 		int lift = 1;	//昇順
 		int value = Integer.parseInt(request.getParameter("form"));
+		int totalLimitedCount = 50000;
 
 
 		session.setAttribute("flg", false);
@@ -286,6 +299,8 @@ public class InventoryListController extends HttpServlet {
 		BookDataAccess bda = new BookDataAccess();
 		List<Book> bookList = new ArrayList<Book>();
 
+		boolean limitedFlag = false;
+
 		try {
 
 			if(session.getAttribute("id") != null) {
@@ -299,6 +314,12 @@ public class InventoryListController extends HttpServlet {
 				int count = 0;
 				int pageCount = 0;
 				count = bda.countAll(sc);
+				if (count >= totalLimitedCount) {
+
+					limitedFlag = true;
+					count = totalLimitedCount;
+
+				}
 				pageCount = (count + 199) / 200;
 
 				//総件数・最大ページ数をセッションに設定
@@ -315,6 +336,9 @@ public class InventoryListController extends HttpServlet {
 
 				session.setAttribute("error", "該当する書籍は見つかりませんでした。");
 
+			}else if (limitedFlag) {
+
+				session.setAttribute("error", "5万件以上ヒットしています。5万件までを表示しています。<br>検索条件で絞り込んで下さい。");
 			}
 
 			//書籍情報・現ページをセッションに設定

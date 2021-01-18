@@ -4,7 +4,9 @@
 //InventoryList.jspからincludeして使う。
 %>
 <ul class="pagesBox">
-	<li id="pcPage" class="pagesCounterWeight"></li>
+	<li id="pcPage" class="pagesCounterWeight">
+		<input type="submit" id="initializeButton" class="button" form="inventoryListForm" value="一覧初期化">
+	</li>
 	<li id="pcPage" class="pagesSpace"></li>
 
 	<div class="flexPageJump">
@@ -22,7 +24,7 @@
 		<li id="pcPage" class="pagesJump">
 			<form name="jumpPage" action="/Zaiko2020/inventoryList" method="post">
 				<input type="hidden" name="form" value="1">
-				<span>
+				<span class="pegeText">
 					<input type="tel" class="inutPageNumber" name="page" required ma4width
 					pattern="^[1-9][0-9]*$" oncopy="return false" onpaste="return false"
 					maxlength="9" value="${conditions.page}" onblur="resetTotalInputData()">

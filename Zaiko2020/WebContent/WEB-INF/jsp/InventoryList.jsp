@@ -119,11 +119,6 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 											<option value="ltoe">以下</option>
 											<option value="gtoe">以上</option>
 										</select>
-
-								</div>
-
-
-
 							</div>
 						</li>
 					</ul>
@@ -132,8 +127,8 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 				<div id="submitArea">
 					<div id="pcSpace"></div>
 					<div id="buttons">
-						<input type="submit" id="initializeButton" class="button" form="inventoryListForm" value="初期化表示">
 						<input type="submit" id="searchButton" class="button" form="searchOptions" value="検索">
+						<input type="reset" id="clearButton" class="button" form="searchOptions" value="条件初期化">
 					</div>
 
 				</div>
@@ -339,4 +334,5 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 <script src="js/InventoryLists.js"></script>
 <script src="js/TabTransition.js"></script>
 <script src="js/InputDataValidation.js" charset="utf-8"></script>
+<script src="js/CalenderValidation.js" charset="utf-8"></script>
 </html>

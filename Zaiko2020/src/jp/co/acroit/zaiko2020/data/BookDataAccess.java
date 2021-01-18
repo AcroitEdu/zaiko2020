@@ -83,7 +83,8 @@ public class BookDataAccess {
 			con = DriverManager.getConnection(url, username, password);
 
 			//クエリの生成・実行を行う。
-			query = "SELECT * FROM books";
+			query = "SELECT `id`,`title`, `publisher` ,`author`,`salesDate`,`isbn`,`price`,`stock`, `deleteflg` FROM books";
+			//比較用createviewmin
 			//検索条件＋deleatflg = 0
 			query = query + " WHERE " + sqlWhere(sc) + " " + deleteflgColumn + " = 0 " + sqlOrderBy(sc) + sqlLimit(sc) + ";";
 
