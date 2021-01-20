@@ -174,7 +174,7 @@ header .boxed-tabs {
 }
 
 .flexStock {
-	dispaly: flex;
+	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
@@ -191,6 +191,7 @@ header .boxed-tabs {
 .flexFormItem > #largeOrSmall {
 	border-radius: 0;
 	padding-left: 1em;
+	height: 40px;
 	/* width: 37.5%; */
 }
 
@@ -220,17 +221,19 @@ header .boxed-tabs {
 /* ボタン */
 #searchButton, #sortButton, #initializeButton, #clearButton {
 	margin: auto 0.75em auto auto;
-	background-color: white;
+	background-color: #ffffff;
 	font-size: 1em;
-	padding: 0.25rem 0.5rem;
+	padding: 0.25rem 0.75rem;
 }
 
 #searchButton {
-	background-color: #00dfff;
+	background-color: #4682b4;
+	color: #fffff0;
 }
 
 #initializeButton{
-	background-color: #7fffd4;
+	background-color: #4682b4;
+	color: #fffff0;
 }
 
 /* ここまで */

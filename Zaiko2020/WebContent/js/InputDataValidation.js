@@ -28,7 +28,7 @@ $(function(){
 
 
 //在庫数
-var limitStockDigits = 6;
+var limitStockDigits = 10;
 //在庫数の入力値チェック
 $(function(){
   $('input[name="stock"]').on('input', function(){
@@ -38,7 +38,7 @@ $(function(){
 });
 
 //移動ページ指定
-var limitPagingDigits = 9;
+var limitPagingDigits = 3;
 //ページングの入力値チェック
 $(function(){
   $('input[name="page"]').on('input', function(){

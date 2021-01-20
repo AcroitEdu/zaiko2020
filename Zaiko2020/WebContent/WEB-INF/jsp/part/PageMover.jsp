@@ -27,7 +27,7 @@
 				<span class="pegeText">
 					<input type="tel" class="inutPageNumber" name="page" required ma4width
 					pattern="^[1-9][0-9]*$" oncopy="return false" onpaste="return false"
-					maxlength="9" value="${conditions.page}" onblur="resetTotalInputData()">
+					maxlength="3" value="${conditions.page}" onblur="resetTotalInputData()">
 					<span class="pageDelimiter">/</span> <span class="maxPage">${maxPage}</span>
 				</span>
 				<input type="submit" class="button" value="移動">

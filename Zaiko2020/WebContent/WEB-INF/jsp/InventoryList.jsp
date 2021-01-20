@@ -111,14 +111,14 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 							<div class="flexFormItem select flexStock">
 									<input
 										type="tel" id="stock" name="stock" pattern="^[0-9]+$"
-										oncopy="return false" onpaste="return false" maxlength="6"
+										oncopy="return false" onpaste="return false" maxlength="10"
 										value="${conditions.stock}" onblur="resetTotalInputData()">
-										<span id="stockText">冊</span>
-										<select id="largeOrSmall" name="largeOrSmall" data-value="${conditions.stockFlag}">
-											<option value="equals">に等しい</option>
-											<option value="ltoe">以下</option>
-											<option value="gtoe">以上</option>
-										</select>
+									<span id="stockText">冊</span>
+									<select id="largeOrSmall" name="largeOrSmall" data-value="${conditions.stockFlag}">
+										<option value="equals">に等しい</option>
+										<option value="ltoe">以下</option>
+										<option value="gtoe">以上</option>
+									</select>
 							</div>
 						</li>
 					</ul>
@@ -128,7 +128,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 					<div id="pcSpace"></div>
 					<div id="buttons">
 						<input type="submit" id="searchButton" class="button" form="searchOptions" value="検索">
-						<input type="reset" id="clearButton" class="button" form="searchOptions" value="条件初期化">
+						<input type="reset" id="clearButton" class="button" form="searchOptions" value="クリア">
 					</div>
 
 				</div>

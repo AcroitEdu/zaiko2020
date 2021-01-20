@@ -9,7 +9,7 @@ $(function(){
 	var limitYear = 1582;
 	var limitMonth = 10;
 	var limitDay = 14;
-	var outputMessage = "1582年10月15日以降が入力できます。"
+	var outputMessage = "1582年10月15日以降を入力して下さい。"
 	//var sliceYear = saleDate.slice(0,3);
 	var sliceDate = saleDate.split('-');
 	if(sliceDate[0] < limitYear){
