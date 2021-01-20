@@ -127,7 +127,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 				<div id="submitArea">
 					<div id="pcSpace"></div>
 					<div id="buttons">
-						<input type="submit" id="searchButton" class="button" form="searchOptions" value="検索">
+						<input type="submit" id="searchButton" class="button" form="searchOptions" value="検　索">
 						<input type="reset" id="clearButton" class="button" form="searchOptions" value="クリア">
 					</div>
 

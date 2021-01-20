@@ -22,6 +22,7 @@ String caption = "";
 <link href="js/dialog/dialog-polyfill.css" rel="stylesheet" type="text/css">
 <link href="styleBookInOut.css" rel="stylesheet">
 <link href="styleCheck.css" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -31,6 +32,7 @@ String caption = "";
 		<jsp:param name="book" value="${book }" />
 		<jsp:param name="action" value="ship" />
 	</jsp:include>
+	<p>test</p>
 	<!-- 書籍情報表ここまで -->
 </body>
 

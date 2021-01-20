@@ -22,6 +22,7 @@ String caption = "";
 <link href="js/dialog/dialog-polyfill.css" rel="stylesheet" type="text/css">
 <link href="styleBookInOut.css" rel="stylesheet">
 <link href="styleCheck.css" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
 	<!-- 書籍情報表 -->
