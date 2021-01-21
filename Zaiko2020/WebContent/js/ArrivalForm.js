@@ -46,11 +46,11 @@ $("#dialogCancel").click(function () {
     $("#overlay, #modal").removeClass("active");
 });
 
-//ダイアログ内「実行」押下時 ()
+//ダイアログ内「実行」押下時 
 $("#dialogExecute").click(function () {
-    $(this).prop("disabled",true);
+    $(this).prop("disabled",true); //二度押し防止
 //    $("#inoutForm")[0].submit();
-    $("#inoutForm").submit();
+    //$("#inoutForm").submit();
 });
 
 //エンターキー無効化
