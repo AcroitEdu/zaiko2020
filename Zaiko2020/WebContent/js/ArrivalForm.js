@@ -29,6 +29,7 @@ const checkValid = () => {
     }
     return $("#inoutForm")[0].reportValidity();
 };
+//入力文字制限(半角英数字のみ許容)
 
 //「実行」押下時
 $("#execute").click(function () {
@@ -45,8 +46,9 @@ $("#dialogCancel").click(function () {
     $("#overlay, #modal").removeClass("active");
 });
 
-//ダイアログ内「実行」押下時
+//ダイアログ内「実行」押下時 ()
 $("#dialogExecute").click(function () {
+    $(this).prop("disabled",true);
 //    $("#inoutForm")[0].submit();
     $("#inoutForm").submit();
 });

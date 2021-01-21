@@ -26,10 +26,10 @@ body {
 }
 
 #main {
-	width: 100%;
+	width: 90%;
 	height: stretch; /* 標準 */
 	min-height: -webkit-fill-available; /* Chrome系ブラウザ */
-	margin: 0;
+	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
