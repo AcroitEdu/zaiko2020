@@ -32,12 +32,10 @@ String caption = "";
 		<jsp:param name="book" value="${book }" />
 		<jsp:param name="action" value="ship" />
 	</jsp:include>
-	<p>test</p>
 	<!-- 書籍情報表ここまで -->
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/ArrivalForm.js"></script>
-<script src="js/AntiMultiplePressing.js"></script>
 
 </html>

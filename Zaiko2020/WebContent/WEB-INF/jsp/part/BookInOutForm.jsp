@@ -46,6 +46,9 @@
 				<br>
 			</form>
 		</div>
+		<div id="inputMessage">
+			<span id="inputErrorMessage">sampleTest</span>
+		</div>
 		<span id="buttons">
 			<button id="execute" class="button button-main button-border">実行</button>
 			<input type="submit" id="cancel" class="button button-cancel button-border" value="キャンセル" form="cancelForm">

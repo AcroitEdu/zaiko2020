@@ -1,1 +1,139 @@
 @charset "UTF-8";
+
+/* 共通部分 */
+* {
+  font-family: 'Noto Sans JP', sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html {
+  font-size: 62.5%;
+}
+
+body {
+  width: 100%;
+  max-width: 1920px;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+input, select, #initialize {
+	border-radius: 5px;
+	border: 1.5px solid #00000080;
+}
+
+/* 文字サイズ可変処理 (1080px~1920px)  式詳細はstyle.cssを参照 */
+p, input, span {
+	/* 16px ~ 20px 可変*/
+	font-size: calc(16px + (( 1vw - 10.8px)* (4/8.4)));
+}
+
+label {
+	/* 20px ~ 24px 可変 */
+	font-size: calc(20px + (( 1vw - 10.8px)* (4/8.4)));
+}
+/* 文字サイズ可変処理 此処まで */
+
+input {
+	line-height: 2;
+	letter-spacing: 0.05em;
+	text-align: center;
+}
+
+/* 共通部分 此処まで */
+
+/* header */
+header {
+	width: 100%;
+}
+
+header .boxed-tabs {
+	background-color: #d0d0d0;
+	padding: 0;
+	width: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: row;
+}
+
+.boxed-tabs .tab {
+	margin: 0 0 -1px 0;
+	padding: 5px;
+	min-width: fit-content;
+	flex-grow: 0;
+	width: 20%;
+	background-color: transparent;
+	border-bottom: 1px solid black;
+}
+
+.boxed-tabs .tab+.tab {
+	border-left: 1px solid black;
+}
+
+.boxed-tabs li.tab-current {
+	background-color: #f0f0f0;
+	border-bottom: 0 !important;
+}
+
+.boxed-tabs li.tab-space {
+	flex-grow: 0;
+	flex-shrink: 1;
+	padding: 0;
+}
+
+.boxed-tabs li.tab-logout {
+	background-color: #f0a0a0;
+	border-right: 0 !important;
+}
+/* header 此処まで */
+
+/* main(検索と一覧) */
+#main {
+  width: 100%;
+  padding: 0 10px;
+}
+#search {
+  width: 80%;
+  margin: 0 auto;
+}
+#searchConditions {
+  width: 100%;
+}
+
+#flexForm {
+  display: flex;
+  
+}
+/* main(検索と一覧) 此処まで */
+
+/* footer */
+/* footer 此処まで */
+
+
+/* メディアクエリ(1080px~851px) */
+@media screen and (max-width : 1080px) {
+  /* 文字サイズ */
+  p, input, span, select, button {
+    font-size: 16px;
+  }
+  label {
+    font-size: 20px;
+  }
+  /* 文字サイズ  此処まで*/
+  #main {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+/* メディアクエリ(850px = スマホ表示) 此処まで */
+
+/* メディアクエリ(850px = スマホ表示) */
+@media screen and (max-width : 850px) {
+
+}
+/* メディアクエリ(850px = スマホ表示) 此処まで */

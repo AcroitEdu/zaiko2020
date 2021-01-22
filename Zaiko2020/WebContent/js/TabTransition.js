@@ -13,6 +13,11 @@ $("#restorationButton").click(function () {
 	$(`#restorationForm`).submit();
 });
 
+//履歴ボタンを押したときの処理
+$("#historyListButton").click(function () {
+	$(`#historyListForm`).submit();
+});
+
 //ログアウトボタンを押したときの処理
 $("#logoutButton").click(function () {
     if (window.confirm(`ログアウトしますか?`)) {

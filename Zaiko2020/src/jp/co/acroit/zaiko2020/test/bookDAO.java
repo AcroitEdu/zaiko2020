@@ -56,9 +56,10 @@ public class bookDAO {
 			//クエリの生成・実行を行う。
 			query = "SELECT * FROM books";
 			//検索条件＋deleatflg = 0
-			String viewName = "searchViewByRoot";
-			String mainQuery = "SELECT `id`,`title`,`author`,`salesDate`,`isbn`,`price`,`stock`FROM books WHERE `salesDate` <= '2021-01-06' AND `stock` >= 0 AND `deleteflg` = 0";
-			String queryCreateView = "CREATE VIEW " + viewName + " AS " + mainQuery;
+			String loginUser = "root";
+			String viewName = "searchViewBy" + loginUser;
+			String mainQuery = "SELECT `id`,`title`, `publisher` ,`author`,`salesDate`,`isbn`,`price`,`stock`, `deleteflg` FROM books WHERE `salesDate` <= '2021-01-06' AND `stock` >= 0 AND `deleteflg` = 0";
+			String queryCreateView = "CREATE VIEW OR REPLACE " + viewName + " AS " + mainQuery;
 			String queryOrderBy = "SELECT * FROM " + viewName + " ORDER BY salesDate ASC";
 			query = "SELECT `title`,`author`,`salesDate`,`isbn`,`price`,`stock`FROM books WHERE `salesDate` <= '2021-01-06' AND `stock` >= 0 AND `deleteflg` = 0";
 

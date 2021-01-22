@@ -320,6 +320,16 @@ dialog::backdrop, dialog+.backdrop {
 }
 /* モーダルウィンドウここまで */
 
+#inputMessage {
+	display: flex;
+	justify-content: center;
+}
+
+#inputErrorMessage {
+	visibility: hidden;
+	color: #FF0000;
+}
+
 .active {
 	display: block !important;
 }
