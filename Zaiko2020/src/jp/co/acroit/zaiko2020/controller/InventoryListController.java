@@ -26,7 +26,9 @@ import jp.co.acroit.zaiko2020.data.SearchCondition;
  * 追加画面・復元画面から在庫一覧画面に遷移した場合に在庫数と最大ページ数を取得し直すように修正
  * @version 1.3
  * ページ数の入力値チェック（９桁）を追記
- * @author hiroki tajima
+ * @version 1.4
+ * ページ数の入力桁数を3桁に変更、在庫数上限桁数を10桁に変更
+ * @author yohei nishida
  */
 @WebServlet("/inventoryList")
 public class InventoryListController extends HttpServlet {
