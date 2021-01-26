@@ -84,7 +84,6 @@ public class BookDataAccess {
 
 			//クエリの生成・実行を行う。
 			query = "SELECT `id`,`title`, `publisher` ,`author`,`salesDate`,`isbn`,`price`,`stock`, `deleteflg` FROM books";
-			//比較用createviewmin
 			//検索条件＋deleatflg = 0
 			query = query + " WHERE " + sqlWhere(sc) + " " + deleteflgColumn + " = 0 " + sqlOrderBy(sc) + sqlLimit(sc) + ";";
 
@@ -127,9 +126,11 @@ public class BookDataAccess {
 			con = null;
 
 			long endTime = System.currentTimeMillis();
+			// DB処理速度算出用
 			System.out.println("処理時間(途中)：" + (intervalTime - startTime) + " ms");
 			System.out.println("処理時間(途中以降)：" + (endTime - intervalTime) + " ms");
 			System.out.println("BookDAO:処理時間：" + (endTime - startTime) + " ms" + System.getProperty("line.separator")); //forCalc
+			// DB処理速度算出用 此処まで
 
 			return bookList;
 

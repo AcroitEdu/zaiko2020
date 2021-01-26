@@ -3,7 +3,9 @@ package jp.co.acroit.zaiko2020.data;
 /**
  * 検索条件クラス
  * @version 1.0
- * @author hiroki tajima
+ * @version 1.1
+ * 履歴条件追加
+ * @author yohei nishida
  */
 public class SearchCondition {
 	private String name;
@@ -17,6 +19,10 @@ public class SearchCondition {
 	private int page;
 	private int sort;	//ソートする項目(0: 発売日, 1: ISBN, 2: 在庫数)
 	private int lift;	//ソート順序(1: 昇順, -1: 降順)
+	private String operationDate ;
+	private String operationDateFlag;
+	private String userId;
+	private int operation;
 
 	//各種ゲッターとセッター
 	public String getName() {
@@ -105,6 +111,38 @@ public class SearchCondition {
 
 	public void setLift(int lift) {
 		this.lift = lift;
+	}
+
+	public String getOperationDate() {
+		return operationDate;
+	}
+
+	public void setOperationDate(String operationDate) {
+		this.operationDate = operationDate;
+	}
+
+	public String getOperationDateFlag() {
+		return operationDateFlag;
+	}
+
+	public void setOperationDateFlag(String operationDateFlag) {
+		this.operationDateFlag = operationDateFlag;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public int getOperation() {
+		return operation;
+	}
+
+	public void setOperation(int Operation) {
+		this.operation = operation;
 	}
 
 }

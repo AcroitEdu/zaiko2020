@@ -1,5 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+  pageEncoding="UTF-8"%>
+<%@ page import="jp.co.acroit.zaiko2020.history.History"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.time.format.DateTimeFormatter"%>
+<%
+int currentPage = 1;
+if (session.getAttribute("page") != null) {
+	currentPage = (int) session.getAttribute("page");
+}
+int maxPage = 1;
+if (session.getAttribute("maxPage") != null) {
+	maxPage = (int) session.getAttribute("maxPage");
+}
+int count = 1;
+if (session.getAttribute("count") != null) {
+	count = (int) session.getAttribute("count");
+}
+//表示する本の取得
+List<History> lists = (List<History>) session.getAttribute("lists");
+//日付フォーマットの作成
+DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月'dd'日'");
+DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH'時'mm'分'ss'秒'");
+%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -59,24 +81,27 @@
             <ul class="flexForm">
               <li>
                 <label for="operatingDate">日付</label>
-                <input type="date" name="operatingDate" id="operatingDate" max="9999-12-31" min="2020-06-01">
-                <select name="" id="beforeAfter">
+                <input type="date" name="operatingDate" id="operatingDate" 
+                value="${conditions.operatingDate}" max="9999-12-31" min="2020-06-01">
+                <select name="beforeAfter" id="beforeAfter" data-value="${conditions.salesDateFlag}">
                   <option value="lower">以前</option>
                   <option value="equals" selected>一致</option>
                   <option value="higher">以降</option>
                 </select>
               </li>
               <li>
-                <span id="dateValidationMessage">2020年6月1日以降を入力下さい</span>
+                <span id="dateValidationMessage"></span>
               </li>
               <li>
                 <label for="operator">実行者</label>
                 <input type="text" name="operator" id="operator" 
+                  value="${conditions.stock}" 
                   oncopy="return false" onpaste="return false">
               </li>
               <li>
                 <label for="operations">操作</label>
-                <select name="operation" id="operations">
+                <select name="operation" id="operations" 
+                  data-value="${conditions.stockFlag}">
                   <!-- 順番 テーブル定義書に準拠 -->
                   <option value="1">入　荷</option>
                   <option value="2">出　荷</option>
@@ -91,11 +116,11 @@
           </form>
         </div>
         <div class="searchButtons">
-          <input type="submit" value="絞り込み検索" form="">
-          <input type="reset" value="" form="">
+          <input type="submit" value="絞り込み検索" form="conditions">
+          <input type="reset" value="" form="conditions">
         </div>
         <div>
-          <span>sample-Message</span>
+          <span id="errorMessage">${sessionScope.error}</span>
         </div>
       </article>
       <!-- 検索条件pc 此処まで -->
@@ -108,21 +133,29 @@
           <table>
             <thead>
               <tr>
-                <th>日　付</th>
-                <th>時　刻</th>
-                <th>実行者</th>
-                <th>書籍名</th>
-                <th>操　作</th>
+                <th class="headerDate">日　付</th>
+                <th class="headerTime">時　刻</th>
+                <th class="headerOperator">実行者</th>
+                <th class="headerBookName">書籍名</th>
+                <th class="headerOperation">操　作</th>
               </tr>
             </thead>
             <tbody>
+              <%
+                if (lists != null) {
+                  for (History list : lists) {
+              %>
               <tr>
-                <td>2222年<br>2月22日</td>
-                <td>22時22分22秒</td>
-                <td>sarihemp00</td>
-                <td>2222年版 必携 経済読本</td>
-                <td>削除</td>
+                <td class="data dataDate"><%=list.getDate().format(dateFormat)%></td>
+                <td class="data dataTime"><%=list.getTime().format(timeFormat)%</td>
+                <td class="data dataOperator"><%=list.getOperator()%></td>
+                <td class="data dataBookName"><%=list.getBookName()%></td>
+                <td class="data dataOperation"><%=list.getOperation()%></td>
               </tr>
+              <%
+                  }
+                } 
+              %>
             </tbody>
           </table>
         </div>

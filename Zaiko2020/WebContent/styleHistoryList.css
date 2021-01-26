@@ -109,6 +109,183 @@ header .boxed-tabs {
   display: flex;
   
 }
+
+/* ページ遷移 */
+.pagesBox {
+	display: flex;
+	flex-wrap: nowrap;
+	width: 80%;
+	padding: 0;
+	vertical-align: middle;
+	margin: auto;
+}
+
+.pagesBox > .pagesCounterWeight {
+	flex-grow: 1;
+	flex-shrink: 1;
+	/* max-width: 20%; */
+	text-align: end;
+}
+
+.pagesBox > .pagesItemCount {
+  flex-grow: 1;
+	flex-shrink: 1;
+	/* max-width: 20%; */
+	text-align: end;
+}
+
+.flexPageJump {
+	flex-grow: 16;
+	flex-shrink: 16;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.pagesBox > .pagesSpace {
+	flex-grow: 1;
+	flex-shrink: 1;
+	/* flex-grow: 10; */
+}
+
+.pagesBox > .pagesPrevNext {
+	/* width: 4em; */
+	flex-grow: 1;
+	flex-shrink: 1;
+}
+
+.pagesBox > .pagesJump {
+	/* width: 20%; */
+	padding: 0 2em;
+	flex-grow: 8;
+	flex-shrink: 8;
+}
+
+.pagesJump > form {
+	display: flex;
+	flex-wrap: nowrap;
+	max-width: 50%;
+	margin: 0 auto;
+}
+
+.pagesBox > li {
+	text-align: center;
+	margin: auto;
+}
+
+.pagesJump > form > span {
+	display: inline-flex;
+	flex-grow: 5;
+	flex-shrink: 5;
+	margin: 5px;
+	align-items: center;
+}
+
+.pagesJump > form > span > input.inutPageNumber {
+	width: 50%;
+	margin: 5px;
+	flex-grow: 6;
+	text-align: end;
+}
+
+.pagesJump > form > span > span.pageDelimiter {
+	margin: 5px;
+	flex-grow: 0;
+	text-align: center
+}
+
+.pagesJump > form > span > span.maxPage {
+	flex-grow: 4;
+	flex-shrink: 0;
+	margin: 5px;
+	text-align: end;
+}
+
+.pagesJump > form > input.button {
+	width: fit-content;
+	background-color: white;
+	font-size: 0.95em;
+	flex-grow: 1;
+	flex-shrink: 0;
+	margin: 5px;
+	max-width: 70px;
+}
+
+.link {
+	text-decoration: underline;
+	color: #0000ee;
+	cursor: pointer;
+}
+
+.pagesBox .disabled {
+	text-decoration: none;
+	text-emphasis: none;
+	cursor: default;
+}
+
+.pagesJump > form > input#page {
+  flex-grow: 4;
+}
+/* ページ移動ここまで */
+
+/* 履歴一覧*/
+#error {
+	color: #ff0000;
+	text-align: center;
+	margin: 10px auto;
+}
+
+#list {
+	/* */
+	margin: 0;
+	padding: 0 10px;
+	width: 100%;
+}
+
+#listTable {
+	margin: auto;
+	border: 1px solid #d0d0d0;
+	max-height: 95%;
+	overflow: auto;
+	width: 100%;
+	background-color: #ffffff;
+	table-layout: fixed;
+}
+
+#listTable th {
+	background-color: #fff2ccff;
+	text-align: center;
+	border: 1px solid #00000040;
+}
+
+#listTable td {
+	border: 1px solid #00000040;
+}
+
+#listTable th.headerFixed {
+	flex-grow: 0;
+}
+
+
+#headerOperatingDate, #headerOperatingTime {
+	width: 17%;
+}
+
+#headerBookName{
+	width: 18%;
+}
+
+#headerOperation, #headerUser {
+	width: 10%;
+}
+
+
+
+.data {
+	padding: 0 5px;
+}
+/* 履歴一覧ここまで */
 /* main(検索と一覧) 此処まで */
 
 /* footer */

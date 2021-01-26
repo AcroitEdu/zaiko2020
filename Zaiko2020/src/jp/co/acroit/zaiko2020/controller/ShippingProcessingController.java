@@ -12,13 +12,17 @@ import javax.servlet.http.HttpSession;
 
 import jp.co.acroit.zaiko2020.book.Book;
 import jp.co.acroit.zaiko2020.data.BookDataAccess;
+import jp.co.acroit.zaiko2020.data.HistoryDataAccess;
+import jp.co.acroit.zaiko2020.user.User;
 
 /**
  * 出荷処理サーブレット
  * @version 1.3
  *  @version 1.4
  *  idの上書きを""からnullに変更
- * @author hiroe ishioka
+ * @version 1.5
+ * 履歴作成処理を追加
+ * @author yohei nishida
  */
 @WebServlet("/ship")
 public class ShippingProcessingController extends HttpServlet {
@@ -54,6 +58,9 @@ public class ShippingProcessingController extends HttpServlet {
 		int id = 0;
 		int count = 0;
 
+		//入荷の操作ID
+		int operationId = 2;
+
 		//書籍の検索用
 		BookDataAccess bda = new BookDataAccess();
 
@@ -73,6 +80,13 @@ public class ShippingProcessingController extends HttpServlet {
 
 			//DBを操作し読み込む
 			foundBook = bda.update(id, -count);
+
+			//入荷履歴の作成
+			HistoryDataAccess hda = new HistoryDataAccess();
+			User user = (User)session.getAttribute("user");
+			long userId = user.getNumber();
+			int bookId = id;
+			hda.InsertHistory(userId, bookId, operationId);
 
 			//検索結果をセッションに設定
 			session.setAttribute("book", foundBook);

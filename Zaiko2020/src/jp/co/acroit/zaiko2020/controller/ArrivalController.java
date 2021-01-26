@@ -38,6 +38,7 @@ public class ArrivalController extends HttpServlet {
 		//特定書籍の検索条件設定用
 		int id = 0;
 
+
 		//書籍の検索用
 		BookDataAccess bda = new BookDataAccess();
 
@@ -72,6 +73,7 @@ public class ArrivalController extends HttpServlet {
 			//特定書籍の検索し、結果をセッションに設定
 			foundBook = bda.findId(id);
 			session.setAttribute("book", foundBook);
+
 
 			//入荷画面へフォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ArrivalForm.jsp");
