@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+form {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+}
+li {
+  width: 100%;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+label {
+  width: 100%;
+}
+
+.front {
+  width: 70%;
+  display: flex;
+  flex-flow: row wrap
+}
+.back {
+  width: 30%;
+  padding-left: 5px;
+  display: flex;
+  flex-flow: row wrap
+}
+#sss {
+  /* visibility: hidden; */
+}
+input {
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+select {
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+
