@@ -32,6 +32,7 @@
 				</span>
 				<input type="submit" class="button" value="移動">
 			</form>
+
 		</li>
 		<!-- 移動ページ指定ここまで -->
 

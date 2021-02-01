@@ -1,6 +1,7 @@
 package jp.co.acroit.zaiko2020.history;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * 履歴クラス
@@ -13,14 +14,15 @@ import java.time.LocalDate;
 public class History {
 	private int id;
 	private LocalDate date;
-	private LocalDate time;
+//	private LocalDate time;
+	private LocalTime time;
 	private String userId;
 	private String bookId;
 	private String operationId;
 
 	//履歴クラスの初期化(一覧表示用)
 
-	public History (int id, LocalDate date, LocalDate time,
+	public History (int id, LocalDate date, LocalTime time,
 			String userId, String bookId, String operationId) {
 		this.id = id;
 		this.date = date;
@@ -47,11 +49,11 @@ public class History {
 		this.date = date;
 	}
 
-	public LocalDate getTime() {
+	public LocalTime getTime() {
 		return time;
 	}
 
-	public void setTime(LocalDate time) {
+	public void setTime(LocalTime time) {
 		this.time = time;
 	}
 

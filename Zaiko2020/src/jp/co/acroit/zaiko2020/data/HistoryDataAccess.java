@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -141,18 +142,19 @@ public class HistoryDataAccess {
 					+ "books.title AS book_id, operations.name AS operation_id FROM `histories` "
 					+ "INNER JOIN user ON histories.user_id = user.id "
 					+ "INNER JOIN books ON histories.book_id = books.id "
-					+ "INNER JOIN operations ON histories.operation_id = operations.id"
+					+ "INNER JOIN operations ON histories.operation_id = operations.id";
 
-			//query = query + " WHERE " + sqlWhere(sc) + " ;";
+			query = query + " WHERE " + sqlWhere(sc) + " ;";
 
 			PreparedStatement ps = con.prepareStatement(query);
-			System.out.println(query);
+			System.out.println("履歴SQL： "+ query);
 			long intervalTime = System.currentTimeMillis(); //forCalc
 			ResultSet rs = ps.executeQuery();
 
 			int dbId = 0;
 			LocalDate dbOperationDate;
-			LocalDate dbOperationTime;
+//			LocalDate dbOperationTime;
+			LocalTime dbOperationTime;
 			String dbUserId = null;
 			String dbBookId = null;
 			String dbOperationId = null;
@@ -164,10 +166,12 @@ public class HistoryDataAccess {
 
 				dbId = rs.getInt(idColumn);
 				dbOperationDate = rs.getDate(dateColumn).toLocalDate();
-				dbOperationTime = rs.getDate(timeColumn).toLocalDate();
+//				dbOperationTime = rs.getDate(timeColumn).toLocalDate();
+				dbOperationTime = rs.getTime(timeColumn).toLocalTime();
+				System.out.println(dbOperationTime);
 				dbUserId = rs.getString(userIdColumn);
 				dbBookId = rs.getString(bookIdColumn);
-				dbOperationId = rs.getString(bookIdColumn);
+				dbOperationId = rs.getString(operationIdColumn);
 				History aHistory = new History(dbId, dbOperationDate, dbOperationTime,
 						dbUserId, dbBookId, dbOperationId);
 				historyList.add(aHistory);
@@ -216,9 +220,10 @@ public class HistoryDataAccess {
 		try {
 
 			con = DriverManager.getConnection(url, username, password);
-			//総件数取得クエリ・検索条件＋削除flgが0の書籍
-			query = "SELECT COUNT(*) AS libraryHoldings FROM histories";
-			query = query + " WHERE " + sqlWhere(sc) + " ;";
+			//総件数取得クエリ
+			query = "SELECT COUNT(*) AS libraryHoldings FROM histories;";
+			System.out.println("総件数SQL：" + query);
+//			query = query + " WHERE " + sqlWhere(sc) + " ;";
 
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
@@ -286,7 +291,7 @@ public class HistoryDataAccess {
 				break;
 
 		}
-		query = dateColumn + AddSql + operationDate;
+		query = dateColumn + AddSql + "'" +  operationDate + "'";
 
 		//操作絞り込み(必須)
 		if (operation == 99) {
@@ -295,11 +300,11 @@ public class HistoryDataAccess {
 			AddSql = " = ";
 		}
 
-		query = query + AddSql + operation;
+		query = query + " AND " + operationIdColumn + AddSql + operation;
 
 		//実行者(完全一致のみ)
-		if(!(userId.isEmpty())) {
-			AddSql = "user_id = " + userId;
+		if(userId != null) {
+			AddSql = " AND user.name = " + "'" + userId + "'";
 			query = query + AddSql;
 		}
 

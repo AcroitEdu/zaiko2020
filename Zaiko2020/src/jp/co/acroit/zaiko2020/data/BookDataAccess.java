@@ -585,7 +585,7 @@ public class BookDataAccess {
 
 	/* DB在庫数更新処理を行うメソッド */
 	//入荷・出荷による在庫数の更新
-	public Book update(int id, int input) throws SQLException {
+	public Book update(int id, long input) throws SQLException {
 
 		Connection con = null;
 
@@ -601,13 +601,13 @@ public class BookDataAccess {
 			ResultSet rs1 = ps1.executeQuery();
 			rs1.next();
 
-			int stock = rs1.getInt(stockColumn);
+			long stock = rs1.getLong(stockColumn);
 
 			//DBを更新する値の計算を行う。(出荷の場合はinputにマイナスの値が入る)
-			int updateStock = stock + input;
+			long updateStock = stock + input;
 
 			//入荷・出荷が可能なのか、判定を行う。
-			if(updateStock < 0  || 999999 < updateStock) {
+			if(updateStock < 0  || 999999999 < updateStock) {
 
 				con.rollback();
 				throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");

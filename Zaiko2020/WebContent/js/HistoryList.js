@@ -9,20 +9,20 @@
 
 //1582年問題 取得->切出->比較->処理 format yyyy-mm-dd
 $(function(){
-  $('input[name="OperatingDate"]').on('input', function(){
+  $('input[name="operatingDate"]').on('input', function(){
 	var saleDate = $(this).val();
 	var limitYear = 2020;
 	var limitMonth = 6;
 	var limitDay = 1;
 	var outputMessage = "2020年6月1日以降を入力して下さい。"
-	//var sliceYear = saleDate.slice(0,3);
+	var messagePlace = $('#dateValidationMessage');
 	var sliceDate = saleDate.split('-');
 	if(sliceDate[0] < limitYear){
-		$('#errorMessage').text(outputMessage);
+		$('#dateValidationMessage').text(outputMessage);
 	}else if(sliceDate[0] == limitYear && sliceDate[1] < limitMonth){
-		$('#errorMessage').text(outputMessage);
+		$('#dateValidationMessage').text(outputMessage);
 	}else if(sliceDate[0] == limitYear && sliceDate[1] == limitMonth && sliceDate[2] <= limitDay){
-		$('#errorMessage').text(outputMessage);
+		$('#dateValidationMessage').text(outputMessage);
 	}else{
 		messagePlace.text("");
 	}

@@ -62,7 +62,9 @@ DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH'時'mm'分'ss'秒
               <span>復元</span>
             </form>
           </li>
-          <li class="tab-current tab">履歴</li>
+          <li class="tab-current tab">
+            
+          </li>
           <li id="logoutButton" class="tab-logout tab">
             <form id="logoutForm" action="/Zaiko2020/logout" method="post">
               <span>ログアウト</span>
@@ -77,31 +79,32 @@ DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH'時'mm'分'ss'秒
       <!-- 検索条件pc -->
       <article id="search">
         <div class="searchConditions">
-          <form action="#" method="post" id="conditions">
+          <form action="/Zaiko2020/HistoryList" method="post" id="conditions">
             <ul class="flexForm">
-              <li>
+              <li class="conditionDate">
                 <label for="operatingDate">日付</label>
-                <input type="date" name="operatingDate" id="operatingDate" 
-                value="${conditions.operatingDate}" max="9999-12-31" min="2020-06-01">
-                <select name="beforeAfter" id="beforeAfter" data-value="${conditions.salesDateFlag}">
+                <input type="date" name="operatingDate" id="operatingDate"
+                value="${conditions.operationDate}" max="9999-12-31" min="2020-06-01">
+                <select name="beforeAfter" id="beforeAfter" data-value="${conditions.operationDateFlag}">
                   <option value="lower">以前</option>
-                  <option value="equals" selected>一致</option>
+                  <option value="equals">一致</option>
                   <option value="higher">以降</option>
                 </select>
               </li>
-              <li>
-                <span id="dateValidationMessage"></span>
+              <li class="error">
+                <span id="dateValidationMessage"value="">　</span>
               </li>
-              <li>
+              <li class="conditionOperator">
                 <label for="operator">実行者</label>
-                <input type="text" name="operator" id="operator" 
-                  value="${conditions.stock}" 
+                <input type="text" name="operator" id="operator"
+                  value="${conditions.userId}"
                   oncopy="return false" onpaste="return false">
+                <div class="operatorSpace"></div>
               </li>
-              <li>
+              <li class="conditionOperation">
                 <label for="operations">操作</label>
-                <select name="operation" id="operations" 
-                  data-value="${conditions.stockFlag}">
+                <select name="operation" id="operations"
+                  data-value="${conditions.operation}">
                   <!-- 順番 テーブル定義書に準拠 -->
                   <option value="1">入　荷</option>
                   <option value="2">出　荷</option>
@@ -109,17 +112,19 @@ DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH'時'mm'分'ss'秒
                   <option value="4">編　集</option>
                   <option value="5">追　加</option>
                   <option value="6">復　元</option>
-                  <option value="99" selected>全操作</option>
+                  <option value="99">全操作</option>
                 </select>
+                <div class="operationSpace"></div>
+                <input type="hidden" value="2" name="form">
               </li>
             </ul>
           </form>
         </div>
-        <div class="searchButtons">
-          <input type="submit" value="絞り込み検索" form="conditions">
-          <input type="reset" value="" form="conditions">
+        <div class="buttons">
+          <input type="submit" value="絞 込 検 索" form="conditions" class="searchButton">
+          <input type="reset" value=" ク リ ア " form="conditions" class="clearButton">
         </div>
-        <div>
+        <div class="error">
           <span id="errorMessage">${sessionScope.error}</span>
         </div>
       </article>
@@ -127,7 +132,7 @@ DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH'時'mm'分'ss'秒
       <!-- 履歴一覧pc -->
       <article id="pcList">
         <div class="pages">
-          <%@ include file="part/PageMover.jsp"%>
+          <%@ include file="part/PageMoverHistory.jsp"%>
         </div>
         <div class="historyList">
           <table>
@@ -141,26 +146,37 @@ DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH'時'mm'分'ss'秒
               </tr>
             </thead>
             <tbody>
+              <!-- ↓デモ表示用コード -->
+              <tr>
+                <td>yyyy/MM/dd</td>
+                <td>HH:mm:ss</td>
+                <td>root</td>
+                <td>Der Freischutz</td>
+                <td>削除</td>
+              </tr>
               <%
                 if (lists != null) {
                   for (History list : lists) {
               %>
               <tr>
                 <td class="data dataDate"><%=list.getDate().format(dateFormat)%></td>
-                <td class="data dataTime"><%=list.getTime().format(timeFormat)%</td>
+                <td class="data dataTime"><%=list.getTime().format(timeFormat)%></td>
                 <td class="data dataOperator"><%=list.getUserId()%></td>
                 <td class="data dataBookName"><%=list.getBookId()%></td>
                 <td class="data dataOperation"><%=list.getOperationId()%></td>
               </tr>
               <%
                   }
-                } 
+                }
               %>
             </tbody>
           </table>
         </div>
         <div class="pages">
 
+        </div>
+        <div class="pages">
+          <%@ include file="part/PageMoverHistory.jsp"%>
         </div>
       </article>
       <!-- 履歴一覧pc 此処まで -->
@@ -173,7 +189,8 @@ DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH'時'mm'分'ss'秒
     <!-- 検索 + 履歴一覧 此処まで -->
     <!-- footer(予備) -->
     <footer>
-      <span>&copy; 2020 Acroit 技術研修 秋季卒</span>
+      <!-- ↓一覧高さテスト用 -->
+      <!-- <span>&copy; 2020 Acroit 技術研修</span> -->
     </footer>
     <!-- footer(予備) 此処まで -->
   </body>

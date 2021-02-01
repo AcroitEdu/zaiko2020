@@ -141,7 +141,7 @@ public class SearchCondition {
 		return operation;
 	}
 
-	public void setOperation(int Operation) {
+	public void setOperation(int operation) {
 		this.operation = operation;
 	}
 

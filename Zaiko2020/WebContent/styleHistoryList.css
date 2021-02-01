@@ -28,7 +28,7 @@ input, select, #initialize {
 }
 
 /* 文字サイズ可変処理 (1080px~1920px)  式詳細はstyle.cssを参照 */
-p, input, span {
+p, input, span, th, td, li ,span, option{
 	/* 16px ~ 20px 可変*/
 	font-size: calc(16px + (( 1vw - 10.8px)* (4/8.4)));
 }
@@ -50,6 +50,7 @@ input {
 /* header */
 header {
 	width: 100%;
+	margin-bottom: 30px;
 }
 
 header .boxed-tabs {
@@ -90,6 +91,10 @@ header .boxed-tabs {
 	background-color: #f0a0a0;
 	border-right: 0 !important;
 }
+
+.tab > form {
+	text-align: center;
+}
 /* header 此処まで */
 
 /* main(検索と一覧) */
@@ -97,6 +102,8 @@ header .boxed-tabs {
   width: 100%;
   padding: 0 10px;
 }
+
+/* 検索用 */
 #search {
   width: 80%;
   margin: 0 auto;
@@ -105,11 +112,112 @@ header .boxed-tabs {
   width: 100%;
 }
 
-#flexForm {
+.flexForm {
   display: flex;
-  
+	flex-direction: column;
+	align-items: flex-start;
 }
 
+.flexForm li {
+	width: 100%;
+	padding: 5px 0;
+}
+
+.conditionDate ,.conditionOperator ,.conditionOperation{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.conditionDate label {
+	width: 20%;
+	/* flex-grow: 3;
+	flex-shrink: 3; */
+}
+
+.conditionDate input {
+	width: 60%;
+	/* flex-grow: 12;
+	flex-shrink: 12; */
+}
+
+.conditionDate select {
+	width: 20%;
+	/* flex-grow: 5;
+	flex-shrink: 5; */
+}
+
+#dateValidationMessage{
+	text-align: center;
+	color: #ff0000;
+}
+
+.conditionOperator label{
+	width: 20%;
+	/* flex-grow: 3;
+	flex-shrink: 3; */
+}
+
+.conditionOperator input{
+	width: 60%;
+	/* flex-grow: 12; */
+	/* flex-shrink: 12; */
+}
+
+.conditionOperator > .operatorSpace{
+	width: 20%;
+	/* flex-grow: 5; */
+	/* flex-shrink: 5; */
+}
+
+.conditionOperation label{
+	width: 20%;
+	/* flex-grow: 1;
+	flex-shrink: 1; */
+}
+
+.conditionOperation select{
+	width: 60%;
+	/* flex-grow: 1;
+	flex-shrink: 1; */
+}
+
+.conditionOperation > .operationSpace{
+	width: 20%;
+	/* flex-grow: 3;
+	flex-shrink: 3; */
+}
+
+.buttons {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.searchButton, .clearButton{
+	background-color: #ffffff;
+	padding: 0.25rem 0.75rem;
+}
+
+.searchButton {
+	background-color: #4682b4;
+	color: #fffff0;
+}
+
+#initializeButton{
+	visibility: hidden;
+}
+
+#errorMessage{
+	text-align: center;
+	color: #ff0000;
+}
+
+.clearButton {
+	margin-left: 10px;
+}
+
+/* 検索用 此処まで */
 /* ページ遷移 */
 .pagesBox {
 	display: flex;
@@ -227,23 +335,26 @@ header .boxed-tabs {
 .pagesJump > form > input#page {
   flex-grow: 4;
 }
+
+#pagesJumpInventory {
+	display: none;
+}
 /* ページ移動ここまで */
 
 /* 履歴一覧*/
-#error {
+.error {
 	color: #ff0000;
 	text-align: center;
 	margin: 10px auto;
 }
 
-#list {
-	/* */
-	margin: 0;
+.historyList{
 	padding: 0 10px;
-	width: 100%;
+	margin: 0 auto;
+	width: 90%;
 }
 
-#listTable {
+.historyList table {
 	margin: auto;
 	border: 1px solid #d0d0d0;
 	max-height: 95%;
@@ -253,13 +364,13 @@ header .boxed-tabs {
 	table-layout: fixed;
 }
 
-#listTable th {
+table th {
 	background-color: #fff2ccff;
 	text-align: center;
 	border: 1px solid #00000040;
 }
 
-#listTable td {
+table td {
 	border: 1px solid #00000040;
 }
 
@@ -267,35 +378,48 @@ header .boxed-tabs {
 	flex-grow: 0;
 }
 
-
-#headerOperatingDate, #headerOperatingTime {
-	width: 17%;
+.headerDate, .headerTime {
+	width: 17.5%;
 }
 
-#headerBookName{
-	width: 18%;
+.headerBookName{
+	width: 36%;
 }
 
-#headerOperation, #headerUser {
-	width: 10%;
+.headerOperation, .headerOperator {
+	width: 14.5%;
 }
 
 
 
 .data {
 	padding: 0 5px;
+	text-align: center;
 }
 /* 履歴一覧ここまで */
+#spList{
+	display: none;
+}
 /* main(検索と一覧) 此処まで */
 
 /* footer */
+footer{
+	background-color: #000000;
+	width: 100%;
+	text-align: center;
+}
+
+footer span{
+	margin: 0 auto;
+	color: #ffffff;
+}
 /* footer 此処まで */
 
 
 /* メディアクエリ(1080px~851px) */
 @media screen and (max-width : 1080px) {
   /* 文字サイズ */
-  p, input, span, select, button {
+  p, input, span, select, button, th, td, li, option{
     font-size: 16px;
   }
   label {

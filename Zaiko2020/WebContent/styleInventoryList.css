@@ -239,6 +239,10 @@ header .boxed-tabs {
 /* ここまで */
 
 /* ページ遷移 */
+#pageJumpHistory {
+	display: none;
+}
+
 .pagesBox {
 	display: flex;
 	flex-wrap: nowrap;

@@ -59,7 +59,7 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 				</li>
 				<li id="historyListButton" class="tab">
 					<form id="historyListForm" action="/Zaiko2020/HistoryList" method="post">
-						<input type="hidden" name="form" value="履歴">
+						<input type="hidden" name="form" value="1">
 						<span>履歴</span>
 					</form>
 				</li>
