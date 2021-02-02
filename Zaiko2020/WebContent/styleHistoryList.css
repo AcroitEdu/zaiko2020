@@ -118,7 +118,8 @@ header .boxed-tabs {
 	padding: 20px 0;
 }
 
-/* .flexForm {
+/* pc */
+.flexForm {
   display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -126,99 +127,31 @@ header .boxed-tabs {
 
 .flexForm li {
 	width: 100%;
-	padding: 5px 0;
-}
-
-.conditionDate ,.conditionOperator ,.conditionOperation{
 	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-}
-
-.conditionDate label {
-	width: 20%;
-}
-
-.conditionDate input {
-	width: 60%;
-}
-
-.conditionDate select {
-	width: 20%;
-}
-
-#dateValidationMessage{
-	text-align: center;
-	color: #ff0000;
-}
-
-.conditionOperator label{
-	width: 20%;
-}
-
-.conditionOperator input{
-	width: 60%;
-}
-
-.conditionOperator > .operatorSpace{
-	width: 20%;
-}
-
-.conditionOperation label{
-	width: 20%;
-}
-
-.conditionOperation select{
-	width: 60%;
-}
-
-.conditionOperation > .operationSpace{
-	width: 20%;
-} */
-
-.flexForms {
-	display: flex;
-	flex-direction: column;
-}
-
-.flexForms > li {
-	width: 100%;
-	display: flex;
-
-}
-
-.flexForms label {
-	width: 100%;
-	text-align: start;
-}
-
-.flexForms input {
-	width: 90%;
-}
-
-.flexForms select {
-	width: 100%;
-	max-width: 250px;
-}
-
-.front {
-	height: auto;
-	display: flex;
-	flex-flow: row wrap;
-	width: 70%;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
 	align-items: stretch;
+	margin-bottom: 10px;
 }
 
-.back {
-	height: auto;
-	display: flex;
-	flex-flow: row wrap;
-	width: 30%;
-	padding-left: 5px;
-	align-items: stretch;
+.flexForm label {
+	width: 10%;
+	max-width: 150px;
+	min-width: 120px;
+	padding-right: 20px;
+	text-align: end;
 }
 
+.flexForm input {
+	width: 60%;
+	max-width: 60%;
+	margin-right: 15px;
+}
 
+.flexForm select {
+	width: 20%;
+	max-width: 175px;
+}
 
 .buttons {
 	width: 100%;

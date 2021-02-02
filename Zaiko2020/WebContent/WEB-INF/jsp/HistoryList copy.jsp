@@ -73,9 +73,9 @@ DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH'時'mm'分'ss'秒
       <article id="search">
         <div class="searchConditions">
           <form action="/Zaiko2020/HistoryList" method="post" id="conditions">
-            <ul class="flexForm pc">
+            <!-- <ul class="flexForm">
               <li class="conditionDate">
-                <label for="operatingDate">日　付</label>
+                <label for="operatingDate">日付</label>
                 <input type="date" name="operatingDate" id="operatingDate"
                 value="${conditions.operationDate}" max="9999-12-31" min="2020-06-01">
                 <select name="beforeAfter" id="beforeAfter" data-value="${conditions.operationDateFlag}">
@@ -95,7 +95,7 @@ DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH'時'mm'分'ss'秒
                 <div class="operatorSpace"></div>
               </li>
               <li class="conditionOperation">
-                <label for="operations">操　作</label>
+                <label for="operations">操作</label>
                 <select name="operation" id="operations"
                   data-value="${conditions.operation}">
                   順番(全操作除く)テーブル定義書に準拠
@@ -110,6 +110,49 @@ DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH'時'mm'分'ss'秒
                 <div class="operationSpace"></div>
                 <input type="hidden" value="2" name="form">
               </li>
+            </ul> -->
+            <ul class="flexForms">
+              <li class="conditionsDate">
+                <div class="front">
+                  <label for="operatingDate">日付</label>
+                  <input type="date" name="operatingDate" id="operatingDate"
+                    value="${conditions.operationDate}" max="9999-12-31" min="2020-06-01">
+                </div>
+                <div class="back">
+                  <label for="beforeAfter">日付絞込</label>
+                  <select name="beforeAfter" id="beforeAfter" data-value="${conditions.operationDateFlag}">
+                    <option value="lower">以前</option>
+                    <option value="equals">一致</option>
+                    <option value="higher">以降</option>
+                  </select>
+                </div>
+              </li>
+              <li class="error">
+                <span id="dateValidationMessage"value="">　</span>
+              </li>
+              <li class="conditionOperatorOperation">
+                <div class="front">
+                  <label for="operator">実行者</label>
+                  <input type="text" name="operator" id="operator"
+                    value="${conditions.userId}"
+                    oncopy="return false" onpaste="return false">
+                </div>
+                <div class="back">
+                  <label for="operations">操作</label>
+                  <select name="operation" id="operations"
+                    data-value="${conditions.operation}">
+                    <!-- 順番(全操作除く)テーブル定義書に準拠 -->
+                    <option value="99">全操作</option>
+                    <option value="1">入　荷</option>
+                    <option value="2">出　荷</option>
+                    <option value="3">削　除</option>
+                    <option value="4">編　集</option>
+                    <option value="5">追　加</option>
+                    <option value="6">復　元</option>
+                  </select>
+                </div>
+              </li>
+              <input type="hidden" value="2" name="form">
             </ul>
           </form>
         </div>
