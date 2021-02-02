@@ -72,7 +72,7 @@ public class ShippingProcessingController extends HttpServlet {
 			id = Integer.parseInt(request.getParameter("id"));
 			count = Integer.parseInt(request.getParameter("count"));
 
-			if(count < 1 || 999999999 < count) {
+			if(count < 1 || Integer.MAX_VALUE < count) {
 
 				throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");
 

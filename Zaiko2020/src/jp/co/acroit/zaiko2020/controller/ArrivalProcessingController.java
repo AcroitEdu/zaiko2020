@@ -58,6 +58,7 @@ public class ArrivalProcessingController extends HttpServlet {
 
 		int id = 0;
 		long count = 0;
+		int limitedStock = 999999999;
 
 		//入荷の操作ID
 		int operationId = 1;
@@ -72,7 +73,7 @@ public class ArrivalProcessingController extends HttpServlet {
 			id = Integer.parseInt(request.getParameter("id"));
 			count = Integer.parseInt(request.getParameter("count"));
 
-			if(count < 1 || 999999999 < count) {
+			if(count < 1 || limitedStock < count) {
 
 				System.out.println("エラー");
 				throw new IndexOutOfBoundsException("入荷数超過または出荷数超過");

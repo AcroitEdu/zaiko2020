@@ -38,8 +38,8 @@
 				<span>
 					<label><%=request.getParameter("mode")%>数
 				</label>
-				<input type="tel" id="count" name="count" required pattern="^[0-9]+$" 
-					maxlength="10"  oncopy="return false" onpaste="return false">
+				<input type="tel" id="count" name="count" required pattern="^[0-9]+$"
+					maxlength="9"  oncopy="return false" onpaste="return false">
 				<input type="hidden" id="formId" name="id" value="${book.id }">
 				<span class="unit">冊</span>
 				</span>

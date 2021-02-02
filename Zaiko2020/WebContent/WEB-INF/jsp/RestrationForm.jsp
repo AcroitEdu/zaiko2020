@@ -79,6 +79,11 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 				</form>
 			</li>
 			<li class="tab-current tab">復元</li>
+			<li id="addButton" class="tab">
+				<form id="addForm" class="button" name="button" action="/Zaiko2020/Add" method="post">
+					<input type="hidden" name="form" value="追加"> <span>履歴</span>
+				</form>
+			</li>
 			<li id="logoutButton" class="tab-logout tab">
 				<form id="logoutForm" action="/Zaiko2020/logout" method="post">
 					<span>ログアウト</span>

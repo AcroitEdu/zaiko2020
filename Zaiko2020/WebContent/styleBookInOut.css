@@ -47,6 +47,18 @@ body {
 input {
 	font-size: 16px;
 }
+
+/* 文字サイズ可変処理 (1080px~1920px)  式詳細はstyle.cssを参照 */
+p, input, select, span, th, td, li ,span, option{
+	/* 16px ~ 20px 可変*/
+	font-size: calc(16px + (( 1vw - 10.8px)* (4/8.4)));
+}
+
+label, caption {
+	/* 20px ~ 24px 可変 */
+	font-size: calc(20px + (( 1vw - 10.8px)* (4/8.4)));
+}
+/* 文字サイズ可変処理 此処まで */
 /* 共通ここまで */
 
 /* ヘッダー */
@@ -184,14 +196,14 @@ header {
 
 #inoutForm > span > span {
 	padding: 5px;
-	width: 4em;
+	width: 4rem;
 	text-align: start;
 }
 
 #count {
 	padding: 5px;
 	text-align: end;
-	width: 6em
+	width: 10rem
 }
 
 .unit {
@@ -333,6 +345,23 @@ dialog::backdrop, dialog+.backdrop {
 .active {
 	display: block !important;
 }
+
+/* メディアクエリ(1080px~851px) */
+@media screen and (max-width : 1080px) {
+  /* 文字サイズ */
+  p, input, span, select, button, th, td, li, option{
+    font-size: 16px;
+  }
+  label , caption{
+    font-size: 20px;
+  }
+  /* 文字サイズ  此処まで*/
+  #main {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+/* メディアクエリ(1080px~851px) 此処まで */
 
 /* メディアクエリ */
 @media screen and (max-width : 850px) {

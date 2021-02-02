@@ -12,8 +12,8 @@
 	<div class="flexPageJump">
 		<!-- 1ページ戻る -->
 		<li class="pagesPrevNext">
-			<form name="prevPage" action="/Zaiko2020/inventoryList" method="post">
-				<input type="hidden" name="form" value="1">
+			<form name="prevPage" action="/Zaiko2020/HistoryList" method="post">
+				<input type="hidden" name="form" value="3">
 				<input type="hidden" class="inputPage" name="page" value="${conditions.page - 1}" data-max="${maxPage}">
 				<span class="link prevButton">前へ</span>
 			</form>
@@ -23,7 +23,7 @@
 		<!-- 移動ページ指定 -->
 		<li id="pcPage" class="pagesJump">
 			<form name="jumpPage" action="/Zaiko2020/HistoryList" method="post">
-				<input type="hidden" name="form" value="1">
+				<input type="hidden" name="form" value="3">
 				<span class="pegeText">
 					<input type="tel" class="inutPageNumber" name="page" required ma4width
 					pattern="^[1-9][0-9]*$" oncopy="return false" onpaste="return false"
@@ -46,8 +46,8 @@
 
 		<!-- 1ページ進む -->
 		<li class="pagesPrevNext">
-			<form name="nextPage" action="/Zaiko2020/inventoryList" method="post">
-				<input type="hidden" name="form" value="1">
+			<form name="nextPage" action="/Zaiko2020/HistoryList" method="post">
+				<input type="hidden" name="form" value="3">
 				<input type="hidden" class="inputPage" name="page" value="${conditions.page + 1}" data-max="${maxPage}">
 			<span class="link nextButton">次へ</span>
 			</form>

@@ -41,7 +41,7 @@ public class HistoryListController extends HttpServlet {
 		System.out.println(date);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String operatingDate = sdf.format(date);
-		String operatingDateFlag = "equals";
+		String operatingDateFlag = "lower";
 		String operator = null;
 		int operation = 99;
 		int page = 1;	//１ページ
@@ -148,7 +148,7 @@ public class HistoryListController extends HttpServlet {
 		System.out.println(date);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String operatingDate = sdf.format(date);
-		String operatingDateFlag = "equals";
+		String operatingDateFlag = "lower";
 		String operator = null;
 		int operation = 99;
 		int page = 1;	//１ページ
@@ -205,7 +205,7 @@ public class HistoryListController extends HttpServlet {
 			if (pageNumberCheck == null || pageNumberCheck.isEmpty()) {
 
 				session.setAttribute("error", "ページ番号を入力してください。");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/HistoryList.jsp");
 				dispatcher.forward(request, response);
 				return;
 
@@ -223,7 +223,7 @@ public class HistoryListController extends HttpServlet {
 				page = Integer.parseInt(request.getParameter("page"));
 			}else {
 				session.setAttribute("error", "指定されている形式で入力してください。");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/HistoryList.jsp");
 				dispatcher.forward(request, response);
 				return;
 			}
@@ -233,7 +233,7 @@ public class HistoryListController extends HttpServlet {
 			if (maxPage < page) {
 
 				session.setAttribute("error", "該当するページは見つかりませんでした。");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/HistoryList.jsp");
 				dispatcher.forward(request, response);
 				return;
 

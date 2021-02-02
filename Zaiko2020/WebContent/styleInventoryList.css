@@ -82,6 +82,7 @@ header .boxed-tabs {
 	width: 20%;
 	background-color: transparent;
 	border-bottom: 1px solid black;
+	text-align: center;
 }
 
 .boxed-tabs .tab+.tab {
@@ -91,6 +92,7 @@ header .boxed-tabs {
 .boxed-tabs li.tab-current {
 	background-color: #f0f0f0;
 	border-bottom: 0 !important;
+	text-align: center;
 }
 
 .boxed-tabs li.tab-space {

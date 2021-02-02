@@ -28,7 +28,7 @@ input, select, #initialize {
 }
 
 /* 文字サイズ可変処理 (1080px~1920px)  式詳細はstyle.cssを参照 */
-p, input, span, th, td, li ,span, option{
+p, input, select, span, th, td, li ,span, option{
 	/* 16px ~ 20px 可変*/
 	font-size: calc(16px + (( 1vw - 10.8px)* (4/8.4)));
 }
@@ -39,7 +39,7 @@ label {
 }
 /* 文字サイズ可変処理 此処まで */
 
-input {
+input, select {
 	line-height: 2;
 	letter-spacing: 0.05em;
 	text-align: center;
@@ -79,6 +79,7 @@ header .boxed-tabs {
 .boxed-tabs li.tab-current {
 	background-color: #f0f0f0;
 	border-bottom: 0 !important;
+	text-align: center;
 }
 
 .boxed-tabs li.tab-space {
@@ -105,14 +106,19 @@ header .boxed-tabs {
 
 /* 検索用 */
 #search {
-  width: 80%;
+	width: 80%;
   margin: 0 auto;
 }
 #searchConditions {
   width: 100%;
 }
+#conditions {
+	max-width: 1250px;
+	margin: 0 auto;
+	padding: 20px 0;
+}
 
-.flexForm {
+/* .flexForm {
   display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -131,20 +137,14 @@ header .boxed-tabs {
 
 .conditionDate label {
 	width: 20%;
-	/* flex-grow: 3;
-	flex-shrink: 3; */
 }
 
 .conditionDate input {
 	width: 60%;
-	/* flex-grow: 12;
-	flex-shrink: 12; */
 }
 
 .conditionDate select {
 	width: 20%;
-	/* flex-grow: 5;
-	flex-shrink: 5; */
 }
 
 #dateValidationMessage{
@@ -154,39 +154,71 @@ header .boxed-tabs {
 
 .conditionOperator label{
 	width: 20%;
-	/* flex-grow: 3;
-	flex-shrink: 3; */
 }
 
 .conditionOperator input{
 	width: 60%;
-	/* flex-grow: 12; */
-	/* flex-shrink: 12; */
 }
 
 .conditionOperator > .operatorSpace{
 	width: 20%;
-	/* flex-grow: 5; */
-	/* flex-shrink: 5; */
 }
 
 .conditionOperation label{
 	width: 20%;
-	/* flex-grow: 1;
-	flex-shrink: 1; */
 }
 
 .conditionOperation select{
 	width: 60%;
-	/* flex-grow: 1;
-	flex-shrink: 1; */
 }
 
 .conditionOperation > .operationSpace{
 	width: 20%;
-	/* flex-grow: 3;
-	flex-shrink: 3; */
+} */
+
+.flexForms {
+	display: flex;
+	flex-direction: column;
 }
+
+.flexForms > li {
+	width: 100%;
+	display: flex;
+
+}
+
+.flexForms label {
+	width: 100%;
+	text-align: start;
+}
+
+.flexForms input {
+	width: 90%;
+}
+
+.flexForms select {
+	width: 100%;
+	max-width: 250px;
+}
+
+.front {
+	height: auto;
+	display: flex;
+	flex-flow: row wrap;
+	width: 70%;
+	align-items: stretch;
+}
+
+.back {
+	height: auto;
+	display: flex;
+	flex-flow: row wrap;
+	width: 30%;
+	padding-left: 5px;
+	align-items: stretch;
+}
+
+
 
 .buttons {
 	width: 100%;
@@ -291,6 +323,7 @@ header .boxed-tabs {
 }
 
 .pagesJump > form > span > input.inutPageNumber {
+	height: 100%;
 	width: 50%;
 	margin: 5px;
 	flex-grow: 6;
@@ -431,7 +464,7 @@ footer span{
     padding: 0 10px;
   }
 }
-/* メディアクエリ(850px = スマホ表示) 此処まで */
+/* メディアクエリ(1080px~851px) 此処まで */
 
 /* メディアクエリ(850px = スマホ表示) */
 @media screen and (max-width : 850px) {

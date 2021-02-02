@@ -144,7 +144,7 @@ public class HistoryDataAccess {
 					+ "INNER JOIN books ON histories.book_id = books.id "
 					+ "INNER JOIN operations ON histories.operation_id = operations.id";
 
-			query = query + " WHERE " + sqlWhere(sc) + " ;";
+			query = query + " WHERE " + sqlWhere(sc) + sqlLimit(sc) + ";";
 
 			PreparedStatement ps = con.prepareStatement(query);
 			System.out.println("履歴SQL： "+ query);
@@ -221,9 +221,9 @@ public class HistoryDataAccess {
 
 			con = DriverManager.getConnection(url, username, password);
 			//総件数取得クエリ
-			query = "SELECT COUNT(*) AS libraryHoldings FROM histories;";
+			query = "SELECT COUNT(*) AS libraryHoldings FROM histories";
+			query = query + " WHERE " + sqlWhere(sc) + " ;";
 			System.out.println("総件数SQL：" + query);
-//			query = query + " WHERE " + sqlWhere(sc) + " ;";
 
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
@@ -311,6 +311,22 @@ public class HistoryDataAccess {
 		return query;
 	}
 	/* WHERE句の生成を行うメソッド此処まで*/
+
+	/* LIMIT句の生成 */
+	public String sqlLimit(SearchCondition sc) {
+
+		//生成した文字列の一時保存
+		String query = null;
+
+		//表ページ数の取得
+		int page = sc.getPage();
+
+		//生成
+		query = " LIMIT " + String.valueOf((page - 1) * 200) + ", 200";
+		return query;
+
+	}
+	/* LIMIT句の生成ここまで */
 }
 
 
