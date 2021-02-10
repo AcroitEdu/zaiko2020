@@ -305,7 +305,7 @@ public class HistoryListController extends HttpServlet {
 					//セッションの再生成
 					request.getSession(true);
 					request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-					response.sendRedirect("/Zaiko2020/loginForm");
+					response.sendRedirect("/Zaiko2020/HistoryList.jsp");
 
 				} catch (Exception e) {
 

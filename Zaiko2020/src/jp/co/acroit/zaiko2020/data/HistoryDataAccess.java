@@ -221,7 +221,10 @@ public class HistoryDataAccess {
 
 			con = DriverManager.getConnection(url, username, password);
 			//総件数取得クエリ
-			query = "SELECT COUNT(*) AS libraryHoldings FROM histories";
+			query = "SELECT COUNT(*) AS libraryHoldings FROM histories "
+			+ "INNER JOIN user ON histories.user_id = user.id "
+			+ "INNER JOIN books ON histories.book_id = books.id "
+			+ "INNER JOIN operations ON histories.operation_id = operations.id";
 			query = query + " WHERE " + sqlWhere(sc) + " ;";
 			System.out.println("総件数SQL：" + query);
 

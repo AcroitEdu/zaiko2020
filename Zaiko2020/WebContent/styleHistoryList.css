@@ -305,6 +305,10 @@ header .boxed-tabs {
 #pagesJumpInventory {
 	display: none;
 }
+
+#sumahoPage {
+	display: none;
+}
 /* ページ移動ここまで */
 
 /* 履歴一覧*/

@@ -59,7 +59,7 @@ header .boxed-tabs {
 	padding: 5px;
 	min-width: fit-content;
 	flex-grow: 0;
-	width: 25%;
+	width: 20%;
 	background-color: transparent;
 	border-bottom: 1px solid #000000;
 }

@@ -39,6 +39,12 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 						<input type="hidden" name="form" value="復元"> <span>復元</span>
 					</form>
 				</li>
+				<li id="restorationButton" class="tab">
+					<form id="restorationForm" action="/Zaiko2020/Restoration"
+						method="post">
+						<input type="hidden" name="form" value="復元"> <span>履歴</span>
+					</form>
+				</li>
 				<li id="logoutButton" class="tab-logout tab">
 					<form id="logoutForm" action="/Zaiko2020/logout" method="post">
 						<span>ログアウト</span>
