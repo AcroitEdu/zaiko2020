@@ -66,6 +66,7 @@ public class HistoryListController extends HttpServlet {
 		List<History> historyList = new ArrayList<History>();
 
 		try {
+
 			int count = 0;
 			int pageCount = 0;
 			boolean limitedFlag = false;
@@ -114,11 +115,12 @@ public class HistoryListController extends HttpServlet {
 
 			e.printStackTrace();
 			//セッションの破棄
-			request.getSession().invalidate();
+//			request.getSession().invalidate();
+			System.out.println("NIer");
 			//セッションの再生成
-			request.getSession(true);
+//			request.getSession(true);
 			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/loginForm");
+			response.sendRedirect("/WEB-INF/jsp/HistoryList.jsp");
 
 		} catch (Exception e) {
 
@@ -301,11 +303,14 @@ public class HistoryListController extends HttpServlet {
 
 					e.printStackTrace();
 					//セッションの破棄
-					request.getSession().invalidate();
+//					request.getSession().invalidate();
+					System.out.println("NIer");
 					//セッションの再生成
-					request.getSession(true);
+//					request.getSession(true);
 					request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-					response.sendRedirect("/Zaiko2020/HistoryList.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/HistoryList.jsp");
+					dispatcher.forward(request, response);
+//					response.sendRedirect("/WEB-INF/jsp/HistoryList.jsp");
 
 				} catch (Exception e) {
 

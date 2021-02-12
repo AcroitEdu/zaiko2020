@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="js/dialog/dialog-polyfill.css" />
 <link href="styleBookInOut.css" rel="stylesheet">
 <link href="styleCheck.css" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
 	<div id="main">
