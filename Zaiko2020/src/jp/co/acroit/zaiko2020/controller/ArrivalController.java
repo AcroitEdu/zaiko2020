@@ -22,7 +22,9 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
  * 更新flgの判定処理追加
  * @version 1.3
  * 更新flgのエラーメッセージ変更
- * @author hiroki tajima
+ * @version 1.4
+ * DBエラー処理の遷移先修正
+ * @author yohei nishida
  */
 @WebServlet("/arrivalForm")
 public class ArrivalController extends HttpServlet {
@@ -80,12 +82,8 @@ public class ArrivalController extends HttpServlet {
 			dispatcher.forward(request, response);
 		} catch (SQLException e) {
 
-			//セッションの破棄
-			request.getSession().invalidate();
-			//セッションの再生成
-			request.getSession(true);
 			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/loginForm");
+			response.sendRedirect("/Zaiko2020/inventoryList");
 
 		} catch (Exception e) {
 			//エラーを返しリダイレクト

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import jp.co.acroit.zaiko2020.book.Book;
 import jp.co.acroit.zaiko2020.data.BookDataAccess;
+import jp.co.acroit.zaiko2020.data.HistoryDataAccess;
+import jp.co.acroit.zaiko2020.user.User;
 
 /**
  * 追加処理サーブレット
@@ -20,7 +22,10 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
  * 入力内容の取得
  * 書籍の追加
  * 追加した書籍の取得
- * @author hiroki tajima
+ * @version 1.1
+ * 履歴作成処理を追加
+ * DBエラー処理の遷移先修正
+ * @author yohei nishida
  */
 @WebServlet("/AddProcess")
 public class AddProcessController extends HttpServlet {
@@ -42,18 +47,25 @@ public class AddProcessController extends HttpServlet {
 			bda.add(addbook);
 			//追加書籍の取得
 			book = bda.addSearch(addbook);
+
+			//履歴作成
+			int operationId = 5; //追加の操作ID
+			HistoryDataAccess hda = new HistoryDataAccess();
+			User user = (User)session.getAttribute("user");
+			long userId = user.getNumber();
+			int bookId = book.getId();
+			hda.InsertHistory(userId, bookId, operationId);
+
+
 			//取得した書籍情報をセッションに設定
 			session.setAttribute("book", book);
 
 			response.sendRedirect("/Zaiko2020/resultForm");
 
 		} catch (SQLException e) {
-			//セッションの破棄
-			request.getSession().invalidate();
-			//セッションの再生成
-			request.getSession(true);
+
 			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/loginForm");
+			response.sendRedirect("/Zaiko2020/Add");
 
 		} catch (Exception e) {
 			//エラーを返しリダイレクト

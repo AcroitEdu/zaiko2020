@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import jp.co.acroit.zaiko2020.book.Book;
+import jp.co.acroit.zaiko2020.data.BookDataAccess;
 
 /**
  * 追加確認サーブレット
@@ -30,7 +31,11 @@ import jp.co.acroit.zaiko2020.book.Book;
  * エラーメッセージの初期化位置変更
  * @version 1.4
  * 価格の文字チェックの漏れ修正
- * @author hiroki tajima
+ * @version 1.5
+ * 価格・在庫数の上限数変更
+ * ISBN重複確認処理追加
+ * DBエラー処理の遷移先修正
+ * @author yohei nishida
  */
 @WebServlet("/AddCheck")
 public class AddCheckController extends HttpServlet {
@@ -78,8 +83,16 @@ public class AddCheckController extends HttpServlet {
 			}
 
 			//値の範囲チェック
-			if(Integer.parseInt(price) < 0 || 999999 < Integer.parseInt(price) || Integer.parseInt(stock) < 0 || 999999 < Integer.parseInt(stock) ) {
+			if(Integer.parseInt(price) < 0 || 9999999 < Integer.parseInt(price) || Integer.parseInt(stock) < 0 || 999999999 < Integer.parseInt(stock) ) {
 				session.setAttribute("error", "指定されている形式で入力してください。");
+				response.sendRedirect("/Zaiko2020/Add");
+				return;
+			}
+
+			//ISBNの重複確認
+			BookDataAccess bda = new BookDataAccess();
+			if(bda.isbnCheck(isbn)) {
+				session.setAttribute("isbnError", "指定された書籍は、既に登録されています。");
 				response.sendRedirect("/Zaiko2020/Add");
 				return;
 			}

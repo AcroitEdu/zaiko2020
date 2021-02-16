@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import jp.co.acroit.zaiko2020.book.Book;
+import jp.co.acroit.zaiko2020.data.BookDataAccess;
 
 /**
  * 編集確認サーブレット
@@ -28,7 +29,10 @@ import jp.co.acroit.zaiko2020.book.Book;
  * deleteFlg→deleteFlagに修正
  * @version 1.3
  * 価格の文字チェックの漏れ修正
- * @author hiroki tajima
+ * @version 1.4
+ * 価格・在庫数の上限数変更
+ * isbn重複判定処理追加
+ * @author yohei nishida
  */
 @WebServlet("/EditCheck")
 public class EditCheckController extends HttpServlet {
@@ -42,6 +46,7 @@ public class EditCheckController extends HttpServlet {
 		String publisher = null;
 		String author = null;
 		String isbn = null;
+		String beforeIsbn = null;
 		Date day = null;
 		LocalDate salesDate = null;
 		String price = null;
@@ -62,6 +67,7 @@ public class EditCheckController extends HttpServlet {
 			publisher = request.getParameter("publisher");
 			author = request.getParameter("author");
 			isbn = request.getParameter("isbn");
+			beforeIsbn = request.getParameter("beforeIsbn");
 			day = sdf.parse(request.getParameter("date"));
 			salesDate = day.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 			price = request.getParameter("price");
@@ -76,11 +82,23 @@ public class EditCheckController extends HttpServlet {
 			}
 
 			//値の範囲チェック
-			if(Integer.parseInt(price) < 0 || 999999 < Integer.parseInt(price) || Integer.parseInt(stock) < 0 || 999999 < Integer.parseInt(stock) ) {
+			if(Integer.parseInt(price) < 0 || 9999999 < Integer.parseInt(price) || Integer.parseInt(stock) < 0 || 999999999 < Integer.parseInt(stock) ) {
 				session.setAttribute("error", "指定されている形式で入力してください。");
 				response.sendRedirect("/Zaiko2020/Edit");
 				return;
 			}
+
+			//isbnの重複チェック
+			if(!(beforeIsbn.equals(isbn))) {
+				//isbnを変更時
+				BookDataAccess bda = new BookDataAccess();
+				if(bda.isbnCheck(isbn)) {
+					session.setAttribute("isbnError", "指定された書籍は、既に登録されています。");
+					response.sendRedirect("/Zaiko2020/Edit");
+					return;
+				}
+			}
+
 			/* 入力値チェックここまで */
 
 			Book addbook = new Book(0, null, null, null, null, null, null, null, 0);

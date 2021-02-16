@@ -107,12 +107,8 @@ public class ArrivalProcessingController extends HttpServlet {
 
 		} catch (SQLException e) {
 
-			//セッションの破棄
-			request.getSession().invalidate();
-			//セッションの再生成
-			request.getSession(true);
 			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/loginForm");
+			response.sendRedirect("/Zaiko2020/arrivalForm");
 
 		} catch (Exception e) {
 

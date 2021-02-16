@@ -77,12 +77,8 @@ public class ShippingController extends HttpServlet {
 			dispatcher.forward(request, response);
 		} catch (SQLException e) {
 
-			//セッションの破棄
-			request.getSession().invalidate();
-			//セッションの再生成
-			request.getSession(true);
 			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/loginForm");
+			response.sendRedirect("/WEB-INF/jsp/InventoryList.jsp");
 
 		} catch (Exception e) {
 

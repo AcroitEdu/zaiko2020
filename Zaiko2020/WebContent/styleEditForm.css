@@ -46,7 +46,7 @@ header {
 	justify-content: space-between;
 }
 
-header h1 {
+header span {
 	margin-left: 20px;
 }
 
@@ -71,13 +71,14 @@ header form {
 }
 
 .edit-options li label {
-	width: 120px;
+	min-width: 120px;
 	padding-right: 10px;
 	text-align: right;
 }
 
 .edit-options li textarea {
-	width: 1070px;
+	max-width: 1070px;
+	width: 100%;
 	text-align: left;
 	resize: none;
 }

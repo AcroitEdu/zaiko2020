@@ -22,6 +22,8 @@ import jp.co.acroit.zaiko2020.history.History;
 /**
  * 履歴一覧サーブレット
  * @version 1.0
+ * @version 1.1
+ * DBエラー処理の遷移先の修正
  * @author yohei nishida
  */
 @WebServlet("/HistoryList")

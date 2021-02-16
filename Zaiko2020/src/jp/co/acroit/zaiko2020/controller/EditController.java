@@ -30,7 +30,9 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
  * エラーメッセージ初期化位置変更
  *  @version 1.5
  *  削除確認画面用書籍情報をセッション(deketeBook)に設定
- * @author hiroki tajima
+ * @version 1.6
+ * DBエラー処理の遷移先修正
+ * @author yohei nishida
  */
 @WebServlet("/Edit")
 public class EditController extends HttpServlet {
@@ -89,12 +91,8 @@ public class EditController extends HttpServlet {
 
 		} catch (SQLException e) {
 
-			//セッションの破棄
-			request.getSession().invalidate();
-			//セッションの再生成
-			request.getSession(true);
 			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/loginForm");
+			response.sendRedirect("/Zaiko2020/inventoryList");
 
 		} catch (Exception e) {
 			//エラーを返しリダイレクト

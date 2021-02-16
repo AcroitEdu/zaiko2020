@@ -91,12 +91,12 @@ public class RestorationController extends HttpServlet {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-			//セッションの破棄
-			request.getSession().invalidate();
-			//セッションの再生成
-			request.getSession(true);
+//			//セッションの破棄
+//			request.getSession().invalidate();
+//			//セッションの再生成
+//			request.getSession(true);
 			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/loginForm");
+			response.sendRedirect("/WEB-INF/jsp/RestrationForm.jsp");
 
 		} catch (Exception e) {
 

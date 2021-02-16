@@ -41,9 +41,9 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 					</form>
 				</li>
 				<li id="restorationButton" class="tab">
-					<form id="restorationForm" action="/Zaiko2020/Restoration"
+					<form id="restorationForm" action="/Zaiko2020/HistoryList"
 						method="post">
-						<input type="hidden" name="form" value="復元"> <span>履歴</span>
+						<input type="hidden" name="form" value="1"> <span>履歴</span>
 					</form>
 				</li>
 				<li id="logoutButton" class="tab-logout tab">
@@ -74,25 +74,41 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 						</li>
 						<li>
 							<label>ISBN</label>
-							<input type="tel" id="isbn" name="isbn" pattern="^[0-9]{13}$" maxlength="13" value="${book.isbn}" required>
+							<input type="tel" id="isbn" name="isbn" pattern="^[0-9]{13}$" maxlength="13" minlength="13" value="${book.isbn}" onblur="resetTotalInputData()" required>
 							<span id="caution">※既存の番号を入力しないようお願いいたします。</span>
 						</li>
 						<li>
-							<label>発売日</label> <input type="date" id="date" name="date" value="${book.salesDate}" max="9999-12-31" required>
+							<label for=""></label>
+							<span class="inputError isbnError">${sessionScope.isbnError}</span>
+						</li>
+						<li>
+							<label>発売日</label> <input type="date" id="date" name="date" value="${book.salesDate}" max="9999-12-31" min="1582-10-14" required>
+						</li>
+						<li>
+							<label for=""></label>
+							<span class="inputError dateError"></span>
 						</li>
 						<li>
 							<label>価格</label>
 							<div class="units">
-								<input type="tel" id="price" name="price" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.price}" required>
+								<input type="tel" id="price" name="price" pattern="^[0-9]{1,7}$" maxlength="7" value="${book.price}" onblur="resetTotalInputData()" required>
 								<span>円</span>
 							</div>
 						</li>
 						<li>
+							<label for=""></label>
+							<span class="inputError priceError"></span>
+						</li>
+						<li>
 							<label>在庫数</label>
 							<div class="units">
-								<input type="tel" id="stock" name="stock" pattern="^[0-9]{1,6}$" maxlength="6" value="${book.stock}" required>
+								<input type="tel" id="stock" name="stock" pattern="^[0-9]{1,9}$" maxlength="9" value="${book.stock}" onblur="resetTotalInputData()" required>
 								<span>冊</span>
 							</div>
+						</li>
+						<li>
+							<label for=""></label>
+							<span class="inputError stockError"></span>
 						</li>
 					</ul>
 				</form>
@@ -109,4 +125,5 @@ DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/TabTransition.js"></script>
+<script src="js/FormValidation.js"></script>
 </html>

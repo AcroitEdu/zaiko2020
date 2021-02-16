@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import jp.co.acroit.zaiko2020.book.Book;
 import jp.co.acroit.zaiko2020.data.BookDataAccess;
+import jp.co.acroit.zaiko2020.data.HistoryDataAccess;
+import jp.co.acroit.zaiko2020.user.User;
 
 /**
  * 編集処理サーブレット
@@ -25,7 +27,11 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
  * @version 1.2
  * セッションに格納したidの上書き方法変更
  * 空文字からnullに変更
- * @author hiroki tajima
+ * @version 1.3
+ * 履歴作成処理を追加
+ * @version 1.4
+ * DBエラー処理の遷移先修正
+ * @author yohei nishida
  */
 @WebServlet("/EditProcess")
 public class EditProcessController extends HttpServlet {
@@ -58,6 +64,15 @@ public class EditProcessController extends HttpServlet {
 			book = bda.findId(id);
 			//更新flgを0に戻す。
 			bda.flgReturn(id);
+
+			//履歴作成
+			int operationId = 4; //編集の操作ID
+			HistoryDataAccess hda = new HistoryDataAccess();
+			User user = (User)session.getAttribute("user");
+			long userId = user.getNumber();
+			int bookId = book.getId();
+			hda.InsertHistory(userId, bookId, operationId);
+
 			//取得した書籍の情報をセッションに設定する
 			session.setAttribute("book", book);
 			session.setAttribute("id", null);
@@ -66,10 +81,6 @@ public class EditProcessController extends HttpServlet {
 
 		} catch (SQLException e) {
 
-			//セッションの破棄
-			request.getSession().invalidate();
-			//セッションの再生成
-			request.getSession(true);
 			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
 			response.sendRedirect("/Zaiko2020/loginForm");
 

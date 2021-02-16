@@ -3,7 +3,7 @@
  * ＊対象
  * 【検索条件】：ISBN 在庫数
  * 【検索結果一覧】：移動ページ指定
- * 
+ *
  */
 
 //共用変数
@@ -28,7 +28,7 @@ $(function(){
 
 
 //在庫数
-var limitStockDigits = 10;
+var limitStockDigits = 9;
 //在庫数の入力値チェック
 $(function(){
   $('input[name="stock"]').on('input', function(){
@@ -73,7 +73,7 @@ function checkNumberTypeLimit(obj){
             $('#errorMessage').text("半角数字のみが入力できます。");
        }
   }
-  
+
 }
 
 function resetTotalInputData() {

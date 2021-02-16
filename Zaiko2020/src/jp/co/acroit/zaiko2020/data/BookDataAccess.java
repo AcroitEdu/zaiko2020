@@ -1168,4 +1168,51 @@ public class BookDataAccess {
 	}
 	/* 書籍の復元を行うメソッドここまで */
 
+	/* ISBNが重複しているかbooleanで返すメソッド */
+	public boolean isbnCheck(String isbn) throws SQLException {
+
+		Connection con = null;
+
+		boolean isbnFlg = false;
+
+		try {
+
+			con = DriverManager.getConnection(url, username, password);
+
+			//入力されたISBNの一致状況を取得するクエリ
+			query = "SELECT " + isbnColumn+ " FROM books WHERE " + isbnColumn + "=" + isbn + ";";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				//重複時
+				isbnFlg = true;
+			}
+			rs.close();
+			con.close();
+			con = null;
+
+			return isbnFlg;
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+			throw e;
+
+		} finally {
+
+			if (con != null) {
+
+				try {
+
+					con.close();
+
+				} catch (Exception ignore) {
+
+				}
+			}
+		}
+	}
+	/* ISBNが重複しているかbooleanで返すメソッドここまで */
+
 }

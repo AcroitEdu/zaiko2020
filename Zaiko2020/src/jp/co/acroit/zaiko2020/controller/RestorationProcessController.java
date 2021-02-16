@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import jp.co.acroit.zaiko2020.data.BookDataAccess;
+import jp.co.acroit.zaiko2020.data.HistoryDataAccess;
+import jp.co.acroit.zaiko2020.user.User;
 
 /**
  * 復元処理サーブレット
@@ -23,7 +25,11 @@ import jp.co.acroit.zaiko2020.data.BookDataAccess;
  * 書籍が選択されていない場合の判セッション「id」をnullで上書き
  * @version 1.2
  * 復元処理実行後に
- * @author hiroki tajima
+ * @version 1.3
+ * 履歴作成処理を追加
+ * @version 1.4
+ * DBエラー処理の遷移先の修正
+ * @author yohei nishida
  */
 @WebServlet("/RestorationProcess")
 public class RestorationProcessController extends HttpServlet {
@@ -55,6 +61,16 @@ public class RestorationProcessController extends HttpServlet {
 
 			bda.restoration(checkedId);
 
+			//履歴作成
+			int operationId = 6; //復元の操作ID
+			for(String id : checkedId) {
+				HistoryDataAccess hda = new HistoryDataAccess();
+				User user = (User)session.getAttribute("user");
+				long userId = user.getNumber();
+				int bookId = Integer.parseInt(id);
+				hda.InsertHistory(userId, bookId, operationId);
+			}
+
 			session.setAttribute("id",null);
 
 			session.setAttribute("msg", "書籍の復元を行いました。");
@@ -62,14 +78,24 @@ public class RestorationProcessController extends HttpServlet {
 
 		} catch (SQLException e) {
 
-			//セッションの破棄
-			request.getSession().invalidate();
-			//セッションの再生成
-			request.getSession(true);
+//			//セッションの破棄
+//			request.getSession().invalidate();
+//			//セッションの再生成
+//			request.getSession(true);
+//			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
+//			response.sendRedirect("/Zaiko2020/loginForm");
+			e.printStackTrace();
 			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/loginForm");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RestrationForm.jsp");
+			dispatcher.forward(request, response);
 
 		} catch (Exception e) {
+
+			e.printStackTrace();
+			session.setAttribute("error", "システムに異常が発生しています。システム管理者に連絡してください。");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RestrationForm.jsp");
+			dispatcher.forward(request, response);
+
 		}
 
 	}

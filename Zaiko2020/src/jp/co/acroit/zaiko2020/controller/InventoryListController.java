@@ -130,11 +130,13 @@ public class InventoryListController extends HttpServlet {
 
 			e.printStackTrace();
 			//セッションの破棄
-			request.getSession().invalidate();
+//			request.getSession().invalidate();
 			//セッションの再生成
-			request.getSession(true);
+//			request.getSession(true);
 			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/loginForm");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+			dispatcher.forward(request, response);
+//			response.sendRedirect("/Zaiko2020/loginForm");
 
 		} catch (Exception e) {
 
@@ -354,11 +356,13 @@ public class InventoryListController extends HttpServlet {
 
 			e.printStackTrace();
 			//セッションの破棄
-			request.getSession().invalidate();
+//			request.getSession().invalidate();
 			//セッションの再生成
-			request.getSession(true);
+//			request.getSession(true);
 			request.getSession().setAttribute("error", "データべースに異常が発生しています。システム管理者に連絡してください。");
-			response.sendRedirect("/Zaiko2020/loginForm");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/InventoryList.jsp");
+			dispatcher.forward(request, response);
+//			response.sendRedirect("/Zaiko2020/loginForm");
 
 		} catch (Exception e) {
 

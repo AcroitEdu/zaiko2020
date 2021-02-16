@@ -71,6 +71,7 @@ header .boxed-tabs {
 .boxed-tabs li.tab-current {
 	background-color: #f0f0f0;
 	border-bottom: 0 !important;
+	text-align: center;
 }
 
 .boxed-tabs li.tab-space {
@@ -82,6 +83,10 @@ header .boxed-tabs {
 .boxed-tabs li.tab-logout {
 	background-color: #f0a0a0;
 	border-right: 0 !important;
+}
+
+.tab > form {
+	text-align: center;
 }
 /* ヘッダーここまで */
 
@@ -100,13 +105,14 @@ header .boxed-tabs {
 }
 
 .add-options li label {
-	width: 120px;
+	min-width: 120px;
 	padding-right: 10px;
 	text-align: right;
 }
 
 .add-options li textarea {
-	width: 1070px;
+	max-width: 1070px;
+	width: 100%;
 	text-align: left;
 	resize: none;
 }
