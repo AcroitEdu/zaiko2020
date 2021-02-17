@@ -200,7 +200,13 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 					<table id="listTable">
 						<thead>
 							<tr id="listHeaders">
-								<th id="headerControl" class="headerFixed">操作</th>
+								<th id="headerControl" class="headerFixed">
+									操作
+									<form action="#">
+										<input type="checkbox" name="allCheck" 
+											id="allAction" title="全選択">
+									</form>
+								</th>
 								<th id="headerName" class="headerGrow2">書籍名</th>
 								<th id="headerAuthor" class="headerGrow2">著者</th>
 								<th id="headerPublisher" class="headerGrow2">出版社</th>
@@ -232,7 +238,8 @@ DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'�
 								%>
 								<tr>
 									<td class="dataControl dataCenter">
-										<input type="checkbox" name="checkbox" value="<%=item.getId()%>">
+										<input type="checkbox" name="checkbox" class="allChecked" 
+											value="<%=item.getId()%>">
 									</td>
 									<td class="dataName data"><%=item.getName()%></td>
 									<td class="dataAuthor data"><%=item.getAuthor()%></td>

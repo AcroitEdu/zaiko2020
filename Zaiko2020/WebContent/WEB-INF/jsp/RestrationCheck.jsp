@@ -4,6 +4,17 @@
 <%@ page import="java.util.List"%>
 <%@ page import="java.time.format.DateTimeFormatter"%>
 
+
+<%
+String[] checkIds = request.getParameterValues("checkbox");
+int sumIds = checkIds.length;
+List<Book> items = (List<Book>) session.getAttribute("items");
+//日付フォーマットの作成
+DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY'年<br/>'MM'月'dd'日'");
+DateTimeFormatter dateFormatSumaho = DateTimeFormatter.ofPattern("YYYY'年'MM'月'dd'日'");
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,14 +28,13 @@
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="js/dialog/dialog-polyfill.css" />
-<link href="styleBookInOut.css" rel="stylesheet">
-<link href="styleCheck.css" rel="stylesheet">
+<link href="styleCheckRestration.css" rel="stylesheet">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
 	<div id="main">
 		<header>
-			<span id="complete">以下のn件の書籍を復元します。</span>
+			<span id="complete">以下の${sessionScope.sumIds}件の書籍を復元します。</span>
 		</header>
 
 		<!--エラーメッセージ表示 -->
@@ -36,7 +46,7 @@
 		<!--復元書一覧表示-->
 		<article id="pcLists">
 			<section class="pageMover">
-				<%@ include file="part/PageMoverRestration.jsp"%>
+				<%@ include file="part/RestrationPageMover.jsp"%>
 			</section>
 			<section class="list">
 				<table>
@@ -53,12 +63,21 @@
 					</thead>
 					<tbody>
 						<%
-							if (bookLists != null) {
-								for(Book list : bookLists){
-								%>
-									<tr>
-									</tr>
-								<%
+							for (book item :items) {
+								for (int count = 0 ; count < sumIds; count++) {
+									if (item.getId() == checkIds[count]) {
+										%>
+											<tr>
+												<td class="data dataName"><%items.getName()%></td>
+												<td class="data dataAuther"><%items.getAuther()%></td>
+												<td class="data dataPublisher"><%items.getPublisher()%></td>
+												<td class="data dataSaleDate"><%items.getSaleDate().format(dateFormat)%></td>
+												<td class="data dataIsbn"><%items.getIsbn()%></td>
+												<td class="data dataPrice"><%items.getPrice()%></td>
+												<td class="data dataStock"><%items.getStock()%></td>
+											</tr>
+										<%
+									}
 								}
 							}
 						%>
@@ -66,7 +85,7 @@
 				</table>
 			</section>
 			<section class="pageMover">
-				<%@ include file="part/PageMoverRestration.jsp"%>
+				<%@ include file="part/RestrationPageMover.jsp"%>
 			</section>
 		</article>
 		<!--書籍情報表示ここまで-->
@@ -75,18 +94,20 @@
 		<div id="buttons">
 
 			<!--実行ボタン-->
-			<input type="submit" name="button" id="add"
+			<input type="submit" name="button" id="restration"
 				class="button button-main button-border" value="実行"
-				form="restrationForm">
+				form="restration">
 
 			<!--キャンセルボタン-->
 			<input type="submit" name="button" id="cancel"
 				class="button button-cancel button-border" value="キャンセル"
-				form="cancelForm">
+				form="cancel">
 		</div>
 		<!--ボタン表示エリアここまで-->
-		<form id="addForm" action="/Zaiko2020/RestrationProcess" method="post"></form>
-		<form id="cancelForm" action="/Zaiko2020//RestorationForm"
+		<form id="restration" action="/Zaiko2020/RestrationProcess" method="post">
+			<input type="hidden" name="checkbox" values="${checkIds}">
+		</form>
+		<form id="cancel" action="/Zaiko2020//RestorationForm"
 			method="post"></form>
 	</div>
 </body>

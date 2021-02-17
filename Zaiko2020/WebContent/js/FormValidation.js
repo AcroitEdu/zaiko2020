@@ -84,15 +84,15 @@ $(function(){
 
 function checkNumberTypeLimit(obj){
 
-  // ２．変数の定義
+  //変数の定義
   var inputValue = $(obj).val();
   console.log(inputValue);
   console.log(totalInputData);
   var valueLength = inputValue.length;
 
-  // ３．入力した文字が半角数字かどうかチェック
+  //入力した文字が半角数字かどうかチェック
   if(inputValue.match(/^[0-9]+$/)){
-       // ３．１．文字数チェック
+       //文字数チェック
        if(valueLength > limitedDigits){
             $(obj).val(totalInputData);
        }else{
@@ -100,7 +100,7 @@ function checkNumberTypeLimit(obj){
 			messagePlace.text("");
        }
   }else{
-       // ３．２．入力した文字が半角数字ではないとき
+       //入力した文字が半角数字ではないとき
        if(valueLength == 0){
             totalInputData = "";
        }else{

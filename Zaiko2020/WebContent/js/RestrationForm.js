@@ -31,3 +31,24 @@ $("#dialogCancel2").click(function () {
 $("#dialogExecute2").click(function () {
     $("#Restoration").submit();
 });
+
+//チェックボックスの全選択・解除
+//初期状態・全選択時にマウスホバーで表示される文字列
+var onMessage = '全解除';
+var offMessage = '全選択';
+
+//処理
+$("#allAction").click(function () {
+    var text = $(this).attr('title');
+    console.log(text);
+    if (text == onMessage) {
+        $("#allAction").attr('title',offMessage);
+        console.log('check01');
+        $('.allChecked').prop('checked', false);
+        console.log('check02');
+    }
+    else {
+        $("#allAction").attr('title',onMessage);
+        $('.allChecked').prop('checked', true);
+    }
+});

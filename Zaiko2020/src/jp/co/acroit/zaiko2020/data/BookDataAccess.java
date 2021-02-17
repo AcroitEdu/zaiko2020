@@ -26,8 +26,11 @@ import jp.co.acroit.zaiko2020.book.Book;
  * dbDeleteflg→dbDeleteFlagに修正
  * salsDate→salesDateに修正
  * deleteflg→deleteFlagに修正
- * @author hiroki tajima
+ * @version 4.4
+ * ISBN重複確認処理追加
+ * @author yohei nishida
  */
+
 public class BookDataAccess {
 
 	public BookDataAccess() {

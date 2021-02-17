@@ -37,6 +37,18 @@ select {
 textarea {
 	font-size: 16px;
 }
+
+/* 文字サイズ可変処理 (1080px~1920px)  式詳細はstyle.cssを参照 */
+p, input, select, span, th, td, li ,span, option{
+	/* 16px ~ 20px 可変*/
+	font-size: calc(16px + (( 1vw - 10.8px)* (4/8.4)));
+}
+
+label {
+	/* 20px ~ 24px 可変 */
+	font-size: calc(20px + (( 1vw - 10.8px)* (4/8.4)));
+}
+/* 文字サイズ可変処理 此処まで */
 /* 共通ここまで */
 
 /* ヘッダー */
@@ -144,12 +156,28 @@ header .boxed-tabs {
 /* ボタンここまで */
 
 /* エラーメッセージ */
-#error {
+#error .inputError {
 	color: #FF0000;
 	text-align: center;
 	margin: 10px auto;
 }
 /* エラーメッセージここまで */
+
+/* メディアクエリ(1080px~851px) */
+@media screen and (max-width : 1080px) {
+  /* 文字サイズ */
+  p, input, span, select, button, th, td, li, option{
+    font-size: 16px;
+  }
+  label {
+    font-size: 20px;
+  }
+  /* 文字サイズ  此処まで*/
+  #main {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
 
 /* メディアクエリ */
 @media screen and (max-width: 850px) {
